@@ -1,0 +1,15 @@
+# TeX glob patterns
+*.aux
+*.bbl
+*.blg
+*.log
+*.pdf
+*.dvi
+*.fls
+*.fdb_latexmk
+
+# Vim temporaries
+.*.swp
+
+# Bibliography concatenation
+bibliography.bib

@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Teorema}
+\newtheorem{lemma}[theorem]{Lema}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definição}
+
+\begin{document}
+
+\author{Tiago Royer}
+\title{Complexidade de Circuitos}
+
+\maketitle
+
+\section{Introdução}
+
+    O mais famoso problema de complexidade computacional é o $P$ versus $NP$.
+    Em essência, ele pergunta se,
+    para uma classe específica de problemas
+    (os problemas $NP$),
+    é mesmo exponencialmente mais difícil verificar
+    se uma resposta está certa
+    do que descobrir qual é a resposta certa.
+
+    A maior parte dos pesquisadores acredita que $P \neq NP$,
+    entretanto nada foi demonstrado.
+    Uma das ``frentes de ataque'' é tentar demonstrar limites inferiores
+    em modelos computacionais mais restritivos com a esperança de,
+    no futuro,
+    demonstrar estes mesmos limites inferiores para Máquinas de Turing \cite{Hastad1987}.
+    Um destes modelos computacionais é o de circuitos booleanos.
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}
