@@ -1,0 +1,220 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Universidade Federal de Santa Catarina             
+% Biblioteca UniversitÃ¡ria                     
+%----------------------------------------------------------------------
+% Exemplo de utilizaÃ§Ã£o da documentclass ufscThesis
+%----------------------------------------------------------------------                                                           
+% (c)2013 Roberto Simoni (roberto.emc@gmail.com)
+%         Carlos R Rocha (cticarlo@gmail.com)
+%         Rafael M Casali (rafaelmcasali@yahoo.com.br)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{ufscThesis} % Definicao do documentclass ufscThesis	
+
+%----------------------------------------------------------------------
+% Pacotes usados especificamente neste documento
+\usepackage{graphicx} % Possibilita o uso de figuras e grÃ¡ficos
+\usepackage{color}    % Possibilita o uso de cores no documento
+\usepackage{listings}
+%----------------------------------------------------------------------
+% Comandos criados pelo usuÃ¡rio
+\newcommand{\afazer}[1]{{\color{red}{#1}}} % Para destacar uma parte a ser trabalhada
+\newcommand{\ABNTbibliographyname}{REFERÃNCIAS} % NecessÃ¡rio para abnTeX 0.8.2
+
+%----------------------------------------------------------------------
+% Identificadores do trabalho
+% Usados para preencher os elementos prÃ©-textuais
+\instituicao[a]{Universidade Federal de Santa Catarina} % Opcional
+\departamento[a]{Biblioteca UniversitÃ¡ria}
+\curso[o]{Programa de ...}
+\documento[a]{Tese} % [o] para dissertaÃ§Ã£o [a] para tese
+\titulo{TÃ­tulo}
+\subtitulo{SubtÃ­tulo (se houver)} % Opcional
+\autor{Nome completo do autor}
+\grau{...}
+\local{FlorianÃ³polis} % Opcional (FlorianÃ³polis Ã© o padrÃ£o)
+\data{04}{junho}{2013}
+\orientador[Orientador\\Universidade ...]{Prof. Dr.}
+\coorientador[Coorientador\\Universidade ...]{Prof. Dr.}
+\coordenador[Coordenador\\Universidade ...]{Prof. Dr. }
+
+\numerodemembrosnabanca{4} % Isso decide se haverÃ¡ uma folha adicional
+\orientadornabanca{nao} % Se faz parte da banca definir como sim
+\coorientadornabanca{sim} % Se faz parte da banca definir como sim
+\bancaMembroA{Primeiro membro\\Universidade ...} %Nome do presidente da banca
+\bancaMembroB{Segundo membro\\Universidade ...}      % Nome do membro da Banca
+\bancaMembroC{Terceiro membro\\Universidade ...}     % Nome do membro da Banca
+\bancaMembroD{Quarto membro\\Universidade ...}       % Nome do membro da Banca
+%\bancaMembroE{Quinto membro\\Universidade ...}       % Nome do membro da Banca
+%\bancaMembroF{Sexto membro\\Universidade ...}        % Nome do membro da Banca
+%\bancaMembroG{SÃ©timo membro\\Universidade ...}       % Nome do membro da Banca
+
+\dedicatoria{Este trabalho Ã© dedicado aos meus colegas de classe e aos meus queridos pais.}
+
+\agradecimento{Inserir os agradecimentos aos colaboradores Ã  execuÃ§Ã£o do trabalho.}
+
+\epigrafe{Texto da EpÃ­grafe. CitaÃ§Ã£o relativa ao tema do trabalho. Ã opcional. A epÃ­grafe pode tambÃ©m aparecer na abertura de cada seÃ§Ã£o ou capÃ­tulo.}
+{(Autor da epÃ­grafe, ano)}
+
+\textoResumo {O texto do resumo deve ser digitado, em um Ãºnico bloco, sem espaÃ§o de parÃ¡grafo. O resumo deve ser significativo, composto de uma sequÃªncia de frases concisas, afirmativas e nÃ£o de uma enumeraÃ§Ã£o de tÃ³picos. NÃ£o deve conter citaÃ§Ãµes. Deve usar o verbo na voz passiva. Abaixo do resumo, deve-se informar as palavras-chave (palavras ou expressÃµes significativas retiradas do texto) ou, termos retirados de thesaurus da Ã¡rea.}
+\palavrasChave {Palavra-chave 1. Palavra-chave 2.  Palavra-chave 3. }
+ 
+\textAbstract {Resumo traduzido para outros idiomas, neste caso, inglÃªs. Segue o formato do resumo feito na lÃ­ngua vernÃ¡cula. As palavras-chave traduzidas, versÃ£o em lÃ­ngua estrangeira, sÃ£o colocadas abaixo do texto precedidas pela expressÃ£o ``Keywords'', separadas por ponto.}
+\keywords {Keyword 1. Keyword 2. Keyword 3.}
+
+%----------------------------------------------------------------------
+% InÃ­cio do documento                                
+\begin{document}
+%--------------------------------------------------------
+% Elementos prÃ©-textuais
+%\capa  
+\folhaderosto[comficha] % Se nao quiser imprimir a ficha, Ã© sÃ³ nÃ£o usar o parÃ¢metro
+\folhaaprovacao
+\paginadedicatoria
+\paginaagradecimento
+\paginaepigrafe
+\paginaresumo
+\paginaabstract
+%\pretextuais % Substitui todos os elementos pre-textuais acima
+\listadefiguras % as listas dependem da necessidade do usuÃ¡rio
+\listadetabelas 
+\listadeabreviaturas
+\listadesimbolos
+\sumario
+%--------------------------------------------------------
+% Elementos textuais
+
+\chapter{IntroduÃ§Ã£o}
+As orientaÃ§Ãµes aqui apresentadas sÃ£o baseadas em um conjunto de normas elaboradas pela ABNT. AlÃ©m das normas tÃ©cnicas a Biblioteca tambÃ©m elaborou  uma sÃ©rie de tutoriais e guias que estÃ£o disponÃ­veis na sua Homepage. \url{http://portalbu.ufsc.br/normalizacao-de-trabalhos-2/}. 
+
+
+\section{OBJETIVOS}
+
+DescriÃ§Ã£o...
+
+\subsection{Objetivo Geral}
+
+DescriÃ§Ã£o...
+
+\subsection{Objetivos EspecÃ­ficos}
+
+DescriÃ§Ã£o...
+
+\chapter{DESENVOLVIMENTO}
+
+\section{EXPOSIÃÃO DO TEMA OU MATÃRIA}
+
+Ã a parte principal e mais extensa do trabalho. Deve apresentar a fundamentaÃ§Ã£o teÃ³rica, a metodologia, os resultados e a discussÃ£o. Divide-se em seÃ§Ãµes e subseÃ§Ãµes conforme a NBR 6024~\cite{abnt14724}. Quanto a sua estrutura, segue as recomendaÃ§Ãµes da norma para preparaÃ§Ã£o de trabalhos acadÃªmicos, a NBR 14724 de 2011~\cite{abnt14724}. Quanto Ã  FormataÃ§Ã£o, segue o modelo adotado pela UFSC, o formato A5.
+
+
+\subsection{FormataÃ§Ã£o do texto}
+
+No que diz respeito Ã  estrutura do trabalho, o novo modelo para dissertaÃ§Ãµes e teses adotado pela UFSC segue a NBR 14724 (2011). PorÃ©m, em relaÃ§Ã£o Ã  formataÃ§Ã£o, a UFSC adotou o tamanho A5, que corresponde Ã  metade do A4. Por esta razÃ£o, foi necessÃ¡rio uma adequaÃ§Ã£o no tamanho da fonte, espaÃ§amento entrelinhas, margens, etc, conforme exposto no quadro abaixo.
+
+O texto deve ser justificado, digitado em cor preta, podendo utilizar outras cores somente para as ilustraÃ§Ãµes. Utilizar papel branco. Os elementos prÃ©-textuais devem iniciar no anverso da folha, com  exceÃ§Ã£o da ficha catalogrÃ¡fica. Os elementos textuais e pÃ³s-textuais devem ser digitados no anverso e verso das folhas, com espaÃ§amento simples (1). 
+
+
+
+\subsubsection{As ilustraÃ§Ãµes}
+
+Independente do tipo de ilustraÃ§Ã£o (quadro, desenho, figura, fotografia, mapa, entre outros) sua identificaÃ§Ã£o aparece na parte superior, precedida da palavra designativa. 
+
+
+
+A indicaÃ§Ã£o da fonte consultada deve aparecer na parte inferior, elemento obrigatÃ³rio mesmo que seja produÃ§Ã£o do prÃ³prio autor. A ilustraÃ§Ã£o deve ser citada no texto e inserida o mais prÃ³ximo possÃ­vel do texto a que se refere~\cite{abnt14724}. 
+
+A Figura \ref{fig:a} mostra o logo da BU
+\begin{figure}[!htb]
+   \centering
+   \caption{Logo da BU.}\label{fig:a}
+   \includegraphics[width=0.3\textwidth]{figuras/brasaoBU.jpg}
+\end{figure}
+
+A Tabela~\ref{tab:a} mostra mais informaÃ§Ãµes do template BU.
+
+\begin{table}[!htb]
+\begin{center}
+ \caption{FormataÃ§Ã£o do texto.}\label{tab:a}
+  \begin{tabular}{ p{3cm} | p{6cm} }
+    \hline
+Cor & Branco\\ \hline
+Formato do papel & A5\\ \hline
+Gramatura & 75\\ \hline
+ImpressÃ£o & Frente e verso\\ \hline
+Margens & Espelhadas: superior 2, Inferior: 1,5, Externa 1,5 e Externa: 2.\\ \hline
+CabeÃ§alho & 0,7\\ \hline
+RodapÃ© & 0,7\\ \hline
+PaginaÃ§Ã£o & Externa\\ \hline
+Alinhamento vertical & Superior\\ \hline
+Alinhamento do texto & Justificado\\ \hline
+Fonte sugerida & Times New Roman \\ \hline
+Tamanho da fonte & 10,5 para o texto incluindo os tÃ­tulos das seÃ§Ãµes e subseÃ§Ãµes. As citaÃ§Ãµes com mais de trÃªs linhas as legendas das ilustraÃ§Ãµes e tabelas, fonte 9,5.\\ \hline
+EspaÃ§amento entre linhas & Um (1) simples\\ \hline
+EspaÃ§amento entre parÃ¡grafos & Anterior 0,0; Posterior 0,0\\ \hline
+NumeraÃ§Ã£o da seÃ§Ã£o & As seÃ§Ãµes  primÃ¡rias devem  comeÃ§ar  sempre em pÃ¡ginas Ã­mpares. Deixar um espaÃ§o (simples) entre o tÃ­tulo da seÃ§Ã£o e o texto e  entre o texto e o tÃ­tulo da subseÃ§Ã£o. \\  \hline
+  \end{tabular}
+\end{center}
+Fonte: Universidade Federal de Santa Catarina (2011)
+\end{table}
+
+
+
+\subsubsection{EquaÃ§Ãµes e fÃ³rmulas}
+
+As equaÃ§Ãµes e fÃ³rmulas devem ser destacadas no texto para facilitar a leitura.  Para numerÃ¡-las, deve-se usar algarismos arÃ¡bicos entre parÃªnteses e alinhados Ã  direita. Pode-se usar uma entrelinha maior do que a usada no texto~\cite{abnt14724}.
+
+Exemplo: A equaÃ§Ã£o \ref{eq:a}
+\begin{equation}
+ x^2 + y^2 = z^2
+ \label{eq:a}
+\end{equation}
+ e a equaÃ§Ã£o  \ref{eq:b}
+\begin{equation}
+ x^2 + y^2 = n
+\label{eq:b}
+\end{equation}
+
+\subsection{Exemplo de como gerar a lista de sÃ­mbolos e abreviaturas}
+
+Para gerar a lista de sÃ­mbolos e abreviaturas use os comandos
+
+\abreviatura{ABNT}{AssociaÃ§Ã£o Brasileira de Normas TÃ©cnicas}
+\abreviatura{IBGE}{Instituto Brasileiro de Geografia e EstatÃ­stica}
+\simbolo{$\int$}{Integral}
+\simbolo{$\prod$}{ProdutÃ³rio}
+
+\begin{lstlisting}
+\simbolo{sÃ­mbolo}{descriÃ§Ã£o}
+\end{lstlisting}
+
+\begin{lstlisting}
+\abreviatura{abreviatura}{descriÃ§Ã£o}
+\end{lstlisting}
+
+\subsubsection{Exemplo de citaÃ§Ãµes no \LaTeX}
+
+Segundo \citeonline{alves_2001} ...
+
+...no final da frase \cite{abnt14724,BU_formatoA5}
+
+
+\nocite{alves_2001,abnt10520,abnt6024,abnt14724}
+
+
+
+\chapter{CONCLUSÃO}
+
+As conclusÃµes devem responder Ã s questÃµes da pesquisa, em relaÃ§Ã£o aos objetivos e hipÃ³teses. Devem ser breves podendo apresentar recomendaÃ§Ãµes e sugestÃµes para trabalhos futuros.
+
+\bibliographystyle{ufscThesis/ufsc-alf}
+\bibliography{bibliografia}
+
+%--------------------------------------------------------
+% Elementos pÃ³s-textuais
+\apendice
+\chapter{Exemplificando um ApÃªndice}
+Texto do ApÃªndice aqui. 
+
+\anexo
+\chapter{Exemplificando um Anexo}
+Texto do anexo aqui.
+\end{document}
