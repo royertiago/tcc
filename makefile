@@ -17,7 +17,7 @@ all: $(PDFS) $(BIBNAME)
 bibliography.bib: $(BIBSRC)
 	cat $(BIBSRC) > $(BIBNAME)
 
-$(PDFS): %.pdf : %.tex $(BIBSRC)
+$(PDFS): %.pdf : %.tex $(BIBNAME)
 	latexmk -pdf $<
 
 clean:
