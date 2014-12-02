@@ -1,0 +1,106 @@
+% proposal.tex
+% Based on http://www.latextemplates.com/template/simple-sectioned-essay
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage[brazil]{babel}
+
+\usepackage{blindtext}
+
+\usepackage{graphicx} % resizebox
+\usepackage{multirow}
+
+\linespread{1.2} % Line spacing
+
+%\setlength\parindent{0pt} % Uncomment to remove all indentation from paragraphs
+
+\begin{document}
+
+\begin{titlepage}
+    \center
+
+    \textsc{\LARGE Universidade Federal de Santa Catarina - UFSC}\\[1.5cm]
+    \textsc{\Large Ciência Da Computação}\\[4cm]
+
+    {\huge \bfseries Complexidade de Circuitos}\\[3cm]
+
+    \hspace{400.0cm}
+
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft} \large
+        \emph{Autor:} \\ \textsc{Tiago Royer}
+        \end{flushleft}
+    \end{minipage}
+    ~
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright} \large
+        \emph{Orientadora:} \\ Profa. Dra. \textsc{Jerusa Marchi}
+        \end{flushright}
+    \end{minipage}\\[4cm]
+
+    {\large \today}\\[3cm]
+
+    \vfill % Fill the rest of the page with whitespace
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\begin{abstract}
+    \blindtext
+
+    {\bf Palavras-chave:} Palavra1, Palavra2
+\end{abstract}
+
+\section{Introdução}
+
+    \blindtext\cite{Sipser2006}
+
+    \blindtext\cite{Hastad1987}
+
+    \blindtext\cite{Sipser2006}
+
+\section{Objetivos}
+
+    \blindtext[1]
+
+\subsection{Objetivos especificos} % Minor section
+
+    \blindtext[1]
+
+    \blindlist{enumerate}[5]
+
+\section{Cronograma}
+
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \multirow{2}{*}{Etapas} & \multicolumn{12}{|c|}{Meses}\\ \cline{2-13}
+                & dez & jan & fev & mar & abr & mai & jun & jul & ago & set & out & nov \\ \hline
+        Etapa 1 &  x  &  x  &  x  &     &     &     &     &     &     &     &     &     \\ \hline
+        Etapa 2 &     &     &  x  &  x  &  x  &  x  &     &     &     &     &     &     \\ \hline
+        Etapa 3 &     &     &     &     &     &  x  &  x  &     &     &     &     &     \\ \hline
+        Etapa 4 &     &     &     &     &     &  x  &  x  &  x  &  x  &  x  &  x  &  x  \\ \hline
+        Etapa 5 &     &     &     &     &     &     &     &     &     &     &     &  x  \\ \hline
+    \end{tabular}
+
+\section{Método de pesquisa}
+    \blindtext[3]
+
+\section{Custos}
+    \blindtext[1]
+
+\section{Recursos Humanos}
+    \blindtext[1]
+
+\section{Comunicação}
+    \blindtext[1]
+
+\section{Riscos}
+    \blindtext[1]
+
+\bibliographystyle{abnt-num}
+\bibliography{bibliography}
+
+\end{document}
