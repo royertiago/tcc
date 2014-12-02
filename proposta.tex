@@ -14,35 +14,41 @@
 
 \linespread{1.2} % Line spacing
 
-%\setlength\parindent{0pt} % Uncomment to remove all indentation from paragraphs
+\newcommand{\Title}[1]{\textbf{\MakeUppercase{#1}}}
 
 \begin{document}
 
 \begin{titlepage}
     \center
 
-    \textsc{\LARGE Universidade Federal de Santa Catarina - UFSC}\\[1.5cm]
-    \textsc{\Large Ciência Da Computação}\\[4cm]
+    \Title{Universidade Federal de Santa Catarina - UFSC}
 
-    {\huge \bfseries Complexidade de Circuitos}\\[3cm]
+    \Title{Ciência Da Computação}
 
-    \hspace{400.0cm}
+    \vspace*{\stretch{1}}
 
-    \begin{minipage}{0.4\textwidth}
-        \begin{flushleft} \large
-        \emph{Autor:} \\ \textsc{Tiago Royer}
-        \end{flushleft}
-    \end{minipage}
-    ~
-    \begin{minipage}{0.4\textwidth}
-        \begin{flushright} \large
-        \emph{Orientadora:} \\ Profa. Dra. \textsc{Jerusa Marchi}
-        \end{flushright}
-    \end{minipage}\\[4cm]
+    Tiago Royer
 
-    {\large \today}\\[3cm]
+    \vspace*{\stretch{2}}
 
-    \vfill % Fill the rest of the page with whitespace
+    \Title{Complexidade de Circuitos}\\[3cm]
+
+    \begin{flushright}
+        \begin{minipage}{0.5\textwidth}
+            Proposta de Trabalho de Conclusão de Curso,
+            a ser submetido ao Curso de Ciências da Computação
+            para a obtenção do Grau de
+            Bacharel em Ciências da Computação.
+
+            Orientadora: Profa. Dra. Jerusa Marchi
+        \end{minipage}
+    \end{flushright}
+
+    \vspace*{\stretch{3}}
+
+    Florianópolis, \today.
+
+    Entrega do TCC: 2º semestre de 2015.
 \end{titlepage}
 
 \tableofcontents
