@@ -11,6 +11,7 @@
 
 \usepackage{graphicx} % resizebox
 \usepackage{multirow}
+\usepackage{tabularx}
 
 \linespread{1.2} % Line spacing
 
@@ -118,21 +119,30 @@
 
 \section{Cronograma}
 
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \begin{tabularx}{\linewidth}{|X|*{10}{c|}}
         \hline
-        \multirow{2}{*}{Etapas} & \multicolumn{12}{|c|}{Meses}\\ \cline{2-13}
-                        & dez & jan & fev & mar & abr & mai & jun & jul & ago & set & out & nov \\ \hline
-        Estudar classes
-        de complexidade
-        computacional   &  x  &  x  &  x  &     &     &     &     &     &     &     &     &     \\ \hline
-        Estudar classes
-        de complexidade
-        de circuitos    &     &  x  &  x  &  x  &     &     &     &     &     &     &     &     \\ \hline
-        Ler a tese de
-        doutorado de
-        Håstad          &     &     &  x  &  x  &     &     &     &     &     &     &     &     \\ \hline
+        \multicolumn{1}{|c|}{\multirow{2}{*}{Etapas}} & \multicolumn{10}{|c|}{Meses}\\ \cline{2-11}
+        & jan & fev & mar & abr & mai & jun & jul & ago & set & out \\ \hline
 
-    \end{tabular}
+        Estudar classes de complexidade computacional
+        &  x  &  x  &  x  &     &     &     &     &     &     &     \\ \hline
+
+        Estudar classes de complexidade de circuitos
+        &     &  x  &  x  &  x  &     &     &     &     &     &     \\ \hline
+
+        Estabelecer relações de equivalência entre as classes de complexidade
+        &     &  x  &  x  &  x  &  x  &  x  &     &     &     &     \\ \hline
+
+        Rever demonstrações de limites inferiores para certas funções recursivas
+        &     &     &     &     &  x  &  x  &  x  &  x  &     &     \\ \hline
+
+        Explorar a relação com o problema $P$ versus $NP$
+        &     &  x  &     &     &     &     &     &  x  &     &     \\ \hline
+
+        Documentar o aprendido
+        &  x  &  x  &  x  &  x  &  x  &  x  &  x  &  x  &  x  &  x  \\ \hline
+
+    \end{tabularx}
 
 \section{Método de pesquisa}
     \blindtext[3]
