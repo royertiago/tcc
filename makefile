@@ -14,7 +14,7 @@ BIBSRC := $(shell find bib/ -name "*.bib")
 
 all: $(PDFS) $(BIBNAME)
 
-bibliography.bib: $(BIBSRC)
+$(BIBNAME): $(BIBSRC)
 	cat $(BIBSRC) > $(BIBNAME)
 
 $(PDFS): %.pdf : %.tex $(BIBNAME)
