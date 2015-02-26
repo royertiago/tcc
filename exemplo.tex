@@ -20,22 +20,6 @@
 % Comandos criados pelo usuário
 \newcommand{\afazer}[1]{{\color{red}{#1}}} % Para destacar uma parte a ser trabalhada
 
-%----------------------------------------------------------------------
-% Identificadores do trabalho
-% Usados para preencher os elementos pré-textuais
-\instituicao[a]{Universidade Federal de Santa Catarina} % Opcional
-\departamento[a]{Biblioteca Universitária}
-\curso[o]{Programa de ...}
-\documento[a]{Tese} % [o] para dissertação [a] para tese
-\titulo{Título}
-\subtitulo{Subtítulo (se houver)} % Opcional
-\autor{Nome completo do autor}
-\grau{...}
-\local{Florianópolis} % Opcional (Florianópolis é o padrão)
-\data{04}{junho}{2013}
-\orientador[Orientador\\Universidade ...]{Prof. Dr.}
-\coorientador[Coorientador\\Universidade ...]{Prof. Dr.}
-\coordenador[Coordenador\\Universidade ...]{Prof. Dr. }
 
 \numerodemembrosnabanca{4} % Isso decide se haverá uma folha adicional
 \orientadornabanca{nao} % Se faz parte da banca definir como sim
@@ -64,10 +48,10 @@
 %----------------------------------------------------------------------
 % Início do documento
 \begin{document}
+
 %--------------------------------------------------------
 % Elementos pré-textuais
-%\capa
-\folhaderosto[comficha] % Se nao quiser imprimir a ficha, é só não usar o parâmetro
+\input{pre_textual/capa}
 \folhaaprovacao
 \paginadedicatoria
 \paginaagradecimento
