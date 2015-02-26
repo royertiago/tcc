@@ -8,21 +8,16 @@
 %         Carlos R Rocha (cticarlo@gmail.com)
 %         Rafael M Casali (rafaelmcasali@yahoo.com.br)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass{ufscThesis} % Definicao do documentclass ufscThesis	
+\documentclass{ufscThesis}
 
-%----------------------------------------------------------------------
 % Pacotes usados especificamente neste documento
 \usepackage{graphicx} % Possibilita o uso de figuras e gráficos
 \usepackage{color}    % Possibilita o uso de cores no documento
 \usepackage{listings}
 \input{listings_portugese_workaround}
 
-%----------------------------------------------------------------------
-% Início do documento
 \begin{document}
 
-%--------------------------------------------------------
-% Elementos pré-textuais
 \input{pre_textual/capa}
 \input{pre_textual/banca}
 \input{pre_textual/dedicatoria}
@@ -32,8 +27,6 @@
 \input{pre_textual/abstract}
 \input{pre_textual/listas}
 
-%--------------------------------------------------------
-% Elementos textuais
 \input{introducao}
 \input{desenvolvimento} % Aqui vêm uma sequência de capítulos
 \input{conclusao}
@@ -41,12 +34,13 @@
 \bibliographystyle{ufscThesis/ufsc-alf}
 \bibliography{bibliografia}
 
-%--------------------------------------------------------
-% Elementos pós-textuais
 \apendice
 \input{apendices/exemplo}
+% O comando \apendice deve aparecer apenas uma vez,
+% antes de todos os apêndices.
 
 \anexo
 \input{anexos/exemplo}
+% O comando \anexo também deve aparecer apenas uma vez.
 
 \end{document}
