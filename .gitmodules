@@ -1,0 +1,3 @@
+[submodule "ufsctex"]
+	path = ufsctex
+	url = https://github.com/royertiago/ufsctex
