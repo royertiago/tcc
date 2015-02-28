@@ -20,7 +20,7 @@ $(BIBNAME): $(BIBSRC)
 $(PDF): %.pdf : %.tex $(BIBNAME)
 	latexmk -pdf $<
 
-clean:
+mostlyclean:
 	find -name "*.aux" -exec rm '{}' \;
 	find -name "*.bbl" -exec rm '{}' \;
 	find -name "*.blg" -exec rm '{}' \;
@@ -29,7 +29,7 @@ clean:
 	find -name "*.log" -exec rm '{}' \;
 	find -name "*.toc" -exec rm '{}' \;
 
-veryclean:
+clean: mostlyclean
 	find -name "*.pdf" -exec rm '{}' \;
 	find -name "*.dvi" -exec rm '{}' \;
 	rm $(BIBNAME)
