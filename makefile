@@ -7,17 +7,17 @@ GREPTEXSOURCE := grep --files-with-matches '^\\end{document}$$'
 # de acordo com a convenção acima.
 TEXSRC := $(shell find . -name "*.tex" -exec $(GREPTEXSOURCE) {} +)
 
-PDFS := $(TEXSRC:%.tex=%.pdf)
+PDF := $(TEXSRC:%.tex=%.pdf)
 
 BIBNAME = bibliography.bib
 BIBSRC := $(shell find bib/ -name "*.bib")
 
-all: $(PDFS) $(BIBNAME)
+all: $(PDF) $(BIBNAME)
 
 $(BIBNAME): $(BIBSRC)
 	cat $(BIBSRC) > $(BIBNAME)
 
-$(PDFS): %.pdf : %.tex $(BIBNAME)
+$(PDF): %.pdf : %.tex $(BIBNAME)
 	latexmk -pdf $<
 
 clean:
