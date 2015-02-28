@@ -21,15 +21,23 @@ $(PDF): %.pdf : %.tex $(BIBNAME)
 	latexmk -pdf $<
 
 mostlyclean:
-	find -name "*.aux" -exec rm '{}' \;
-	find -name "*.bbl" -exec rm '{}' \;
-	find -name "*.blg" -exec rm '{}' \;
-	find -name "*.fdb_latexmk" -exec rm '{}' \;
-	find -name "*.fls" -exec rm '{}' \;
-	find -name "*.log" -exec rm '{}' \;
-	find -name "*.toc" -exec rm '{}' \;
+	set -f; \
+	pattern_list=$$( \
+		sed '0,/^# LaTeX temporaries$$/d' .gitignore \
+		| sed '/^$$/,$$d' \
+	); \
+	for pattern in $$pattern_list; do \
+		find -name $$pattern -exec rm {} +; \
+	done
 
 clean: mostlyclean
-	find -name "*.pdf" -exec rm '{}' \;
-	find -name "*.dvi" -exec rm '{}' \;
+	set -f; \
+	pattern_list=$$( \
+		sed '0,/^# Binary output$$/d' .gitignore \
+		| sed '/^$$/,$$d' \
+	); \
+	for pattern in $$pattern_list; do \
+		find -name $$pattern -exec rm {} +; \
+	done
+
 	rm $(BIBNAME)
