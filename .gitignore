@@ -1,13 +1,19 @@
-# TeX glob patterns
+# LaTeX temporaries
 *.aux
 *.bbl
 *.blg
-*.log
-*.pdf
-*.dvi
-*.fls
 *.fdb_latexmk
+*.fls
+*.las
+*.lof
+*.log
+*.lot
+*.lsb
 *.toc
+
+# Binary output
+*.dvi
+*.pdf
 
 # Vim temporaries
 .*.swp
