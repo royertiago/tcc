@@ -1,3 +1,19 @@
+# clean-section name
+# Localiza, no .gitignore, uma seção delimitada por
+# '# name' no início e uma linha em branco no fim
+# e exclui todos os arquivos que correspondem
+# aos glob patterns contidos nesta seção.
+define clean-section
+set -f; \
+pattern_list=$$( \
+	sed '0,/^# $(1)$$/d' .gitignore \
+	| sed '/^$$/,$$d' \
+); \
+for pattern in $$pattern_list; do \
+	find -name $$pattern -exec rm {} +; \
+done
+endef
+
 # Convenção: todos os arquivos que são transformáveis em pdf possuem
 # o comando \end{document} numa linha por si só. O comando abaixo localiza
 # esta linha e imprime o nome do arquivo que a contém.
@@ -21,23 +37,8 @@ $(PDF): %.pdf : %.tex $(BIBNAME)
 	latexmk -pdf $<
 
 mostlyclean:
-	set -f; \
-	pattern_list=$$( \
-		sed '0,/^# LaTeX temporaries$$/d' .gitignore \
-		| sed '/^$$/,$$d' \
-	); \
-	for pattern in $$pattern_list; do \
-		find -name $$pattern -exec rm {} +; \
-	done
+	$(call clean-section,LaTeX temporaries)
 
 clean: mostlyclean
-	set -f; \
-	pattern_list=$$( \
-		sed '0,/^# Binary output$$/d' .gitignore \
-		| sed '/^$$/,$$d' \
-	); \
-	for pattern in $$pattern_list; do \
-		find -name $$pattern -exec rm {} +; \
-	done
-
+	$(call clean-section,Binary output)
 	rm $(BIBNAME)
