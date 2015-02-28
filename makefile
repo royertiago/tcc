@@ -53,26 +53,23 @@ TEXSRC := $(shell grep --files-with-matches '^\\end{document}$$' $(TEX))
 
 PDF := $(TEXSRC:%.tex=%.pdf)
 
-BIBNAME = bibliography.bib
-BIBSRC := $(shell find bib/ -name "*.bib")
 
+include bib/makefile
 
 # Regras
 
-all: $(PDF) $(BIBNAME)
+.DEFAULT_GOAL := all
 
-$(BIBNAME): $(BIBSRC)
-	cat $(BIBSRC) > $(BIBNAME)
+all: bib-all $(PDF)
 
-$(PDF): %.pdf : %.tex $(BIBNAME)
+$(PDF): %.pdf : %.tex $(BIB)
 	latexmk -pdf $<
 
 # Gera toda a cadeia de pré-requisidos para arquivos .tex.
 $(eval $(foreach file,$(TEX),$(call tex-rule,$(file))))
 
-mostlyclean:
+mostlyclean: bib-mostlyclean
 	$(call clean-section,LaTeX temporaries)
 
-clean: mostlyclean
+clean: bib-clean mostlyclean
 	$(call clean-section,Binary output)
-	rm $(BIBNAME)

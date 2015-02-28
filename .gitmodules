@@ -1,3 +1,6 @@
 [submodule "ufsctex"]
 	path = ufsctex
 	url = https://github.com/royertiago/ufsctex
+[submodule "bib"]
+	path = bib
+	url = https://bitbucket.org/royertiago/bib
