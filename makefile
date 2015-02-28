@@ -5,7 +5,7 @@ GREPTEXSOURCE := grep --files-with-matches '^\\end{document}$$'
 
 # O comando abaixo localiza os arquivos que podem ser transformados em pdf,
 # de acordo com a convenção acima.
-TEXSRC := $(shell find . -name "*.tex" -exec $(GREPTEXSOURCE) '{}' \;)
+TEXSRC := $(shell find . -name "*.tex" -exec $(GREPTEXSOURCE) {} +)
 
 PDFS := $(TEXSRC:%.tex=%.pdf)
 
