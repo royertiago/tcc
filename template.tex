@@ -1,0 +1,37 @@
+% Exemplo de utilização da UFSCTeX.
+
+\documentclass{ufsctex/ufsctex}
+
+% Pacotes usados especificamente neste documento
+\usepackage{tikz}
+\usepackage{listings}
+\input{listings_portugese_workaround}
+
+\begin{document}
+
+\input{pre_textual/capa}
+\input{pre_textual/banca}
+\input{pre_textual/dedicatoria}
+\input{pre_textual/agradecimento}
+\input{pre_textual/epigrafe}
+\input{pre_textual/resumo}
+\input{pre_textual/abstract}
+\input{pre_textual/listas}
+
+\input{introducao}
+\input{desenvolvimento} % Aqui vêm uma sequência de capítulos
+\input{conclusao}
+
+\bibliographystyle{abnt-alf}
+\bibliography{bibliografia}
+
+\apendice
+\input{apendices/exemplo}
+% O comando \apendice deve aparecer apenas uma vez,
+% antes de todos os apêndices.
+
+\anexo
+\input{anexos/exemplo}
+% O comando \anexo também deve aparecer apenas uma vez.
+
+\end{document}
