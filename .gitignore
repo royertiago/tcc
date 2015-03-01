@@ -17,6 +17,3 @@
 
 # Vim temporaries
 .*.swp
-
-# Bibliography concatenation
-bibliography.bib
