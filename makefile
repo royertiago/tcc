@@ -14,35 +14,6 @@ for pattern in $$pattern_list; do \
 done
 endef
 
-# extract-latex-dependencies filename
-# Extrai todos os arquivos incluídos por filename
-# através de comandos "input" e "include".
-define extract-latex-dependencies
-sed -n 's/^[^%]*\\\(input\|include\) *{\([^}]*\)}.*/\2.tex/p' $(1)
-endef
-
-# tex-target file
-# Alvo para arquivos .tex
-# Este alvo atualiza a timestamp do arquivo.
-# Desta forma, o próprio sistema de makefiles
-# se encarrega de gerenciar as dependências para nós.
-#
-# Uma inconveniência: caso o arquivo esteja aberto no Vim,
-# ele reclamará que o arquivo foi "modificado" desde a última escrita.
-define tex-rule
-
-$(1): $(shell $(call extract-latex-dependencies, $(1)))
-	touch $(1)
-
-endef
-
-# generate-tex-rule file
-# Gera um alvo para arquivos .tex de acordo com a variável tex-target.
-define generate-tex-rule
-$(eval $(call tex-rule,$(1)))
-endef
-
-
 # Todos os arquivos tex deste diretório
 TEX := $(shell find . -name "*.tex")
 
@@ -51,10 +22,37 @@ TEX := $(shell find . -name "*.tex")
 # Note que este comando pode falhar com linhas excessivamente grandes.
 TEXSRC := $(shell grep --files-with-matches '^\\end{document}$$' $(TEX))
 
+# Dependências
+#
+# Estes arquivos são gerados pelo latexmk
+# durante o processo de compilação.
+#
+# Eles contêm uma regra
+# que torna tanto o arquivo .pdf quanto o .dep.mk
+# dependentes de todos os arquivos
+# que influenciam em sua compilação.
+#
+# Note que não existe nenhuma receita disponível para arquivos .dep.mk,
+# embora eles serem construídos junto do .pdf.
+# Como ambos os arquivos possuem os mesmos conjuntos de dependências,
+# não costuma haver problema em ``mentir'' para o makefile neste caso,
+# pois sempre que o .dep.mk precisa ser reconstruído
+# (de acordo com a regra criada pelo latexmk)
+# o .pdf também precisa.
+#
+# Há um caso em que esta ``mentira'' causa problemas:
+# quando o .pdf existe, mas o .dep.mk não.
+# Isso pode ocorrer, por exemplo, quando algum .dep.mk
+# é excluído acidentalmente.
+# Como .pdf não possui dependências
+# (todas elas estavam no .dep.mk),
+# o .pdf nunca é atualizado e o .dep.mk nunca é construído.
+DEP := $(TEXSRC:%.tex=%.dep.mk)
+
 PDF := $(TEXSRC:%.tex=%.pdf)
 
-
 include bib/makefile
+-include $(DEP)
 
 # Regras
 
@@ -62,11 +60,8 @@ include bib/makefile
 
 all: bib-all $(PDF)
 
-$(PDF): %.pdf : %.tex $(BIB)
-	latexmk -pdf $<
-
-# Gera toda a cadeia de pré-requisidos para arquivos .tex.
-$(eval $(foreach file,$(TEX),$(call tex-rule,$(file))))
+$(PDF): %.pdf:
+	latexmk -pdf $*.tex --deps-out=$*.dep.mk
 
 mostlyclean: bib-mostlyclean
 	$(call clean-section,LaTeX temporaries)
