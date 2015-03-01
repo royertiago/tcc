@@ -1,23 +1,68 @@
-% Introdução
-
 \chapter{INTRODUÇÃO}
 
-As orientações aqui apresentadas
-são baseadas em um conjunto de normas
-elaboradas pela ABNT.
-Além das normas técnicas a
-Biblioteca também elaborou uma série de tutoriais
-e guias que estão disponíveis na sua Homepage.
-\url{http://portalbu.ufsc.br/normalizacao-de-trabalhos-2/}.
+O mais famoso problema da área de complexidade computacional
+é o $P$ versus $NP$.
+Os problemas da classe $P$
+são os que podem ser resolvidos em tempo polinomial
+por uma Máquina de Turing determinística,
+enquanto que a classe $NP$
+contempla os problemas que podem ser resolvidos em tempo polinomial
+por Máquinas não-determinísticas.
+Os problemas considerados são problemas de decisão;
+isto é,
+determinar se uma palavra está ou não
+numa determinada linguagem.
+$P$ e $NP$ são conjuntos de linguagens
+que correspondem a problemas de decisão.
+Sabemos que $P \subseteq NP$;
+o problema $P$ versus $NP$
+pergunta se esta inclusão é estrita ou não \cite{Sipser2006}.
+A maior parte dos pesquisadores acredita que $P \neq NP$,
+embora ainda não tenhamos demonstrado nada.
 
-\section{OBJETIVOS}
+Uma das ``frentes de ataque''
+consiste em tentar ``enfraquecer''
+a máquina de Turing.
+A ideia é trabalhar com um modelo de computação muito mais restritivo,
+provar um equivalente a $P \neq NP$
+para este modelo de computação,
+e transpôr esta demonstração para o modelo de Turing.
+Circuitos booleanos
+são exemplos de modelos de computação mais simples.
+Como eles não têm ``partes móveis''
+ou múltiplos estados,
+intuitivamente uma demonstração de que $P \neq NP$
+deve ser mais simples de se obter
+neste dispositivo computacional. \cite{Hastad1987}.
 
-Descrição...
+As duas principais medidas
+de complexidade de circuitos
+são a quantidade de nodos
+(quantidade de portas lógicas)
+e a profundidade do circuito
+(maior caminho entre uma entrada e uma saída).
+Existem várias classes de complexidades de circuitos
+que exploram estas duas métricas;
+neste trabalho,
+pretende-se relacionar estas classes de complexidade
+com as classes de complexidade computacional.
 
-\subsection{Objetivo Geral}
+\section{Objetivos}
 
-Descrição...
+Estabelecer relações entre classes de complexidade computacional
+e complexidade de circuitos.
 
-\subsection{Objetivos Específicos}
+\subsection{Objetivos Especificos}
 
-Descrição...
+\begin{enumerate}
+    \item Estudar as classes de complexidade computacional
+        e complexidade de circuitos.
+    \item Demonstrar a relação entre complexidade de circuitos
+        e o problema $P$ versus $NP$.
+    \item Correlacionar as principais classes
+        de complexidade computacional
+        às correspondentes classes de complexidade de circuitos
+    \item Estabelecer limites inferiores no tamanho
+        e profundidade dos circuitos
+        que computam certas funções recursivas.
+\end{enumerate}
