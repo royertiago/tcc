@@ -18,7 +18,7 @@ endef
 # Extrai todos os arquivos incluídos por filename
 # através de comandos "input" e "include".
 define extract-latex-dependencies
-sed -n 's/[^%]*\\\(input\|include\) *{\([^}]*\)}.*/\2.tex/p' $(1)
+sed -n 's/^[^%]*\\\(input\|include\) *{\([^}]*\)}.*/\2.tex/p' $(1)
 endef
 
 # tex-target file
