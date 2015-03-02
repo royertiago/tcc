@@ -69,6 +69,80 @@ que serão usadas no restante do trabalho.
 
 \section{LINGUAGENS E MÁQUINAS}
 
+\begin{definition}
+    Um \emph{alfabeto}
+    é um conjunto de símbolos,
+    geralmente denotado por $\Sigma$.
+    Seus elementos costumam ser denotados
+    por letras no início do alfabeto latino:
+    $a, b, c, \dots$.
+\end{definition}
+\begin{definition}
+    Uma \emph{palavra} sobre um alfabeto
+    é uma tupla ordenada de símbolos deste alfabeto.
+    Tuplas costumam ser denotadas
+    por letras no fim do alfabeto latino:
+    $u, v, w, x, y, z$.
+\end{definition}
+
+Observe que o alfabeto
+pode incluir qualquer caractere,
+incluindo espaços em branco
+e sinais de pontuação.
+Portanto,
+um texto inteiro
+(como, por exemplo, este parágrafo),
+é apenas uma palavra sobre um alfabeto específico.
+Talvez um nome mais apropriado para este objeto matemático
+seria \emph{sentença}.
+
+\begin{definition}
+    Dado um alfabeto $\Sigma$,
+    $\Sigma^*$ é o conjunto de todas as palavras
+    formadas com letras de $\Sigma$.
+\end{definition}
+Se $v = (a_1, a_2, \dots, a_n)$
+e $w = (b_1, b_2, \dots, b_m)$,
+a \emph{concatenação} de $v$ e $w$,
+denotada $vw$,
+é a tupla $(a_1, \dots, a_n, b_1, \dots, b_n)$.
+A tupla vazia é chamada de $\varepsilon$.
+Para qualquer palavra $w$,
+temos $w\varepsilon = \epsilon w = w$;
+portanto,
+$\varepsilon$ é a identidade da operação de concatenação.
+A operação de concatenação também é associativa.
+Estas duas operações permite-nos concluir
+que $\Sigma^*$ forma um monóide
+com a operação de concatenação.
+
+\begin{definition}
+    Dado um alfabeto $\Sigma$,
+    uma \emph{linguagem} sobre este alfabeto
+    é um subconjunto de $\Sigma^*$.
+\end{definition}
+Esta talvez é a definição menos intuitiva desta seção.
+Como uma linguagem,
+que deveria ser uma ferramenta para transmitir mensagens
+e sentimentos,
+pode ser definida
+meramente como um conjunto de palavras?
+
+Como observado anteriormente,
+palavras podem englobar sentenças inteiras.
+Tais sentenças podem fazer sentido ou não;
+a definição de linguagem
+tenta capturar esta noção de ``fazer sentido''.
+As sentenças que fazem sentido,
+perante uma linguagem,
+são justamente aquelas que \emph{pertencem} à linguagem.
+A linguagem do português
+é o conjunto das sentenças
+que obedecem às regras gramaticais
+da lingua portuguesa;
+uma linguagem de programação
+é o conjunto dos códigos-fonte válidos para aquela linguagem.
+
 \subsection{Máquinas absortas (oblivious machines)}
 
 \section{COMPLEXIDADE COMPUTACIONAL}
