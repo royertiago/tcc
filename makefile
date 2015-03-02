@@ -44,9 +44,30 @@ TEXSRC := $(shell grep --files-with-matches '^\\end{document}$$' $(TEX))
 # quando o .pdf existe, mas o .dep.mk não.
 # Isso pode ocorrer, por exemplo, quando algum .dep.mk
 # é excluído acidentalmente.
-# Como .pdf não possui dependências
-# (todas elas estavam no .dep.mk),
-# o .pdf nunca é atualizado e o .dep.mk nunca é construído.
+# Precisamos de um malabarismo adicional para lidar com este caso.
+#
+# A solução usada é fazer o .pdf depender do .dep.mk,
+# e adicionar uma regra sem prerequisitos nem receita para o .dep.mk.
+# Na inexistência do .dep.mk,
+# o .pdf possuirá como dependência apenas o .dep.mk.
+# Como o .dep.mk não existe, ele deve ser reconstruído.
+# Como sua regra não possui nem receita nem prerequisitos,
+# o makefile considera que ele acabou de ser atualizado
+# e, portanto, o .pdf precisa ser reconstruído.
+# Então, o comando de construção do .pdf gera o .dep.mk.
+#
+# (O latexmk é inteligente o bastante para recompilar o .pdf
+# apenas se os hashes dos arquivos se alteraram,
+# portanto uma mera deleção dos *.dep.mk é corrigida rapidamente.)
+#
+# Quando o .dep.mk existe,
+# a única regra que criamos para ele perde o sentido,
+# pois ela é subsumida pela regra que o próprio .dep.mk define.
+# Entretanto, o .pdf ainda depende do .dep.mk.
+# Mas é a própria receita do .pdf que irá construir o .dep.mk!
+# Portanto, precisamos nos assegurar de que a timestamp do .pdf
+# seja sempre posterior à timestamp do .dep.mk.
+# Isso é alcançado com um simples `touch $*.pdf`.
 DEP := $(TEXSRC:%.tex=%.dep.mk)
 
 PDF := $(TEXSRC:%.tex=%.pdf)
@@ -60,8 +81,11 @@ include bib/makefile
 
 all: bib-all $(PDF)
 
-$(PDF): %.pdf:
+$(DEP): %.dep.mk:
+
+$(PDF): %.pdf: %.dep.mk
 	latexmk -pdf $*.tex --deps-out=$*.dep.mk
+	touch $*.pdf
 
 mostlyclean: bib-mostlyclean
 	$(call clean-section,LaTeX temporaries)
