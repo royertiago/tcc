@@ -1,5 +1,69 @@
 \chapter{COMPLEXIDADE COMPUTACIONAL}
 
+A teoria de computabilidade e funções recursivas
+classificam os problemas entre
+aqueles que podem e não podem ser resolvidos mecanicamente.
+Existem diversos dispositivos matemáticos
+que tentam capturar esta noção de
+``resolvidos mecanicamente'';
+podemos citar como exemplo
+as máquinas de Turing
+e o cálculo lambda.
+Diremos, então,
+que um problema é \emph{decidível}
+se ele puder ser resolvido por uma máquina de Turing.
+
+Máquinas de Turing modelam bem os computadores modernos.
+Tudo o que um computador faz,
+uma máquina de Turing também consegue fazer.
+Portanto, os problemas decidíveis são aqueles que
+podem ser resolvidos com o uso de um computador.
+Embora a maior parte dos problemas
+encontrados no dia-a-dia seja decidível,
+existem alguns problemas de importância teórica e prática
+que não são decidíveis.
+Um exemplo notável é determinar se dois programas são equivalentes;
+caso existisse uma forma de determinar equivalência entre programas,
+poderiamos determinar com precisão
+se determinado refatoramento de código
+não alterou acidentalmente o significado do programa
+(isto é, introduziu um bug).
+
+Entretanto,
+meramente o fato de ser decidível
+não confere ao problema o status de
+ser resolvível por um computador.
+Existem alguns problemas
+(de fato, categorias inteira deles)
+que, por mais rápido que seja o computador
+que esteja tentando resolvê-lo,
+o tempo gasto para isso
+se torna excessivamente grande,
+mesmo para instâncias relativamente pequenas dos problemas.
+Chamamos estes problemas de \emph{intratáveis}.
+Por mais que eles sejam decidíveis,
+pode ser que demore até o Sol esfriar
+para que o computador devolva a solução.
+
+É aqui que entra a teoria de complexidade computacional.
+Essencialmente,
+\emph{complexidade}
+é a quantidade de recursos que são gastos
+para obter a solução de determinado problema.
+Geralmente nos concentramos em um único recurso;
+pode ser o tempo de execução,
+quantidade de memória RAM usada,
+ou,
+para a complexidade de circuitos,
+a quantidade de portas lógicas
+ou profundidade do circuito.
+
+A literatura diverge um pouco nas definições.
+O objetivo deste capítulo é consolidar
+as notações e definições
+que serão usadas no restante do trabalho.
+
+
 \section{LINGUAGENS E MÁQUINAS}
 
 \subsection{Máquinas absortas (oblivious machines)}
