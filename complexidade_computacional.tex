@@ -1,51 +1,52 @@
 \chapter{COMPLEXIDADE COMPUTACIONAL}
 
-A teoria de computabilidade e funções recursivas
-classificam os problemas entre
+A teoria da computabilidade
+classifica os problemas computacionais entre
 aqueles que podem e não podem ser resolvidos mecanicamente.
 Existem diversos dispositivos matemáticos
 que tentam capturar esta noção de
 ``resolvidos mecanicamente'';
-podemos citar como exemplo
-as máquinas de Turing
-e o cálculo lambda.
-Diremos, então,
-que um problema é \emph{decidível}
-se ele puder ser resolvido por uma máquina de Turing.
+o modelo que usaremos neste trabalho é a máquina de Turing.
 
-Máquinas de Turing modelam bem os computadores modernos.
-Tudo o que um computador faz,
-uma máquina de Turing também consegue fazer.
-Portanto, os problemas decidíveis são aqueles que
-podem ser resolvidos com o uso de um computador.
+Dizemos que um problema é \emph{decidível}
+se ele puder ser resolvido por uma máquina de Turing.
+Embora as máquinas de Turing
+não se pareçam com os computadores modernos,
+estes dois dispositivos são equivalentes,
+no sentido de que
+todos os problemas resolvíveis por um deles
+também é resolvível pelo outro.
+Portanto, podemos pensar nos problemas decidíveis
+como aqueles que podem ser resolvidos com o uso de um computador
+\cite[p. 307]{HopcroftMotwaniUllman2001}.
 Embora a maior parte dos problemas
 encontrados no dia-a-dia seja decidível,
 existem alguns problemas de importância teórica e prática
-que não são decidíveis.
+que não o são.
+% TODO: Adicionar citação aqui.
 Um exemplo notável é determinar se dois programas são equivalentes.
 \footnote{
     Este problema possui importância prática:
-    caso existisse uma forma de determinar equivalência entre programas,
-    poderiamos determinar com precisão
-    se determinado refatoramento de código
+    caso existisse um algoritmo para determinar equivalência entre programas,
+    poderíamos usar um computador para saber se
+    determinado refatoramento ou otimização de código
     não alterou acidentalmente o significado do programa;
-    isto é, o refatoramento não introduziu um bug.
+    isto é, a mudança não introduziu um bug.
 }
 
 Entretanto,
-meramente o fato de ser decidível
-não confere ao problema o status de
-ser resolvível por um computador.
+apenas ser decidível não é suficiente.
 Existem alguns problemas
 (de fato, categorias inteira deles)
 que, por mais rápido que seja o computador
 que esteja tentando resolvê-lo,
-o tempo gasto para isso
-se torna excessivamente grande,
-mesmo para instâncias relativamente pequenas dos problemas.
-Chamamos estes problemas de \emph{intratáveis}.
+o tempo necessário torna-se excessivamente grande
+muito rapidamente.
+Chamamos estes problemas de \emph{intratáveis}
+\cite[p. 1]{HopcroftMotwaniUllman2001}
 Por mais que eles sejam decidíveis,
 pode ser que demore até o Sol esfriar
+(evento que estima-se que vá ocorrer em 5 bilhões de anos)
 para que o computador devolva a solução.
 
 É aqui que entra a teoria de complexidade computacional.
@@ -71,7 +72,7 @@ que serão usadas no restante do trabalho.
 
 \begin{definition}
     Um \emph{alfabeto}
-    é um conjunto de símbolos,
+    é um conjunto finito de símbolos,
     geralmente denotado por $\Sigma$.
     Seus elementos costumam ser denotados
     por letras no início do alfabeto latino:
@@ -136,12 +137,13 @@ tenta capturar esta noção de ``fazer sentido''.
 As sentenças que fazem sentido,
 perante uma linguagem,
 são justamente aquelas que \emph{pertencem} à linguagem.
-A linguagem do português
+Por exemplo, a linguagem do português
 é o conjunto das sentenças
 que obedecem às regras gramaticais
 da lingua portuguesa;
 uma linguagem de programação
-é o conjunto dos códigos-fonte válidos para aquela linguagem.
+é o conjunto dos códigos-fonte válidos para aquela linguagem
+\cite[p. 31]{HopcroftMotwaniUllman2001}.
 
 \subsection{Máquinas absortas (oblivious machines)}
 
