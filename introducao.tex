@@ -71,26 +71,40 @@ o tamanho do circuito
 ou sua profundidade
 (maior número de portas lógicas entre uma entrada e uma saída).
 
-O mais famoso problema da área de complexidade computacional
-é o $P$ versus $NP$.
-Os problemas da classe $P$
-são os que podem ser resolvidos em tempo polinomial
-por uma Máquina de Turing determinística,
-enquanto que a classe $NP$
-contempla os problemas que podem ser resolvidos em tempo polinomial
-por Máquinas não-determinísticas.
-Os problemas considerados são problemas de decisão;
+A complexidade computacional classifica os problemas
+de acordo com os recursos necessários para serem resolvidos.
+Por exemplo,
+a classe de complexidade $P$
+é o conjunto de todos os problemas que podem ser resolvidos
+por uma máquina de Turing determinística
+em tempo polinomial;
 isto é,
-determinar se uma palavra está ou não
-numa determinada linguagem.
-$P$ e $NP$ são conjuntos de linguagens
-que correspondem a problemas de decisão.
-Sabemos que $P \subseteq NP$;
-o problema $P$ versus $NP$
-pergunta se esta inclusão é estrita ou não \cite{Sipser2006}.
-A maior parte dos pesquisadores acredita que $P \neq NP$
-\cite[p. 2]{Gasarch2012},
-embora ainda não tenhamos demonstrado nada.
+alguma máquina de Turing determinística
+resolve as instâncias de tamanho $n$
+usando no máximo $p(n)$ unidades de tempo,
+para algum polinômio $p$.
+Similarmente,
+a classe $NP$
+contempla os problemas resolvíveis em tempo polinomial
+por máquinas de Turing \emph{não} determinísticas.
+
+Estes dois conjuntos protagonizam
+o maior e mais importante problema da teoria de complexidade computacional,
+e um dos mais importantes problemas em aberto de toda a matemática.
+Ei-lo:
+\begin{displaymath}
+    P \stackrel?= NP
+\end{displaymath}
+\cite[p. 270]{Sipser2006}
+Sabemos que $P \subseteq NP$,
+pois toda máquina determinística pode ser vista como
+uma máquina não-deterministica que escolheu não ``usar''
+seu não-determinismo.
+A maior parte dos pesquisadores acredita que
+esta inclusão é estrita,
+e alguns deles creem que esta questão
+pode não ser resolvida este século
+\cite[p. 2]{Gasarch2012}.
 
 Uma das ``frentes de ataque''
 consiste em tentar ``enfraquecer''
