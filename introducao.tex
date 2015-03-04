@@ -1,5 +1,67 @@
 \chapter{INTRODUÇÃO}
 
+A teoria da computabilidade
+classifica os problemas computacionais entre
+aqueles que podem e não podem ser resolvidos mecanicamente.
+Existem diversos dispositivos matemáticos
+que tentam capturar esta noção de
+``resolvidos mecanicamente'';
+o modelo que usaremos neste trabalho é a máquina de Turing.
+
+Dizemos que um problema é \emph{decidível}
+se ele puder ser resolvido por uma máquina de Turing.
+Embora as máquinas de Turing
+não se pareçam com os computadores modernos,
+estes dois dispositivos são equivalentes,
+no sentido de que
+todos os problemas resolvíveis por um deles
+também é resolvível pelo outro.
+Portanto, podemos pensar nos problemas decidíveis
+como aqueles que podem ser resolvidos com o uso de um computador
+\cite[p. 307]{HopcroftMotwaniUllman2001}.
+Embora a maior parte dos problemas
+encontrados no dia-a-dia seja decidível,
+existem alguns problemas de importância teórica e prática
+que não o são.
+% TODO: Adicionar citação aqui.
+Um exemplo notável é determinar se dois programas são equivalentes.
+\footnote{
+    Este problema possui importância prática:
+    caso existisse um algoritmo para determinar equivalência entre programas,
+    poderíamos usar um computador para saber se
+    determinado refatoramento ou otimização de código
+    não alterou acidentalmente o significado do programa;
+    isto é, a mudança não introduziu um bug.
+}
+
+Entretanto,
+apenas ser decidível não é suficiente.
+Existem alguns problemas
+(de fato, categorias inteira deles)
+que, por mais rápido que seja o computador
+que esteja tentando resolvê-lo,
+o tempo necessário torna-se excessivamente grande
+muito rapidamente.
+Chamamos estes problemas de \emph{intratáveis}
+\cite[p. 1]{HopcroftMotwaniUllman2001}
+Por mais que eles sejam decidíveis,
+pode ser que demore até o Sol esfriar
+(evento que estima-se que vá ocorrer em 5 bilhões de anos)
+para que o computador devolva a solução.
+
+É aqui que entra a teoria de complexidade computacional.
+Essencialmente,
+\emph{complexidade}
+é a quantidade de recursos que são gastos
+para obter a solução de determinado problema.
+Geralmente nos concentramos em um único recurso;
+pode ser o tempo de execução,
+quantidade de memória RAM usada,
+ou,
+para a complexidade de circuitos,
+a quantidade de portas lógicas
+ou profundidade do circuito.
+
 O mais famoso problema da área de complexidade computacional
 é o $P$ versus $NP$.
 Os problemas da classe $P$
