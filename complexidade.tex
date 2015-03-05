@@ -32,15 +32,17 @@ de $M$ quando lhe é dado $x$ na entrada.
 \begin{definition}
     Uma \emph{medida de complexidade}
     é uma função $\Phi$ que satisfaz aos seguintes axiomas:
-    \begin{description}
-        \item[Axioma 1]
+    \begin{enumerate} [label=\textbf{Axioma \arabic*}, ref=\arabic*]
+        \item
+            \label{blum_def}
             $\Phi(M, x)$ está definido
             se, e somente se,
             $M(x)$ está definido.
-        \item[Axioma 2]
+        \item
+            \label{blum_rec}
             Dados $M$, $x$ e $k$,
             é decidível se $\Phi(M, x) = k$.
-    \end{description}
+    \end{enumerate}
 \end{definition}
 
 \subsection{Classes de Complexidade}
