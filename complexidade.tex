@@ -21,6 +21,28 @@ e definir as medidas padrão na seção \ref{medidas_padrao}.
 \section{Teoria de Complexidade Axiomática: Axiomas de Blum}
 \label{axiomas_blum}
 
+(Utilizaremos a definição provida por
+\citeonline[p. 156]{Papadimitriou1994}.)
+
+Dada uma máquina de Turing $M$
+e uma palavra $x$,
+denotaremos por $M(x)$ a ``saída''
+de $M$ quando lhe é dado $x$ na entrada.
+
+\begin{definition}
+    Uma \emph{medida de complexidade}
+    é uma função $\Phi$ que satisfaz aos seguintes axiomas:
+    \begin{description}
+        \item[Axioma 1]
+            $\Phi(M, x)$ está definido
+            se, e somente se,
+            $M(x)$ está definido.
+        \item[Axioma 2]
+            Dados $M$, $x$ e $k$,
+            é decidível se $\Phi(M, x) = k$.
+    \end{description}
+\end{definition}
+
 \subsection{Classes de Complexidade}
 
 \subsection{Teorema da União}
