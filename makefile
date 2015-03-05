@@ -73,7 +73,7 @@ DEP := $(TEXSRC:%.tex=%.dep.mk)
 PDF := $(TEXSRC:%.tex=%.pdf)
 
 include bib/makefile
--include $(DEP)
+include $(wildcard $(DEP)) # Isto inclui apenas os arquivos que existem
 
 # Regras
 
