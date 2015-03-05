@@ -14,13 +14,10 @@ for pattern in $$pattern_list; do \
 done
 endef
 
-# Todos os arquivos tex deste diretório
-TEX := $(shell find . -name "*.tex")
-
 # Convenção: todos os arquivos que são transformáveis em pdf possuem
 # o comando \end{document} numa linha por si só.
-# Note que este comando pode falhar com linhas excessivamente grandes.
-TEXSRC := $(shell grep --files-with-matches '^\\end{document}$$' $(TEX))
+TEX := $(shell find . -name "*.tex" -exec \
+	grep --files-with-matches '^\\end{document}$$' {} +)
 
 # Dependências
 #
@@ -56,10 +53,6 @@ TEXSRC := $(shell grep --files-with-matches '^\\end{document}$$' $(TEX))
 # e, portanto, o .pdf precisa ser reconstruído.
 # Então, o comando de construção do .pdf gera o .dep.mk.
 #
-# (O latexmk é inteligente o bastante para recompilar o .pdf
-# apenas se os hashes dos arquivos se alteraram,
-# portanto uma mera deleção dos *.dep.mk é corrigida rapidamente.)
-#
 # Quando o .dep.mk existe,
 # a única regra que criamos para ele perde o sentido,
 # pois ela é subsumida pela regra que o próprio .dep.mk define.
@@ -68,12 +61,12 @@ TEXSRC := $(shell grep --files-with-matches '^\\end{document}$$' $(TEX))
 # Portanto, precisamos nos assegurar de que a timestamp do .pdf
 # seja sempre posterior à timestamp do .dep.mk.
 # Isso é alcançado com um simples `touch $*.pdf`.
-DEP := $(TEXSRC:%.tex=%.dep.mk)
+DEP := $(TEX:%.tex=%.dep.mk)
 
-PDF := $(TEXSRC:%.tex=%.pdf)
+PDF := $(TEX:%.tex=%.pdf)
 
 include bib/makefile
--include $(DEP)
+include $(wildcard $(DEP)) # Isto inclui apenas os arquivos que existem
 
 # Regras
 
@@ -84,7 +77,7 @@ all: bib-all $(PDF)
 $(DEP): %.dep.mk:
 
 $(PDF): %.pdf: %.dep.mk
-	latexmk -pdf $*.tex --deps-out=$*.dep.mk
+	latexmk -pdf   -M -MF $*.dep.mk -MP   $*.tex   -g
 	touch $*.pdf
 
 mostlyclean: bib-mostlyclean
