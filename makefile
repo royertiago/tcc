@@ -56,10 +56,6 @@ TEXSRC := $(shell grep --files-with-matches '^\\end{document}$$' $(TEX))
 # e, portanto, o .pdf precisa ser reconstruído.
 # Então, o comando de construção do .pdf gera o .dep.mk.
 #
-# (O latexmk é inteligente o bastante para recompilar o .pdf
-# apenas se os hashes dos arquivos se alteraram,
-# portanto uma mera deleção dos *.dep.mk é corrigida rapidamente.)
-#
 # Quando o .dep.mk existe,
 # a única regra que criamos para ele perde o sentido,
 # pois ela é subsumida pela regra que o próprio .dep.mk define.
@@ -84,7 +80,7 @@ all: bib-all $(PDF)
 $(DEP): %.dep.mk:
 
 $(PDF): %.pdf: %.dep.mk
-	latexmk -pdf $*.tex --deps-out=$*.dep.mk
+	latexmk -pdf   -M -MF $*.dep.mk -MP   $*.tex   -g
 	touch $*.pdf
 
 mostlyclean: bib-mostlyclean
