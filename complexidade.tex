@@ -123,6 +123,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
 \end{example}
 
 \begin{example}
+    \label{complexidade_espaco}
     \simbolo{$\PhiDS$}{Complexidade de Espaço}
     Para a \emph{complexidade de espaço},
     que denotaremos por $\PhiDS$,
@@ -215,6 +216,74 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     Estes dois exemplos mostram que os axiomas são independentes
     \cite[p. 3]{Blum1967}.
 \end{example}
+
+Podemos ver que as medidas $\PhiDT$ e $\PhiDS$ estão relacionadas.
+Para ler uma posição da fita,
+é necessário gastar ao menos uma unidade de tempo.
+Ou seja,
+\begin{equation*}
+    \PhiDS(M, x) \leq \PhiDT(M, x).
+\end{equation*}
+E, de acordo com o raciocínio do exemplo \ref{complexidade_espaco},
+para todo $M$ existe algum $c$ que
+\begin{equation*}
+    \PhiDT(M, x) \leq c^{\PhiDS(M, x)}.
+\end{equation*}
+De fato, podemos relacionar quaisquer duas medidas de complexidade.
+
+\begin{theorem}
+    \label{relacao_medidas}
+    Dadas duas medidas de complexidade $\Phi$ e $\hat \Phi$,
+    existe uma função recursiva $r$ tal que
+    \begin{equation*}
+        \Phi(M, x) \leq r( x, \hat \Phi(M, x))
+    \end{equation*}
+    para todo $M$ e quase todo $x$.
+    \footnote{
+        ``verdadeiro para quase todo $n$''
+        significa que o predicado em questão
+        é falso para apenas uma quantidade finida de números $n$.
+    }
+\end{theorem}
+
+\begin{proof}
+    Defina
+    \begin{equation*}
+        r( x, k ) = \max \{ \Phi(M, x) \ | \
+            \text{A desrição de $M$ é mais curta que $|x|$}
+            \text{ e }
+            \hat \Phi(M, x) = k
+        \}
+    \end{equation*}
+    Fixado $x$, existe um número finito de máquinas de Turing
+    cuja descrição é menor que $|x|$.
+    O conjunto na definição acima é um subconjunto desta lista.
+    O predicado $\hat \Phi(M, x) = k$ é recursivo.
+    Quando este predicado é verdadeiro,
+    $M(x)$ está definido, pelo axioma \ref{blum_def},
+    portanto $\Phi(M, x)$ também está definido.
+    Concluímos que $r$ é recursiva.
+
+    Agora, para todos os $x$ que são mais longos que a descrição de $M$,
+    $\Phi(M, x)$ será um dos elementos do conjunto acima
+    para $r( x, \hat \Phi(M, x)))$,
+    portanto é menor ou igual a este número.
+\end{proof}
+
+\citeonline[p. 4]{Blum1967} demonstra uma versão ligeiramente mais forte
+deste teorema.
+Ele prova que $r$ pode ser tal que,
+simultaneamente,
+\begin{equation*}
+    \Phi(M, x) \leq r( x, \hat \Phi(M, x))
+\end{equation*}
+e
+\begin{equation*}
+    \hat \Phi(M, x) \leq r( x, \Phi(M, x))
+\end{equation*}
+Podemos construir uma função dessas
+pegando o máximo de duas funções obtidas
+usando o teorema \ref{relacao_medidas}.
 
 \subsection{Classes de Complexidade}
 
