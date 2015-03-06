@@ -15,6 +15,11 @@
 
 \usepackage{enumitem}
 
+% ufsctex.cls se baseia em abntex.cls que carrega o pacote mathptmx.
+% Este pacote altera as fontes para Times, inclusive \mathcal.
+% Este código "mágico" restaura-a para seu formato padrão.
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
 \begin{document}
 
 \input{pre_textual/capa}
