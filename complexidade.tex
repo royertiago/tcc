@@ -198,6 +198,24 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     com $\PhiDS$ para demonstrar o axioma \ref{blum_rec}.
 \end{example}
 
+\begin{example}
+    Escolher $\Phi(M, x) = 0$ para todo $M$ e $x$
+    satisfaz ao axioma \ref{blum_rec},
+    mas não ao axioma \ref{blum_def},
+    pois $\Phi(M, x)$ está definida mesmo quando $M(x)$ não está.
+    Já definir $\Phi(M, x) = |M(x)|$
+    satisfaz ao axioma \ref{blum_def},
+    mas não ao axioma \ref{blum_rec},
+    pois poderíamos resolver o problema da parada:
+    dada uma máquina $M$, podemos modificá-la
+    para apagar sua fita logo antes de parar.
+    Então, para esta $M'$,
+    $\Phi(M', x) = 0$ se, e somente se,
+    a $M$ original para ao computar $x$.
+    Estes dois exemplos mostram que os axiomas são independentes
+    \cite[p. 3]{Blum1967}.
+\end{example}
+
 \subsection{Classes de Complexidade}
 
 \subsection{Teorema da União}
