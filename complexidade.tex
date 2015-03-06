@@ -1,5 +1,11 @@
 \chapter{Complexidade Computacional}
 
+% Funções de complexidade, que satisfazem aos axiomas de Blum
+\newcommand{\PhiDT}{{\mathcal{T}}} % Tempo determinístico
+\newcommand{\PhiDS}{{\mathcal{S}}} % Espaço determinístico
+\newcommand{\PhiNT}{{\mathcal{NT}}} % Tempo não-determinístico
+\newcommand{\PhiNS}{{\mathcal{NS}}} % Espaço não-determinístico
+
 \emph{Complexidade} é a quantidade de recursos
 que uma máquina de Turing gasta
 para computar determinada função
@@ -78,6 +84,106 @@ de $M$ quando lhe é dado $x$ na entrada.
         é expressada pela função $R$ no axioma \ref{blum_rec_orig}.
     }
 \end{definition}
+
+O axioma \ref{blum_rec}
+nos dá um semialgoritmo para calcular $\Phi(M, x)$.
+Entretanto, pelo axioma \ref{blum_def},
+não podemos ir muito além disso,
+pois $M(x)$ não está definido para todo $M$ e $x$.
+De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
+
+\begin{example}
+    A \emph{complexidade de tempo},
+    que denotaremos por $\PhiDT$,
+    é a função que diz quantos movimentos
+    uma máquina de Turing faz até retornar uma resposta.
+    Isto é,
+    \begin{equation*}
+        \PhiDT(M, x) = \begin{cases}
+            k, & \text{se $M$ executa exatamente $k$ passos em $x$ antes de parar.} \\
+            \text{indefinido}, & \text{caso $M$ nunca pare de computar $x$.}
+        \end{cases}
+    \end{equation*}
+    Para determinar se $\PhiDT(M, x) = k$,
+    execute a máquina $M$ por $k$ passos
+    e veja se é a primeira vez que
+    $M$ atinge um estado aceitador.
+    E, como $\PhiDT(M, x)$ só está definido se $M$ para ao computar $x$,
+    $\PhiDT$ satisfaz aos dois axiomas de Blum.
+\end{example}
+
+\begin{example}
+    Para a \emph{complexidade de espaço},
+    que denotaremos por $\PhiDS$,
+    iremos assumir que $M$ possui uma fita somente-leitura
+    específica para a entrada.
+    \begin{equation*}
+        \PhiDS(M, x) = \begin{cases}
+            k, & \text{
+                \parbox{0.8\textwidth}{%
+                    se $M$ lê, de alguma de suas fitas,
+                    exatamente $k$ células
+                    antes de parar.
+                }
+            } \\
+            \text{indefinido}, & \text{
+                \parbox{0.8\textwidth}{
+                    se $M$ nunca parar ao computar $x$.
+                }
+            }
+        \end{cases}
+    \end{equation*}
+    É fácil ver que o axioma \ref{blum_def} é satisfeito.
+    Para o axioma \ref{blum_rec},
+    o algoritmo é um pouco mais complicado.
+
+    Comece executando $M$ em $x$.
+    Caso $M$ extrapole $k$ células lidas
+    em alguma de suas fitas,
+    podemos retornar rejeitar.
+    Caso contrário,
+    existirá um número finito de configurações da máquina.
+    Existem $|\Gamma|^k$ possíveis fitas com $k$ termos;
+    $k+1$ possíveis posições da cabeça de leitura;
+    $|Q|$ possíveis estados da máquina;
+    e $l$ diferentes fitas.
+    No total, existem, no máximo,
+    \begin{equation*}
+        (k+1) l |Q||\Gamma|^k
+    \end{equation*}
+    possíveis configurações.
+    Portanto, se a máquina executar
+    mais movimentos do que este número,
+    significa que ela entrou em loop.
+    Podemos retornar rejeitar.
+
+    E, por último,
+    caso $M$ pare,
+    precisamos nos assegurar que,
+    de fato,
+    em alguma das fitas $k$ células foram lidas.
+\end{example}
+
+\begin{example}
+    Podemos adaptar $\PhiDT$ e $\PhiDS$
+    para máquinas de Turing não-determinísticas.
+
+    Para a complexidade de tempo não-determinística,
+    que denotaremos por $\PhiNT$,
+    definiremos $\PhiNT(M, x)$
+    como sendo a maior quantidade de movimentos
+    tomadas por $M$ ao computar $x$
+    dentre todas as escolhas de transições possíveis.
+
+    Analogamente,
+    para a complexidade de espaço não-determinística,
+    que denotaremos por $\PhiNS$,
+    definiremos $\PhiNS(M, x)$
+    como sendo a maior quantidade de células lidas
+    em qualquer dos ramos da computação de $M$ em $x$.
+    Aqui, precisamos tomar o mesmo cuidado que tomamos
+    com $\PhiDS$ para demonstrar o axioma \ref{blum_rec}.
+\end{example}
 
 \subsection{Classes de Complexidade}
 
