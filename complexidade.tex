@@ -102,8 +102,16 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     Isto é,
     \begin{equation*}
         \PhiDT(M, x) = \begin{cases}
-            k, & \text{se $M$ executa exatamente $k$ passos em $x$ antes de parar.} \\
-            \text{indefinido}, & \text{caso $M$ nunca pare de computar $x$.}
+            k, & \text{
+                \parbox{0.6\textwidth}{
+                    se $M$ executa exatamente $k$ passos em $x$ antes de parar.
+                }
+            } \\
+            \text{indefinido}, & \text{
+                \parbox{0.6\textwidth}{
+                    caso $M$ nunca pare de computar $x$.
+                }
+            }
         \end{cases}
     \end{equation*}
     Para determinar se $\PhiDT(M, x) = k$,
@@ -123,14 +131,14 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     \begin{equation*}
         \PhiDS(M, x) = \begin{cases}
             k, & \text{
-                \parbox{0.8\textwidth}{%
+                \parbox{0.6\textwidth}{%
                     se $M$ lê, de alguma de suas fitas,
                     exatamente $k$ células
                     antes de parar.
                 }
             } \\
             \text{indefinido}, & \text{
-                \parbox{0.8\textwidth}{
+                \parbox{0.6\textwidth}{
                     se $M$ nunca parar ao computar $x$.
                 }
             }
