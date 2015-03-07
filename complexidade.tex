@@ -285,6 +285,48 @@ Podemos construir uma função dessas
 pegando o máximo de duas funções obtidas
 usando o teorema \ref{relacao_medidas}.
 
+Observe que o teorema,
+assim como provamos,
+não pode ser fortalecido
+para que $r$ seja uma função de apenas uma variável.
+Considere $A$ uma máquina de Turing
+que opere como um autômato finito.
+$\PhiDT(A, x) = |x|$ para toda palavra $x$,
+enquanto que $\PhiDS(A, x) = 1$ para toda palavra $x$.
+\footnote{
+    A complexidade de espaço não é $0$
+    pois $A$ é obrigada a ler
+    ao menos a célula inical da sua fita de trabalho,
+    embora a máquina não use aquela célula.
+}
+Se $r$ pudesse depender apenas da segunda variável,
+isto é, $r(x, m) = r'(m)$ para alguma função $r'$,
+teríamos
+\begin{align*}
+    |x| &= \PhiDT(A, x) \\
+        &\leq r(x, \PhiDS(A, x)) \\
+        &= r(x, 1) \\
+        &= r'(1)
+\end{align*}
+que é falso para todo $x$ suficientemente comprido.
+
+Caso $r$ pudesse depender apenas da primeira variável,
+isto é, $r(x, m) = r''(x)$ para alguma função $r''$,
+teríamos, para todas as máquinas de Turing,
+\begin{equation*}
+    \PhiDT(M, x) \leq r''(x).
+\end{equation*}
+Mas, como $r''$ é recursiva
+(pois $r$ o é),
+podemos construir uma máquina que calcula $r''(x)$,
+disperdiça $r''(x)$ movimentos,
+e aceita a entrada.
+Para esta $M'$,
+\begin{equation*}
+    \PhiDT(M', x) > r''(x),
+\end{equation*}
+contradizendo a equação anterior.
+
 \subsection{Classes de Complexidade}
 
 \subsection{Teorema da União}
