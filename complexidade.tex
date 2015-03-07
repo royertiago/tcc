@@ -327,6 +327,29 @@ Para esta $M'$,
 \end{equation*}
 contradizendo a equação anterior.
 
+No parágrafo anterior,
+construímos uma máquina de Turing
+que deliberadamente desperdiça tempo
+ao computar determinada função.
+Utilizando alguns resultados da teoria de funções recursivas,
+\citeonline[p. 4]{Blum1967} demonstrou que
+é sempre possível desperdiçar recursos computacionais,
+quaisquer que sejam estes recursos.
+
+\begin{theorem}
+    Sejam $f$ e $g$ duas funções recursivas totais,
+    e $\Phi$ uma medida de complexidade.
+    Então existe uma máquina de Turing $M$ que computa $f$
+    tal que
+    \begin{equation*}
+        \Phi(M, x) \geq g(|x|)
+    \end{equation*}
+    para todo $x$.
+\end{theorem}
+
+Em outras palavras,
+código ruim pode ser feito em qualquer linguagem.
+
 \subsection{Classes de Complexidade}
 
 \subsection{Teorema da União}
