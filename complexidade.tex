@@ -352,6 +352,28 @@ código ruim pode ser feito em qualquer linguagem.
 
 \subsection{Classes de Complexidade}
 
+\begin{definition}
+    Dada uma medida de complexidade $\Phi$
+    e uma função recursiva total
+    $f: \mathbb N \rightarrow \mathbb N$,
+    a \emph{classe de complexidade $f$} com relação a $\Phi$
+    é o conjunto
+    \begin{equation*}
+        \mathcal C_\Phi(f) = \{ L(M) \ | \ \Phi(M, x) \leq f(|x|)
+            \text{para quase todos os $x$}
+        \}
+    \end{equation*}
+\end{definition}
+Permitiremos que a complexidade de $M$
+possa ser maior que $f$ para um número finito de elementos
+para simplificar as demonstrações.
+
+Embora faça sentido definir $\mathcal C_\Phi(f)$
+para funções $f$ arbitrárias,
+a exigência de $f$ ser recursiva total
+torna as classes de complexidade
+sucetíveis a argumentos por diagonalização.
+
 \subsection{Teorema da União}
 
 \section{Medidas de Complexidade Computacional}
