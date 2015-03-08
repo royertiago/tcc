@@ -13,7 +13,7 @@ ou para decidir pertinência a uma linguagem
 \cite[p. 285]{HopcroftUllman1979}.
 Os recursos mais importantes para a teoria de complexidade computacional
 são o espaço e o tempo,
-tanto determinísticos como não-determinísticos.
+tanto determinísticos como não"-determinísticos.
 
 Embora seja possível trabalhar com estas medidas diretamente,
 muitos resultados para uma medida
@@ -127,7 +127,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     \simbolo{$\PhiDS$}{Complexidade de Espaço}
     Para a \emph{complexidade de espaço},
     que denotaremos por $\PhiDS$,
-    iremos assumir que $M$ possui uma fita somente-leitura
+    iremos assumir que $M$ possui uma fita somente"-leitura
     específica para a entrada.
     \begin{equation*}
         \PhiDS(M, x) = \begin{cases}
@@ -177,12 +177,12 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
 \end{example}
 
 \begin{example}
-    \simbolo{$\PhiNT$}{Complexidade de Tempo não-determinística}
-    \simbolo{$\PhiNS$}{Complexidade de Espaço não-determinística}
+    \simbolo{$\PhiNT$}{Complexidade de Tempo não"-determinística}
+    \simbolo{$\PhiNS$}{Complexidade de Espaço não"-determinística}
     Podemos adaptar $\PhiDT$ e $\PhiDS$
     para aaaaaa máquinas de Turing não"=determinísticas.
 
-    Para a complexidade de tempo não-determinística,
+    Para a complexidade de tempo não"-determinística,
     que denotaremos por $\PhiNT$,
     definiremos $\PhiNT(M, x)$
     como sendo a maior quantidade de movimentos
@@ -190,7 +190,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     dentre todas as escolhas de transições possíveis.
 
     Analogamente,
-    para a complexidade de espaço não-determinística,
+    para a complexidade de espaço não"-determinística,
     que denotaremos por $\PhiNS$,
     definiremos $\PhiNS(M, x)$
     como sendo a maior quantidade de células lidas
@@ -208,7 +208,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     satisfaz ao axioma \ref{blum_def},
     mas não ao axioma \ref{blum_rec},
     pois poderíamos resolver o problema da parada:
-    dada uma máquina $M$, podemos modificá-la
+    dada uma máquina $M$, podemos modificá"-la
     para apagar sua fita logo antes de parar.
     Então, para esta $M'$,
     $\Phi(M', x) = 0$ se, e somente se,
@@ -460,7 +460,7 @@ Precisamos de um lema.
     de acordo com o comportamento que $M_x$ tem ao computar $x$.
     Caso esta máquina encerre sua computação
     gastando no máximo $f(|x|)$ recursos,
-    executaremos-na até o final da computação
+    executaremos"-na até o final da computação
     e inverteremos o resultado:
     se $M_x$ aceita $x$, então $x \notin L$;
     se $M_x$ rejeita $x$, então $x \in L$.
@@ -504,7 +504,7 @@ Precisamos de um lema.
     Suponha agora que alguma máquina $M$ reconheça $L$.
     $M$ é $M_x$ para infinitos $x$ diferentes.
     $M$ aceita todos esses $x$
-    e precisa fazê-lo gastando mais do que $f(|x|)$ recursos,
+    e precisa fazê"-lo gastando mais do que $f(|x|)$ recursos,
     caso contrário $L$ discordaria de $L(M)$ nesses pontos.
     Portanto, $\Phi(M, x) \geq f(|x|)$ para infinitos $x$.
 
