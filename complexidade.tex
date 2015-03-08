@@ -385,7 +385,42 @@ Precisamos de um lema.
 \end{lemma}
 
 \begin{proof}
-    Use o passeio de Cantor
+    Percorra o caminho descrito pelas setas na figura
+    \ref{passeio_cantor}.
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+            \foreach \i in {0,...,3}
+            \foreach \j in {0,...,3} {
+                \node[font=\footnotesize]
+                    (a\i\j) at (2*\i, -1.2*\j) {$(\i, \j)$};
+            }
+
+            \foreach \a/\b in {a00/a10, a01/a20, a02/a30} {
+                \draw[->, dashed] (\a) .. controls
+                +(-1,-1.8) and
+                +(1, 1.8) .. (\b);
+            }
+
+            \foreach \a/\b in {
+                a10/a01, a20/a11, a11/a02,
+                a30/a21, a21/a12, a12/a03%
+            } {
+                \draw[->] (\a) -- (\b);
+            }
+        \end{tikzpicture}
+        \caption{Passeio de Cantor.}
+        \label{passeio_cantor}
+    \end{figure}
+
+    Em essência, primeiro enumeraremos todas os pares $(m, n)$
+    para os quais $m + n = 0$,
+    depois todos aqueles que $m + n = 1$,
+    depois todos os que $m + n = 2$,
+    e assim por diante.
+
+    Esta técnica é conhecida como ``passeio de Cantor''
     \cite[p. 6]{CarnielliConiglioBianconi2006}.
 \end{proof}
 
