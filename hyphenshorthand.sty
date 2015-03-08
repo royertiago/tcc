@@ -1,0 +1,28 @@
+% hyphenshorthand.sty
+% Comando que produz um hífen
+% que se comporta conforme a nova reforma ortográfica
+% e que permite hifenização automática no restante da frase.
+%
+% Uso:
+% não"=determinístico
+%
+% Esta palavra, agora, pode ser hifenizada como
+%   ___________ não-
+%   -determinístico
+% com o mesmo efeito que um \discretionary{-}{-}{-},
+% mas também permite hifenização como
+%   não"=deter-
+%   minístico
+% sem precisar de códico adicional,
+% da mesma forma que \hyp{}, do pacote hyphenat.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hyphenshorthand}
+\RequirePackage[brazil]{babel}
+\RequirePackage{hyphenat}
+
+\useshorthands*{"}
+\defineshorthand{"=}{%
+    \leavevmode%
+    \prw@zbreak\discretionary{-}{-}{-}\prw@zbreak%
+}
