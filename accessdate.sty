@@ -1,0 +1,52 @@
+% accessdate.sty
+% Função que formata as datas de acordo com as especificações da ABNT
+% para citação em data de acesso.
+%
+%
+% Uso:
+% \accessdate{<data>}
+% Formata a data passada de acordo com o padrão da ABNT.
+% <data> deve estar no formato de entrada do TeX,
+% a saber, "yyyy/mm/dd".
+%
+% Exemplo:
+% \accessdate{2015/03/07}
+% retorna
+% 07 mar. 2015
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{accessdate}
+\RequirePackage{tikz}
+% Eu não deveria ter que usar o pgfmath
+% para acesso a arrays e 'if's,
+% mas não conheço outra alternativa.
+% O TikZ não contém código que testa se o pgfmath já foi incluído
+% e o inclui novamente,
+% resultando em várias redefinições de comandos.
+% Como pretendo usar o TikZ nos meus documentos,
+% coloquei este pacote inteiro aqui.
+
+\def\accessdate@month{{"",% índice 0
+    "jan",% índice 1
+    "fev",% 2
+    "mar",% 3
+    "abr",% ...
+    "mai",%
+    "jun",%
+    "jul",%
+    "ago",%
+    "set",%
+    "out",%
+    "nov",%
+    "dez"%
+}}
+\def\accessdate@parse#1/#2/#3#4{
+    \pgfmathparse{#3 == 0 ? "#4" : "#3#4"}
+    \pgfmathresult%
+    \pgfmathparse{\accessdate@month[#2]}%
+    ~\pgfmathresult.%
+    ~#1%
+}
+\def\accessdate#1{%
+    {\accessdate@parse #1}%
+}
