@@ -708,6 +708,39 @@ A demonstração foi retirada do texto de \citeonline[p. 310]{HopcroftUllman1979
     Combinando as duas inclusões, prova"=se o teorema.
 \end{proof}
 
+Observe que a hipótese $f_i(n) \leq f_{i+1}(n)$
+para todo $i$ e todo $n$
+pode ser enfraquecida.
+Podemos exigir, apenas,
+que a desigualdade seja verdadeira para todo $n$
+maior que algum $n_0$,
+independente de $i$
+--- isto é, eventualmente todos os $f_i$
+deixam de se cruzar
+---;
+ou que, para todo $i$,
+exista algum $n_i$ em que
+$f_i(n) \leq f_j(n)$ para todo $n > n_i$
+e todo $j > i$
+--- isto é, eventualmente,
+cada $f_i$ deixa de cruzar com todos os outros.
+
+Neste último caso
+(que abrange o penúltimo),
+apenas teríamos que alterar a quantidade máxima de vezes
+em que podem haver chutes errados.
+Se $L(M_t) \in \mathcal C_\Phi(f_j)$,
+então existem, no máximo,
+$j - 1$ definições de $g(n)$
+que poderiam ser baseados em $f_k$
+com $k < j$;
+mas teríamos que esperar até $n_j$
+para que não houvessem definições
+de números quaisquer que ficassem abaixo da complexidade de $M_t$,
+porque, depois deste ponto,
+nenhum $f_j$ com $j > i$
+passa abaixo de $f_i$.
+
 \section{Medidas de Complexidade Computacional}
 \label{medidas_padrao}
 
@@ -718,6 +751,7 @@ A demonstração foi retirada do texto de \citeonline[p. 310]{HopcroftUllman1979
 % P, NP, PSPACE, EXP, NEXP, NEXPSPACE
 
 \section{Hierarquias de Complexidade}
+\label{hierarquia_complexidade}
 
 \subsection{Lema da Tradução}
 
