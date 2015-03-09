@@ -741,6 +741,124 @@ porque, depois deste ponto,
 nenhum $f_j$ com $j > i$
 passa abaixo de $f_i$.
 
+Em outras palavras,
+é essencial que as funções $f_i$
+eventualmente parem de se cruzar.
+
+\begin{counterexample}
+    Usaremos a complexidade de tempo para mostrar que
+    existem uniões de classes de complexidade
+    que não são classes de complexidade.
+    Defina
+    \begin{align*}
+        f_1 & = \begin{cases}
+                    n, & \text{se $n$ for par.} \\
+                    n^3 + 2n, & \text{se $n$ for ímpar.}
+                \end{cases} \\
+        f_2 & = \begin{cases}
+                    n, & \text{se $n$ for ímpar.} \\
+                    n^3 + 2n, & \text{se $n$ for par.}
+                \end{cases}
+    \end{align*}
+    Na seção \ref{hierarquia_complexidade},
+    iremos demonstrar que existe uma linguagem $L$ em
+    \begin{equation*}
+        \mathcal C_\PhiDT(n^3) \backslash \mathcal C_\PhiDT(n^2);
+    \end{equation*}
+    isto é, $L$ exige mais de $n^2$ de espaço para ser resolvida.
+
+    Seja $\Sigma$ o alfabeto de $L$,
+    tome $\$$ um símbolo fora de $\Sigma$
+    e construa as linguagens
+    \begin{align*}
+        L_1 &= L \cup L\$ \cup ( \Sigma \Sigma )^* \\
+        L_2 &= L \cup L\$ \cup \Sigma ( \Sigma \Sigma )^*
+    \end{align*}
+
+    $L_1$ contém todas as palavras de tamanho par de $\Sigma^*$,
+    todas as palavras de tamanho ímpar de $L$,
+    e todas as palavras de tamanho par de $L$ concatenadas com $\$$.
+    $L_1$ foi construída de forma que pertencesse
+    a $\mathcal C_\PhiDT(f_1)$;
+    um algoritmo que resolve $L_1$
+    é, primeiro, determinar se a entrada possui tamanho par
+    e aceitando neste caso
+    (gastando $n$),
+    ou então apagar um possível $\$$,
+    voltar para o começo
+    (gastando mais $n$)
+    e executar o algoritmo de $L$
+    (gastando mais $n^3$).
+    Note que todo algoritmo que opera em tempo $T(n)$
+    para $L_1$
+    pode ser convertido num algoritmo que opera em tempo
+    $T(n) + 2n$ para $L$;
+    basta verificar a paridade e emendar um $\$$ no final
+    se necessário.
+    Isso indica que $f_1$ é a complexidade ``ótima''
+    de $L_1$;
+    isto é,
+    todas as máquinas que resolvem $L_1$
+    precisam ter complexidade de tempo
+    eventualmente acima de $n^2$,
+    para todo $n$ par.
+
+    $L_2$ é análogo, mas para $f_2$.
+    Observe que $L$ não pertence nem a $\mathcal C_\PhiDT(f_1)$
+    nem a $\mathcal C_\PhiDT(f_2)$.
+
+    Suponha que exista uma função $g$ tal que
+    \begin{equation*}
+        \mathcal C_\PhiDT(f_1) \cup \mathcal C_\PhiDT(f_1) =
+        \mathcal C_\PhiDT(g).
+    \end{equation*}
+    Considere $L'$ como uma linguagem que exiga tempo $n^2$
+    para ser resolvida em quase todas as instâncias
+    (na seção \ref{hierarquia_complexidade}
+    iremos demonstrar a existência de tais linguagens).
+    Note que $L'$ não pertence à união das duas classes de complexidade,
+    por exigir tempo $n^2$ mesmo nos casos em que
+    $f_1(n) = n$ ou $f_2(n) = n$.
+    Iremos mostrar que $L' \in \mathcal C_\PhiDT(g)$.
+
+    Seja $M_1$ um algoritmo que aceita $L_1$
+    tal que $\PhiDT(M_1, x) \leq g(|x|)$
+    para quase todo $x$.
+    Essencialmente,
+    após algum $n_1$,
+    para toda palavra maior que este número
+    precisamos ter $\PhiDT(M_1, x) \leq g(|x|)$.
+    Pelo raciocínio acima,
+    $\PhiDT(M_1, x)$,
+    para $|x|$ par,
+    não pode ser menor que $|x|^2$ sempre;
+    portanto, $g(n) > n^2$ quase sempre
+    que $n$ for par.
+
+    A mesma técnica,
+    se aplicada a $L_2$,
+    mostra que
+    $g(n) > n^2$ quase sempre que $n$ for ímpar.
+    Combinando ambos,
+    temos $g(n) > n^2$ quase sempre.
+    Mas isso colocaria $L'$ em $\mathcal C_\PhiDT(g)$
+    --- contradição.
+
+    Portanto,
+    \begin{equation*}
+        \mathcal C_\PhiDT(f_1) \cup \mathcal C_\PhiDT(f_1)
+    \end{equation*}
+    não é uma classe de complexidade,
+    é apenas um conjunto.
+\end{counterexample}
+
+Observe que a ausência de monotonicidade
+não foi o ``grande vilão''
+deste contraexemplo.
+A prova do teorema da união,
+em nenhum momento,
+assumiu monotonicidade das funções envolvidas.
+
 \section{Medidas de Complexidade Computacional}
 \label{medidas_padrao}
 
