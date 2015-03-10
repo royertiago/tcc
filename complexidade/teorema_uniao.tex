@@ -99,6 +99,39 @@ A demonstração foi retirada do texto de \citeonline[p. 310]{HopcroftUllman1979
     Caso não haja chutes errados,
     apenas defina $g(n) = f_n(n)$.
 
+    \begin{algorithm}[h]
+        Inicialize a lista \texttt{chutes} com o par $\mathcal C(1) = 1$ \;
+        Imprima $g(1) = f_1(1)$ \;
+        \For{$n = 2$ \KwTo $\infty$}{
+            Adicione $\mathcal C(n) = n$ à lista \texttt{chutes} \;
+            \texttt{chute\_errado} = $-1$ \;
+            \For{$i \leftarrow 1$ \KwTo $n$}{
+                \tcc{iremos achar o menor chute errado}
+                \If{$\Phi(M_i, x) > f_{\mathcal C(i)}(|x|)$
+                    para algum $x$ de tamanho $n$
+                }{
+                    \tcc{Achamos um chute errado.}
+                    Substitua \texttt{chute\_errado} por $i$
+                    caso isso reduza (ou defina) o valor de
+                    $\mathcal C(\texttt{chute\_errado})$ \;
+                }
+            }
+            \If{\texttt{chute\_errado} = $-1$}{
+                Imprima $g(n) = f_n(n)$ \;
+            }
+            \Else{
+                \texttt k $\leftarrow$ $\mathcal C(\texttt{chute\_errado})$ \;
+                Imprima $g(n) = f_\texttt k (n)$ \;
+                Altere o chute errado para $\mathcal C(\texttt{chute\_errado}) = n$ \;
+            }
+        }
+        \caption{
+            Algoritmo que enumera os valores da função $g$,
+            cuja existência é afirmada pelo teorema da união.
+        }
+        \label{algoritmo_uniao}
+    \end{algorithm}
+
     Caso $L(M_i)$ esteja em algum $\mathcal C_\Phi(f_k)$,
     assim que redefinirmos o chute para algum valor maior que $k$,
     iremos errar, no máximo,
