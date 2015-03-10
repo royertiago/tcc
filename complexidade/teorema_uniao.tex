@@ -1,0 +1,305 @@
+\subsection{Teorema da União}
+
+Na seção \ref{classes_complexidade},
+iremos definir algumas classes de complexidade computacional
+como sendo a união de infinitas classes de complexidade.
+O teorema da união diz que,
+sob condições apropriadas,
+esta união é uma classe de complexidade
+de acordo com nossa definição de classe de complexidade.
+
+\begin{theorem}[Teorema da União]
+    \label{teorema_da_uniao}
+    Seja $\{f_i\}$ uma lista infinita de funções computáveis
+    tais que, para todo $i$ e $n$,
+    \begin{equation*}
+        f_i(n) \leq f_{i+1}(n).
+    \end{equation*}
+    Então existe uma função computável $g$
+    tal que
+    \begin{equation*}
+        \bigcup_i \ \mathcal C_\Phi(f_i) = \mathcal C_\Phi(g).
+    \end{equation*}
+\end{theorem}
+
+A demonstração foi retirada do texto de \citeonline[p. 310]{HopcroftUllman1979}.
+
+\begin{proof}
+    Iremos construir uma máquina de Turing
+    que enumerará os valores de $g(n)$.
+
+    Observe que
+    \begin{equation*}
+        \mathcal C_\Phi(f_1) \subseteq
+        \mathcal C_\Phi(f_2) \subseteq
+        \mathcal C_\Phi(f_3) \subseteq
+        \mathcal C_\Phi(f_4) \subseteq
+        \dots;
+    \end{equation*}
+    se alguma máquina $M_j$ possui sua linguagem
+    na união destas classes de complexidade,
+    significa que $L(M_j) \in \mathcal C_\Phi(f_k)$
+    para algum $k$,
+    mas também que $L(M_j) \in \mathcal C_\Phi(f_i)$
+    para todas as classes de complexidade com $i \geq k$.
+
+    Para definir o valor de $g(n)$,
+    analisaremos as máquinas $M_1, \dots, M_n$,
+    e manteremos uma lista de ``chutes''
+    da forma $L(M_i) \in \mathcal C_\Phi(f_j)$,
+    que denotaremos $\mathcal C(i) = j$.
+    Isto é, tentaremos ``adivinhar''
+    em qual dos conjuntos a linguagem da máquina $M_j$ entra.
+    \footnote{
+        Embora estejamos usando os termos
+        ``adivinhar'' e ``chute'',
+        não há não"=determinismo envolvido.
+        O problema é que não sabemos de antemão
+        qual é o valor correto $\mathcal C(i)$,
+        então precisamos estabelecer algum valor arbitrário
+        e reestabelecer este valor
+        conforme descobrimos que ele não funciona.
+
+        Observe também que não precisamos
+        ``acertar na mosca'';
+        basta algum conjunto $\mathcal C_\Phi(f_k)$
+        ao qual $L(M_i)$ pertença.
+    }
+
+    Ao computar o valor de $g(n)$,
+    um chute errado
+    é um chute $\mathcal C(i) = j$
+    em que $\Phi(M_i, x) > f_j(|x|)$
+    para algum $x$ com $|x| = n$.
+    Conforme computamos $g(n)$,
+    sempre que descobrirmos que nosso chute,
+    digamos, para $M_i$, está errado,
+    iremos definir $g$ para um valor menor que $\Phi(M_i, x)$
+    (para $|x| = n$)
+    e faremos um novo chute.
+
+    Defina $g(1)$ para $f_1(1)$
+    (ou qualquer valor arbitrário)
+    e inicialize a lista com o chute
+    $\mathcal C_1 = 1$.
+    A lista terá sempre tamanho $n-1$
+    ao começar a decidir o valor de $g(n)$.
+
+    Ao enumerar o valor de $g(n)$,
+    adicione o chute $\mathcal C_n = n$ à lista.
+    Percorra a lista atrás de chutes errados;
+    isto é,
+    pares $\mathcal C_i = k_i$
+    tais que $\Phi(M_i, x) > f_{k_i}$
+    para algum $x$ com $|x| = n$.
+    Dentre os chutes errados,
+    escolha $i$ de forma a minimizar $k_i$.
+    Defina, então, $g(n) = f_{k_i}(n)$
+    e atualize o chute para $\mathcal C_i = n$.
+    Caso não haja chutes errados,
+    apenas defina $g(n) = f_n(n)$.
+
+    Caso $L(M_i)$ esteja em algum $\mathcal C_\Phi(f_k)$,
+    assim que redefinirmos o chute para algum valor maior que $k$,
+    iremos errar, no máximo,
+    mais uma quantidade finita de vezes.
+    Caso $L(M_i)$ não esteja na união das classes de complexidade,
+    iremos errar o chute infinitas vezes,
+    e $g(|x|)$ será maior que $\Phi(M, x)$ para todos esses erros.
+
+    Observe que os novos chutes que adicionamos à lista
+    sempre serão maiores que todos os demais chutes existentes;
+    e sempre redefinimos um chute errado
+    para o maior valor de um chute até agora.
+    Portanto, depois que adicionamos o chute
+    $\mathcal C_i = i$ à lista
+    (evento que ocorreu ao computar $g(i)$),
+    ocorrerão, no máximo,
+    $i-1$ chutes diferentes
+    que resultarão na definição de $g(n)$ como $f_k(n)$
+    para algum $k < i$.
+
+    Então, se $L(M_i) \in \mathcal C_\Phi(f_k)$,
+    iremos ter $\Phi(M, x) > g(|x|)$
+    para, no máximo, $k-1$ valores de $|x|$ maiores que $k$.
+    Concluímos que
+    \begin{equation*}
+        L(M_i) \in \mathcal C_\Phi(g),
+    \end{equation*}
+    pois $\Phi(M, x) > g(|x|)$ apenas um número finito de vezes.
+
+    Isso prova
+    \begin{equation*}
+        \bigcup_i \ \mathcal C_\Phi(f_i) \subseteq \mathcal C_\Phi(g).
+    \end{equation*}
+
+    Do outro lado,
+    pegue $L$ fora da união das classes de complexidade.
+    Qualquer máquina $M_j$ para $L$
+    irá ter, para todo $k$,
+    $\Phi(M_j, x) > f_k(|x|)$ para infinitos $x$.
+    Em todos esses valores de $|x|$,
+    iremos ``errar o chute''
+    e definir $g(n)$
+    para um valor menor que $\Phi(M_j, x)$,
+    para algum $x$ com $|x| = n$.
+
+    Isso prova
+    \begin{equation*}
+        \overline{\bigcup_i \ \mathcal C_\Phi(f_i)}
+        \subseteq \overline{\mathcal C_\Phi(g)}.
+    \end{equation*}
+
+    Combinando as duas inclusões, prova"=se o teorema.
+\end{proof}
+
+Observe que a hipótese $f_i(n) \leq f_{i+1}(n)$
+para todo $i$ e todo $n$
+pode ser enfraquecida.
+Podemos exigir, apenas,
+que a desigualdade seja verdadeira para todo $n$
+maior que algum $n_0$,
+independente de $i$
+--- isto é, eventualmente todos os $f_i$
+deixam de se cruzar
+---;
+ou que, para todo $i$,
+exista algum $n_i$ em que
+$f_i(n) \leq f_j(n)$ para todo $n > n_i$
+e todo $j > i$
+--- isto é, eventualmente,
+cada $f_i$ deixa de cruzar com todos os outros.
+
+Neste último caso
+(que abrange o penúltimo),
+apenas teríamos que alterar a quantidade máxima de vezes
+em que podem haver chutes errados.
+Se $L(M_t) \in \mathcal C_\Phi(f_j)$,
+então existem, no máximo,
+$j - 1$ definições de $g(n)$
+que poderiam ser baseados em $f_k$
+com $k < j$;
+mas teríamos que esperar até $n_j$
+para que não houvessem definições
+de números quaisquer que ficassem abaixo da complexidade de $M_t$,
+porque, depois deste ponto,
+nenhum $f_j$ com $j > i$
+passa abaixo de $f_i$.
+
+Em outras palavras,
+é essencial que as funções $f_i$
+eventualmente parem de se cruzar.
+
+\begin{counterexample}
+    Usaremos a complexidade de tempo para mostrar que
+    existem uniões de classes de complexidade
+    que não são classes de complexidade.
+    Defina
+    \begin{align*}
+        f_1 & = \begin{cases}
+                    n, & \text{se $n$ for par.} \\
+                    n^3 + 2n, & \text{se $n$ for ímpar.}
+                \end{cases} \\
+        f_2 & = \begin{cases}
+                    n, & \text{se $n$ for ímpar.} \\
+                    n^3 + 2n, & \text{se $n$ for par.}
+                \end{cases}
+    \end{align*}
+    Na seção \ref{hierarquia_complexidade},
+    iremos demonstrar que existe uma linguagem $L$ em
+    \begin{equation*}
+        \mathcal C_\PhiDT(n^3) \backslash \mathcal C_\PhiDT(n^2);
+    \end{equation*}
+    isto é, $L$ exige mais de $n^2$ de espaço para ser resolvida.
+
+    Seja $\Sigma$ o alfabeto de $L$,
+    tome $\$$ um símbolo fora de $\Sigma$
+    e construa as linguagens
+    \begin{align*}
+        L_1 &= L \cup L\$ \cup ( \Sigma \Sigma )^* \\
+        L_2 &= L \cup L\$ \cup \Sigma ( \Sigma \Sigma )^*
+    \end{align*}
+
+    $L_1$ contém todas as palavras de tamanho par de $\Sigma^*$,
+    todas as palavras de tamanho ímpar de $L$,
+    e todas as palavras de tamanho par de $L$ concatenadas com $\$$.
+    $L_1$ foi construída de forma que pertencesse
+    a $\mathcal C_\PhiDT(f_1)$;
+    um algoritmo que resolve $L_1$
+    é, primeiro, determinar se a entrada possui tamanho par
+    e aceitando neste caso
+    (gastando $n$),
+    ou então apagar um possível $\$$,
+    voltar para o começo
+    (gastando mais $n$)
+    e executar o algoritmo de $L$
+    (gastando mais $n^3$).
+    Note que todo algoritmo que opera em tempo $T(n)$
+    para $L_1$
+    pode ser convertido num algoritmo que opera em tempo
+    $T(n) + 2n$ para $L$;
+    basta verificar a paridade e emendar um $\$$ no final
+    se necessário.
+    Isso indica que $f_1$ é a complexidade ``ótima''
+    de $L_1$;
+    isto é,
+    todas as máquinas que resolvem $L_1$
+    precisam ter complexidade de tempo
+    eventualmente acima de $n^2$,
+    para todo $n$ par.
+
+    $L_2$ é análogo, mas para $f_2$.
+    Observe que $L$ não pertence nem a $\mathcal C_\PhiDT(f_1)$
+    nem a $\mathcal C_\PhiDT(f_2)$.
+
+    Suponha que exista uma função $g$ tal que
+    \begin{equation*}
+        \mathcal C_\PhiDT(f_1) \cup \mathcal C_\PhiDT(f_1) =
+        \mathcal C_\PhiDT(g).
+    \end{equation*}
+    Considere $L'$ como uma linguagem que exiga tempo $n^2$
+    para ser resolvida em quase todas as instâncias
+    (na seção \ref{hierarquia_complexidade}
+    iremos demonstrar a existência de tais linguagens).
+    Note que $L'$ não pertence à união das duas classes de complexidade,
+    por exigir tempo $n^2$ mesmo nos casos em que
+    $f_1(n) = n$ ou $f_2(n) = n$.
+    Iremos mostrar que $L' \in \mathcal C_\PhiDT(g)$.
+
+    Seja $M_1$ um algoritmo que aceita $L_1$
+    tal que $\PhiDT(M_1, x) \leq g(|x|)$
+    para quase todo $x$.
+    Essencialmente,
+    após algum $n_1$,
+    para toda palavra maior que este número
+    precisamos ter $\PhiDT(M_1, x) \leq g(|x|)$.
+    Pelo raciocínio acima,
+    $\PhiDT(M_1, x)$,
+    para $|x|$ par,
+    não pode ser menor que $|x|^2$ sempre;
+    portanto, $g(n) > n^2$ quase sempre
+    que $n$ for par.
+
+    A mesma técnica,
+    se aplicada a $L_2$,
+    mostra que
+    $g(n) > n^2$ quase sempre que $n$ for ímpar.
+    Combinando ambos,
+    temos $g(n) > n^2$ quase sempre.
+    Mas isso colocaria $L'$ em $\mathcal C_\PhiDT(g)$
+    --- contradição.
+
+    Portanto,
+    \begin{equation*}
+        \mathcal C_\PhiDT(f_1) \cup \mathcal C_\PhiDT(f_1)
+    \end{equation*}
+    não é uma classe de complexidade,
+    é apenas um conjunto.
+\end{counterexample}
+
+Observe que a ausência de monotonicidade
+não foi o ``grande vilão''
+deste contraexemplo.
+A prova do teorema da união,
+em nenhum momento,
+assumiu monotonicidade das funções envolvidas.
