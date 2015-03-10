@@ -171,20 +171,23 @@ e todo $j > i$
 cada $f_i$ deixa de cruzar com todos os outros.
 
 Neste último caso
-(que abrange o penúltimo),
+(que abrange o anterior),
 apenas teríamos que alterar a quantidade máxima de vezes
 em que podem haver chutes errados.
 Se $L(M_t) \in \mathcal C_\Phi(f_i)$,
 então existem, no máximo,
 $i - 1$ definições de $g(n)$
 que poderiam ser baseados em $f_k$
-com $k < j$;
-mas teríamos que esperar até $n_i$
-para que não houvessem definições
-de números quaisquer que ficassem abaixo da complexidade de $M_t$,
-porque, depois deste ponto,
-nenhum $f_k$ com $k > i$
-passa abaixo de $f_i$.
+com $k < j$.
+No teorema original,
+esses são os únicos valores que temos de nos preocupar
+(são esses os $i-1$ ``chutes errados'' que podem haver
+após definir $g(i)$).
+Agora, além desses valores,
+precisamos levar em conta que
+todas as definições até $n_i$
+podem ser inferiores a $f_i$
+(e, possívelmente, abaixo da complexidade de $M_t$).
 
 Em outras palavras,
 é essencial que as funções $f_i$
