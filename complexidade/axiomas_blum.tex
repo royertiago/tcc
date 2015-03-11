@@ -305,21 +305,128 @@ No parágrafo anterior,
 construímos uma máquina de Turing
 que deliberadamente desperdiça tempo
 ao computar determinada função.
-Utilizando alguns resultados da teoria de funções recursivas,
 \citeonline[p. 4]{Blum1967} demonstrou que
 é sempre possível desperdiçar recursos computacionais,
 quaisquer que sejam estes recursos.
+Precisamos de um lema,
+vindo direto da teoria das funções recursivas.
 
-\begin{theorem}
+\begin{lemma}[Teorema da Recursão]
+    Denote por $M_m$ a máquina de Turing
+    representada pela palavra $x$.
+
+    Para qualquer função recursiva total $\sigma$,
+    existe um valor $m$ tal que
+    \begin{equation*}
+        M_m(x) = M_{\sigma(m)}(x)
+    \end{equation*}
+    para todo $x$.
+    (Tal valor é chamado de \emph{ponto fixo} para $\sigma$.)
+\end{lemma}
+
+\begin{proof}
+    Construa a máquina $N$ para,
+    ao receber $x$ na entrada,
+    devolver uma máquina de Turing $N(x)$
+    que irá calcular $M_x(x)$
+    (simulando uma máquina de Turing universal,
+    se necessário)
+    e roda o resultado na entrada.
+    Como resultado,
+    sempre que $M_x(x)$ estiver definido,
+    \begin{equation*}
+        M_{N(x)}(y) = M_{M_x(x)}(y)
+        \label{diagonal_N}
+    \end{equation*}
+    para toda cadeia $y$.
+
+    É importante notar que $N$ sempre pára;
+    $M_x(x)$ pode não parar ao computar $x$,
+    mas isso significa, apenas,
+    que $N(x)$ nunca parará ao computar qualquer coisa
+    --- o valor $N(x)$ existirá.
+
+    Escolha $k$ como sendo uma palavra
+    que represente uma máquina
+    que compute $\sigma(N(x))$ ao receber $x$ na entrada.
+    Afirmamos que $m = N(k)$
+    satisfaz às exigências do teorema.
+
+    De fato,
+    \begin{align*}
+        M_m(x) &= M_{N(k)}(x) \\
+               &= M_{M_k(k)}(x) && \text{Pela observação \ref{diagonal_N}}\\
+               &= M_{\sigma(N(k))}(x) && \text{Pois $k$ computa $\sigma(N(x))$}\\
+               &= M_{\sigma(m)}(x) && \text{Pela definição de $m$}\\
+    \end{align*}
+\end{proof}
+
+\begin{proposition}
     Sejam $f$ e $g$ duas funções recursivas totais,
     e $\Phi$ uma medida de complexidade.
     Então existe uma máquina de Turing $M$ que computa $f$
     tal que
     \begin{equation*}
-        \Phi(M, x) \geq g(|x|)
+        \Phi(M, x) > g(|x|)
     \end{equation*}
     para todo $x$.
-\end{theorem}
+\end{proposition}
+
+\begin{proof}
+    Defina a função $h$, de duas variáveis, por
+    \begin{equation*}
+        h(m, x) = \begin{cases}
+            M_m(x) a & \text{se $\Phi(M_m, x) \leq g(|x|)$} \\
+            f(x) & \text{caso contrário.}
+        \end{cases}
+    \end{equation*}
+    ($M_m(x)a$ é o valor de $M_m(x)$ concatenado com a letra $a$.)
+
+    Observe que $h$ é uma função computável,
+    pois $\Phi$, $g$ e $f$ o são,
+    e, caso $\Phi(M_m, x)$ esteja definido,
+    $M_m(x)$ também estará.
+
+    Construa a função $\sigma$ que,
+    ao receber $m$ na entrada,
+    altere-a para que,
+    quando ela receber $x$ na entrada,
+    compute $h(m, x)$.
+    Ou seja,
+    \begin{equation*}
+        M_{\sigma(m)}(x) = h(m, x).
+    \end{equation*}
+    $\sigma$ pode, por exemplo,
+    codificar $m$ nos estados de $\sigma(m)$;
+    esta máquina irá imprimir $m$ na fita,
+    ao lado do $x$,
+    e executar uma subrotina que computa $h$ no restante.
+
+    Pelo teorema da recursão,
+    $\sigma$ possui um ponto fixo $m_0$.
+    Demonstraremos que $m_0$ satisfaz às exigências do terorema.
+
+    Caso a função $h$, ao computar o valor de $h(m_0, x)$
+    para algum $x$,
+    tenha escolhido a primeira cláusula,
+    a saída final de $\sigma(m_0)$ teria sido
+    $M_{m_0} (x)$ concatenado com $a$,
+    que é diferente de apenas $M_{m_0}(x)$.
+    Portanto, $m_0$ não seria um ponto fixo de $\sigma$,
+    contradizendo o teorema da recursão.
+
+    Portanto, $h$ nunca seleciona a primeira cláusula
+    ao computar $h(m_0, x)$, para qualquer $x$.
+    Isto significa que $\Phi(m_0, x) > g(|x|)$ para todo $x$,
+    o que garante a exigência de complexidade,
+    e que
+    \begin{equation*}
+        M_{\sigma(m_0)}(x) = f(x).
+    \end{equation*}
+    Mas, como $m_0$ é um ponto fixo de $\sigma$,
+    a própria $m_0$ já computava $f$ antes de passar por $\sigma$,
+    o que prova a exigência da função.
+\end{proof}
 
 Em outras palavras,
 código ruim pode ser feito em qualquer linguagem.
