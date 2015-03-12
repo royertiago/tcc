@@ -12,8 +12,28 @@
     e $S(n)$ para funções de classes de espaço.
 \end{definition}
 
-Estas são as principais medias de complexidade
+Estas são as principais medias de complexidade complutacional
 para máquinas de Turing.
+
+Importante notar que esta noção de complexidade de espaço
+é um pouco diferente da definição dada por
+\citeonline[p. 285]{HopcroftUllman1979};
+a definição deles exige apenas que,
+ao computar $x$,
+a máquina nunca leia mais do que $f(n)$ células da fita.
+Note que não há exigência de parada;
+desta forma,
+a complexidade de espaço acaba não sendo uma medida de complexidade,
+pois $\PhiDS(M, x)$ pode estar definido
+mesmo quando $M(x)$ não está.
+De fato,
+são justamente estes casos que mereceram
+atenção especial ao definir $\PhiDS$
+da forma como definimos
+e provar que esta função satisfaz as axioma \ref{blum_def}.
+Mesmo \citeauthor{HopcroftUllman1979}
+notam que é necessário fazer este ajuste,
+em \cite[p. 313]{HopcroftUllman1979}.
 
 Uma prática comum à análise de complexidade de algoritmos
 é desprezar as constantes. Podemos formalizar este ``desprezo'':
