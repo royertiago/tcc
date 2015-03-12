@@ -238,3 +238,33 @@ do que as que são fornecidas pelo teorema \ref{relacao_medidas}.
     a complexidade de espaço de $M'$ é $f(n)$.
     Concluímos que $L \in \DSPACE(f)$.
 \end{proof}
+
+\begin{theorem}
+    Suponha que $f(n) \geq \log n$ para todo $n$.
+    Se $L \in \DSPACE(f)$,
+    então existe uma constante $c$
+    tal que $L \in \DTIME(c^f)$.
+\end{theorem}
+
+\begin{proof}
+    Seja $M$ uma máquina que aceita $L$ em espaço $f$.
+    Conforme observado na equação \ref{num_possiveis_configuracoes},
+    existem constantes $a$ e $c$ tais que,
+    caso $M$ ocupe exatamente $k$ células na fita,
+    existirão, no máximo,
+    \begin{equation*}
+        ac^k
+    \end{equation*}
+    diferentes configurações na fita.
+    Para $k = f(n)$, a equação lê
+    \begin{equation*}
+        ac^{f(n)}.
+    \end{equation*}
+    Como $M$ é um decisor,
+    $M$ encerra sua computação nesta quantidade de passos.
+
+    $c^{f(n)} \geq n$, pois $f(n) \geq \log n$.
+    Portanto, podemos usar o aceleramento linear
+    para nos livrar daquela constante $a$,
+    provando, assim, o teorema.
+\end{proof}
