@@ -10,8 +10,9 @@
 \declaretheorem[sibling=theorem, name=Corolário]{corollary}
 \declaretheorem[sibling=theorem, name=Proposição]{proposition}
 \declaretheorem[sibling=theorem, name=Definição, style=definition]{definition}
-\declaretheorem[sibling=theorem, name=Exemplo, style=definition]{example}
-\declaretheorem[sibling=theorem, name=Contraexemplo, style=definition]{counterexample}
+\declaretheorem[sibling=theorem, name=Exemplo, style=definition, qed=$\square$]{example}
+\declaretheorem[sibling=theorem, name=Contraexemplo, style=definition, qed=$\square$]{counterexample}
+\renewcommand{\qedsymbol}{$\blacksquare$}
 
 \usepackage{tikz}
 \usepackage[portuguese,algochapter,linesnumbered]{algorithm2e}
