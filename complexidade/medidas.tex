@@ -15,6 +15,149 @@
 Estas são as principais medias de complexidade
 para máquinas de Turing.
 
+Uma prática comum à análise de complexidade de algoritmos
+é desprezar as constantes. Podemos formalizar este ``desprezo'':
+
+\begin{theorem}
+    Para toda constante $c > 0$,
+    \begin{align*}
+        \DSPACE(f) & = \DSPACE(cf) \\
+        \NSPACE(f) & = \NSPACE(cf)
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    Assuma sem perda de generalidade que $c < 1$.
+    Seja $M$ uma máquina que $L(M) \in \DSPACE(f)$.
+    O truque é representar várias células de $M$
+    num único símbolo de fita.
+    Mais precisamente,
+    cada símbolo de $M'$ conterá
+    $\lceil 1/c \rceil$ células de $M$.
+    Como na complexidade de $M$
+    não são contablilizados o tamanho da fita de entrada,
+    a complexidade de $M'$ é menor do que $cf$.
+\end{proof}
+
+Para complexidade de tempo,
+a história não é tão bonita assim.
+Precisamos separar em dois casos.
+
+\begin{theorem}[Aceleramento linear \protect\footnotemark]
+    \footnotetext{Do inglês ``linear speedup''.}
+    Se
+    \begin{equation*}
+        \lim_{n \rightarrow \infty} \frac{n}{f(n)} = 0,
+    \end{equation*}
+    então
+    \begin{align*}
+        \DTIME(f) &= \DTIME(cf) \\
+        \NTIME(f) &= \NTIME(cf)
+    \end{align*}
+\end{theorem}
+
+Esta demonstração foi retirada de \cite[p. 290]{HopcroftUllman1979}.
+
+\begin{proof}
+    Assuma sem perda de generalidade que $c < 1$.
+    Dada $M$ que aceita $L \in \DTIME(f)$,
+    iremos construir uma $M'$,
+    necessariamente multifitas,
+    que faz vários movimentos de $M$ de uma só vez.
+
+    Fixe um valor de $r$ agora.
+    A ideia é codificar trechos da fita de $M$
+    com $r$ células
+    na fita de $M'$,
+    incluindo a posição da cabeça de leitura
+    (se estiver lá),
+    de maneira similar ao que fizemos com a complexidade de espaço.
+
+    Para cada movimento,
+    $M'$ irá ``carregar na memória cache''
+    as células que estão sob o cabeçote de leitura
+    e as células imediatamente à esquerda e à direita.
+    Isto é, $M'$ irá armazenar esta informação
+    no controle finito.
+    Esta etapa custa quatro movimentos.
+
+    Com $3r$ posições de memória de cada fita
+    e o cabeçote de leitura nas $r$ posições centrais,
+    $M'$ pode calcular todos os movimentos que $M$ faria nesta situação.
+    Observe que,
+    como estes movimentos dependem apenas
+    das células da fita de $M$
+    que agora estão no controle finito de $M'$,
+    tal cálculo pode ser embutido nas regras de transição de estados de $M'$.
+    Portanto, esta etapa é gratuita.
+    Como a cabeça de leitura de $M$ estava nas $r$ posições centrais,
+    acabamos de executar,
+    no mínimo,
+    $r$ movimentos de $M'$,
+    sem custo de tempo.
+
+    Agora, com mais quatro movimentos,
+    nós ``submetemos'' as alterações da ``memória cache''
+    na fita de $M'$.
+    Ao final, com $8$ movimentos de $M'$,
+    executamos ao menos $r$ movimentos de $M$.
+    Portanto, após compactarmos a entrada
+    neste formato,
+    alcançaremos um estado de aceitação ou rejeição
+    em, no máximo,
+    \begin{equation*}
+        \left\lceil \frac{8f(n)}{r} \right\rceil
+    \end{equation*}
+    etapas.
+
+    O problema é,
+    justamente,
+    fazer esta compactação inicial.
+    Podemos ler a entrada sequencialmente
+    e ir apagando"=a,
+    enquanto que a compactamos em outra fita
+    (custo: $n$).
+    Ao final,
+    reposicione o cabeçote no começo
+    (custo: $n/r$)
+    e consideramos a fita de entrada como uma fita de trabalho
+    e a fita com a entrada codificada
+    como a fita de entrada.
+    Custo:
+    \begin{equation*}
+        n + \left\lceil \frac n r \right\rceil.
+    \end{equation*}
+    Observe que assumimos
+    que existem ao menos duas fitas disponíveis.
+
+    Custo total:
+    \begin{equation*}
+        n + \left\lceil \frac n r \right\rceil +
+            \left\lceil \frac{8f(n)}{r} \right\rceil
+    \end{equation*}
+
+    Como
+    \begin{equation*}
+        \lim_{n \rightarrow \infty} \frac{n}{f(n)} = 0,
+    \end{equation*}
+    para $r > 8c$,
+    podemos fazer o custo final
+    ser menor que $cf(n)$ para todo $n$ suficientemente grande.
+    Isso prova o teorema.
+\end{proof}
+
+\begin{theorem}
+    \begin{align*}
+        \DTIME(cn) &= \DTIME((1+\varepsilon)n) \\
+        \NTIME(cn) &= \NTIME((1+\varepsilon)n)
+    \end{align*}
+    para qualquer $c > 1$ e $\varepsilon > 0$.
+\end{theorem}
+
+\begin{proof}
+    Escolha $r = \varepsilon/16$ na demonstração do teorema anterior.
+\end{proof}
+
 Por serem medidas de complexidade específicas,
 podemos impôr relações mais fortes entre elas
 do que as que são fornecidas pelo teorema \ref{relacao_medidas}.
