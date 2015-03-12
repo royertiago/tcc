@@ -127,7 +127,8 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     Comece executando $M$ em $x$.
     Caso $M$ extrapole $k$ células lidas
     em alguma de suas fitas,
-    podemos retornar rejeitar.
+    podemos rejeitar a entrada
+    (isto é, $\Phi(M, x) = k$ é falso).
     Caso contrário,
     existirá um número finito de configurações da máquina.
     Existem $|\Gamma|^k$ possíveis fitas com $k$ termos;
@@ -135,14 +136,29 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     $|Q|$ possíveis estados da máquina;
     e $l$ diferentes fitas.
     No total, existem, no máximo,
-    \begin{equation*}
+    \begin{equation}
         (k+1) l |Q||\Gamma|^k
-    \end{equation*}
+        \label{num_possiveis_configuracoes}
+    \end{equation}
     possíveis configurações.
     Portanto, se a máquina executar
     mais movimentos do que este número,
     significa que ela entrou em loop.
-    Podemos retornar rejeitar.
+    Podemos rejeitar a entrada.
+    \footnote{
+        Este cuidado adicional é imprescindível
+        para garantir que o predicado
+        ``$\Phi(M, x) = k$''
+        seja decidível,
+        não apenas semidecidível.
+
+        Note que precisamos rejeitar a entrada
+        caso a máquina emtre em loop
+        porque $\Phi(M, x)$ só está definido
+        quando $M(x)$ está
+        --- não é o caso se $M$ entra em loop
+        ao computar $x$.
+    }
 
     E, por último,
     caso $M$ pare,
