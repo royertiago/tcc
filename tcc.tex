@@ -4,14 +4,14 @@
 \usepackage{amssymb}
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Teorema}[chapter]
-\newtheorem{lemma}[theorem]{Lema}
-\newtheorem{corollary}[theorem]{Corolário}
-\newtheorem{proposition}[theorem]{Proposição}
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definição}
-\newtheorem{example}[theorem]{Exemplo}
-\newtheorem{counterexample}[theorem]{Contraexemplo}
+\usepackage{thmtools}
+\declaretheorem[numberwithin=chapter, name=Teorema]{theorem}
+\declaretheorem[sibling=theorem, name=Lema]{lemma}
+\declaretheorem[sibling=theorem, name=Corolário]{corollary}
+\declaretheorem[sibling=theorem, name=Proposição]{proposition}
+\declaretheorem[sibling=theorem, name=Definição, style=definition]{definition}
+\declaretheorem[sibling=theorem, name=Exemplo, style=definition]{example}
+\declaretheorem[sibling=theorem, name=Contraexemplo, style=definition]{counterexample}
 
 \usepackage{tikz}
 \usepackage[portuguese,algochapter,linesnumbered]{algorithm2e}
