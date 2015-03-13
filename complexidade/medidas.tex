@@ -35,6 +35,56 @@ Mesmo \citeauthor{HopcroftUllman1979}
 notam que é necessário fazer este ajuste,
 em \cite[p. 313]{HopcroftUllman1979}.
 
+Outro problema é o fato de nós permitirmos
+às máquinas computando linguagens em $\DSPACE(f)$,
+por exemplo,
+extrapolem o limite de $f$ células
+para um número finito de entradas.
+Tal relação não costuma causar problemas;
+de fato,
+podemos mostrar que,
+caso $f(n) \geq 1$,
+podemos retirar esta permissão
+(a ideia é embutir,
+no controle finito,
+a lista das palavras que violam o limite de $f$ células).
+
+Entretanto, é justamente nesta hipótese sobre $f$
+que reside nosso problema. Defina
+\begin{equation*}
+    f(n) = \begin{cases}
+        0, & n < 2 \\
+        1, & n \geq 2
+    \end{cases}.
+\end{equation*}
+Na definição de \citeonline{HopcroftUllman1979},
+$\DSPACE(f)$ é o conjunto vazio,
+pois toda máquina de Turing
+é obrigada a ler ao menos a célula inicial\footnotemark;
+enquanto que, em nossa definição,
+$\DSPACE(f)$ corresponde ao conjunto das linguagens regulares.
+\footnotetext{
+    A única possível exceção
+    é a máquina de Turing
+    cujo estado inicial é igual ao estado final.
+    Embora seja estranho falar de ``complexidade de espaço''
+    de uma máquina que aceita a entrada sem sequer olhar um único símbolo,
+    é admissível existir uma interpretação em que
+    $\DSPACE(f) = \{\Sigma^*\}$.
+}
+
+Este exemplo é admitidamente forçado.
+Qualquer máquina que queira aceitar alguma linguagem em $\DSPACE(f)$
+é obrigada a violar a restrição de
+ocupar menos espaço do que $f(n)$
+para $n < 2$.
+E, conforme discutimos dois parágrafos atrás,
+é exatamente nestes exemplos forçados
+em que as definições divergem.
+Portanto, iremos seguir as ideias de
+\citeonline[p. 287]{HopcroftUllman1979}
+e assumir que $f(n) \geq 1$ para complexidades de espaço.
+
 Uma prática comum à análise de complexidade de algoritmos
 é desprezar as constantes. Podemos formalizar este ``desprezo'':
 
