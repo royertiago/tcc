@@ -317,3 +317,95 @@ que cobre os dois casos:
     então $L$ é aceita em tempo $cf(n) + n + 2$ por alguma máquina de Turing,
     para qualquer $c$.
 \end{utheorem}
+
+Usando estes dois teoremas,
+podemos provar as afirmações dadas no início do capítulo.
+
+\begin{theorem}
+    Se $L \in \DSPACE(f)$ (ou $L \in \NSPACE(f)$),
+    então $L$ é decidida por uma máquina de Turing
+    determinística (ou, respectivamente, não"=determinística)
+    que jamais ocupa mais de $\max(f(n), 1)$
+    posições de fita.
+\end{theorem}
+
+Observe que, em nossa definição de $\DSPACE$ e $\NSPACE$,
+permitimos à máquina violar a restrição de
+máximo de $f(n)$ células,
+num número finito de instâncias.
+De fato,
+autorizamos"=na a nem parar nestes casos.
+São justamente esses casos que precisam ser tratados.
+
+\begin{proof}
+    Como é um número finito de instâncias,
+    podemos gravar todas elas no controle finito de $M'$,
+    junto do \emph{status} destas palavras
+    quanto à pertinência a $L(M)$.
+    \footnote{
+        Observe que,
+        embora saibamos que tais cadeias existem,
+        e que $M$ possui comportamento não ambíguo
+        nestas cadeias,
+        não podemos usar um computador
+        nem para encontrar todas as instâncias
+        nem para determinar o comportamento de $M$ nessas instâncias.
+
+        De certa forma,
+        este teorema não é ``computável''.
+    }
+
+    $M'$ irá ler a entrada
+    e testar se é alguma das cadeias armazenadas.
+    Caso a entrada pertença à lista embutida,
+    aceite ou rejeite de acordo com o comportamento de $M$.
+    Senão, retorne à posição inicial
+    e execute $M$ na entrada.
+    Isto pode ser feito usando técnicas
+    para autômatos finitos,
+    resultando num gasto nulo de espaço.
+
+    Em qualquer caso,
+    jamais ocuparemos mais de $\max(f(n), 1)$ células.
+
+    Note que $M'$ é determinística
+    se e só se $M$ o for.
+\end{proof}
+
+Para complexidade de tempo,
+novamente o controle é mais delicado.
+Iremos demonstrar apenas um resultado parcial.
+
+\begin{theorem}
+    Se $f(n) > cn$ para algum $c > 1$,
+    e $L \in \DTIME(f)$ (ou $L \in \NTIME(f)$),
+    então $L$ é decidida por uma máquina de Turing
+    determinística (ou, respectivamente, não"=determinística)
+    que jamais executa mais de $\max(f(n), n+1)$ movimentos.
+\end{theorem}
+
+\begin{proof}
+    Proceda como na demonstração anterior.
+    Neste caso,
+    se $k$ é o tamanho da maior palavra
+    que viola o limite de $f(n)$ movimentos,
+    a complexidade de tempo fica
+    \begin{equation*}
+        2k + f(n).
+    \end{equation*}
+    (Assuma que $k \geq 1$.)
+    Aplicando o aceleramento linear,
+    podemos abaixar este valor para
+    \begin{equation*}
+        1 + \frac{f(n)}{2k},
+    \end{equation*}
+    que é menor que $f(n)$.
+\end{proof}
+
+Estes dois teoremas mostram que
+todas as linguagens em $\DSPACE(f)$,
+de acordo com nossa definição,
+também está em $\DSPACE(f)$
+de acordo com as definições de \citeonline{HopcroftUllman1979}
+e \citeonline{Papadimitriou1994}
+(e afirmações análogas para $\DTIME$, $\NSPACE$ e $\NTIME$).
