@@ -115,11 +115,7 @@ Precisamos separar em dois casos.
 
 \begin{theorem}[Aceleramento linear \protect\footnotemark]
     \footnotetext{Do inglês ``linear speedup''.}
-    Se
-    \begin{equation*}
-        \lim_{n \rightarrow \infty} \frac{n}{f(n)} = 0,
-    \end{equation*}
-    então
+    Se $f \in \omega(n)$, então
     \begin{align*}
         \DTIME(f) &= \DTIME(cf) \\
         \NTIME(f) &= \NTIME(cf)
@@ -206,11 +202,11 @@ Esta demonstração foi retirada de \cite[p. 290]{HopcroftUllman1979}.
             \left\lceil \frac{8f(n)}{r} \right\rceil
     \end{equation*}
 
-    Como
+    Como $f \in \omega(n)$, temos
     \begin{equation*}
-        \lim_{n \rightarrow \infty} \frac{n}{f(n)} = 0,
+        \lim_{n \rightarrow \infty} \frac{n}{f(n)} = 0.
     \end{equation*}
-    para $r > 8c$,
+    Portanto, para $r > 8c$,
     podemos fazer o custo final
     ser menor que $cf(n)$ para todo $n$ suficientemente grande.
     Isso prova o teorema.
