@@ -13,7 +13,7 @@
 Estas são as principais medias de complexidade complutacional
 para máquinas de Turing.
 
-Importante notar que esta noção de complexidade de espaço
+Esta noção de complexidade de espaço
 é um pouco diferente da definição dada por
 \citeonline[p.~285]{HopcroftUllman1979};
 a definição deles exige apenas que,
@@ -28,24 +28,24 @@ De fato,
 são justamente estes casos que mereceram
 atenção especial ao definir $\PhiDS$
 da forma como definimos
-e provar que esta função satisfaz as axioma \ref{blum_def}.
+e provar que esta função satisfaz ao axioma \ref{blum_def}.
 Mesmo \citeauthoronline{HopcroftUllman1979}
 notam que é necessário fazer este ajuste,
 em \cite[p.~313]{HopcroftUllman1979}.
 
 Outro problema é o fato de nós permitirmos
-às máquinas computando linguagens em $\DSPACE(f)$,
-por exemplo,
-extrapolem o limite de $f$ células
+às máquinas que computam linguagens em
+(por exemplo) $\DSPACE(f)$
+extrapolar o limite de $f(n)$ células
 para um número finito de entradas.
 Tal relação não costuma causar problemas;
 de fato,
 podemos mostrar que,
 caso $f(n) \geq 1$,
-podemos retirar esta permissão
-(a ideia é embutir,
+podemos retirar esta permissão.
+(O ponto crucial da demonstração é embutir,
 no controle finito,
-a lista das palavras que violam o limite de $f$ células).
+a lista das palavras que violam o limite de $f(n)$ células.)
 
 Entretanto, é justamente nesta hipótese sobre $f$
 que reside nosso problema. Defina
@@ -119,7 +119,7 @@ entretanto,
 passível de objeções.
 Existem máquinas de Turing
 que aceitam uma entrada
-sem ter de lê-la por completo.
+sem ter de lê"=la por completo.
 Podemos cumprir exigências como
 $\PhiDT(M, x) \leq 2 + |x|/2$;
 é uma situação um pouco diferente
