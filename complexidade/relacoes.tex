@@ -1,0 +1,117 @@
+\subsection{Relações entre medidas de Complexidade}
+
+Por serem medidas de complexidade específicas,
+podemos impor relações mais fortes entre elas
+do que as que são fornecidas pelo teorema \ref{relacao_medidas}.
+
+\begin{proposition}
+    \begin{align}
+        \DTIME(f) &\subseteq \NTIME(f) \label{dtime_in_ntime} \\
+        \DSPACE(f) &\subseteq \NSPACE(f) \label{dspace_in_nspace} \\
+        \DTIME(f) &\subseteq \DSPACE(f) \label{dtime_in_dspace} \\
+        \NTIME(f) &\subseteq \DSPACE(f) \label{ntime_in_dspace}
+    \end{align}
+\end{proposition}
+\begin{proof}
+    \ref{dtime_in_ntime} e \ref{dspace_in_nspace} são consequências diretas
+    do fato de que toda máquina determinística é,
+    em particular, não determinística.
+
+    Para \ref{dtime_in_dspace},
+    note que, em $f(n)$ movimentos,
+    a máquina pode ler, no máximo,
+    $f(n)$ diferentes células
+    --- afinal, no máximo uma célula nova pode ser lida a cada movimento.
+
+    Para \ref{ntime_in_dspace},
+    usaremos uma máquina com múltiplas fitas.
+
+    Se $M$ é uma máquina que reconhece $L \in \NTIME(f)$,
+    existe um limite na quantidade de possíveis transições
+    que $M$ pode fazer em cada estado;
+    digamos, $t$ transições diferentes.
+    Cada cadeia sobre $\{0, \dots, t-1\}$ representa uma possível
+    sequência de transições,
+    que pode levar à parada ou não.
+
+    Em uma das fitas,
+    a nova máquina $M'$
+    irá enumerar todas as palavras de $\{0, \dots, t-1\}^*$.
+    Para cada palavra enumerada,
+    $M'$ simulará $M$ na entrada,
+    escolhendo as transições de acordo com a palavra
+    que foi enumerada na outra fita.
+    No evento de alguma transição ser para um estado final,
+    consideraremos tal palavra ``fechada''.
+
+    Se a transição for para um estado de aceitação,
+    aceitamos a entrada;
+    e, se todas as palavras de um mesmo tamanho $k$
+    forem fechadas sem aceitação,
+    nenhuma palavra
+    codifica uma sequência de transições
+    que leva a um estado de aceitação
+    --- todas as menores que $k$ já foram analisadas
+    e todas as maiores que $k$
+    possuem uma palavra de tamanho $k$ que já foi fechada,
+    fazendo com que a palavra inteira fique fechada.
+    Nesta situação, podemos rejeitar a entrada.
+
+    Como $L \in \NTIME(f)$,
+    qualquer sequência de transições leva a algum estado final
+    em, no máximo, $f(n)$ transições.
+    Portanto,
+    sabemos que iremos fechar todas as palavras
+    de tamanho $f(n)$,
+
+    Como as fitas de trabalho de $M$
+    não ocupam mais do que $f(n)$ células,
+    e a fita de enumeração de $M'$
+    nunca precisará enumerar uma palavra mais longa que $f(n)$,
+    a complexidade de espaço de $M'$ é $f(n)$.
+    Concluímos que $L \in \DSPACE(f)$.
+\end{proof}
+
+\begin{theorem}
+    Suponha que $f(n) \geq \log n$ para todo $n$.
+    Se $L \in \DSPACE(f)$,
+    então existe uma constante $c$
+    tal que $L \in \DTIME(c^f)$.
+\end{theorem}
+
+\begin{proof}
+    Seja $M$ uma máquina que aceita $L$ em espaço $f$.
+    Conforme observado na equação \ref{num_possiveis_configuracoes},
+    existem constantes $a$ e $c$ tais que,
+    caso $M$ ocupe exatamente $k$ células na fita,
+    existirão, no máximo,
+    \begin{equation*}
+        ac^k
+    \end{equation*}
+    diferentes configurações na fita.
+    Para $k = f(n)$, a equação lê
+    \begin{equation*}
+        ac^{f(n)}.
+    \end{equation*}
+    Como $M$ é um decisor,
+    $M$ encerra sua computação nesta quantidade de passos.
+
+    $c^{f(n)} \geq n$, pois $f(n) \geq \log n$.
+    Portanto, podemos usar o aceleramento linear
+    para nos livrar daquela constante $a$,
+    provando, assim, o teorema.
+\end{proof}
+
+\begin{theorem}
+    Suponha que $f(n) \geq \log n$ para todo $n$.
+    Se $L \in \NTIME(f)$,
+    então existe uma constante $c$
+    tal que $L \in \DTIME(c^f)$.
+\end{theorem}
+
+\begin{proof}
+    Pela equação \ref{ntime_in_dspace},
+    $L \in \DSPACE(f)$.
+    Combinando com o teorema anterior,
+    temos $L \in \DTIME(c^f)$ para algum $c$.
+\end{proof}
