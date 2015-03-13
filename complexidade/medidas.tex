@@ -1,14 +1,14 @@
 \section{Medidas de Complexidade Computacional}
 \label{medidas_padrao}
 
-\begin{definition}
+\begin{pdefinition}
     \begin{align*}
         \DTIME(f) &= \mathcal C_\PhiDT(f) \\
         \DSPACE(f) &= \mathcal C_\PhiDS(f) \\
         \NTIME(f) &= \mathcal C_\PhiNT(f) \\
         \NSPACE(f) &= \mathcal C_\PhiNS(f)
     \end{align*}
-\end{definition}
+\end{pdefinition}
 
 Estas são as principais medias de complexidade complutacional
 para máquinas de Turing.
@@ -79,9 +79,15 @@ para $n < 2$.
 E, conforme discutimos dois parágrafos atrás,
 é exatamente nestes exemplos forçados
 em que as definições divergem.
-Portanto, iremos seguir as ideias de
-\citeonline[p. 287]{HopcroftUllman1979}
-e assumir que $f(n) \geq 1$ para complexidades de espaço.
+Portanto, iremos adotar esta hipótese de
+\citeonline[p. 287]{HopcroftUllman1979}.
+
+\begin{definition}
+    \begin{align*}
+        \DSPACE(f(n)) &= \mathcal C_\PhiDS(\max(f(n), 1)) \\
+        \NSPACE(f(n)) &= \mathcal C_\PhiNS(\max(f(n), 1))
+    \end{align*}
+\end{definition}
 
 Para complexidade de tempo,
 existem hipóteses similares.
@@ -101,11 +107,17 @@ adota uma suposição similar:
 a de que $f(n) \geq n$.
 
 Iremos adotar a hipótese de \citeauthoronline{HopcroftUllman1979}.
+\begin{definition}
+    \begin{align*}
+        \DTIME(f(n)) &= \mathcal C_\PhiDT(\max(f(n), n+1)) \\
+        \NTIME(f(n)) &= \mathcal C_\PhiNT(\max(f(n), n+1))
+    \end{align*}
+\end{definition}
 
 Esta suposição é,
 entretanto,
-sujeita a uma objeção:
-existem máquinas de Turing
+passível de objeções.
+Existem máquinas de Turing
 que aceitam uma entrada
 sem ter de lê-la por completo.
 Podemos cumprir exigências como
@@ -118,9 +130,11 @@ em alguns casos.
 
 Uma ressalva:
 é possível provar que
-qualquer linguagem em $DTIME(n)$
+qualquer linguagem em $\DTIME(n)$
+(pela definição anterior)
 é a concatenação de uma linguagem finita
 com $\Sigma^*$,
+unida com outra linguagem finita;
 portanto as linguagens excluídas por esta hipótese
 nem eram muito interessantes.
 
