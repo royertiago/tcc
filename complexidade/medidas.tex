@@ -138,8 +138,23 @@ unida com outra linguagem finita;
 portanto as linguagens excluídas por esta hipótese
 nem eram muito interessantes.
 
-Uma prática comum à análise de complexidade de algoritmos
-é desprezar as constantes. Podemos formalizar este ``desprezo'':
+Existe mais uma inconsistência
+em relação às classes de complexidade:
+as constantes em frente às funções.
+\citeonline[p. 25]{AroraBarak2009}
+definem $\DTIME(f)$ como sendo o conjunto das linguagens
+para as quais existem máquinas cujo tempo de execução
+é menor que $c f(n)$, para alguma constante $c > 0$.
+As definições de $\NTIME$, $\DSPACE$ e $\NSPACE$
+de \citeonline[p. 41, p. 78, p. 79]{AroraBarak2009}
+também permitem este fator constante.
+
+Esta definição está de acordo com
+a prática comum na análise de complexidade de algoritmos
+de desprezar as constantes.
+Ao menos,
+neste caso,
+conseguimos provar equivalência entre as definições.
 
 \begin{theorem}
     Para toda constante $c > 0$,
@@ -161,6 +176,12 @@ Uma prática comum à análise de complexidade de algoritmos
     não são contablilizados o tamanho da fita de entrada,
     a complexidade de $M'$ é menor do que $cf$.
 \end{proof}
+
+\begin{ucorollary}
+    Nossas definições de complexidade de espaço
+    são equivalentes à complexidade de espaço
+    de \citeauthoronline{AroraBarak2009}.
+\end{ucorollary}
 
 Para complexidade de tempo,
 a história não é tão bonita assim.
@@ -276,6 +297,17 @@ Esta demonstração foi retirada de \cite[p. 290]{HopcroftUllman1979}.
 \begin{proof}
     Escolha $r = \varepsilon/16$ na demonstração do teorema anterior.
 \end{proof}
+
+\begin{ucorollary}
+    Se existe algum $c > 1$ tal que
+    \begin{equation*}
+        f(n) \geq cn
+    \end{equation*}
+    para quase todo $n$,
+    nossas definições de complexidade de tempo
+    em relação à função $f$
+    são equivalentes às de \citeauthoronline{AroraBarak2009}.
+\end{ucorollary}
 
 \citeonline[p. 32]{Papadimitriou1994}
 dá uma caracterização elegante do aceleramento linear
