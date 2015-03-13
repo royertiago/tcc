@@ -85,6 +85,47 @@ Portanto, iremos seguir as ideias de
 \citeonline[p. 287]{HopcroftUllman1979}
 e assumir que $f(n) \geq 1$ para complexidades de espaço.
 
+Para complexidade de tempo,
+existem hipóteses similares.
+\citeonline[p. 287]{HopcroftUllman1979}
+assumem que $f(n) \geq n+1$
+para complexidade de tempo.
+A justificativa é que
+qualquer máquina de Turing precisa de,
+ao menos,
+$n+1$ movimentos para ler o primeiro espaço em branco
+após uma palavra de tamanho $n$.
+Isto é,
+este é o tempo mínimo necessário
+para ler toda a entrada.
+\citeonline[p. 33]{Papadimitriou1994}
+adota uma suposição similar:
+a de que $f(n) \geq n$.
+
+Iremos adotar a hipótese de \citeauthor{HopcroftUllman1979}.
+
+Esta suposição é,
+entretanto,
+sujeita a uma objeção:
+existem máquinas de Turing
+que aceitam uma entrada
+sem ter de lê-la por completo.
+Podemos cumprir exigências como
+$\PhiDT(M, x) \leq 2 + |x|/2$;
+é uma situação um pouco diferente
+daquela que tínhamos com complexidade de espaço,
+em que éramos \emph{obrigados}
+a violar as restrições de espaço
+em alguns casos.
+
+Uma ressalva:
+é possível provar que
+qualquer linguagem em $DTIME(n)$
+é a concatenação de uma linguagem finita
+com $\Sigma^*$,
+portanto as linguagens excluídas por esta hipótese
+nem eram muito interessantes.
+
 Uma prática comum à análise de complexidade de algoritmos
 é desprezar as constantes. Podemos formalizar este ``desprezo'':
 
