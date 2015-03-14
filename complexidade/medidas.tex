@@ -374,32 +374,73 @@ São justamente esses casos que precisam ser tratados.
 
 Para complexidade de tempo,
 novamente o controle é mais delicado.
-Iremos demonstrar apenas um resultado parcial.
+\footnote{
+    Caso assumíssemos que $f(n) > cn$
+    para algum $c > 1$,
+    poderíamos agir como no teorema anterior
+    e usar o aceleramento linear;
+    mas queremos abranger casos
+    como, por exemplo,
+    $f(n) = n + 17$.
+}
 
 \begin{theorem}
-    Se $f(n) > cn$ para algum $c > 1$,
-    e $L \in \DTIME(f)$ (ou $L \in \NTIME(f)$),
+    Se $L \in \DTIME(f)$ (ou $L \in \NTIME(f)$),
     então $L$ é decidida por uma máquina de Turing
     determinística (ou, respectivamente, não"=determinística)
     que jamais executa mais de $\max(f(n), n+1)$ movimentos.
 \end{theorem}
 
 \begin{proof}
-    Proceda como na demonstração anterior.
-    Neste caso,
-    se $k$ é o tamanho da maior palavra
-    que viola o limite de $f(n)$ movimentos,
-    a complexidade de tempo fica
-    \begin{equation*}
-        2k + f(n).
-    \end{equation*}
-    (Assuma que $k \geq 1$.)
-    Aplicando o aceleramento linear,
-    podemos abaixar este valor para
-    \begin{equation*}
-        1 + \frac{f(n)}{2k},
-    \end{equation*}
-    que é menor que $f(n)$.
+    Suponha que $k$ seja o tamanho da maior palavra
+    que viola à restrição de tempo.
+    Iremos manter, no controle finito,
+    as $k$ primeiras células da fita de $M$.
+
+    $M'$ começará deslocando-se $k$ células à direita,
+    populando este pedaço interno da fita.
+    Mas serão feitas duas cópias deste pedaço interno.
+    A primeira será populada apenas uma vez,
+    e servirá para checar se a palavra,
+    caso atinjamos o primeiro branco
+    antes de realizar os $k$ primeiros movimentos.
+    Neste caso, gastamos $|x|$ movimentos
+    ($|x| - 1$ movimentos para deslocar"=se entre cada letra
+    e mais $1$ para alcançar o caractere em branco),
+    e podemos decidir agora se aceitamos ou não a palavra,
+    em tempo $|x| + 1$.
+
+    A segunda cópia será tratada por nós
+    como uma extensão da fita original.
+    Ao executar o $k$-ésimo movimento,
+    $M'$ irá marcar a entrada com um caractere novo,
+    e jamais mover"=se à esquerda deste caractere.
+    Sempre que $M$ precisar ir àquela região,
+    $M'$ simulará a atuação de $M$
+    dentro do próprio controle finito,
+    na segunda cópia das $k$ primeiras posições da fita.
+    Esta alteração será feita apenas na fita de entrada;
+    as demais fitas continuam operando normalmente.
+
+    De fato, iremos simular $M$ no controle finito de $M'$
+    desde o início da execução do programa.
+    Quando $M'$ efetuar os $k$ primeiros movimentos,
+    $M$ já terá executado, dentro de si,
+    $k$ movimentos diferentes.
+    E, nas demais fitas, as posições das cabeças de leitura
+    são exatamente as mesmas de $M$.
+    Portanto,
+    o funcionamento de $M'$
+    é parecido com o de $M$
+    --- exceto nos primeiros $k$ caracteres da entrada.
+
+    Como cada movimento de $M$ corresponde a um movimento de $M'$,
+    o limite de $f(n)$ de tempo é respeitado
+    quando $n > k$.
+    Juntando com a análise anterior
+    (do que acontece quando a entrada é mais curta que $k$),
+    concluímos que $M'$ aceita $L$ e respeita às exigências de tempo
+    para todo $x$.
 \end{proof}
 
 Estes dois teoremas mostram que
