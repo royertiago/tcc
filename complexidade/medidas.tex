@@ -467,3 +467,53 @@ também está em $\DSPACE(f)$
 de acordo com as definições de \citeonline{HopcroftUllman1979}
 e \citeonline{Papadimitriou1994}
 (e afirmações análogas para $\DTIME$, $\NSPACE$ e $\NTIME$).
+
+Finalizamos esta seção demostrando que
+as linguagens descartadas pela assunção de que
+$f(n) \geq n+1$ para complexidade de tempo
+não descarta linguagens muito interessantes.
+
+\begin{proposition}
+    Suponha que $\PhiDT(M, x) \leq f(|x|)$ para alguma $f$,
+    e $f(n_0) \leq n_0$ para algum $n_0$,
+    então pertinência a $L(M)$
+    é decidida analisando apenas os $n_0$ primeiros caracteres da palavra.
+\end{proposition}
+
+Observe que a hipótese é de que
+$\PhiDT(M, x) \leq f(|x|)$,
+não
+$L(M) \in \DTIME(f)$.
+
+\begin{proof}
+    Para qualquer palavra $x$ de tamanho $n_0$,
+    $M$ irá analisar,
+    no máximo,
+    até seu último caractere.
+    Para chegar lá, $M$ irá gastar,
+    no mínimo,
+    $|x| - 1 = n_0 - 1$ movimentos;
+    como
+    \begin{equation*}
+        \PhiDT(M, x) \leq f(|x|) = f(n_0) \leq n_0,
+    \end{equation*}
+    se $M$ ainda não está num estado final,
+    o próximo movimento terá que ser para um
+    --- caso contrário,
+    violaria a equação acima.
+
+    Observe que $M$ sequer pode analisar o caractere branco
+    que vem após o $x$,
+    pois precisaria de ao menos mais um movimento
+    para atingir um estado final.
+    Exatamente por isso, não importa o caractere que vem após o $x$.
+    Qualquer palavra de tamanho maior que $n_0$
+    pode ser quebrada em $xy$, com $|x| = n_0$.
+    Como $M$ não pode violar a restrição discutida no parágrafo anterior,
+    $M$ deve determinar pertiência de $xy$ à linguagem
+    baseando"=se apenas em $x$.
+
+    Como em nossa argumentação
+    exigimos apenas que $|x| = n_0$,
+    isso prova o teorema.
+\end{proof}
