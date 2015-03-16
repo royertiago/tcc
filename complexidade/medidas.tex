@@ -58,10 +58,7 @@ que reside nosso problema. Defina
 Na definição de \citeonline{HopcroftUllman1979},
 $\DSPACE(f)$ é o conjunto vazio,
 pois toda máquina de Turing
-é obrigada a ler ao menos a célula inicial\footnotemark;
-enquanto que, em nossa definição,
-$\DSPACE(f)$ corresponde ao conjunto das linguagens regulares.
-\footnotetext{
+é obrigada a ler ao menos a célula inicial\footnote{
     A única possível exceção
     é a máquina de Turing
     cujo estado inicial é igual ao estado final.
@@ -69,6 +66,18 @@ $\DSPACE(f)$ corresponde ao conjunto das linguagens regulares.
     de uma máquina que aceita a entrada sem sequer olhar um único símbolo,
     é admissível existir uma interpretação em que
     $\DSPACE(f) = \{\Sigma^*\}$.
+};
+enquanto que, em nossa definição,
+$\DSPACE(f)$ corresponde ao conjunto das linguagens regulares.
+\footnote{
+    Para provar isso, observe que,
+    exceto um número finito de entradas,
+    a máquina terá apenas uma célula de memória para usar.
+    Então, ela pode armazenar esta informação no controle finito,
+    funcionando como um autômado finito bidirecional
+    (\emph{two-way deterministic finite automaton}),
+    que é equivalente a um autômato finito determinístico
+    \cite[p. 40]{HopcroftUllman1979}.
 }
 
 Este exemplo é admitidamente forçado.
