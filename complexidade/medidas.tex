@@ -139,12 +139,13 @@ em alguns casos.
 
 Uma ressalva:
 é possível provar que
-qualquer linguagem em $\DTIME(n)$
-(pela definição anterior)
-é a concatenação de uma linguagem finita
-com $\Sigma^*$,
-unida com outra linguagem finita;
-portanto as linguagens excluídas por esta hipótese
+para qualquer linguagem em $\DTIME(n)$
+(pela definição anterior),
+existe algum número $k$ tal que
+pertinência a $L(M)$
+é determinada analisando"=se
+apenas as primeiras $k$ letras da entrada.
+Portanto as linguagens excluídas por esta hipótese
 nem eram muito interessantes.
 
 Existe mais uma inconsistência
@@ -517,3 +518,19 @@ $L(M) \in \DTIME(f)$.
     exigimos apenas que $|x| = n_0$,
     isso prova o teorema.
 \end{proof}
+
+Podemos por este teorema em outra forma.
+Se definirmos $A$ como sendo as palavras de tamanho $n_0$
+de $L(M)$
+e $B$ as palavras de tamanho menor que $n_0$,
+então
+\begin{equation*}
+    L(M) = A\Sigma^* \cup B,
+\end{equation*}
+em que $A$ e $B$ são conjuntos \emph{finitos}.
+
+O converso também é verdadeiro
+(qualquer linguagem dessa forma
+satisfaz às conclusões do teorema anterior).
+Portanto, são um subconjunto próprio
+das linguagens regulares.
