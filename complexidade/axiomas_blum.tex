@@ -34,27 +34,29 @@ de $M$ quando lhe é dado $x$ na entrada.
         aparece no contexto de computadores de funções de inteiros.
         Seja $M_1, M_2, \dots$ uma enumeração de máquinas de Turing.
         Consideraremos que a máquina $M_i$
-        computa a função recursiva parcial $\phi_i$.
+        computa a função recursiva parcial $\phi_i$
+        (isto é, a lista $\{\phi_1, \phi_2, \dots\}$
+        enumera todas as funções recursivas).
         Uma medida de complexidade é uma lista de funções
-        $\{\hat \Phi_1, \hat \Phi_2, \dots\}$
-        que satisfaz os seguintes axiomas:
+        $\{\Phi_1', \Phi_2', \dots\}$
+        que satisfaz aos seguintes axiomas:
 
         \begin{enumerate} [label=Axioma \arabic*', ref=\arabic*', align=left]
             \item
                 \label{blum_def_orig}
-                $\hat \Phi_i(n)$ está definido
+                $\Phi_i'(n)$ está definido
                 se, e somente se,
                 $\phi_i(n)$ está definido.
             \item
                 \label{blum_rec_orig}
                 A função $R(i, n, m)$,
-                definida como $1$ se $\hat \Phi_i(n) = m$,
-                e $0$ em caso contrário,
+                definida como $1$ se $\Phi_i'(n) = m$,
+                e $0$ caso contrário,
                 é recursiva.
         \end{enumerate}
 
         As duas definições são análogas.
-        O valor $\hat \Phi_i(n)$ corresponde a $\Phi(M_i, 0^n)$.
+        O valor $\Phi_i'(n)$ corresponde a $\Phi(M_i, 0^n)$.
         O axioma \ref{blum_def} corresponde ao axioma \ref{blum_def_orig},
         enquanto que a decidibilidade exigida pelo axioma \ref{blum_rec}
         é expressada pela função $R$ no axioma \ref{blum_rec_orig}.
@@ -241,7 +243,7 @@ De fato, podemos relacionar quaisquer duas medidas de complexidade.
     Defina
     \begin{equation*}
         r( x, k ) = \max \{ \Phi(M, x) \mid
-            \text{A desrição de $M$ é mais curta que $|x|$}
+            \text{A descrição de $M$ é mais curta que $|x|$}
             \text{ e }
             \hat \Phi(M, x) = k
         \}
@@ -257,7 +259,7 @@ De fato, podemos relacionar quaisquer duas medidas de complexidade.
 
     Agora, para todos os $x$ que são mais longos que a descrição de $M$,
     $\Phi(M, x)$ será um dos elementos do conjunto acima
-    para $r( x, \hat \Phi(M, x)))$,
+    para $r( x, \hat \Phi(M, x))$,
     portanto é menor ou igual a este número.
 \end{proof}
 
@@ -276,7 +278,7 @@ Podemos construir uma função dessas
 pegando o máximo de duas funções obtidas
 usando o teorema \ref{relacao_medidas}.
 
-Observe que o teorema,
+O teorema,
 assim como provamos,
 não pode ser fortalecido
 para que $r$ seja uma função de apenas uma variável.
@@ -287,7 +289,7 @@ enquanto que $\PhiDS(A, x) = 1$ para toda palavra $x$.
 \footnote{
     A complexidade de espaço não é $0$
     pois $A$ é obrigada a ler
-    ao menos a célula inical da sua fita de trabalho,
+    ao menos a célula inicial da sua fita de trabalho,
     embora a máquina não use aquela célula.
 }
 Se $r$ pudesse depender apenas da segunda variável,
@@ -329,7 +331,7 @@ Precisamos de um lema,
 vindo direto da teoria das funções recursivas.
 
 \begin{lemma}[Teorema da Recursão]
-    Denote por $M_m$ a máquina de Turing
+    Denote por $M_x$ a máquina de Turing
     representada pela palavra $x$.
 
     Para qualquer função recursiva total $\sigma$,
@@ -339,6 +341,7 @@ vindo direto da teoria das funções recursivas.
     \end{equation*}
     para todo $x$.
     (Tal valor é chamado de \emph{ponto fixo} para $\sigma$.)
+    \label{teorema_recursao}
 \end{lemma}
 
 \begin{proof}
@@ -420,7 +423,7 @@ vindo direto da teoria das funções recursivas.
     ao lado do $x$,
     e executar uma subrotina que computa $h$ no restante.
 
-    Pelo teorema da recursão,
+    Pelo teorema da recursão \ref{teorema_recursao},
     $\sigma$ possui um ponto fixo $m_0$.
     Demonstraremos que $m_0$ satisfaz às exigências do terorema.
 
