@@ -88,7 +88,7 @@ para $n < 2$.
 E, conforme discutimos dois parágrafos atrás,
 é exatamente nestes exemplos forçados
 em que as definições divergem.
-Portanto, iremos adotar esta hipótese de
+Portanto, adotarems esta hipótese de
 \citeonline[p.~287]{HopcroftUllman1979}.
 
 \begin{definition}
@@ -115,7 +115,7 @@ para ler toda a entrada.
 adota uma suposição similar:
 a de que $f(n) \geq n$.
 
-Iremos adotar a hipótese de \citeauthoronline{HopcroftUllman1979}.
+Adotaremos a hipótese de \citeauthoronline{HopcroftUllman1979}.
 \begin{definition}
     \begin{align*}
         \DTIME(f(n)) &= \mathcal C_\PhiDT(\max(f(n), n+1)) \\
@@ -211,7 +211,7 @@ Esta demonstração foi retirada de \cite[p.~290]{HopcroftUllman1979}.
 \begin{proof}
     Assuma sem perda de generalidade que $c < 1$.
     Dada $M$ que aceita $L \in \DTIME(f)$,
-    iremos construir uma $M'$,
+    construiremos uma $M'$,
     necessariamente multifitas,
     que faz vários movimentos de $M$ de uma só vez.
 
@@ -227,7 +227,7 @@ Esta demonstração foi retirada de \cite[p.~290]{HopcroftUllman1979}.
     $M'$ irá ``carregar na memória cache''
     as células que estão sob o cabeçote de leitura
     e as células imediatamente à esquerda e à direita.
-    Isto é, $M'$ irá armazenar esta informação
+    Isto é, $M'$ armazenará esta informação
     no controle finito.
     Esta etapa custa quatro movimentos.
 
@@ -372,7 +372,7 @@ São justamente esses casos que precisam ser tratados.
         este teorema não é ``computável''.
     }
 
-    $M'$ irá ler a entrada
+    $M'$ lerá a entrada
     e testar se é alguma das cadeias armazenadas.
     Caso a entrada pertença à lista embutida,
     aceite ou rejeite de acordo com o comportamento de $M$.
@@ -410,7 +410,7 @@ Complexidade de tempo é um pouco mais delicado.
 \begin{proof}
     Suponha que $k$ seja o tamanho da maior palavra
     que viola à restrição de tempo.
-    Iremos manter, no controle finito,
+    Manteremos, no controle finito,
     as $k$ primeiras células da fita de $M$.
 
     $M'$ começará deslocando-se $k$ células à direita,
@@ -431,7 +431,7 @@ Complexidade de tempo é um pouco mais delicado.
     A segunda cópia será tratada por nós
     como uma extensão da fita original.
     Ao executar o $k$-ésimo movimento,
-    $M'$ irá marcar a entrada com um caractere novo,
+    $M'$ marcará a entrada com um caractere novo,
     e jamais mover"=se à esquerda deste caractere.
     Sempre que $M$ precisar ir àquela região,
     $M'$ simulará a atuação de $M$
@@ -440,7 +440,7 @@ Complexidade de tempo é um pouco mais delicado.
     Esta alteração será feita apenas na fita de entrada;
     as demais fitas continuam operando normalmente.
 
-    De fato, iremos simular $M$ no controle finito de $M'$
+    De fato, simularemos $M$ no controle finito de $M'$
     desde o início da execução do programa.
     Quando $M'$ efetuar os $k$ primeiros movimentos,
     $M$ já terá executado, dentro de si,
@@ -488,10 +488,10 @@ $L(M) \in \DTIME(f)$.
 
 \begin{proof}
     Para qualquer palavra $x$ de tamanho $n_0$,
-    $M$ irá analisar,
+    $M$ analisará,
     no máximo,
     até seu último caractere.
-    Para chegar lá, $M$ irá gastar,
+    Para chegar lá, $M$ gastará,
     no mínimo,
     $|x| - 1 = n_0 - 1$ movimentos;
     como

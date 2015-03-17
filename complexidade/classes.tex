@@ -103,12 +103,12 @@ Precisamos de um lema.
     Observe que existe uma bijeção computável
     entre palavras de $\Sigma^*$
     e números naturais.
-    $N$ irá,
+    $N$ computará,
     dado um $x$,
-    computar o número natural equivalente a ele
+    o número natural equivalente a ele
     e usar a função do lema anterior
     para gerar outro número.
-    Então, $N$ irá converter este outro número
+    Então, $N$ converterá este outro número
     novamente para uma palavra de $\Sigma^*$.
 
     Todas as palavras de $\Sigma^*$
@@ -131,7 +131,7 @@ Precisamos de um lema.
 \end{theorem}
 
 \begin{proof}
-    Iremos construir uma linguagem $L$
+    Construiremos uma linguagem $L$
     que discorda de todas as máquinas de Turing que gastam menos de
     $f(n)$ recursos ao computar uma palavra de tamanho $n$.
 
@@ -139,7 +139,7 @@ Precisamos de um lema.
     Denotaremos por $M_x$
     a máquina de Turing que $N$ produz
     ao lhe ser dada a palavra $x$.
-    Iremos pôr $x$ em $L$
+    Colocarems $x$ em $L$
     de acordo com o comportamento que $M_x$ tem ao computar $x$.
     Caso esta máquina encerre sua computação
     gastando no máximo $f(|x|)$ recursos,

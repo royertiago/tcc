@@ -57,7 +57,7 @@ TEX := $(shell find . -name "*.tex" -exec \
 # a única regra que criamos para ele perde o sentido,
 # pois ela é subsumida pela regra que o próprio .dep.mk define.
 # Entretanto, o .pdf ainda depende do .dep.mk.
-# Mas é a própria receita do .pdf que irá construir o .dep.mk!
+# Mas é a própria receita do .pdf que construirá o .dep.mk!
 # Portanto, precisamos nos assegurar de que a timestamp do .pdf
 # seja sempre posterior à timestamp do .dep.mk.
 # Isso é alcançado com um simples `touch $*.pdf`.
