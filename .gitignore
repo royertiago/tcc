@@ -10,6 +10,9 @@
 *.log
 *.lot
 *.lsb
+*.nav
+*.out
+*.snm
 *.toc
 
 # Binary output
