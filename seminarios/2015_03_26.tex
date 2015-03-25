@@ -1,0 +1,157 @@
+\documentclass[utf8,notheorems]{beamer}
+\usetheme[compress]{Singapore}
+\usepackage[brazil]{babel}
+
+\newtheorem*{theorem}{Teorema}
+\newtheorem*{corollary}{Corolário}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definição}
+
+\let\C\someundefinedcommand
+\let\G\someundefinedcommand
+% These two commands are defined by hyperref in file puenc.def,
+% and conflict with complexity - which also defines them.
+% \C encodes some unicode character (U+030f), \G is textdoublegrave.
+% Seems safe to simply undefine them.
+\usepackage{complexity}
+
+\begin{document}
+
+\author{Tiago Royer}
+\title{Complexidade de Circuitos}
+\subtitle{Seminário de andamento}
+\date{26 de março de 2015}
+\institute{IATE - UFSC}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\section{Introdução}
+
+\begin{frame}
+    \frametitle{Síntese}
+    \tableofcontents
+\end{frame}
+
+\subsection{Motivação}
+
+\begin{frame}
+    \frametitle{Motivação}
+    \begin{itemize}
+        \item 10\textordmasculine\ problema de Hilbert
+        \item Objetivo: resolver problemas mecanicamente
+        \pause
+        \item Dispositivos computacionais
+            --- o que é ``mecanicamente resolvível''?
+        \item Decidível vs Indecidível
+        \pause
+        \item Tratável vs Intratável
+        \pause
+        \item $\P$ vs $\NP$
+        \pause
+        \item Simplificar o modelo computacional
+            --- Usar circuitos.
+    \end{itemize}
+\end{frame}
+
+\section{Circuitos computacionais}
+
+\subsection{Definições}
+
+\begin{frame}
+    \frametitle{Circuitos computacionais}
+    \begin{definition}
+        Um circuito é um grafo...
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Famílias de circuitos}
+    \begin{definition}
+        Uma família de circuitos é uma lista indexada
+        \begin{equation*}
+            \{c_1, c_2, c_3, \dots\}
+        \end{equation*}
+        em que cada $c_i$ é um circuito com $i$ entradas booleanas.
+    \end{definition}
+
+    \pause
+    Medidas de complexidade:
+    \begin{itemize}
+        \item Quantidade de portas lógicas
+        \item Profundidade do circuito
+    \end{itemize}
+\end{frame}
+
+\subsection{Relação com $\P$ vs $\NP$}
+\begin{frame}
+    \frametitle{Relação com $\P$ vs $\NP$}
+    \begin{theorem}
+        Se uma máquina de Turing reconhece uma linguagem em tempo $T(n)$,
+        então existe uma família de circuitos computacionais
+        que reconhece esta mesma linguagem
+        com $O(T(n) \log T(n))$ portas lógicas.
+    \end{theorem}
+    \pause
+    \begin{corollary}
+        Se algum problema $\NP$-completo
+        não possuir circuitos de tamanho polinomial,
+        $\P \neq \NP$.
+    \end{corollary}
+\end{frame}
+
+
+\section{Trabalho atual}
+
+\subsection{Complexidade computacional axiomática}
+\begin{frame}
+    \frametitle{Axiomas de Blum}
+    \begin{definition}
+        Uma \emph{medida de complexidade}
+        é uma função $\Phi$ que satisfaz aos seguintes axiomas:
+        \begin{enumerate}
+            \item
+                $\Phi(M, x)$ está definido
+                se, e somente se,
+                $M(x)$ está definido.
+            \item
+                Dados $M$, $x$ e $k$,
+                é decidível se $\Phi(M, x) = k$.
+        \end{enumerate}
+    \end{definition}
+\end{frame}
+
+\subsection{Hierarquias de complexidade}
+\begin{frame}
+    \frametitle{Hierarquia de classes de complexidade}
+
+    \begin{theorem}
+        \begin{displaymath}
+            \DSPACE(n^c) \subsetneq \DSPACE(n^{c+\varepsilon})
+        \end{displaymath}
+        \begin{displaymath}
+            \DTIME(n^c) \subsetneq \DTIME(n^{c+\varepsilon})
+        \end{displaymath}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Hierarquia polinomial}
+
+    \begin{itemize}
+        \item Diagonalização
+        \item Hierarquia fora de $\P$.
+    \end{itemize}
+\end{frame}
+
+\subsection{Próximos objetivos}
+\begin{frame}
+    \frametitle{Próximos objetivos}
+
+    \begin{itemize}
+        \item Entender a demonstração de Pippenger.
+        \item Estudar a hierarquia polinomial.
+    \end{itemize}
+\end{frame}
+
+\end{document}
