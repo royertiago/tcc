@@ -77,7 +77,8 @@ all: bib-all $(PDF)
 $(DEP): %.dep.mk:
 
 $(PDF): %.pdf: %.dep.mk
-	latexmk -pdf   -M -MF $*.dep.mk -MP   $*.tex   -g -cd
+	latexmk -pdf   -M -MF $*.dep.mk -MP   $*.tex   -g\
+		-outdir=$(dir $*.pdf) -auxdir=$(dir $*.pdf)
 	touch $*.pdf
 
 mostlyclean: bib-mostlyclean
