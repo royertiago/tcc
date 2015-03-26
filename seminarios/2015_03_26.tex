@@ -3,6 +3,7 @@
 
 \usepackage[brazil]{babel}
 \usepackage{tikz}
+\usetikzlibrary{calc}
 
 \newtheorem*{theorem}{Teorema}
 \newtheorem*{corollary}{Corolário}
@@ -188,15 +189,41 @@
         \draw (r4) to [out=170, in=10] node {$\DSPACE(n^{c+2\varepsilon})$}
                       node [swap] {$\vdots$} (l4);
     \end{tikzpicture}
+
+    \pause
+    Problema: demonstração usa diagonalização
 \end{frame}
 
 \begin{frame}
     \frametitle{Hierarquia polinomial}
 
-    \begin{itemize}
-        \item Diagonalização
-        \item Hierarquia fora de $\P$.
-    \end{itemize}
+    \centering
+    \begin{tikzpicture}
+        \draw let \n1 = {0}, \n2 = {8}, \n3 = {1.5}, \n4 = {0.5} in
+            (\n1, -\n4) -- (\n2, -\n4)
+            (\n1, 0) -- (\n2, \n3)
+            (\n1, \n3) -- (\n2, 0)
+            (\n1, \n3) -- (\n2, 2*\n3)
+            (\n1, 2*\n3) -- (\n2, \n3)
+            (\n1, 2*\n3) -- (\n2, 3*\n3)
+            (\n1, 3*\n3) -- (\n2, 2*\n3)
+            (\n1, 4*\n3) -- (\n2, 4*\n3)
+            (\n1, -\n4) -- (\n1, 4*\n3)
+            (\n2, -\n4) -- (\n2, 4*\n3)
+            node (a) at ({(\n1+\n2)/2}, 0) {
+                $\Sigma_0^\P = \Delta_0^\P = \Pi_0^\P = \P$
+            }
+            node (a) at (\n1+2*\n4, \n3/2) {$\Sigma_1^\P = \NP$}
+            node (a) at (\n2-2*\n4, \n3/2) {$\Pi_1^\P = \coNP$}
+            node (a) at ({\n1+\n2/2}, \n3) {$\Delta_2^\P = \P^\NP$}
+            node (a) at (\n1+\n4, 3*\n3/2) {$\Sigma_2^\P$}
+            node (a) at (\n2-\n4, 3*\n3/2) {$\Pi_2^\P$}
+            node (a) at ({\n1+\n2/2}, 2*\n3) {$\Delta_3^\P$}
+            node (a) at (\n1+\n4, 5*\n3/2) {$\Sigma_3^\P$}
+            node (a) at (\n2-\n4, 5*\n3/2) {$\Pi_3^\P$}
+            node (a) at ({\n1+\n2/2}, 3*\n3) {$\vdots$}
+            node (a) at ({\n1+\n2/2}, 7*\n3/2) {$\PH \subseteq \PSPACE$};
+    \end{tikzpicture}
 \end{frame}
 
 \subsection{Próximos objetivos}
