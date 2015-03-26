@@ -142,6 +142,22 @@
     \end{definition}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Classes de complexidade}
+    \begin{definition}
+        Dada uma medida de complexidade $\Phi$
+        e uma função recursiva total
+        $f: \mathbb N \rightarrow \mathbb N$,
+        a \emph{classe de complexidade $f$} com relação a $\Phi$
+        é o conjunto
+        \begin{equation*}
+            \mathcal C_\Phi(f) = \{ L(M) \mid \Phi(M, x) \leq f(|x|)
+                \text{ para quase todos os $x$}
+            \}.
+        \end{equation*}
+    \end{definition}
+\end{frame}
+
 \subsection{Hierarquias de complexidade}
 \begin{frame}
     \frametitle{Hierarquia de classes de complexidade}
