@@ -1,6 +1,8 @@
 \documentclass[utf8,notheorems]{beamer}
 \usetheme[compress]{Singapore}
+
 \usepackage[brazil]{babel}
+\usepackage{tikz}
 
 \newtheorem*{theorem}{Teorema}
 \newtheorem*{corollary}{Corolário}
@@ -58,11 +60,28 @@
 
 \subsection{Definições}
 
+\newcommand{\placenode}[1]{
+    \node (x#1) at (2*#1, 0) {$x_#1$};
+    \path (2*#1+0.5, 1) node[draw,circle] (neg#1) {$\neg$};
+    \coordinate (p#1) at (2*#1 - 0.5, 2);
+    \coordinate (n#1) at (2*#1 + 0.5, 2);
+    \draw (x#1) -- (2*#1 - 0.5, 1) -- (p#1) -- (wp);
+    \draw (x#1) -- (neg#1) -- (n#1) -- (wn);
+}
+
 \begin{frame}
     \frametitle{Circuitos computacionais}
-    \begin{definition}
-        Um circuito é um grafo...
-    \end{definition}
+    \centering
+    \begin{tikzpicture}
+        \path (5.5, 4) node[draw,circle] (wp) {$\wedge$};
+        \path (2.5, 4) node[draw,circle] (wn) {$\wedge$};
+        \path (4, 6) node[draw,circle] (vee) {$\vee$};
+        \draw (wp) -- (vee) -- (wn);
+        \draw (vee) -- (4, 7);
+        \placenode{1}
+        \placenode{2}
+        \placenode{3}
+    \end{tikzpicture}
 \end{frame}
 
 \begin{frame}
