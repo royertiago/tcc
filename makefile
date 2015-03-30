@@ -14,6 +14,25 @@ for pattern in $$pattern_list; do \
 done
 endef
 
+# dirss filename
+# "dir strip slash", obtêm o diretório do arquivo passado
+# e remove o caractere barra ao fim do texto.
+#
+# Esta função é usada para que o latexmk não se confunda
+# ao gerar o arquivo (por exemplo) seminarios//2015_03_06.pdf.
+# Usar a opção -outdir com um nome de diretório que contém uma barra
+# no final, por exemplo, -outdir=seminarios/, faz com que o latexmk
+# tente produzir o arquivo (por exemplo) seminarios//2015_03_26.pdf.
+# O sistema de arquivos sabe que isso é o mesmo que o arquivo
+# seminarios/2015_03_26.pdf, mas o latexmk, não.
+# Nesta situação, o lakexmk gera um warning para avisar
+# sobre a possibilidade de estar criando o arquivo errado.
+#
+# Solução: remover a barra do diretório do arquivo.
+define dirss
+$(patsubst %/,%,$(dir $1))
+endef
+
 # Convenção: todos os arquivos que são transformáveis em pdf possuem
 # o comando \end{document} numa linha por si só.
 TEX := $(shell find . -name "*.tex" -exec \
@@ -78,7 +97,7 @@ $(DEP): %.dep.mk:
 
 $(PDF): %.pdf: %.dep.mk
 	latexmk -pdf   -M -MF $*.dep.mk -MP   $*.tex   -g\
-		-outdir=$(dir $*.pdf) -auxdir=$(dir $*.pdf)
+		-outdir=$(call dirss, $*.pdf) -auxdir=$(call dirss $*.pdf)
 	touch $*.pdf
 
 mostlyclean: bib-mostlyclean
