@@ -60,5 +60,26 @@ em ambas as definições,
 não é exigido que a máquina ``compute'' função alguma;
 por exemplo,
 uma máquina que meramente leia a entrada por completo antes de aceitar
-é suficiente para demonstrar que a função $n+1$
+é suficiente para demonstrar que a função $f(n) = n+1$
 é totalmente tempo"=construtível.
+
+As exigências impostas por \citeonline{HopcroftUllman1979}
+são bastante restritivas.
+Por exemplo,
+podemos extender a demonstração da proposição
+\ref{regularidade_tempo_sublinear}
+para mostrar que a função $f(n) = n$
+não é tempo"=construtível;
+basta ver que a máquina precisa de ao menos $n+1$ movimentos
+para chegar ao primeiro branco e decidir parar.
+
+De fato, qualquer função $f$ tal que $f(n_0) \leq n_0$ para algum $n_0$
+não satisfaz à definição de ``tempo"=construtível''
+\footnote{
+    Isso introduz o problema de que o conjunto das funções tempo"=construtíveis
+    passa a não ser fechado sob multiplicação por escalar.
+}
+--- o que, de certa forma,
+é compatível com a suposição feita por \citeonline[p. 287]{HopcroftUllman1979}
+de que $f(n) \geq n+1$
+quando $f$ for usada no contexto de complexidade de tempo.
