@@ -23,4 +23,42 @@ para manter o controle sobre a computação.
 Portanto,
 estas funções precisarão ser,
 de algum modo,
-restritas a serem computadas sob certo limite de tempo.
+restritas a serem computadas sob certo limite de tempo,
+proporcional aos tamanhos da entrada e da saída.
+Iremos chamar estas funções de \emph{construtíveis}.
+
+A literatura diverge nas definições para função construtível.
+
+Uma função $f$ é \emph{espaço"=construtível}
+\footnote{
+    Do inglês ``space"=constructible''.
+}, para
+\citeonline[p. 297]{HopcroftUllman1979},
+caso exista uma máquina de Turing que,
+ao receber $x$ na entrada,
+ocupe, no máximo, $f(|x|)$ células da fita;
+e que, para todo $n$, exista ao menos algum $x$ de tamanho $n$
+em que a máquina ocupe exatamente $f(n)$ células.
+Esta função é \emph{totalmente espaço"=construtível}
+se a máquina ocupa $f(n)$ células em todas as palavras de tamanho $n$.
+
+Analogamente, uma função $f$ é \emph{tempo"=construtível}
+\footnote{
+    Do inglês ``time"=constructible''.
+}, para
+\citeonline[p. 299]{HopcroftUllman1979},
+caso exista uma máquina de Turing que,
+ao receber $x$ na entrada,
+efetue, no máximo, $f(|x|)$ movimentos antes de aceitar ou rejeitar $x$;
+e que, para todo $n$, exista ao menos algum $x$ de tamanho $n$
+em que a máquina faça exatamente $f(n)$ movimentos.
+Esta função é \emph{totalmente tempo"=construtível}
+se a máquina efeuta $f(n)$ movimentos em todas as palavras de tamanho $n$.
+
+Observe que,
+em ambas as definições,
+não é exigido que a máquina ``compute'' função alguma;
+por exemplo,
+uma máquina que meramente leia a entrada por completo antes de aceitar
+é suficiente para demonstrar que a função $n+1$
+é totalmente tempo"=construtível.
