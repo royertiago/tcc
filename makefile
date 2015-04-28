@@ -84,14 +84,14 @@ DEP := $(TEX:%.tex=%.dep.mk)
 
 PDF := $(TEX:%.tex=%.pdf)
 
-include bib/makefile
+include bib/makefile.mk
 include $(wildcard $(DEP)) # Isto inclui apenas os arquivos que existem
 
 # Regras
 
 .DEFAULT_GOAL := all
 
-all: bib-all $(PDF)
+all: $(PDF)
 
 $(DEP): %.dep.mk:
 
@@ -100,8 +100,8 @@ $(PDF): %.pdf: %.dep.mk
 		-outdir=$(call dirss, $*.pdf) -auxdir=$(call dirss $*.pdf)
 	touch $*.pdf
 
-mostlyclean: bib-mostlyclean
+mostlyclean:
 	$(call clean-section,LaTeX temporaries)
 
-clean: bib-clean mostlyclean
+clean: mostlyclean
 	$(call clean-section,Binary output)
