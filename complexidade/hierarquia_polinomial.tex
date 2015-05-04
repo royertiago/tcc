@@ -1,0 +1,68 @@
+\subsection{Hierarquia Polinomial}
+
+A hierarquia polinomial é uma generalização da classe $\NP$.
+
+\subsubsection{Oráculos}
+
+\begin{definition}
+    Seja $A$ uma linguagem qualquer.
+    Uma \emph{máquina de Turing com oráculo $A$}
+    é uma máquina de Turing $M^A$ que possui uma fita especial
+    e três estados adicionais: $q_?$, $q_y$ e $q_n$.
+    Transitar para $q_?$ significa consultar o oráculo;
+    ao fazer esta transição,
+    caso a palavra nesta fita pertença à linguagem $A$,
+    no próximo estado da computação $M$ transitará para $q_y$
+    (a resposta foi positiva);
+    caso contrário, $M$ transitará para $q_n$.
+    \footnote{
+        Observe que a cabeça da fita não se mexe durante a consulta.
+        Portanto, a máquina pode escrever seu estado atual na fita
+        antes de transitar para $q_?$ e recuperá-lo depois.
+    }
+
+    A definição de aceitação não é alterada.
+    Chamaremos de $L^A(M)$ o conjunto das palavras aceitas por $M^A$.
+\end{definition}
+
+Intuitivamente, o oráculo é um dispositivo computacional
+acoplado à máquina de Turing $M$.
+É como se a máquina delegasse parte da computação
+a outra máquina de Turing;
+uma ``chamada de função''.
+
+Observe que a única influência que $A$ possui em $M^A$
+são as transições após $M$ ir para o estado $q_?$.
+Ou seja, $A$ não pertence a $M$;
+de fato, podemos ``acoplar'' várias linguagens diferentes
+numa mesma máquina de Turing $M$
+e obter diferentes $L^A(M)$ com isso%
+\footnote{
+    É exatamente por causa disso que,
+    na notação do conjunto das palavras aceitas por $M^A$,
+    o $A$ superscrito está junto de $L$, não de $M$.
+}.
+
+É importante ressaltar que esta visão de $A$ como outra máquina de Turing
+é puramente intuitiva;
+$A$ não precisa ser sequer computável
+para que ela possa ser usada como oráculo.
+De fato, \citeonline[p.~210]{HopcroftUllman1979}
+introduzem este conceito no contexto de decidibilidade.
+Intuitivamente, se houvesse um algoritmo para o problema da parada,
+poderíamos resolver o problema da vacuidade para máquinas de Turing,
+por exemplo.
+Mas não podemos partir da premissa de que
+``existe uma máquina de Turing que resolve o problema da parada'',
+pois esta hipótese contradiz o teorema da parada.
+Oráculos podem ser entendidos como uma formalização deste ``e se?''.
+\footnote{
+    \citeauthoronline{HopcroftUllman1979} chamam de $S_1$ a linguagem
+    do problema da vacuidade,
+    que é equivalente ao problema da parada.
+    Eles mostram que a vacuidade de máquinas com $S_1$ como oráculo
+    é indecidível para máquinas com $S_1$ como oráculo.
+    Desta forma, podemos ver que existem diferentes ``níveis''
+    de indecidibilidade,
+    da mesma forma que existem diferentes infinito.
+}
