@@ -1,0 +1,33 @@
+\subsection{Principais Classes de Complexidade Computacional}
+\label{classes_complexidade}
+
+\begin{definition}
+    \begin{align*}
+        \P &= \bigcup_{n \geq 1} \DTIME(n^k) \\
+        \NP &= \bigcup_{n \geq 1} \NTIME(n^k) \\
+        \PSPACE &= \bigcup_{n \geq 1} \DSPACE(n^k) \\
+        \NPSPACE &= \bigcup_{n \geq 1} \NSPACE(n^k) \\
+    \end{align*}
+\end{definition}
+
+De acordo com o teorema da união,
+estes conjuntos são classes de complexidade.
+
+As classes $\P$ e $\NP$ são as protagonistas
+do problema mais importante da Ciência da Computação teórica.
+De um lado, temos a classe $\P$,
+as linguagens que podem ser resolvidas em tempo polinomial.
+De outro, tempos a classe $\NP$,
+as linguagens que podem ser verificadas em tempo polinomial.
+Sabemos que $\P \subseteq \NP$;
+a inclusão contrária é um problema em aberto
+--- apesar dos esforços de cientistas da computação mundo afora,
+ainda não sabemos se estas duas classes são iguais ou não.
+
+Pela equação \ref{ntime_in_dspace},
+sabemos que a seguinte cadeia de inclusões é verdadeira:
+\begin{equation*}
+    \P \subseteq \NP \subseteq \PSPACE \subseteq \NPSPACE.
+\end{equation*}
+O teorema de Savitch nos diz que as duas últimas classes são iguais.
+Mas nós sequer sabemos se $\P$ é igual a $\PSPACE$ ou não.
