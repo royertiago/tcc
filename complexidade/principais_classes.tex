@@ -18,7 +18,38 @@ do problema mais importante da Ciência da Computação teórica.
 De um lado, temos a classe $\P$,
 as linguagens que podem ser resolvidas em tempo polinomial.
 De outro, tempos a classe $\NP$,
-as linguagens que podem ser verificadas em tempo polinomial.
+as linguagens que podem ser verificadas em tempo polinomial%
+\footnote{
+    A ideia é que,
+    se dispomos de uma sequência de transições para uma máquina não-determinística,
+    podemos rapidamente executar esta sequência de transições
+    e verificar que a entrada, de fato, pertence à linguagem;
+    isto é, depois que o problema está resolvido,
+    é fácil verificar se a solução está correta ou não.
+
+    Existe uma caracterização alternativa da classe $\NP$ baseada nesta ideia.
+    Uma $L$ linguagem \emph{polinomialmente balanceada}
+    é um conjunto de pares $(x, y)$ de palavras
+    tal que $|y| \leq p(|x|)$ para algum polinômio $p$
+    \cite[p. 298]{Papadimitriou1998}
+    --- isto é, $y$ não é muito maior do que $x$.
+
+    Se uma linguagem $L$ está em $\NP$,
+    podemos construir uma linguagem $L' \in \P$,
+    polinomialmente balanceada,
+    tal que o conjunto $\{x \mid (x, y) \in L \text{ para algum $y$ }\}$
+    é exatamente o conjunto $L$.
+    É como se $x$ fosse um problema a ser solucionado
+    e $y$ fosse a sua solução.
+
+    O contrário também vale: a partir de $L' \in \P$,
+    podemos construir $L \in \NP$.
+    Portanto, podemos interpretar o problema $\P$ vs $\NP$
+    como o contraposição entre resolver um problema pela primeira vez
+    e verificar que uma solução já pronta funciona.
+
+    Não utilizaremos a noção de linguagem polinomialmente equilibrada neste texto.
+}.
 Sabemos que $\P \subseteq \NP$;
 a inclusão contrária é um problema em aberto
 --- apesar dos esforços de cientistas da computação mundo afora,
