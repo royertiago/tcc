@@ -93,9 +93,10 @@ O oposto também ocorre:
 
 Suponha que dispomos de um oráculo para $L_u^1$.
 Se a entrada for $\langle M \rangle$,
-construa uma máquina que enumere os pares $(i, j)$,
-e, para cada par enumerado,
-execute $M$ na $i$-ésima palavra por $j$ movimentos.
+construa uma máquina que ignorea a entrada
+e enumera os pares $(i, j)$.
+Para cada par enumerado,
+ela $M$ na $i$-ésima palavra por $j$ movimentos.
 Caso $M$ aceite, aceite a entrada, qualquer que seja.
 Caso contrário, enumere o próximo par, e tente de novo.
 De posse desta máquina, peça ao oráculo se ela aceita $\varepsilon$
@@ -103,7 +104,7 @@ De posse desta máquina, peça ao oráculo se ela aceita $\varepsilon$
 Se sim, significa que, em algum par $(i, j)$,
 a $M$ aceitou a entrada $i$; portanto, $L(M) \neq \emptyset$.
 Caso contrário, significa que $M$ nunca aceitou palavra alguma;
-portanto, $L(m) = \emptyset$.
+portanto, $L(M) = \emptyset$.
 
 \begin{definition}
     Dois oráculos $A$ e $B$ são ditos equivalentes
