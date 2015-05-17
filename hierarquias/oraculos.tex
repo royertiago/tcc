@@ -43,7 +43,7 @@ Iremos utilizar oráculos para definir a hierarquia polinomial,
 uma generalização das classes $\P$ e $\NP$,
 na seção \ref{hierarquia_polinomial}.
 
-\subsection{Hierarquia de problemas indecidíveis}
+\subsection{Problemas indecidíveis como oráculos}
 
 É importante ressaltar que esta visão do oráculo $A$
 como outra máquina de Turing acoplada à máquina principal
@@ -83,6 +83,12 @@ não pode haver algoritmo para a vacuidade.
 Em termos de oráculos,
 isso significa que podemos decidir $L_u^1$
 utilizando um oráculo para $S_1$.
+
+\subsection{Equivalência entre oráculos}
+
+Na subseção anterior,
+mostramos que $L_u^1$ é decidível usando um oráculo para $S_1$
+(isto é, $L_u^1$ é \emph{recursiva em} $S_1$).
 O oposto também ocorre:
 
 Suponha que dispomos de um oráculo para $L_u^1$.
@@ -119,8 +125,10 @@ há um algoritmo que traduz de um para outro,
 portanto, podemos usar este algoritmo de tradução
 para simular uma chamada a $L_u^1$.
 
+\subsection{Hierarquia de problemas indecidíveis}
+
 Muitos outros problemas podem ser demonstrados equivalentes
-(neste sentido)
+(como oráculos)
 ao problema da parada,
 como o problema da correspondência de Post \cite[p. 214]{HopcroftUllman1979}.
 Entretanto,
@@ -174,7 +182,7 @@ Estes conjuntos também podem ser denotados por $\R^{L_u^n}$;
 as ``linguagens recursivas que usam $L_u^n$ como oráculo''.
 São as linguagens que são decididas
 pelo mesmo tipo de máquina usado para definir $\R$,
-mas equipados com um oráculo para $L_u^n$.
+mas agora equipadas com um oráculo para $L_u^n$.
 
 Observe que,
 de posse de um oráculo para $S_n$ (por exemplo),
