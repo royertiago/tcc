@@ -3,3 +3,55 @@
 
 A hierarquia polinomial é uma generalização da classe $\NP$,
 baseada no conceito de oráculo.
+
+Para defini-la,
+iremos utilizar o abuso de notação mencionado na equação
+\ref{abuso_notacao_oraculos}.
+Formalmente:
+
+\begin{definition}
+    Seja $\mathcal A$ uma classe computacional
+    para a qual há problemas completos (sob reduções polinomiais),
+    e $B$ um problema completo para $\mathcal A$.
+    Então,
+    \begin{itemize}
+        \item $\P^\mathcal A$
+            é a classe dos problemas que podem ser resolvidos em tempo polinomial
+            por uma máquina de Turing determinística
+            usando um oráculo para $B$;
+        \item $\NP^\mathcal A$
+            é a classe dos problemas que podem ser resolvidos em tempo polinomial
+            por uma máquina de Turing não-determinística
+            usando um oráculo para $B$;
+            e
+        \item $\coNP^\mathcal A$
+            é a classe dos complementos dos problemas em $\NP^\mathcal A$.
+    \end{itemize}
+\end{definition}
+
+(A única diferença entre $\P^\mathcal A$ e $\NP^\mathcal A$
+é o fato de permitirmos não-determinismo em $\NP^\mathcal A$.)
+
+Intuitivamente,
+$\P^\mathcal A$ é a classe de problemas que dá para resolver
+se pegarmos as máquinas que resolvem os problemas em $\P$
+e darmos oráculos em $\mathcal A$ para elas.
+
+Importante ressaltar que esta notação
+não está associada semanticamente ao conceito de potência;
+de fato,
+existem oráculos $A$ e $B$ para os quais
+$\P ^ A = \NP ^ A$ e $\P ^ B \neq \NP ^ B$
+\cite[p. 362]{HopcroftUllman1979}%
+\footnote{
+    De fato, \citeonline[p. 362]{HopcroftUllman1979}
+    argumentam que este é um dos motivos pelos quais
+    a questão $\P = \NP$ é tão difícil de ser resolvida
+    --- os métodos que conhecemos
+    (como, por exemplo, diagonalização)
+    são facilmente traduzíveis para máquinas com oráculos.
+    Portanto,
+    uma prova de que $\P \neq \NP$ (por exemplo)
+    precisaria empregar um método que deixaria de funcionar
+    ao equipar as máquinas com o oráculo $A$ citado acima.
+}.

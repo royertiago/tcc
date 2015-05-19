@@ -199,10 +199,13 @@ dentre todas as linguagens de $\R_n$.
 Intuitivamente, é como se pudéssemos usar qualquer linguagem de $\R_n$ como oráculo.
 Abusando um pouco da notação,
 podemos escrever
-\begin{align*}
-    \R_0 &= \R \\
-    \R_{n+1} &= \R^{\R_n}.
-\end{align*}
+\begin{equation}
+    \begin{aligned}
+        \R_0 &= \R \\
+        \R_{n+1} &= \R^{\R_n}.
+    \end{aligned}
+    \label{abuso_notacao_oraculos}
+\end{equation}
 A interpretação é que $\R_{n+1}$ é o conjunto das linguagens
 decididas pelas mesmas máquinas de $\R$,
 mas agora equipadas com um oráculo para um problema ``mais difícil'' de $\R_n$.
