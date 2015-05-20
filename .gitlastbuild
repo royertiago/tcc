@@ -1,0 +1,2 @@
+# See https://github.com/royertiago/git-lastbuild
+lastbuild_files=$(find . -name "*.pdf")
