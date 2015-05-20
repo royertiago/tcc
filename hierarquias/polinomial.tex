@@ -55,3 +55,82 @@ $\P ^ A = \NP ^ A$ e $\P ^ B \neq \NP ^ B$
     precisaria empregar um método que deixaria de funcionar
     ao equipar as máquinas com o oráculo $A$ citado acima.
 }.
+
+Valendo-se desta notação,
+podemos definir a hierarquia polinomial de maneira muito enxuta.
+
+\begin{definition}[Hierarquia polinomial]
+    \begin{align*}
+        \Delta_0^p &= \Sigma_0^p = \Pi_0^p = \P \\
+        \Delta_{n+1}^p &= \P^{\Sigma_n^p} \\
+        \Sigma_{n+1}^p &= \NP^{\Sigma_n^p} \\
+        \Pi_{n+1}^p &= \coNP^{\Sigma_n^p} \\
+        \PH &= \bigcup_{n >= 0} \Sigma_n^p
+    \end{align*}
+\end{definition}
+
+Os primeiros elementos da hierarquia polinomial podem ser expressados diretamente.
+
+Por exemplo, $\Sigma_1^p = \NP^\P$.
+Esta classe corresponde às máquinas de Turing não-determinísticas
+com acesso a oráculos em $\P$ que operam em tempo polinomial.
+Podemos substituir as chamadas ao oráculo de $\P$
+por uma máquina que decide aquela linguagem em tempo polinomial.
+Como o oráculo funciona em tempo polinomial
+e há uma quantidade polinomial de chamadas a este oráculo,
+a complexidade da máquina resultante será polinomial
+(embora o polinômio tenha, possivelmente, um grau maior).
+Portanto, todo problema de $\Sigma_1^p$ está em $\NP$.
+E vice-versa: qualquer problema de $\NP$ está em $\NP^\P$
+--- basta a máquina não usar seu oráculo.
+Portanto, $\Sigma_1^p = \NP$.
+
+O mesmo raciocínio mostra que $\Delta_1^p = \P$
+e que $\Pi_1^p = \coNP$.
+\footnote{
+    Poderiamos ter escolhido qualquer subconjunto de $\P$
+    como início da hierarquia polinomial,
+    que o restante seria o mesmo.
+    De fato, \citeonline[p. 4]{MeyerStockmeyer1972}
+    introduziram a hierarquia polinomial ao mundo
+    escolhendo $\Delta_0^p = \Sigma_0^p = \Pi_0^p = \emptyset$.
+}
+
+Já $\Delta_2^p$ representa a ideia de generalizar reduções%
+\footnote{
+    Esta é uma interpretação minha da hierarquia polinomial.
+    Os criadores originais da hierarquia,
+    \citeonline[p. 4]{MeyerStockmeyer1972},
+    tinham por objetivo achar problemas ``naturais''
+    que fossem ``difíceis''.
+    As separações entre as classes de complexidade,
+    como, por exemplo, as demonstrações da seção \ref{teoremas_hierarquia},
+    são baseadas em diagonalização,
+    e resultam em linguagens artificiais.
+    O que \citeauthoronline{MeyerStockmeyer1972} queriam
+    era achar problemas que surgem ``naturalmente''
+    ao analisar problemas computacionais,
+    que possuíssem as mesmas características
+    destes resultantes de diagonalizações
+    (isto é, que separassem classes de complexidade
+    --- fossem ``difíceis'').
+}.
+Ao contrário de se comportar da maneira limitada,
+como no algoritmo \ref{algoritmo_reducao},
+as máquinas polinomiais de $\Delta_2^p$
+podem chamar seu oráculo uma quantidade polinomial de vezes,
+alterando o valor retornado arbitrariamente.
+Com isso, $\Delta_2^p$ engloba tanto $\NP$ quanto $\coNP$
+--- acredita-se que propriamente.
+
+$\Sigma_2^p$ pode ser visto como uma ``versão não-determinística'' de $\Delta_2^p$.
+Ela pode ser elegantemente expressada como $\NP^\NP$.
+Para o restante da hierarquia,
+não há uma interpretação equivalente;
+são apenas os ``conceitos anexos'' que surgem por analogia.
+Isto é, já que temos $\Sigma_2^p$,
+podemos considerar $\co \Sigma_2^p$, que é $\Pi_2^p$
+(ou $\coNP^\NP$);
+E podemos considerar estas classes como oráculos;
+E podemos considerar as classes resultantes como oráculos;
+e assim por diante.
