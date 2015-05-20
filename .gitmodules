@@ -3,4 +3,4 @@
 	url = https://github.com/royertiago/ufsctex
 [submodule "bib"]
 	path = bib
-	url = https://bitbucket.org/royertiago/bib
+	url = https://github.com/royertiago/bib
