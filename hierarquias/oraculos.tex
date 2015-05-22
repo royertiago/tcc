@@ -1,5 +1,7 @@
 \section{Oráculos}
 
+\simbolo{$M^A$}{Máquina de Turing $M$ com oráculo $A$}
+\simbolo{$L^A(M)$}{Linguagem da máquina $M$, quando equipada com o oráculo $A$}
 \begin{definition}
     Seja $A$ uma linguagem qualquer.
     Uma \emph{máquina de Turing com oráculo $A$}
@@ -61,6 +63,8 @@ pois esta hipótese contradiz o teorema da parada.
 Oráculos podem ser entendidos como uma formalização deste ``e se?''.
 
 Mais precisamente, defina
+\simbolo{$L_u^1$}{Problema da parada}
+\simbolo{$S_1$}{Problema da vacuidade}
 \begin{align*}
     L_u^1 &= \{ \langle M, x \rangle \mid M \text{ aceita } x \} \\
     S_1 &= \{ \langle M \rangle \mid L(M) = \emptyset \}
@@ -139,6 +143,8 @@ pode ser usado para gerar um problema indecidível
 para máquinas que usam o problema da parada como oráculo.
 
 Defina
+\simbolo{$L_u^n$}{Problema da parada, generalizado via oráculos}
+\simbolo{$S_n$}{Problema da vacuidade, generalizado via oráculos}
 \begin{align*}
     L_u^{n+1} &= \{ \langle M^{L_u^n}, x \rangle \mid M^{L_u^n} \text{ aceita } x \}, \\
     S_{n+1} &= \{ \langle M^{S_n} \rangle \mid L^{S_n}(M) = \emptyset \}.
@@ -158,6 +164,7 @@ e, imitando o teorema da parada,
 podemos mostrar que $L_u^n$ é indecidível para máquinas que usam $L_u^n$ como oráculo.
 
 Defina
+\simbolo{$\R_n$}{Linguagens decidíveis usando um oráculo para $L_u^n$}
 \begin{equation*}
     \R_n = \{ L \mid L = L^{L_u^n}(M) \text{ para alguma máquina $M^{L_u^n}$ } \}.
 \end{equation*}
