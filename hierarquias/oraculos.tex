@@ -196,14 +196,10 @@ Observe que,
 de posse de um oráculo para $S_n$ (por exemplo),
 ao ``programar'' uma máquina de Turing com esse oráculo,
 podemos ``fingir'' que podemos usar qualquer linguagem de $\R_n$ como oráculo
---- pois, pela definição de $\R_n$,
-esta linguagem possui um algoritmo para resolvê-la
-usando $S_n$ como oráculo.
-De certa forma,
-a linguagem $S_n$ é uma das ``mais difíceis'' de serem resolvidas,
-dentre todas as linguagens de $\R_n$.
-
-Intuitivamente, é como se pudéssemos usar qualquer linguagem de $\R_n$ como oráculo.
+--- como esta linguagem possui um algoritmo que a resolve
+usando o nosso oráculo $S_n$,
+podemos substituir todas as chamadas àquele oráculo
+por este algoritmo.
 Abusando um pouco da notação,
 podemos escrever
 \begin{equation}
@@ -215,10 +211,16 @@ podemos escrever
 \end{equation}
 A interpretação é que $\R_{n+1}$ é o conjunto das linguagens
 decididas pelas mesmas máquinas de $\R$,
-mas agora equipadas com um oráculo para um problema ``mais difícil'' de $\R_n$.
+mas equipadas com um oráculo qualquer de $\R_n$.
+Como $S_n \in \R_n$, esta nova definição inclui a definição anterior;
+Como todas as linguagens de $\R_n$ podem ser decididas usando um oráculo para $S_n$,
+qualquer linguagem de $\R_{n+1}$
+pode ser decidida usando apenas $S_n$
+(basta fazer aquela troca de chamadas ao oráculo);
+portanto as duas definições são equivalentes.
 Usaremos esta notação novamente na seção \ref{hierarquia_polinomial},
-em que ``mais difícil'' significará,
-por exemplo, ``\NP-completo''.
+mas indo direto à esta construção alternativa,
+sem passar pela definição via $S_n$ primeiro.
 
 \subsection{Reduções e oráculos}
 
