@@ -3,7 +3,6 @@
 
 A hierarquia polinomial é uma generalização da classe $\NP$,
 baseada no conceito de oráculo.
-
 Para defini-la,
 iremos utilizar o abuso de notação mencionado na equação
 \ref{abuso_notacao_oraculos}.
@@ -18,14 +17,12 @@ Formalmente:
     \begin{itemize}
         \item $\P^\mathcal A$
             é a classe dos problemas que podem ser resolvidos em tempo polinomial
-            por uma máquina de Turing determinística
-            usando, como oráculo,
-            alguma linguagem de $\mathcal A$;
+            por uma máquina de Turing determinística,
+            usando como oráculo alguma linguagem de $\mathcal A$;
         \item $\NP^\mathcal A$
             é a classe dos problemas que podem ser resolvidos em tempo polinomial
-            por uma máquina de Turing não-determinística
-            usando, como oráculo,
-            alguma linguagem de $\mathcal A$;
+            por uma máquina de Turing não-determinística,
+            usando como oráculo alguma linguagem de $\mathcal A$;
             e
         \item $\coNP^\mathcal A$
             é a classe dos complementos dos problemas em $\NP^\mathcal A$.
@@ -33,7 +30,7 @@ Formalmente:
 \end{definition}
 
 (A única diferença entre $\P^\mathcal A$ e $\NP^\mathcal A$
-é o fato de permitirmos não-determinismo em $\NP^\mathcal A$.)
+é o fato de permitirmos não"=determinismo em $\NP^\mathcal A$.)
 
 Intuitivamente,
 $\P^\mathcal A$ é a classe de problemas que dá para resolver
@@ -57,7 +54,8 @@ $\P ^ A = \NP ^ A$ e $\P ^ B \neq \NP ^ B$
     uma prova de que $\P \neq \NP$ (por exemplo)
     precisaria empregar um método que deixaria de funcionar
     ao equipar as máquinas com o oráculo $A$ citado acima.
-}.
+},
+independente de $\P$ ser igual a $\NP$ ou não.
 
 Valendo-se desta notação,
 podemos definir a hierarquia polinomial de maneira muito enxuta.
@@ -103,12 +101,10 @@ Os primeiros elementos da hierarquia polinomial podem ser expressados diretament
 Por exemplo, $\Sigma_1^p = \NP^\P$.
 Esta classe corresponde às máquinas de Turing não-determinísticas
 com acesso a oráculos em $\P$ que operam em tempo polinomial.
-Podemos substituir as chamadas ao oráculo de $\P$
-por uma máquina que decide aquela linguagem em tempo polinomial.
-Como o oráculo funciona em tempo polinomial
-e há uma quantidade polinomial de chamadas a este oráculo,
-a complexidade da máquina resultante será polinomial
-(embora o polinômio tenha, possivelmente, um grau maior).
+Mas o próprio oráculo pode ser computado em tempo polinomial;
+como há uma quantidade polinomial de chamadas a este oráculo,
+ao substituí-lo por um algoritmo ``de verdade'',
+a máquina resultante ainda terá complexidade polinomial.
 Portanto, todo problema de $\Sigma_1^p$ está em $\NP$.
 E vice-versa: qualquer problema de $\NP$ está em $\NP^\P$
 --- basta a máquina não usar seu oráculo.
@@ -150,7 +146,7 @@ as máquinas polinomiais de $\Delta_2^p$
 podem chamar seu oráculo uma quantidade polinomial de vezes,
 alterando o valor retornado arbitrariamente.
 Com isso, $\Delta_2^p$ engloba tanto $\NP$ quanto $\coNP$
---- acredita-se que propriamente.
+--- acredita-se que a inclusão seja própria.
 
 $\Sigma_2^p$ pode ser visto como uma ``versão não-determinística'' de $\Delta_2^p$.
 Ela pode ser elegantemente expressada como $\NP^\NP$.
