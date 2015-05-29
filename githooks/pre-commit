@@ -2,6 +2,16 @@
 # Script que detecta se o commit introduzirá hífens no repositório.
 
 has_hyphen=0
+show_hyphen_message() {
+    if ((has_hyphen == 0)); then
+        echo -n $(tput setaf 1)
+        echo As linhas abaixo serão submetidas ao repositório com hífens.
+        echo Considere substituí-los por '"='
+        echo ou ignore este aviso com git commit --no-verify.
+        echo -n $(tput sgr0)
+        (( has_hyphen = 1 ))
+    fi
+}
 
 for file in $(git ls-files); do
     offending_lines=$(git diff --cached -- "$file" | grep '^[+][^+]' | grep '[-]')
@@ -10,18 +20,13 @@ for file in $(git ls-files); do
     # pois ele tem que evitar as linhas +++ que mostram o nome do arquivo.
 
     if [ ! -z "$offending_lines" ]; then
-        has_hyphen=1
+        show_hyphen_message
         # Imprime cada linha, prefixada com o nome do arquivo em roxo.
         sed "s/+\(.*\)/$(tput setaf 5)$file$(tput sgr0):\1/" <<< "$offending_lines"
     fi
 done
 
 if (( has_hyphen == 1 )); then
-    echo $(tput setaf 1)
-    echo As linhas acima serão submetidas ao repositório com hífens.
-    echo Considere substituí-los por '"='
-    echo ou ignore este aviso com git commit --no-verify.
-    echo $(tput sgr0)
-
     exit 1
 fi
+exit 0
