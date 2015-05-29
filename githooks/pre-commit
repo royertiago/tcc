@@ -22,7 +22,7 @@ for file in $(git ls-files); do
     if [ ! -z "$offending_lines" ]; then
         show_hyphen_message
         # Imprime cada linha, prefixada com o nome do arquivo em roxo.
-        sed "s/+\(.*\)/$(tput setaf 5)$file$(tput sgr0):\1/" <<< "$offending_lines"
+        sed "s|+\(.*\)|$(tput setaf 5)$file$(tput sgr0):\1|" <<< "$offending_lines"
     fi
 done
 
