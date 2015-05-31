@@ -16,7 +16,7 @@ show_hyphen_message() {
     fi
 }
 
-for file in $(git ls-files); do
+for file in $modified_files; do
     offending_lines=$(added_lines "$file" | grep --color=always '[-]')
     if [ ! -z "$offending_lines" ]; then
         show_hyphen_message

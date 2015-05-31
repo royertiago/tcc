@@ -14,7 +14,7 @@ show_tie_message() {
     fi
 }
 
-for file in $(git ls-files); do
+for file in $modified_files; do
     offending_lines=$(added_lines "$file" |
         grep --color=always '\[p. [0-9]*\(\]\|,[^]]*]\)'
     )
