@@ -17,8 +17,7 @@ show_hyphen_message() {
 }
 
 for file in $(git ls-files); do
-    offending_lines=$(added_lines "$file" | grep '[-]')
-    # offending_lines é uma lista de linhas que contém hífens.
+    offending_lines=$(added_lines "$file" | grep --color=always '[-]')
     if [ ! -z "$offending_lines" ]; then
         show_hyphen_message
         print_line "$file" "$offending_lines"
