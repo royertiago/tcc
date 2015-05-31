@@ -7,7 +7,7 @@ show_tie_message() {
     if ((lack_tie == 0)); then
         echo -n $(tput setaf 1)
         echo Existem números de página, em comandos '\cite', sem ties.
-        echo -n Considere substituir, por exemplo, "\'[p. 15]\' por \'[p.~15]\'."
+        echo -n Considere substituir, por exemplo, "'[p. 15]' por '[p.~15]'."
         echo $(tput sgr0)
         (( lack_tie = 1 ))
         (( error = 1 ))
