@@ -2,7 +2,11 @@
 # Script que detecta erros de estilo
 # antes de serem submetidos em definitivo ao repositório.
 
+cd $(dirname $(readlink -f $0))
+# Este comando navega para o diretório deste arquivo,
+# mesmo que o executável referencie este diretório via link simbólico.
+
 error=0
-source githooks/pre-commit.utilities.sh
-source githooks/pre-commit.hyphens.sh
+source pre-commit.utilities.sh
+source pre-commit.hyphens.sh
 exit $error
