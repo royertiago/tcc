@@ -28,4 +28,5 @@ error=0
 source pre-commit.utilities.sh
 source pre-commit.hyphens.sh
 source pre-commit.citeties.sh
+source pre-commit.verbo-ir.sh
 exit $error
