@@ -26,6 +26,7 @@ unset GIT_DIR
 
 error=0
 source pre-commit.utilities.sh
+source pre-commit.whitespace.sh
 source pre-commit.hyphens.sh
 source pre-commit.citeties.sh
 source pre-commit.verbo-ir.sh
