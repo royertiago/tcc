@@ -57,15 +57,15 @@ de $M$ quando lhe é dado $x$ na entrada.
 
         As duas definições são análogas.
         O valor $\Phi_i'(n)$ corresponde a $\Phi(M_i, 0^n)$.
-        O axioma \ref{blum_def} corresponde ao axioma \ref{blum_def_orig},
-        enquanto que a decidibilidade exigida pelo axioma \ref{blum_rec}
-        é expressada pela função $R$ no axioma \ref{blum_rec_orig}.
+        O axioma~\ref{blum_def} corresponde ao axioma~\ref{blum_def_orig},
+        enquanto que a decidibilidade exigida pelo axioma~\ref{blum_rec}
+        é expressada pela função $R$ no axioma~\ref{blum_rec_orig}.
     }
 \end{definition}
 
-O axioma \ref{blum_rec}
+O axioma~\ref{blum_rec}
 nos dá um semialgoritmo para calcular $\Phi(M, x)$.
-Entretanto, pelo axioma \ref{blum_def},
+Entretanto, pelo axioma~\ref{blum_def},
 não podemos ir muito além disso,
 pois $M(x)$ não está definido para todo $M$ e $x$.
 De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
@@ -122,8 +122,8 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
             }
         \end{cases}
     \end{equation*}
-    É fácil ver que o axioma \ref{blum_def} é satisfeito.
-    Para o axioma \ref{blum_rec},
+    É fácil ver que o axioma~\ref{blum_def} é satisfeito.
+    Para o axioma~\ref{blum_rec},
     o algoritmo é um pouco mais complicado.
 
     Comece executando $M$ em $x$.
@@ -189,17 +189,17 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     como sendo a maior quantidade de células lidas
     em qualquer dos ramos da computação de $M$ em $x$.
     Aqui, precisamos tomar o mesmo cuidado que tomamos
-    com $\PhiDS$ para demonstrar o axioma \ref{blum_rec}.
+    com $\PhiDS$ para demonstrar o axioma~\ref{blum_rec}.
 \end{example}
 
 \begin{example}
     Escolher $\Phi(M, x) = 0$ para todo $M$ e $x$
-    satisfaz ao axioma \ref{blum_rec},
-    mas não ao axioma \ref{blum_def},
+    satisfaz ao axioma~\ref{blum_rec},
+    mas não ao axioma~\ref{blum_def},
     pois $\Phi(M, x)$ está definida mesmo quando $M(x)$ não está.
     Já definir $\Phi(M, x) = |M(x)|$
-    satisfaz ao axioma \ref{blum_def},
-    mas não ao axioma \ref{blum_rec},
+    satisfaz ao axioma~\ref{blum_def},
+    mas não ao axioma~\ref{blum_rec},
     pois poderíamos resolver o problema da parada:
     dada uma máquina $M$, podemos modificá"=la
     para apagar sua fita logo antes de parar.
@@ -217,7 +217,7 @@ Ou seja,
 \begin{equation*}
     \PhiDS(M, x) \leq \PhiDT(M, x).
 \end{equation*}
-E, de acordo com o raciocínio do exemplo \ref{complexidade_espaco},
+E, de acordo com o raciocínio do exemplo~\ref{complexidade_espaco},
 para todo $M$ existe algum $c$ que
 \begin{equation*}
     \PhiDT(M, x) \leq c^{\PhiDS(M, x)}.
@@ -253,7 +253,7 @@ De fato, podemos relacionar quaisquer duas medidas de complexidade.
     O conjunto na definição acima é um subconjunto desta lista.
     O predicado $\hat \Phi(M, x) = k$ é recursivo.
     Quando este predicado é verdadeiro,
-    $M(x)$ está definido, pelo axioma \ref{blum_def},
+    $M(x)$ está definido, pelo axioma~\ref{blum_def},
     portanto $\Phi(M, x)$ também está definido.
     Concluímos que $r$ é recursiva.
 
@@ -276,7 +276,7 @@ e
 \end{equation*}
 Podemos construir uma função dessas
 pegando o máximo de duas funções obtidas
-usando o teorema \ref{relacao_medidas}.
+usando o teorema~\ref{relacao_medidas}.
 
 O teorema,
 assim como provamos,
@@ -375,7 +375,7 @@ vindo direto da teoria das funções recursivas.
     De fato,
     \begin{align*}
         M_m(x) &= M_{N(k)}(x) \\
-               &= M_{M_k(k)}(x) && \text{Pela observação \ref{diagonal_N}}\\
+               &= M_{M_k(k)}(x) && \text{Pela observação~\ref{diagonal_N}}\\
                &= M_{\sigma(N(k))}(x) && \text{Pois $k$ computa $\sigma(N(x))$}\\
                &= M_{\sigma(m)}(x) && \text{Pela definição de $m$.}
         \qedhere
@@ -424,7 +424,7 @@ vindo direto da teoria das funções recursivas.
     ao lado do $x$,
     e executar uma subrotina que computa $h$ no restante.
 
-    Pelo teorema da recursão \ref{teorema_recursao},
+    Pelo teorema da recursão~\ref{teorema_recursao},
     $\sigma$ possui um ponto fixo $m_0$.
     Demonstraremos que $m_0$ satisfaz às exigências do terorema.
 

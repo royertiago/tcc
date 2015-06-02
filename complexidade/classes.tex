@@ -33,8 +33,7 @@ Precisamos de um lema.
 \end{lemma}
 
 \begin{proof}
-    Percorra o caminho descrito pelas setas na figura
-    \ref{passeio_cantor}.
+    Percorra o caminho descrito pelas setas na figura~\ref{passeio_cantor}.
 
     \begin{figure}[h]
         \centering
@@ -170,14 +169,14 @@ Precisamos de um lema.
     para algum $k \leq f(|x|)$.
     Como $f(|x|)$ é computável
     e ``$\Phi(M_x, x) = k$'' é decidível
-    (pelo axioma \ref{blum_rec}),
+    (pelo axioma~\ref{blum_rec}),
     esta verificação é realizável por uma máquina de Turing.
     Caso a resposta seja negativa
     ($M_x$ gasta mais do que $f(|x|)$ recursos ao computar $x$),
     já sabemos que $x$ está em $L$.
     Caso contrário,
     $\Phi(M_x, x)$ está definido;
-    pelo axioma \ref{blum_def},
+    pelo axioma~\ref{blum_def},
     $M_x(x)$ também está.
     Portanto, podemos executar $M_x$ em $x$
     e inverter a resposta.
