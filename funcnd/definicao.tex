@@ -1,0 +1,22 @@
+\section{Definição}
+
+\begin{definition}[Função não"=determinística]
+    \footnote{
+        O termo ``função não"=determinística''
+        está tecnicamente incorreto.
+        Funções não são determinísticas ou não"=determinísticas;
+        o que é determinístico ou não
+        é o dispositivo computacional que a calcula.
+
+        Toleraremos este abuso de nomenclatura
+        para encurtar o texto.
+    }
+    Seja $M$
+    uma máquina de Turing não"=determinística
+    e $x$ uma palavra.
+    Se a árvore de computação que $M$ gera ao processar $x$ for finita
+    (isto é, nenhuma sequência de transições de $M$ leva a um loop infinito),
+    definiremos $M(x)$ como sendo o maior valor que a fita atinge
+    nas folhas da árvore.
+    Caso a árvore não seja finita, deixaremos $M(x)$ indefinido.
+\end{definition}
