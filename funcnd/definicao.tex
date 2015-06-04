@@ -72,3 +72,79 @@ A função característica de $\SAT$ retorna $1$ nos dois últimos casos
 e $0$ no primeiro;
 corresponde, exatamente,
 ao maior valor destes conjuntos.
+
+A exigência de a árvore de computação ter tamanho finito é importante.
+Caso apenas exigíssemos que o conjunto de folhas fosse finito, por exemplo,
+poderíamos construir uma máquina não"=determinística
+que compute a função característica do problema da parada.
+Basta que a máquina assuma dois ramos de computação.
+No o primeiro ramo, a máquina sempre escreve $0$ na fita e para.
+No segundo ramo,
+a máquina age como uma máquina universal e simula a entrada.
+Se a máquina simulada parar, escreva $1$ na fita e pare também.
+
+Quando alimentada com o par $\langle M, x \rangle$ na entrada,
+caso $M$ pare ao computar $x$,
+o ``conjunto retornado'' por nossa máquina não"=determinística é $\{0, 1\}$;
+$0$ por causa do primeiro ramo (que sempre retorna $0$)
+e $1$ por causa do segundo ramo.
+Caso $M$ nunca pare, apenas o primeiro ramo retornará,
+resultando no conjunto $\{0\}$.
+Como o resultado da função é o máximo destes conjuntos,
+temos, exatamente,
+a função característica do problema da parada.
+
+Entretanto, como exigimos que a árvore de computação seja finita,
+podemos demonstrar equivalência entre os dois modelos,
+assim como podemos mostrar equivalência entre determinismo e não"=determinismo
+para decisores.
+
+\begin{theorem}
+    Toda função calculada por uma máquina não"=determinística
+    é calculada por uma máquina determinística
+    e vice"=versa.
+\end{theorem}
+\begin{proof}
+    Proceda de forma semelhante à demonstração de equivalência
+    para o caso de decisores.
+
+    Suponha que $M$ é não"=determinística e calcula certa função.
+    Para calcular a mesma função usando uma máquina determinística,
+    enumere todas as sequências finitas de transições de $M$,
+    ordenando por tamanho;
+    isto é,
+    primeiro todas as sequências de tamanho $0$,
+    depois todas as de tamanho $1$,
+    depois todas as de tamanho $2$,
+    e assim por diante.
+
+    Para cada sequência de transições,
+    rode $M$ na entrada de acordo com a sequência.
+    Se $M$ parar,
+    compare o que aquele ramo retornou
+    com o maior valor obtido até agora
+    --- caso seja o primeiro valor retornado,
+    será este o maior valor
+    --- e mantenha apenas o maior dentre estes valores.
+
+    Quando todas as sequências de transições de um mesmo tamanho retornarem,
+    teremos chegado ao fim da árvore;
+    limpe a fita, mantendo apenas o maior valor encontrado no percurso.
+    Este valor corresponde ao maior valor que qualquer ramo da árvore retorna,
+    o que corresponde ao valor da função computada por $M$,
+    caso esteja definido.
+
+    Se a função não está definida na entrada atual,
+    há dois casos.
+    Se a árvore é infinita,
+    nossa máquina determinística jamais parará de enumerar transições,
+    pois existe ao menos uma sequência de transições que nunca para.
+    Se a árvore é finita,
+    mas nenhum ramo finaliza a computação
+    (por exemplo, faz uma transição inválida),
+    o ``maior valor que qualquer ramo retorna''
+    estará indefinido assim que chegarmos ao fim da árvore.
+    Basta fazer uma transição inválida também neste caso.
+
+    A volta é trivial.
+\end{proof}
