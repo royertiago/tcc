@@ -17,7 +17,8 @@ show_hyphen_message() {
 }
 
 for file in $modified_files; do
-    offending_lines=$(added_lines "$file" | grep --color=always '[-]')
+    offending_lines=$(added_lines "$file" | grep --color=always '[^-]-[^-]')
+    # Precisamos desta expressão para não pegar meia-riscas (--) nem travessões (---).
     if [ ! -z "$offending_lines" ]; then
         show_hyphen_message
         print_line "$file" "$offending_lines"
