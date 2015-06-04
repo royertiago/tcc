@@ -1,5 +1,21 @@
 \section{Definição}
 
+Se $M$ é uma máquina de Turing determinística que computa a função $f$,
+para descobrir o valor de $f(x)$,
+simplesmente rodamos $M$ em $x$.
+Existe apenas uma sequência de passos possível antes de $M$ parar;
+o valor que $M$ deixar na fita é $f(x)$.
+
+Para máquinas não"=determinísticas,
+ao rodar $M$ numa entrada $x$ arbitrária,
+podemos ver vários ramos de computação,
+e cada ramo pode encerrar com um valor diferente na fita.
+Então, em vez de termos um único valor para $M(x)$,
+existe um conjunto de valores possíveis.
+Não queremos um conjunto, e sim, um único valor.
+Adotaremos uma regra arbitrária para extrair um valor deste conjunto,
+que será justificada posteriormente.
+
 \begin{definition}[Função não"=determinística]
     \footnote{
         O termo ``função não"=determinística''
@@ -20,3 +36,39 @@
     nas folhas da árvore.
     Caso a árvore não seja finita, deixaremos $M(x)$ indefinido.
 \end{definition}
+
+A ideia de pegar o máximo do conjunto vem da analogia com funções booleanas.
+Podemos interpretar um decisor para uma linguagem $L \subseteq \Sigma^*$
+como uma máquina que computa a função característica de $L$.
+Isto é,
+se $M$ decide a linguagem $L$,
+é como se $M$ computasse a função $f : \Sigma^* \rightarrow \{0, 1\}$
+definida por
+\begin{equation*}
+    f(x) =
+    \begin{cases}
+        1,& \text{ se } x \in L; \\
+        0,& \text{ se } x \notin L.
+    \end{cases}
+\end{equation*}
+De fato, podemos reescrever a máquina $M$
+para que escreva $1$ na fita antes de aceitar a entrada
+e $0$ antes de rejeitá"=la.
+
+Uma máquina não"=determinística para $\SAT$,
+por exemplo,
+pode chutar uma atribuição de valores"=verdade
+e escrever $1$ na fita se aquela atribuição satisfaz à fórmula
+e $0$ caso contrário.
+Intuitivame, os ramos que escreveram $1$ são aqueles em que
+a máquina obteve sucesso em provar que a instância pertence â linguagem,
+e os ramos que escreveram $0$ são aqueles em que a máquina fracassou.
+
+Uma instância insatisfazível resultaria no conjunto $\{0\}$;
+uma instância tautológica retornaria o conjunto $\{1\}$,
+e as instâncias satisfazíveis, mas não tautológicas
+ficam no meio"=termo: $\{0, 1\}$.
+A função característica de $\SAT$ retorna $1$ nos dois últimos casos
+e $0$ no primeiro;
+corresponde, exatamente,
+ao maior valor destes conjuntos.
