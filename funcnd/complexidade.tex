@@ -5,21 +5,35 @@ finalmente,
 concluímos a definição $\PhiNT$ e $\PhiNS$ para funções.
 $\FDTIME$, $\FDSPACE$, $\FNTIME$ e $\FNSPACE$
 são definidos para funções de maneira análoga às definições para decisores.
+Por simetria, também definiremos $\coFNTIME$ e $\coFNSPACE$;
+aqui, ao invés de tomarmos o máximo dentre os ramos,
+pegaremos o mínimo para ser o valor da função.
+(São as funções ``co"=não"=determinísticas'')
 Nos concentraremos nas classes de complexidade de tempo,
 onde o uso de não"=determinismo aparenta ter mais impacto.
 
 \begin{definition}
     \begin{align*}
         \FP &= \bigcup_{k > 0} \FDTIME(n^k) \\
-        \FNP &= \bigcup_{k > 0} \FNTIME(n^k)
+        \FNP &= \bigcup_{k > 0} \FNTIME(n^k) \\
+        \coFNP &= \bigcup_{k > 0} \coFNTIME(n^k)
     \end{align*}
-    \simbolo{$\FP$}{``Funções determinísticas'' calculáveis em tempo polinomial}
-    \simbolo{$\FNP$}{``Funções não"=determinísticas'' calculáveis em tempo polinomial}
+    \simbolo{$\FP$}{
+        ``Funções determinísticas'' calculáveis em tempo polinomial
+    }
+    \simbolo{$\FNP$}{
+        ``Funções não"=determinísticas'' calculáveis em tempo polinomial
+    }
+    \simbolo{$\coFNP$}{
+        ``Funções co"=não"=determinísticas'' calculáveis em tempo polinomial
+    }
 \end{definition}
 
 $\FP$ são as funções que podem ser calculadas
 em tempo polinomial por máquinas determinísticas,
-e $\FNP$, por máquinas não"=determinísticas.\footnote{
+e $\FNP$, por máquinas não"=determinísticas\footnotemark.
+$\coFNP$ é o análogo a $\coNP$.
+\footnotetext{
     Nossa definição de $\FNP$ diverge da definição da literatura.
     A definição de \citeonline[p.~229]{Papadimitriou1994},
     por exemplo,
@@ -69,7 +83,8 @@ e $\FNP$, por máquinas não"=determinísticas.\footnote{
 \end{example}
 
 \begin{uproposition}
-    Todas as funções características de problemas em $\NP$ estão em $\FNP$.
+    Todas as funções características de problemas em $\NP$ estão em $\FNP$,
+    e todas as funções características de problemas em $\coNP$ estão em $\coFNP$,
 \end{uproposition}
 
 \begin{example}
@@ -91,6 +106,10 @@ e $\FNP$, por máquinas não"=determinísticas.\footnote{
     achar fatores de um número,
     e encontrar um isomorfismo entre dois grafos
     usando o poder computacional de $\FNP$.
-\end{example}
 
-\subsection{Funções $\NP$"=completas}
+    Já problemas de minimização
+    são mais facilmente interpretados como funções de $\coFNP$.
+    Por exemplo,
+    encontrar o caminho hamiltoniano de menor custo,
+    e calcular o número cromático.
+\end{example}
