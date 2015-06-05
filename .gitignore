@@ -13,6 +13,7 @@
 *.nav
 *.out
 *.snm
+*.thm
 *.toc
 *.vrb
 
