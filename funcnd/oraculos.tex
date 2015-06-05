@@ -1,0 +1,51 @@
+\section{Oráculos Funcionais}
+
+Da mesma forma como definimos problemas $\NP$"=completos,
+queremos, de alguma forma,
+representar completude dentro da classe $\FNP$.
+Entretanto,
+os contradomínios de duas funções em $\FNP$ pode diferir
+--- em contrapartida,
+o contradomínio de todas as ``funções'' em $\NP$ é o conjunto $\{0, 1\}$.
+Precisaríamos fazer processamento adicional
+nos valores ``retornados'' pelas funções.
+Portanto,
+parece mais natural lidar diretamente com oráculos.
+
+\begin{definition}
+    Seja $\mathcal A$ um conjunto de linguagens.
+    $\FP^\mathcal A$ é o conjunto das funções
+    que podem ser calculadas da mesma forma que as funções de $\FP$,
+    mas agora permitiremos chamadas ``gratuitas'' a um oráculo de $\mathcal A$.
+    $\FNP^\mathcal A$ e $\coFNP^\mathcal A$
+    são definidas de maneira análoga.
+    \simbolo{$\FP^\mathcal A$}{$\FP$ usando um oráculo de $\mathcal A$}
+    \simbolo{$\FNP^\mathcal A$}{$\FNP$ usando um oráculo de $\mathcal A$}
+    \simbolo{$\coFNP^\mathcal A$}{$\coFNP$ usando um oráculo de $\mathcal A$}
+\end{definition}
+
+$\FP^\mathcal A$, $\FNP^\mathcal A$ e $\coFNP^\mathcal A$
+são os análogos funcionais de
+$\P^\mathcal A$, $\NP^\mathcal A$ e $\coNP^\mathcal A$,
+respectivamente.
+
+Observe que apenas definimos $\FP^\mathcal A$
+quando $\mathcal A$ for um conjunto de linguagens.
+Ainda não podemos falar, por exemplo, de $\FP^\FP$.
+Precisamos antes definir o que é um oráculo funcional.
+
+\begin{definition}[Oráculo funcional]
+    Seja $f : \Sigma^* \rightarrow \Sigma^*$.
+    Uma máquina que usa $f$ como oráculo
+    possui uma fita especial para se ``comunicar'' com $f$.
+    A máquina escreve uma palavra nesta fita,
+    digamos $x$,
+    e consulta o oráculo
+    (isto é, transita para $q_?$).
+    Caso $f(x)$ exista,
+    a máquina transitará para $q_y$
+    e o conteúdo da ``fita de comunitação'' é alterado para $f(x)$.
+    Caso $f(x)$ não exista,
+    a máquina transita para $q_n$,
+    com a fita inalterada.
+\end{definition}
