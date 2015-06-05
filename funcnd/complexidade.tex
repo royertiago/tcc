@@ -1,0 +1,52 @@
+\section{Complexidade Funcional}
+
+De posse do formalismo de funções não"=determinísticas,
+finalmente,
+concluímos a definição $\PhiNT$ e $\PhiNS$ para funções.
+$\FDTIME$, $\FDSPACE$, $\FNTIME$ e $\FNSPACE$
+são definidos para funções de maneira análoga às definições para decisores.
+Nos concentraremos nas classes de complexidade de tempo,
+onde o uso de não"=determinismo aparenta ter mais impacto.
+
+\begin{definition}
+    \begin{align*}
+        \FP &= \bigcup_{k > 0} \FDTIME(n^k) \\
+        \FNP &= \bigcup_{k > 0} \FNTIME(n^k)
+    \end{align*}
+    \simbolo{$\FP$}{``Funções determinísticas'' calculáveis em tempo polinomial}
+    \simbolo{$\FNP$}{``Funções não"=determinísticas'' calculáveis em tempo polinomial}
+\end{definition}
+
+$\FP$ são as funções que podem ser calculadas
+em tempo polinomial por máquinas determinísticas,
+e $\FNP$, por máquinas não"=determinísticas.\footnote{
+    Nossa definição de $\FNP$ diverge da definição da literatura.
+    A definição de \citeonline[p.~229]{Papadimitriou1994},
+    por exemplo,
+    é baseada em linguagens polinomialmente equilibradas
+    (mencionadas na nota de rodapé~\ref{polinomialmente_equilibrada},
+    na página~\pageref{polinomialmente_equilibrada}).
+
+    Tome um problema de decisão $L \in \NP$
+    e construa uma linguagem polinomialmente equilibrada $R_L$ associada a $L$.
+    $R_L$ será um conjunto de pares $(x, y)$,
+    em que $x \in L$ e $y$ é um ``certificado'' de que $x \in L$.
+
+    O \emph{problema funcional associado} a $L$, $\class{F}L$,
+    consiste em encontrar algum $y$ tal que $(x, y) \in R_L$,
+    ou determinar que tal $y$ não existe;
+    então,
+    \citeonline[p.~229]{Papadimitriou1994} define $\FNP$
+    como o conjunto de todos os $\class{F}L$
+    para $L \in \NP$.
+
+    Estes problemas são por vezes chamados de \emph{problemas de busca}
+    (do inglês \emph{search problem}),
+    em oposição a \emph{problemas de decisão}.
+
+    A diferença crucial é que \citeauthoronline{Papadimitriou1994}
+    pede apenas que encontremos algum $y$,
+    enquanto que nossa definição exige que encontremos o maior deles.
+}
+
+\subsection{Funções $\NP$"=completas}
