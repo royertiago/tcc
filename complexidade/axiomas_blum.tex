@@ -346,20 +346,40 @@ vindo direto da teoria das funções recursivas.
 \end{lemma}
 
 \begin{proof}
-    Construa a máquina $N$ para,
+    Primeiro, construiremos uma máquina $N$ que,
     ao receber $x$ na entrada,
-    devolver uma máquina de Turing $N(x)$
-    que calculará $M_x(x)$
-    (simulando uma máquina de Turing universal,
-    se necessário)
-    e roda o resultado na entrada.
-    Como resultado,
-    sempre que $M_x(x)$ estiver definido,
-    \begin{equation*}
-        M_{N(x)}(y) = M_{M_x(x)}(y)
+    devolverá um índice\footnotemark\ para $M_x(x)$.
+    Isto é,
+    para todo $y$,
+    \begin{equation}
+        M_{N(x)}(y) = M_{M_x(x)}(y),
         \label{diagonal_N}
-    \end{equation*}
-    para toda cadeia $y$.
+    \end{equation}
+    sempre que $M_x(x)$ existir.
+    \footnotetext{
+        Um \emph{índice} para uma função recursivamente enumerável $f$
+        é um número $i$ que representa uma máquina de Turing para $f$;
+        isto é,
+        $M_i(x)$ está definido se, e só se, $f(x)$ está definido,
+        e, neste caso,
+        $M_i(x) = f(x)$
+        \cite[p.~130]{EpsteinCarnielli2008}.
+    }
+
+    A abordagem direta
+    (fazer $M_x$ computar $x$)
+    não funciona,
+    pois $M_x$ pode nunca parar.
+
+    Observe que não precisamos retornar $M_x(x)$,
+    e sim, apenas uma máquina equivalente a $M_x(x)$,
+    caso $M_x(x)$ exista.
+    Na entrada $x$, $N$ retornará uma máquina que,
+    ao receber $y$ na entrada,
+    compute $M_x(x)$,
+    e, somente após $M_x$ retornar,
+    rode $M_x(x)$ em $y$
+    (usando uma máquina de Turing universal).
 
     É importante notar que $N$ sempre pára;
     $M_x(x)$ pode não parar ao computar $x$,
@@ -367,17 +387,22 @@ vindo direto da teoria das funções recursivas.
     que $N(x)$ nunca parará ao computar qualquer coisa
     --- o valor $N(x)$ existirá.
 
-    Escolha $k$ como sendo uma palavra
-    que represente uma máquina
-    que compute $\sigma(N(x))$ ao receber $x$ na entrada.
+    De posse da máquina $N$, podemos prosseguir.
+    Escolha $k$ como sendo um índice para $\sigma \circ N$.
+    Isto é,
+    \begin{equation}
+        M_k(x) = \sigma(N(x))
+        \label{k_sigma_N}
+    \end{equation}
+    para todo $x$.
     Afirmamos que $m = N(k)$
     satisfaz às exigências do teorema.
 
     De fato,
     \begin{align*}
         M_m(x) &= M_{N(k)}(x) \\
-               &= M_{M_k(k)}(x) && \text{Pela observação~\ref{diagonal_N}}\\
-               &= M_{\sigma(N(k))}(x) && \text{Pois $k$ computa $\sigma(N(x))$}\\
+               &= M_{M_k(k)}(x) && \text{Pela equação~\ref{diagonal_N}}\\
+               &= M_{\sigma(N(k))}(x) && \text{Pela equação~\ref{k_sigma_N}}\\
                &= M_{\sigma(m)}(x) && \text{Pela definição de $m$.}
     \end{align*}
 \end{proof}
