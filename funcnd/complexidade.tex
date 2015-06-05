@@ -68,4 +68,29 @@ e $\FNP$, por máquinas não"=determinísticas.\footnote{
     e parsing de linguagens livres de contexto.
 \end{example}
 
+\begin{uproposition}
+    Todas as funções características de problemas em $\NP$ estão em $\FNP$.
+\end{uproposition}
+
+\begin{example}
+    Os problemas em $\NP$ podem ser facilmente generalizados para funções em $\FNP$.
+    Por exemplo,
+    podemos pegar uma máquina não"=determinística para $\SAT$,
+    e modificá"=la para que,
+    após achar uma atribuição de valores"=verdade,
+    a escreva na fita.
+    Caso contrário,
+    escreva a palavra vazia.
+    A função não"=determinística computada por esta máquina
+    é a maior atribuição de valores"=verdade,
+    lexicograficamente.
+    Esta função está em $\FNP$.
+
+    Similarmente,
+    podemos encontrar o maior clique num grafo,
+    achar fatores de um número,
+    e encontrar um isomorfismo entre dois grafos
+    usando o poder computacional de $\FNP$.
+\end{example}
+
 \subsection{Funções $\NP$"=completas}
