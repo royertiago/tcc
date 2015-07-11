@@ -21,7 +21,9 @@ também é resolvível pelo outro.
     Máquinas de Turing são objetos matemáticos
     com ``memória infinita'',
     enquanto que os computadores estão limitados
-    à uma quantidade finita de memória.
+    a uma quantidade finita de memória;
+    esta limitação impõe restrições no tamanho das entradas
+    que não existem nas máquinas de Turing.
 }
 Portanto, podemos pensar nos problemas decidíveis
 como aqueles que podem ser resolvidos com o uso de um computador
@@ -62,14 +64,8 @@ Essencialmente,
 é a quantidade de recursos que são gastos
 para obter a solução de determinado problema.
 Geralmente nos concentramos em um único recurso;
-pode ser o tempo de execução,
-quantidade de memória RAM usada,
-ou,
-para a complexidade de circuitos,
-o tamanho do circuito
-(quantidade de portas lógicas usadas na sua construção)
-ou sua profundidade
-(maior número de portas lógicas entre uma entrada e uma saída).
+os dois principais são
+o tempo de execução e a quantidade de memória usada.
 
 A complexidade computacional classifica os problemas
 de acordo com os recursos necessários para que sejam resolvidos.
@@ -101,35 +97,81 @@ pois toda máquina determinística pode ser vista como
 uma máquina não"=deterministica que escolheu não ``usar''
 seu não"=determinismo.
 A maior parte dos pesquisadores acredita que
-esta inclusão é estrita,
-e alguns deles creem que esta questão
-pode não ser resolvida este século
-\cite[p.~2]{Gasarch2012}.
+esta inclusão é estrita \cite[p.~2]{Gasarch2012}.
 
-Uma das ``frentes de ataque''
-consiste em tentar ``enfraquecer''
-a máquina de Turing.
-A ideia é trabalhar com um modelo de computação muito mais restritivo,
-provar um equivalente a $\P \neq \NP$
-para este modelo de computação,
-e transpor esta demonstração para o modelo de Turing.
-Circuitos booleanos
-são exemplos de modelos de computação mais simples.
-Como eles não têm ``partes móveis''
-ou múltiplos estados,
-intuitivamente uma demonstração de que $\P \neq \NP$
-deve ser mais simples de se obter
-neste dispositivo computacional. \cite{Hastad1987}.
+Os modelos determinístico e não"=determinístico de máquinas de Turing são equivalentes,
+no sentido de que qualquer problema que pode ser resolvido por um modelo
+também pode ser resolvido por outro.
+Entretanto, o modelo não"=determinístico
+aparenta ser exponencialmente mais rápido que
+o modelo determinístico;
+de fato, para um subconjunto vasto de $\NP$,
+os problemas $\NP$"=completos
+(considerados os mais difíceis da classe $\NP$),
+são apenas conhecidos apenas algoritmos determinísticos exponenciais.
 
-As duas principais medidas
-de complexidade de circuitos
-são a quantidade de portas lógicas
-e a profundidade do circuito.
-Existem várias classes de complexidades de circuitos
-que exploram estas duas métricas;
-neste trabalho,
-pretende"=se relacionar estas classes de complexidade
-com as classes de complexidade computacional.
+Curiosamente,
+o ganho exponencial de desempenho
+só é atingido se considerarmos o tempo de execução.
+A complexidade de espaço permite apenas um ganho quadrático;
+este resultado é conhecido como teorema de Savitch.
+
+Apesar desta discrepância entre o ganho de eficiência via não"=determinismo,
+complexidade de tempo e complexidade de espaço
+compartilham muitos teoremas semelhantes.
+\citeonline{Blum1967} desenvolveu uma teoria de complexidade axiomática.
+Ele formalizou a noção de ``recurso computacional''
+através de dois axiomas,
+aplicáveis a qualquer modelo de máquina que compute funções de inteiros.
+\footnote{
+    Embora usamos o termo ``funções de inteiros'',
+    as funções tratadas possuem~$\mathbb N$ como domínio e contradomínio.
+    (Eu mantive a terminologia ``funções de inteiros''
+    para ser compatível com o termo em inglês \emph{integer functions},
+    utilizado por \citeonline[p.~151]{HopcroftUllman1979}.)
+}
+Usando apenas estes dois axiomas,
+muitos teoremas a respeito de complexidade computacional,
+que costumam ser apresentados separadamente em livros didáticos sobre o assunto,
+podem ser demonstrados de maneira universal.
+
+Para máquinas de Turing determinísticas,
+os resultados são facilmente aplicados
+--- podemos, por exemplo,
+entender o conteúdo inicial da fita como a entrada da função
+e o conteúdo da fita quando a máquina para como a saída da função.
+
+Entretanto, para máquinas de Turing não"=determinísticas,
+há um obstáculo elementar:
+os axiomas de Blum dizem respeito a funções.
+O que é uma ``função não"=determinística''?
+
+\citeonline[p.~313]{HopcroftUllman1979} dão uma possível definição:
+uma máquina não"=determinística computa uma função se,
+e somente se,
+todos os ramos de computação encerram com a mesma palavra na fita;
+neste caso,
+esta palavra é a saída da função para a respectiva entrada.
+
+Esta definição não é satisfatória;
+isto é, ela não generaliza a noção de não"=determinismo para decisores.
+Se todos os ramos de computação encerram com a mesma palavra,
+poderiamos simplesmente fixar uma das possíveis escolhas na função de transição;
+afinal, o resultado sempre será o mesmo.
+Portanto, em essência,
+temos o poder computacional de uma máquina determinística.
+
+Isso ignora a noção de que máquinas não"=determinísticas
+aparentemente possuem velocidade de execução exponencialmente maior
+do que máquinas determinísticas,
+impedindo que relacionemos axiomas de Blum
+ao problema $\P$~vs~$\NP$.
+
+Neste trabalho,
+proporei uma nova definição de função não"=determinística,
+de maneira a preservar este aparente ganho exponencial de tempo de execução,
+permitindo, portanto,
+um paralelo com o problema $\P$~vs~$\NP$.
 
 Será assumido que o leitor possui conhecimento básico
 sobre máquinas de Turing e a teoria da computabilidade.
