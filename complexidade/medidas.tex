@@ -10,7 +10,7 @@
     \end{align*}
 \end{provisionaldefinition}
 
-Estas são as principais medias de complexidade complutacional
+Estas são as principais medias de complexidade computacional
 para máquinas de Turing.
 
 Esta noção de complexidade de espaço
@@ -74,7 +74,7 @@ $\DSPACE(f)$ corresponde ao conjunto das linguagens regulares.
     exceto um número finito de entradas,
     a máquina terá apenas uma célula de memória para usar.
     Então, ela pode armazenar esta informação no controle finito,
-    funcionando como um autômado finito bidirecional
+    funcionando como um autômato finito bidirecional
     (\emph{two"=way deterministic finite automaton}),
     que é equivalente a um autômato finito determinístico
     \cite[p.~40]{HopcroftUllman1979}.
@@ -88,7 +88,7 @@ para $n < 2$.
 E, conforme discutimos dois parágrafos atrás,
 é exatamente nestes exemplos forçados
 em que as definições divergem.
-Portanto, adotarems esta hipótese de
+Portanto, adotaremos esta hipótese de
 \citeonline[p.~287]{HopcroftUllman1979}.
 
 \begin{definition}
@@ -183,7 +183,7 @@ conseguimos provar equivalência entre as definições.
     cada símbolo de $M'$ conterá
     $\lceil 1/c \rceil$ células de $M$.
     Como na complexidade de $M$
-    não são contablilizados o tamanho da fita de entrada,
+    não são contabilizados o tamanho da fita de entrada,
     a complexidade de $M'$ é menor do que $cf$.
 \end{proof}
 
@@ -512,7 +512,7 @@ $L(M) \in \DTIME(f)$.
     Qualquer palavra de tamanho maior que $n_0$
     pode ser quebrada em $xy$, com $|x| = n_0$.
     Como $M$ não pode violar a restrição discutida no parágrafo anterior,
-    $M$ deve determinar pertiência de $xy$ à linguagem
+    $M$ deve determinar pertinência de $xy$ à linguagem
     baseando"=se apenas em $x$.
 
     Como em nossa argumentação
