@@ -109,10 +109,10 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     \begin{equation*}
         \PhiDS(M, x) = \begin{cases}
             k, & \text{
-                \parbox{0.6\textwidth}{%
-                    se $M$ lê, de alguma de suas fitas,
-                    exatamente $k$ células
-                    antes de parar.
+                \parbox{0.6\textwidth}{
+                    se~$M$ para ao computar~$x$,
+                    tendo lido exatamente~$k$ células
+                    de sua fita de trabalho com maior quantidade de células lidas.
                 }
             } \\
             \text{indefinido}, & \text{
@@ -122,7 +122,11 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
             }
         \end{cases}
     \end{equation*}
-    É fácil ver que o axioma~\ref{blum_def} é satisfeito.
+    Precisamos desta definição intrincada
+    pois~$M$ pode não ler $k$~células de todas as suas fitas,
+    apenas de algumas.
+
+    Claramente o axioma~\ref{blum_def} é satisfeito.
     Para o axioma~\ref{blum_rec},
     o algoritmo é um pouco mais complicado.
 
