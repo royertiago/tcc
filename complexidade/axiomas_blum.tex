@@ -137,13 +137,15 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     (isto é, $\Phi(M, x) = k$ é falso).
     Caso contrário,
     existirá um número finito de configurações da máquina.
-    Existem $|\Gamma|^k$ possíveis fitas com $k$ termos;
-    $k+1$ possíveis posições da cabeça de leitura;
-    $|Q|$ possíveis estados da máquina;
-    e $l$ diferentes fitas.
-    No total, existem, no máximo,
+
+    Existem~$|\Gamma|^k$ possíveis fitas com $k$ termos
+    e $k+1$ possíveis posições da cabeça de leitura;
+    teremos, portanto,
+    $(k+1)|\Gamma|^k$~diferentes configurações para cada fita.
+    Para $l$ diferentes fitas e $|Q|$~possíveis estados da máquina,
+    existem, no máximo,
     \begin{equation}
-        (k+1) l |Q||\Gamma|^k
+        |Q| \left((k+1)|\Gamma|^k\right)^l
         \label{num_possiveis_configuracoes}
     \end{equation}
     possíveis configurações.
