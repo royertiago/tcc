@@ -46,7 +46,7 @@ Um exemplo notável é determinar se dois programas são equivalentes.%
 Entretanto,
 apenas ser decidível não é suficiente.
 Existem alguns problemas
-(de fato, categorias inteira deles)
+(de fato, categorias inteiras deles)
 que, por mais rápido que seja o computador
 que esteja tentando resolvê"=lo,
 o tempo necessário torna"=se excessivamente grande
@@ -55,7 +55,7 @@ Chamamos estes problemas de \emph{intratáveis}
 \cite[p.~1]{HopcroftMotwaniUllman2001}
 Por mais que eles sejam decidíveis,
 pode ser que demore até o Sol esfriar
-(evento que estima"=se que vá ocorrer em 5 bilhões de anos)
+(evento que, estima"=se, vai ocorrer em 5 bilhões de anos)
 para que o computador devolva a solução.
 
 É aqui que entra a teoria de complexidade computacional.
@@ -76,7 +76,7 @@ por uma máquina de Turing determinística
 em tempo polinomial;
 isto é,
 alguma máquina de Turing determinística
-resolve as instâncias de tamanho $n$
+resolve qualquer instância de tamanho $n$
 usando no máximo $p(n)$ unidades de tempo,
 para algum polinômio $p$.
 Similarmente,
@@ -108,7 +108,7 @@ o modelo determinístico;
 de fato, para um subconjunto vasto de $\NP$,
 os problemas $\NP$"=completos
 (considerados os mais difíceis da classe $\NP$),
-são apenas conhecidos apenas algoritmos determinísticos exponenciais.
+são conhecidos apenas algoritmos determinísticos exponenciais.
 
 Curiosamente,
 o ganho exponencial de desempenho
@@ -118,9 +118,10 @@ este resultado é conhecido como teorema de Savitch.
 
 Apesar desta discrepância entre o ganho de eficiência via não"=determinismo,
 complexidade de tempo e complexidade de espaço
-compartilham muitos teoremas semelhantes.
-\citeonline{Blum1967} desenvolveu uma teoria de complexidade axiomática.
-Ele formalizou a noção de ``recurso computacional''
+compartilham muitos teoremas semelhantes;
+isso sugere que eles são casos particulares de uma noção abstrata,
+a de ``recurso computacional''.
+\citeonline{Blum1967} formalizou a noção de ``medida de complexidade''
 através de dois axiomas,
 aplicáveis a qualquer modelo de máquina que compute funções de inteiros.%
 \footnote{
@@ -136,8 +137,11 @@ que costumam ser apresentados separadamente em livros didáticos sobre o assunto
 podem ser demonstrados de maneira universal.
 
 Para máquinas de Turing determinísticas,
-os resultados são facilmente aplicados
---- podemos, por exemplo,
+os resultados são facilmente aplicados;
+isto é,
+é intuitivo interpretar uma máquina de Turing determinística
+como um computador de alguma função.
+Podemos, por exemplo,
 entender o conteúdo inicial da fita como a entrada da função
 e o conteúdo da fita quando a máquina para como a saída da função.
 
@@ -184,7 +188,11 @@ Desenvolver uma nova definição de funções não"=determinísticas,
 de modo a generalizar naturalmente o aparente aceleramento exponencial
 que obtemos ao conceder não"=determinismo à máquinas de Turing.
 
-\subsection{Objetivos Específicos}
+\subsection[Objetivos específicos]{Objetivos Específicos\footnotemark}
+\footnotetext{
+    Como o objetivo geral é definir um novo conceito,
+    os objetivos específicos são voltados a validá"=lo.
+}
 
 \begin{enumerate}
     \item Manter compatibilidade com os axiomas de Blum.
@@ -209,7 +217,9 @@ também pretendo estudar outras definições de função não"=determinística,
 mesmo que estas definições não permitam composição de funções.
 
 Para a escrita do TCC,
-identifico duas principais ``frentes de trabalho''.
+dois principais pontos precisam ser trabalhados em relação ao texto atual:
+definir ``máquina de Turing'' e os conceitos associados
+e completar o capítulo~\ref{hierarquias}.
 
 Embora no desenvolvimento do TCC eu use o conceito de máquinas de Turing,
 tanto como decisores de linguagens,
@@ -219,7 +229,8 @@ Pretendo escrever um anexo ao TCC dizendo exatamente quais definições
 (dentre as muitas disponíveis na literatura)
 que eu estou utilizando.
 
-Além disso, também preciso estender o capítulo~\ref{hierarquias}.
+Além disso, também preciso estender o capítulo~\ref{hierarquias},
+sobre hierarquias de classes computacionais.
 Em particular,
 terminar a seção~\ref{funcoes_construtiveis},
 sobre funções construtíveis
