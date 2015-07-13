@@ -12,7 +12,7 @@
     caso a palavra nesta fita pertença à linguagem $A$,
     no próximo estado da computação $M$ transitará para $q_y$
     (a resposta foi positiva);
-    caso contrário, $M$ transitará para $q_n$.
+    caso contrário, $M$ transitará para $q_n$.%
     \footnote{
         Observe que a cabeça da fita não se mexe durante a consulta.
         Portanto, a máquina pode escrever seu estado atual na fita
@@ -34,12 +34,12 @@ são as transições após $M$ ir para o estado $q_?$.
 Ou seja, $A$ não pertence a $M$;
 de fato, podemos ``acoplar'' várias linguagens diferentes
 numa mesma máquina de Turing $M$
-e obter diferentes $L^A(M)$ com isso%
+e obter diferentes $L^A(M)$ com isso.%
 \footnote{
     É exatamente por causa disso que,
     na notação do conjunto das palavras aceitas por $M^A$,
     o $A$ sobrescrito está junto de $L$, não de $M$.
-}.
+}
 
 Utilizaremos oráculos para definir a hierarquia polinomial,
 uma generalização das classes $\P$ e $\NP$,
@@ -69,12 +69,12 @@ Mais precisamente, defina
     L_u^1 &= \{ \langle M, x \rangle \mid M \text{ aceita } x \} \\
     S_1 &= \{ \langle M \rangle \mid L(M) = \emptyset \}
 \end{align*}
-$L_u^1$ é o problema da parada; $S_1$ é o problema da vacuidade%
+$L_u^1$ é o problema da parada; $S_1$ é o problema da vacuidade.%
 \footnote{
     A notação $S_n$ é usada também por \citeonline[p.~210]{HopcroftUllman1979}.
     A notação $L_u^n$ é derivada da notação para o problema da parada
     destes mesmos autores \cite[p.~183]{HopcroftUllman1979}.
-}.
+}
 
 A demonstração padrão de que $S_1$ é indecidível
 é uma redução do problema da parada para o problema da vacuidade.
@@ -152,13 +152,13 @@ Defina
 $L_u^{n+1}$ é o problema da parada
 para máquinas de Turing que usam $L_u^n$ como oráculo;
 $S_{n+1}$ é o problema da vacuidade
-para máquinas de Turing que usam $S_n$ como oráculo%
+para máquinas de Turing que usam $S_n$ como oráculo.%
 \footnote{
     Observe que,
     se definirmos $L_u^0 = S_0 = \emptyset$
     (ou algum conjunto recursivo qualquer),
     a fórmula é válida também para $n = 1$.
-}.
+}
 Podemos demonstrar por indução que $S_n$ é equivalente a $L_u^n$;
 e, imitando o teorema da parada,
 podemos mostrar que $L_u^n$ é indecidível para máquinas que usam $L_u^n$ como oráculo.
@@ -169,17 +169,17 @@ Defina
     \R_n = \{ L \mid L = L^{L_u^n}(M) \text{ para alguma máquina $M^{L_u^n}$ } \}.
 \end{equation*}
 Ou seja, $\R_n$ é o conjunto das linguagens
-que são decidíveis usando $L_u^n$ como oráculo%
+que são decidíveis usando $L_u^n$ como oráculo.%
 \footnote{
     Se usarmos a convenção de que $L_u^0 = \emptyset$,
     o conjunto $\R_0$ é exatamente o conjunto das linguagens recursivas
     (geralmente denotado por \R).
-}.
+}
 O parágrafo anterior mostra que $L_u^{n+1}, S_{n+1} \notin \R_n$.
 
 Podemos demonstrar (por indução) que $\R_n \subset \R_{n+1}$.
 Desta forma,
-criamos uma hierarquia de problemas indecidíveis.
+criamos uma hierarquia de problemas indecidíveis.%
 \footnote{
     Em outras palavras,
     existem problemas ``mais indecidíveis'' que outros;
@@ -237,7 +237,7 @@ resultar num algoritmo polinomial para \emph{todos} os problemas da classe $\NP$
 Intuitivamente,
 os problemas $\NP$-completos são os ``mais difíceis'' da classe $\NP$,
 pois resolver qualquer $\NP$-completo em tempo polinomial
-significa resolver todos os $\NP$ em tempo polinomial.
+significa resolver todos os $\NP$ em tempo polinomial.%
 \footnote{
     Na vida real,
     após provar que certo problema é $\NP$-completo,
@@ -278,12 +278,12 @@ Esta interpretação via oráculos revela que
 a noção de redução possui uma restrição bastante forte:
 nós podemos chamar o oráculo apenas uma vez,
 e esta chamada precisa ser a última coisa que o algoritmo faz
---- não podemos nem mesmo alterar o valor retornado pelo oráculo%
+--- não podemos nem mesmo alterar o valor retornado pelo oráculo.%
 \footnote{
     Note que esta descrição é muito semelhante
     às restrições impostas pela recursão caudal
     (\emph{tail recursion}).
-}.
+}
 
 Embora esta restrição garanta que
 um algoritmo polinomial para o oráculo
@@ -296,7 +296,7 @@ e alterar os valores retornados pelas chamadas à vontade;
 se o algoritmo externo em si
 (ignorando as chamadas ao oráculo)
 for polinomial,
-o algoritmo resultante também terá complexidade polinomial.
+o algoritmo resultante também terá complexidade polinomial.%
 \footnote{
     Este conceito também é válido para as hierarquias indecidíveis.
     Se $A$ é recursiva em $B$

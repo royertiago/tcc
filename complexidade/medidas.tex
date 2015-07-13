@@ -58,7 +58,8 @@ que reside nosso problema. Defina
 Na definição de \citeonline{HopcroftUllman1979},
 $\DTIME(f)$ é o conjunto vazio,
 pois toda máquina de Turing
-é obrigada a ler ao menos a célula inicial\footnote{
+é obrigada a ler ao menos a célula inicial;%
+\footnote{
     A única possível exceção
     é a máquina de Turing
     cujo estado inicial é igual ao estado final.
@@ -66,9 +67,9 @@ pois toda máquina de Turing
     de uma máquina que aceita a entrada sem sequer olhar um único símbolo,
     é admissível existir uma interpretação em que
     $\DSPACE(f) = \{\Sigma^*\}$.
-};
+}
 enquanto que, em nossa definição,
-$\DSPACE(f)$ corresponde ao conjunto das linguagens regulares.
+$\DSPACE(f)$ corresponde ao conjunto das linguagens regulares.%
 \footnote{
     Para provar isso, observe que,
     exceto um número finito de entradas,
@@ -358,7 +359,7 @@ São justamente esses casos que precisam ser tratados.
     Como é um número finito de instâncias,
     podemos gravar todas elas no controle finito de $M'$,
     junto do \emph{status} destas palavras
-    quanto à pertinência a $L(M)$.
+    quanto à pertinência a $L(M)$.%
     \footnote{
         Observe que,
         embora saibamos que tais cadeias existem,
@@ -389,7 +390,7 @@ São justamente esses casos que precisam ser tratados.
     se e só se $M$ o for.
 \end{proof}
 
-Complexidade de tempo é um pouco mais delicado.
+Complexidade de tempo é um pouco mais delicado.%
 \footnote{
     Caso assumíssemos que $f(n) > cn$
     para algum $c > 1$,

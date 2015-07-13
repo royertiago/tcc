@@ -11,7 +11,7 @@ de $M$ quando lhe é dado $x$ na entrada.
 
 \begin{definition}
     Uma \emph{medida de complexidade}
-    é uma função $\Phi$ que satisfaz aos seguintes axiomas:
+    é uma função $\Phi$ que satisfaz aos seguintes axiomas:%
     \footnotemark
     \begin{enumerate} [label=\textbf{Axioma \arabic*}, ref=\arabic*, align=left]
         \item
@@ -146,7 +146,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     Portanto, se a máquina executar
     mais movimentos do que este número,
     significa que ela entrou em loop.
-    Podemos rejeitar a entrada.
+    Podemos rejeitar a entrada.%
     \footnote{
         Este cuidado adicional é imprescindível
         para garantir que o predicado
@@ -232,7 +232,7 @@ De fato, podemos relacionar quaisquer duas medidas de complexidade.
     \begin{equation*}
         \Phi(M, x) \leq r( x, \hat \Phi(M, x))
     \end{equation*}
-    para todo $M$ e quase todo $x$.
+    para todo $M$ e quase todo $x$.%
     \footnote{
         ``verdadeiro para quase todo $n$''
         significa que o predicado em questão
@@ -286,7 +286,7 @@ para que $r$ seja uma função de apenas uma variável.
 Considere $A$ uma máquina de Turing
 que opere como um autômato finito.
 $\PhiDT(A, x) = |x|$ para toda palavra $x$,
-enquanto que $\PhiDS(A, x) = 1$ para toda palavra $x$.
+enquanto que $\PhiDS(A, x) = 1$ para toda palavra $x$.%
 \footnote{
     A complexidade de espaço não é $0$
     pois $A$ é obrigada a ler
