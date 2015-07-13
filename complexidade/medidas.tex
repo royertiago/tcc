@@ -33,12 +33,12 @@ Mesmo \citeauthoronline{HopcroftUllman1979}
 notam que é necessário fazer este ajuste,
 em \cite[p.~313]{HopcroftUllman1979}.
 
-Outro problema é o fato de nós permitirmos
+Outra diferença é o fato de nós permitirmos
 às máquinas que computam linguagens em
 (por exemplo) $\DSPACE(f)$
 extrapolar o limite de $f(n)$ células
 para um número finito de entradas.
-Tal relação não costuma causar problemas;
+Isto não costuma causar problemas,
 de fato,
 podemos mostrar que,
 caso $f(n) \geq 1$,
@@ -47,7 +47,7 @@ podemos retirar esta permissão.
 no controle finito,
 a lista das palavras que violam o limite de $f(n)$ células.)
 
-Entretanto, é justamente nesta hipótese sobre $f$
+Entretanto, é justamente nesta hipótese de que $f(n) \geq 1$
 que reside nosso problema. Defina
 \begin{equation*}
     f(n) = \begin{cases}
@@ -65,7 +65,7 @@ pois toda máquina de Turing
     cujo estado inicial é igual ao estado final.
     Embora seja estranho falar de ``complexidade de espaço''
     de uma máquina que aceita a entrada sem sequer olhar um único símbolo,
-    é admissível existir uma interpretação em que
+    é admissível esta interpretação em que
     $\DSPACE(f) = \{\Sigma^*\}$.
 }
 enquanto que, em nossa definição,
