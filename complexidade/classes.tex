@@ -14,7 +14,26 @@
 \end{definition}
 Permitiremos que a complexidade de $M$
 possa ser maior que $f$ para um número finito de elementos
-para simplificar as demonstrações.
+para generalizar algumas demonstrações.%
+\footnote{
+    Por razões didáticas, \citeonline[p.~285]{HopcroftUllman1979}
+    definem classes de complexidade individualmente para cada medida de complexidade.
+    Para tempo e espaço,
+    que são as duas únicas medidas levadas em consideração por estes autores,
+    não precisamos nos preocupar com este número finito de elementos
+    que extrapola o limite de complexidade,
+    pois sempre podemos embutir suas respostas no controle finito da máquina.
+    Desta forma,
+    a complexidade resultante desta nova máquina satisfaz à restrição.
+
+    Entretanto, como estamos trabalhando com medidas de complexidade arbitrárias,
+    não há garantia de que possamos fazer esta modificação
+    --- a medida de complexidade poderia, por exemplo,
+    depender também da quantidade de estados da máquina.
+    Portanto, para que possamos generalizar estes resultados,
+    escolhi embutir esta liberdade adicional
+    na própria definição de classe de complexidade.
+}
 
 Embora faça sentido definir $\mathcal C_\Phi(f)$
 para funções $f$ arbitrárias,
@@ -25,7 +44,14 @@ suscetíveis a argumentos por diagonalização.
 Por exemplo,
 podemos mostrar que
 nenhuma classe de complexidade contém todas as linguagens recursivas.
-Precisamos de um lema.
+Precisamos de um resultado preliminar,
+que demonstraremos através de três lemas.%
+\footnote{
+    A maior parte dos teoremas não precisou ser alterada significativamente
+    para ser adaptado à esta noção de classe de complexidade.
+    Este teorema é a exceção,
+    pois a diagonalização agora precisa provocar uma quantidade infinita de falhas.
+}
 
 \begin{lemma}
     Existe um mapeamento bijetivo computável
