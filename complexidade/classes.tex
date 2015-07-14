@@ -59,7 +59,7 @@ que demonstraremos através de três lemas.%
 \end{lemma}
 
 \begin{proof}
-    Percorra o caminho descrito pelas setas na figura~\ref{passeio_cantor}.
+    Percorra o caminho descrito pelas setas na figura~\ref{fig:cantor_walk}.
 
     \begin{figure}[h]
         \centering
@@ -84,7 +84,7 @@ que demonstraremos através de três lemas.%
             }
         \end{tikzpicture}
         \caption{Passeio de Cantor.}
-        \label{passeio_cantor}
+        \label{fig:cantor_walk}
     \end{figure}
 
     Em essência, primeiro enumeraremos todas os pares $(m, n)$
@@ -153,7 +153,7 @@ que demonstraremos através de três lemas.%
     com relação à $\Phi$.
     Então existe uma linguagem $L$
     que não pertence à esta classe de complexidade.
-    \label{funcao_fora_classe}
+    \label{thm:outside_class}
 \end{theorem}
 
 \begin{proof}
@@ -195,14 +195,14 @@ que demonstraremos através de três lemas.%
     para algum $k \leq f(|x|)$.
     Como $f(|x|)$ é computável
     e ``$\Phi(M_x, x) = k$'' é decidível
-    (pelo axioma~\ref{blum_rec}),
+    (pelo axioma~\ref{ax:blum_rec}),
     esta verificação é realizável por uma máquina de Turing.
     Caso a resposta seja negativa
     ($M_x$ gasta mais do que $f(|x|)$ recursos ao computar $x$),
     já sabemos que $x$ está em $L$.
     Caso contrário,
     $\Phi(M_x, x)$ está definido;
-    pelo axioma~\ref{blum_def},
+    pelo axioma~\ref{ax:blum_def},
     $M_x(x)$ também está.
     Portanto, podemos executar $M_x$ em $x$
     e inverter a resposta.

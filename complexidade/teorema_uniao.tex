@@ -1,6 +1,6 @@
 \subsection{Teorema da União}
 
-Na seção~\ref{principais_classes},
+Na seção~\ref{sec:standard_classes},
 definiremos algumas classes de complexidade computacional
 como sendo a união de infinitas classes de complexidade.
 O teorema da união diz que,
@@ -9,7 +9,7 @@ esta união é uma classe de complexidade
 de acordo com nossa definição de classe de complexidade.
 
 \begin{theorem}[Teorema da União]
-    \label{teorema_da_uniao}
+    \label{thm:union}
     Seja $\{f_1, f_2, f_3, \dots\}$ uma lista infinita de funções computáveis
     tais que, para todo $i$ e $n$,
     \begin{equation*}
@@ -129,7 +129,7 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
             Algoritmo que enumera os valores da função $g$,
             cuja existência é afirmada pelo teorema da união.
         }
-        \label{algoritmo_uniao}
+        \label{algo:union_theorem}
     \end{algorithm}
 
     Caso $L(M_i)$ esteja em algum $\mathcal C_\Phi(f_k)$,
@@ -241,7 +241,7 @@ eventualmente parem de se cruzar.
                     n^3 + 2n, & \text{se $n$ for par.}
                 \end{cases}
     \end{align*}
-    Na seção~\ref{secao_lema_traducao},
+    Na seção~\ref{sec:translation_lemma},
     demostraremos que existe uma linguagem $L$ em
     \begin{equation*}
         \mathcal C_\PhiDT(n^3) \backslash \mathcal C_\PhiDT(n^2);
@@ -296,7 +296,7 @@ eventualmente parem de se cruzar.
     \end{equation*}
     Considere $L'$ como uma linguagem que exija tempo $n^2$
     para ser resolvida em quase todas as instâncias
-    (na seção~\ref{secao_lema_traducao}
+    (na seção~\ref{sec:translation_lemma}
     demostraremos a existência de tais linguagens).
     Note que $L'$ não pertence à união das duas classes de complexidade,
     por exigir tempo $n^2$ mesmo nos casos em que

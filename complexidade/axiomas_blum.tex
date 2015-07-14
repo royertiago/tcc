@@ -1,5 +1,5 @@
 \section{Teoria de Complexidade Axiomática: Axiomas de Blum}
-\label{axiomas_blum}
+\label{sec:blum_axioms}
 
 Dada uma máquina de Turing $M$
 e uma palavra $x$,
@@ -12,12 +12,12 @@ de $M$ quando lhe é dado $x$ na entrada.
     \footnotemark
     \begin{enumerate} [label=\textbf{Axioma \arabic*}, ref=\arabic*, align=left]
         \item
-            \label{blum_def}
+            \label{ax:blum_def}
             $\Phi(M, x)$ está definido
             se, e somente se,
             $M(x)$ está definido.
         \item
-            \label{blum_rec}
+            \label{ax:blum_rec}
             Dados $M$, $x$ e $k$,
             é decidível se $\Phi(M, x) = k$.
     \end{enumerate}
@@ -42,12 +42,12 @@ de $M$ quando lhe é dado $x$ na entrada.
 
         \begin{enumerate} [label=Axioma \arabic*', ref=\arabic*', align=left]
             \item
-                \label{blum_def_orig}
+                \label{ax:ax:blum_def_orig}
                 $\Phi_i'(n)$ está definido
                 se, e somente se,
                 $\phi_i(n)$ está definido.
             \item
-                \label{blum_rec_orig}
+                \label{ax:ax:blum_rec_orig}
                 A função $R(i, n, m)$,
                 definida como $1$ se $\Phi_i'(n) = m$,
                 e $0$ caso contrário,
@@ -56,21 +56,21 @@ de $M$ quando lhe é dado $x$ na entrada.
 
         As duas definições são análogas.
         O valor $\Phi_i'(n)$ corresponde a $\Phi(M_i, 0^n)$.
-        O axioma~\ref{blum_def} corresponde ao axioma~\ref{blum_def_orig},
-        enquanto que a decidibilidade exigida pelo axioma~\ref{blum_rec}
-        é expressada pela função $R$ no axioma~\ref{blum_rec_orig}.
+        O axioma~\ref{ax:blum_def} corresponde ao axioma~\ref{ax:ax:blum_def_orig},
+        enquanto que a decidibilidade exigida pelo axioma~\ref{ax:blum_rec}
+        é expressada pela função $R$ no axioma~\ref{ax:ax:blum_rec_orig}.
     }
 \end{definition}
 
-O axioma~\ref{blum_rec}
+O axioma~\ref{ax:blum_rec}
 nos dá um semialgoritmo para calcular $\Phi(M, x)$.
-Entretanto, pelo axioma~\ref{blum_def},
+Entretanto, pelo axioma~\ref{ax:blum_def},
 não podemos ir muito além disso,
 pois $M(x)$ não está definido para todo $M$ e $x$.
 De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
 
 \begin{example}
-    \label{complexidade_tempo}
+    \label{ex:time_complexity}
     \simbolo{$\PhiDT$}{Complexidade de Tempo}
     A \emph{complexidade de tempo},
     que denotaremos por $\PhiDT$,
@@ -100,7 +100,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
 \end{example}
 
 \begin{example}
-    \label{complexidade_espaco}
+    \label{ex:space_complexity}
     \simbolo{$\PhiDS$}{Complexidade de Espaço}
     Para a \emph{complexidade de espaço},
     que denotaremos por $\PhiDS$,
@@ -126,8 +126,8 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     pois~$M$ pode não ler $k$~células de todas as suas fitas,
     apenas de algumas.
 
-    Claramente o axioma~\ref{blum_def} é satisfeito.
-    Para o axioma~\ref{blum_rec},
+    Claramente o axioma~\ref{ax:blum_def} é satisfeito.
+    Para o axioma~\ref{ax:blum_rec},
     o algoritmo é um pouco mais complicado.
 
     Comece executando $M$ em $x$.
@@ -146,7 +146,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     existem, no máximo,
     \begin{equation}
         |Q| \left((k+1)|\Gamma|^k\right)^l
-        \label{num_possiveis_configuracoes}
+        \label{eq:configurations_count}
     \end{equation}
     possíveis configurações.
     Portanto, se a máquina executar
@@ -176,7 +176,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
 \end{example}
 
 \begin{example}
-    \label{complexidade_nao_deterministica}
+    \label{ex:nondeterministic_complexity}
     \simbolo{$\PhiNT$}{Complexidade de Tempo não"=determinística}
     \simbolo{$\PhiNS$}{Complexidade de Espaço não"=determinística}
     Podemos adaptar $\PhiDT$ e $\PhiDS$
@@ -205,26 +205,26 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     como sendo a maior quantidade de células lidas
     em qualquer dos ramos da computação de $M$ em $x$.
     Aqui, precisamos tomar o mesmo cuidado que tomamos
-    com $\PhiDS$ para demonstrar o axioma~\ref{blum_rec}.
+    com $\PhiDS$ para demonstrar o axioma~\ref{ax:blum_rec}.
 \end{example}
 
 Observe que, neste exemplo,
 jogamos o problema de
 explicar como uma máquina não"=determinística computa uma função
 para ``debaixo do tapete''.
-Voltaremos a este problema no capítulo~\ref{funcoes_nao_deterministicas}.
+Voltaremos a este problema no capítulo~\ref{ch:nondeterministic_functions}.
 Por ora,
 será suficiente nos restringirmos às funções booleanas,
 usando a mesma definição usada para decisores.
 
 \begin{example}
     Escolher $\Phi(M, x) = 0$ para todo $M$ e $x$
-    satisfaz ao axioma~\ref{blum_rec},
-    mas não ao axioma~\ref{blum_def},
+    satisfaz ao axioma~\ref{ax:blum_rec},
+    mas não ao axioma~\ref{ax:blum_def},
     pois $\Phi(M, x)$ está definida mesmo quando $M(x)$ não está.
     Já definir $\Phi(M, x) = |M(x)|$
-    satisfaz ao axioma~\ref{blum_def},
-    mas não ao axioma~\ref{blum_rec},
+    satisfaz ao axioma~\ref{ax:blum_def},
+    mas não ao axioma~\ref{ax:blum_rec},
     pois poderíamos resolver o problema da parada:
     dada uma máquina $M$, podemos modificá"=la
     para apagar sua fita logo antes de parar.
@@ -242,7 +242,7 @@ Ou seja,
 \begin{equation*}
     \PhiDS(M, x) \leq \PhiDT(M, x).
 \end{equation*}
-E, de acordo com o raciocínio do exemplo~\ref{complexidade_espaco},
+E, de acordo com o raciocínio do exemplo~\ref{ex:space_complexity},
 para todo $M$ existe algum $c$ que
 \begin{equation*}
     \PhiDT(M, x) \leq c^{\PhiDS(M, x)}.
@@ -250,7 +250,7 @@ para todo $M$ existe algum $c$ que
 De fato, podemos relacionar quaisquer duas medidas de complexidade.
 
 \begin{theorem}
-    \label{relacao_medidas}
+    \label{thm:measure_related}
     Dadas duas medidas de complexidade $\Phi$ e $\hat \Phi$,
     existe uma função recursiva $r$ tal que
     \begin{equation*}
@@ -278,7 +278,7 @@ De fato, podemos relacionar quaisquer duas medidas de complexidade.
     O conjunto na definição acima é um subconjunto desta lista.
     O predicado $\hat \Phi(M, x) = k$ é recursivo.
     Quando este predicado é verdadeiro,
-    $M(x)$ está definido, pelo axioma~\ref{blum_def},
+    $M(x)$ está definido, pelo axioma~\ref{ax:blum_def},
     portanto $\Phi(M, x)$ também está definido.
     Concluímos que $r$ é recursiva.
 
@@ -301,7 +301,7 @@ e
 \end{equation*}
 Podemos construir uma função dessas
 pegando o máximo de duas funções obtidas
-usando o teorema~\ref{relacao_medidas}.
+usando o teorema~\ref{thm:measure_related}.
 
 O teorema,
 assim como provamos,
@@ -366,7 +366,7 @@ vindo direto da teoria das funções recursivas.
     \end{equation*}
     para todo $x$.
     (Tal valor é chamado de \emph{ponto fixo} para $\sigma$.)
-    \label{teorema_recursao}
+    \label{thm:recursion}
 \end{lemma}
 
 \begin{proof}
@@ -377,7 +377,7 @@ vindo direto da teoria das funções recursivas.
     para todo $y$,
     \begin{equation}
         M_{N(x)}(y) = M_{M_x(x)}(y),
-        \label{diagonal_N}
+        \label{eq:diagonal_N}
     \end{equation}
     sempre que $M_x(x)$ existir.
     \footnotetext{
@@ -416,7 +416,7 @@ vindo direto da teoria das funções recursivas.
     Isto é,
     \begin{equation}
         M_k(x) = \sigma(N(x))
-        \label{k_sigma_N}
+        \label{eq:k_sigma_N}
     \end{equation}
     para todo $x$.
     Afirmamos que $m = N(k)$
@@ -425,8 +425,8 @@ vindo direto da teoria das funções recursivas.
     De fato,
     \begin{align*}
         M_m(x) &= M_{N(k)}(x) \\
-               &= M_{M_k(k)}(x) && \text{Pela equação~\ref{diagonal_N}}\\
-               &= M_{\sigma(N(k))}(x) && \text{Pela equação~\ref{k_sigma_N}}\\
+               &= M_{M_k(k)}(x) && \text{Pela equação~\ref{eq:diagonal_N}}\\
+               &= M_{\sigma(N(k))}(x) && \text{Pela equação~\ref{eq:k_sigma_N}}\\
                &= M_{\sigma(m)}(x) && \text{Pela definição de $m$.}
     \end{align*}
 \end{proof}
@@ -440,7 +440,7 @@ vindo direto da teoria das funções recursivas.
         \Phi(M, x) > g(|x|)
     \end{equation*}
     para todo $x$.
-    \label{desperdicio_recursos}
+    \label{thm:resource_waste}
 \end{proposition}
 
 \begin{proof}
@@ -473,7 +473,7 @@ vindo direto da teoria das funções recursivas.
     ao lado do $x$,
     e executar uma sub"=rotina que computa $h$ no restante.
 
-    Pelo teorema da recursão (lema~\ref{teorema_recursao}),
+    Pelo teorema da recursão (lema~\ref{thm:recursion}),
     $\sigma$ possui um ponto fixo $m_0$.
     Demonstraremos que $m_0$ satisfaz às exigências do teorema.
 

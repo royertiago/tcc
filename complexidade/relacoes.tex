@@ -2,28 +2,28 @@
 
 Por serem medidas de complexidade específicas,
 podemos impor relações mais fortes entre elas
-do que as que são fornecidas pelo teorema~\ref{relacao_medidas}.
+do que as que são fornecidas pelo teorema~\ref{thm:measure_related}.
 
 \begin{proposition}
     \begin{align}
-        \DTIME(f) &\subseteq \NTIME(f) \label{dtime_in_ntime} \\
-        \DSPACE(f) &\subseteq \NSPACE(f) \label{dspace_in_nspace} \\
-        \DTIME(f) &\subseteq \DSPACE(f) \label{dtime_in_dspace} \\
-        \NTIME(f) &\subseteq \DSPACE(f) \label{ntime_in_dspace}
+        \DTIME(f) &\subseteq \NTIME(f) \label{eq:dtime_in_time} \\
+        \DSPACE(f) &\subseteq \NSPACE(f) \label{eq:dspace_in_nspace} \\
+        \DTIME(f) &\subseteq \DSPACE(f) \label{eq:dtime_in_dspace} \\
+        \NTIME(f) &\subseteq \DSPACE(f) \label{eq:ntime_in_dspace}
     \end{align}
 \end{proposition}
 \begin{proof}
-    \ref{dtime_in_ntime} e~\ref{dspace_in_nspace} são consequências diretas
+    \ref{eq:dtime_in_time} e~\ref{eq:dspace_in_nspace} são consequências diretas
     do fato de que toda máquina determinística é,
     em particular, não determinística.
 
-    Para~\ref{dtime_in_dspace},
+    Para~\ref{eq:dtime_in_dspace},
     note que, em $f(n)$ movimentos,
     a máquina pode ler, no máximo,
     $f(n)$ diferentes células
     --- afinal, no máximo uma célula nova pode ser lida a cada movimento.
 
-    Para~\ref{ntime_in_dspace},
+    Para~\ref{eq:ntime_in_dspace},
     usaremos uma máquina com múltiplas fitas.
 
     Se $M$ é uma máquina que reconhece $L \in \NTIME(f)$,
@@ -81,7 +81,7 @@ do que as que são fornecidas pelo teorema~\ref{relacao_medidas}.
 
 \begin{proof}
     Seja $M$ uma máquina que aceita $L$ em espaço $f$.
-    Conforme observado na equação~\ref{num_possiveis_configuracoes},
+    Conforme observado na equação~\ref{eq:configurations_count},
     existem constantes $a$ e $c$ tais que,
     caso $M$ ocupe exatamente $k$ células na fita,
     existirão, no máximo,
@@ -110,7 +110,7 @@ do que as que são fornecidas pelo teorema~\ref{relacao_medidas}.
 \end{theorem}
 
 \begin{proof}
-    Pela equação~\ref{ntime_in_dspace},
+    Pela equação~\ref{eq:ntime_in_dspace},
     $L \in \DSPACE(f)$.
     Combinando com o teorema anterior,
     temos $L \in \DTIME(c^f)$ para algum $c$.
