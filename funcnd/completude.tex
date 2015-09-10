@@ -1,5 +1,58 @@
 \section{Completude de problemas}
 
+\subsection{Funções $\FNP$"=completas}
+
+Da mesma forma como definimos problemas $\NP$"=completos,
+queremos, de alguma forma,
+representar completude dentro da classe $\FNP$.
+No caso de $\NP$"=completude,
+a redução de $L$ para $L'$ (por exemplo)
+é feita por uma função $f$ de forma que
+as ``respostas'' às questões ``$x \in L$?'' e ``$f(x) \in L'$?'' são as mesmas.
+Há uma barreira trivial ao definir ``$\FNP$"=completude'' de maneira análoga,
+que é a possibilidade de os contradomínios diferirem:
+para toda função $f: \Sigma^* \to \Sigma^*$ em $\FNP$,
+podemos construir uma função $g$ tal que $g(x) = \alpha$ para todo $x$,
+para algum $\alpha \notin \Sigma$.
+Isto é, para qualquer $x$, $g$ retorna a palavra com o único símbolo $\alpha$.
+Como $\alpha \notin \Sigma$,
+$f$ é inerentemente incapaz de produzir $\alpha$ na saída;
+portanto, qualquer que seja a função de redução $h$,
+$g(x)$ e $f(h(x))$ serão sempre diferentes.
+
+Entretanto, intuitivamente,
+lidar com $\Sigma$ diretamente não é estritamente necessário,
+pois sempre podemos codificar os caracteres de $\Sigma$ usando binário.
+Portanto,
+para possibilitar uma definição direta de completude de funções,
+assumiremos que o domínio e o contradomínio das funções de $\FNP$
+é $\{0, 1\}^*$.
+
+\begin{definition}
+    Uma função $f$ é \emph{$\FNP$"=completa}
+    se $f \in \FNP$ e,
+    para toda função $g \in \FNP$,
+    existir alguma função $h \in \FP$ tal que
+    \begin{equation*}
+        g(x) = f(h(x))
+    \end{equation*}
+    para todo $x \in \{0, 1\}^*$.
+\end{definition}
+
+Na definição de $\NP$"=completude,
+a função $h$ que faz a redução é obrigada a ter a seguinte propriedade:
+$x \in L$ se e somente se $f(x) \in L'$.
+Ou seja, os valores booleanos das proposições
+``$x \in L$'' e ``$h(x) \in L'$'' são os mesmos.
+Se $g$ e $f$ são, respectivamente,
+as funções características de $L$ e $L'$,
+podemos expressar esta restrição como
+$g(x) = f(h(x))$,
+que é exatamente a expressão usada na definição de $\FNP$"=completude.
+Portanto, de certa forma,
+nossa definição de $\FNP$"=completude
+é uma generalização da noção de $\NP$"=completude.
+
 \subsection{Oráculos Funcionais}
 
 \begin{definition}[Oráculo funcional]
