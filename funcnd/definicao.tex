@@ -34,7 +34,14 @@ que será justificada posteriormente.
     (isto é, nenhuma sequência de transições de $M$ leva a um loop infinito),
     definiremos $M(x)$ como sendo o maior valor que a fita atinge
     nas folhas da árvore.
-    Caso a árvore não seja finita, deixaremos $M(x)$ indefinido.
+    Se a árvore não for finita, deixaremos $M(x)$ indefinido.
+
+    (Caso a máquina gere palavras em vez de números,
+    consideraremos o ordenamento lexicográfico,
+    tratando sempre palavras menores como precedendo palavras maiores.
+    Desta forma, a palavra vazia $\epsilon$
+    é lexicograficamente menor do que todas as outras.
+    Esta suposição facilitará o projeto de linguagens adiante.)
 \end{definition}
 
 A ideia de pegar o máximo do conjunto vem da analogia com funções booleanas.
