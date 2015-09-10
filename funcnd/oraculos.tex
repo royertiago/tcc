@@ -28,10 +28,12 @@ a máquina sempre para
 tornando o estado $q_n$ redundante.
 
 \begin{definition}
-    Seja $\mathcal A$ um conjunto de linguagens.
+    Seja $\mathcal A$ um conjunto de funções.
     $\FP^\mathcal A$ é o conjunto das funções
-    que podem ser calculadas da mesma forma que as funções de $\FP$,
-    mas agora permitiremos chamadas ``gratuitas'' a um oráculo de $\mathcal A$.
+    que podem ser calculadas em tempo polinomial
+    por alguma máquinas de Turing que usa alguma função de $\mathcal A$ como oráculo.
+    Caso $\mathcal A$ seja um conjunto de linguagens,
+    interpretaremos a máquina como usando a função característica correspondente.
     $\FNP^\mathcal A$ e $\coFNP^\mathcal A$
     são definidas de maneira análoga.
     \simbolo{$\FP^\mathcal A$}{$\FP$ usando um oráculo de $\mathcal A$}
