@@ -53,6 +53,79 @@ Portanto, de certa forma,
 nossa definição de $\FNP$"=completude
 é uma generalização da noção de $\NP$"=completude.
 
+Podemos fabricar um problema $\FNP$"=completo usando o problema da parada,
+mas impondo uma limitação no tempo de execução.
+
+Dada uma máquina não"=determinística $M$,
+uma entrada $x$
+e uma limitação de tempo $n$,
+defina o conjunto $T(M, x, n)$
+como sendo o conjunto de todas as palavras deixadas na fita
+após exatamente $n$ passos de computações não"=determinísticas de $M$ em $x$.
+(Inclua também os resultados de ramos que pararam antes de $n$ passos.)
+Caso todos os ramos de computação de $M$ encerrem em menos de $n$ etapas,
+então $T(M, x, n)$ conterá todas as palavras das folhas da árvore de computação;
+neste caso, a maior palavra (lexicograficamente) de $T(M, x, n)$
+é $M(x)$.
+Se existirem ramos de computação que não se encerram em $n$ etapas,
+$T(M, x, n)$ conterá computações parciais,
+que podem ser lexicograficamente maiores que $M(x)$;
+portanto, neste caso, nada podemos afirmar sobre o máximo de $T(M, x, n)$.
+
+Usaremos esta função $T$ para definir nossa função $\FNP$"=completa.
+
+\begin{theorem}
+    Defina a função $f: \{0,1\}^* \to \{0, 1\}^*$ por
+    \begin{equation*}
+        f(\langle M, x, n \rangle) = \max(T(M, x, n)),
+    \end{equation*}
+    em que $T$ é o conjunto definido acima
+    e $\max$ é o máximo lexicográfico dentre as palavras do conjunto.
+    Então $f$ é $\FNP$"=completa.
+\end{theorem}
+
+\begin{proof}
+    Seja $g$ uma função de $\FNP$.
+    Pela definição de $\FNP$, existe alguma máquina $M$
+    e um polinômio $p$ tal que,
+    ao rodar $M$ em $x$,
+    todos os ramos de computação são mais curtos que $p(|x|)$,
+    e $M(x) = g(x)$.
+
+    Defina a função $h: \{0, 1\}^* \to \{0, 1\}^*$
+    por
+    \begin{equation*}
+        h(x) = \langle M, x, 1^{p(|x|)} \rangle.
+    \end{equation*}
+    Como $M$ roda em tempo menor que $p(|x|)$,
+    o maior valor (lexicograficamente) de $T(M, x, p(|x|))$ é $M(x)$,
+    que é igual a $g(x)$ pois $M$ computa $g$.
+    Portanto,
+    \begin{equation*}
+        f(h(x)) = M(x) = g(x).
+    \end{equation*}
+
+    O polinômio $p$ pode ser computado em tempo $O(p)$,
+    e os outros dois termos da tripla $\langle M, x, 1^{p(|x|)} \rangle$
+    só precisam ser copiados. Portanto, $h \in \FP$.
+
+    Isso mostra que toda função de $\FNP$ é redutível a $f$;
+    agora, falta mostrar que $f \in \FNP$.
+
+    Para isso, simplesmente rode $M$ em $x$,
+    usando o próprio não"=determinismo para simular o não"=determinismo de $M$
+    e um contador para que o tempo de simulação não extrapole $n$.
+    Então, apague todo o conteúdo da fita,
+    deixando apenas o resultado da simulação de $M$ em $x$;
+    depois encerre a computação.
+
+    Desta forma, todas as folhas desta árvore de computação
+    corresponderão exatamente aos valores de $T(M, x, n)$;
+    portanto, o valor da função calculado por esta máquina não"=determinística
+    é $f(\langle M, x, n \rangle)$,
+    o que prova que $f \in \FNP$.
+\end{proof}
+
 \subsection{Oráculos Funcionais}
 
 \begin{definition}[Oráculo funcional]
