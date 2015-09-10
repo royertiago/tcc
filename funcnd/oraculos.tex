@@ -1,16 +1,31 @@
 \section{Oráculos Funcionais}
 
-Da mesma forma como definimos problemas $\NP$"=completos,
-queremos, de alguma forma,
-representar completude dentro da classe $\FNP$.
-Entretanto,
-os contradomínios de duas funções em $\FNP$ pode diferir
---- em contrapartida,
-o contradomínio de todas as ``funções'' em $\NP$ é o conjunto $\{0, 1\}$.
-Precisaríamos fazer processamento adicional
-nos valores ``retornados'' pelas funções.
-Portanto,
-parece mais natural lidar diretamente com oráculos.
+\begin{definition}[Oráculo funcional]
+    Seja $f : \Sigma^* \rightarrow \Sigma^*$.
+    Uma máquina que usa $f$ como oráculo
+    possui uma fita especial para se ``comunicar'' com $f$.
+    A máquina escreve uma palavra nesta fita,
+    digamos $x$,
+    e consulta o oráculo
+    (isto é, transita para $q_?$).
+    Caso $f(x)$ exista,
+    a máquina transitará para $q_y$
+    e o conteúdo da ``fita de comunicação'' é alterado para $f(x)$.
+    Caso $f(x)$ não exista,
+    a máquina transita para $q_n$,
+    com a fita inalterada.
+\end{definition}
+
+Os estados $q_y$ e $q_n$ são apenas um preciosismo
+para que a definição permita qualquer função como oráculo,
+mesmo que não seja computável.
+No caso de máquinas de Turing,
+as funções computadas só não estarão definidas
+nas entradas em que a máquina não parar.
+Como estamos lidando com máquinas que possuem limites de tempo,
+a máquina sempre para
+(portanto a função sempre está definida),
+tornando o estado $q_n$ redundante.
 
 \begin{definition}
     Seja $\mathcal A$ um conjunto de linguagens.
@@ -28,29 +43,6 @@ $\FP^\mathcal A$, $\FNP^\mathcal A$ e $\coFNP^\mathcal A$
 são os análogos funcionais de
 $\P^\mathcal A$, $\NP^\mathcal A$ e $\coNP^\mathcal A$,
 respectivamente.
-
-Observe que apenas definimos $\FP^\mathcal A$
-quando $\mathcal A$ for um conjunto de linguagens.
-Ainda não podemos falar, por exemplo, de $\FP^\FP$.
-Precisamos antes definir o que é um oráculo funcional.
-
-\begin{definition}[Oráculo funcional]
-    Seja $f : \Sigma^* \rightarrow \Sigma^*$.
-    Uma máquina que usa $f$ como oráculo
-    possui uma fita especial para se ``comunicar'' com $f$.
-    A máquina escreve uma palavra nesta fita,
-    digamos $x$,
-    e consulta o oráculo
-    (isto é, transita para $q_?$).
-    Caso $f(x)$ exista,
-    a máquina transitará para $q_y$
-    e o conteúdo da ``fita de comunicação'' é alterado para $f(x)$.
-    Caso $f(x)$ não exista,
-    a máquina transita para $q_n$,
-    com a fita inalterada.
-\end{definition}
-
-Usaremos este conceito mais tarde.
 
 Podemos estabelecer algumas relações entre estes conjuntos.
 
