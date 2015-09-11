@@ -155,6 +155,54 @@ ela contém todas as escolhas não"=determinísticas feitas naquela computação
 nós só precisamos da fita deixada pela máquina,
 que corresponde a alguns bits ao final da fórmula.
 
+Podemos tentar a seguinte estratégia:
+passamos à máquina que calcula nossa generalização de $\SAT$
+não apenas a fórmula lógica,
+mas também um número $n$,
+e a máquina retornará apenas os últimos $n$
+bits das atribuições que satisfazem a fórmula.
+Entretanto, isto assume que todos os tamanhos de fita serão iguais,
+o que pode não ser verdade.
+Portanto, precisamos de alguma forma codificar na própria fórmula lógica
+um meio de computar este $n$.
+
+Ignoremos por um momento a interpretação de uma palavra sobre $\{0, 1\}^*$
+como uma atribuição de valores"=verdade.
+Queremos codificar, de maneira variável e não ambígua,
+uma instrução de como extrair uma subpalavra de uma palavra dada.
+Para codificar a subpalavra $w$,
+coloque, no início da palavra que conterá $w$,
+a cadeia $0^{|w|}1$, seguida de $w$.
+Por exemplo,
+a palavra
+\begin{equation*}
+    0000\ 1\ 0110\ 10101010
+\end{equation*}
+``esconde'' a subpalavra
+\begin{equation*}
+    0110
+\end{equation*}
+pois a palavra original começa com o prefixo $0^4 1$,
+indicando que os quatro caracteres seguintes codificam a palavra a ser extraída.
+(Poderíamos interpretar que a subpalavra também ``esconde''
+a ``subsubpalavra'' $1$, mas não precisamos ir tão longe.)
+
+Definiremos uma função $d: \{0, 1\}^* \to \{0, 1\}^*$ que fará a decodificação.
+\simbolo{$d$}{Função de decodificação de subpalavras}
+$d(0^n1\omega)$ será definido como sendo os $n$ primeiros dígitos de $\omega$.
+Por completude, caso $|\omega| < n$, defina $d(0^n1\omega) = \omega$,
+e $d(x) = \varepsilon$ se $x$ não contiver um caractere $1$.
+\begin{example}
+    \begin{align*}
+        d(0000\ 1\ 0110\ 10101010) &= 0110 \\
+        d(0110) &= 1 \\
+        d(1) &= \varepsilon \\
+        d(11010) &= \varepsilon \\
+        d(0000) &= \varepsilon \\
+        d(0001\ 10) &= 10
+    \end{align*}
+\end{example}
+
 \subsection{Oráculos Funcionais}
 
 \begin{definition}[Oráculo funcional]
