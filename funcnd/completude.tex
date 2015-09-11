@@ -1,6 +1,4 @@
-\section{Completude de problemas}
-
-\subsection{Funções $\FNP$"=completas}
+\section{Funções $\FNP$"=completas}
 
 Da mesma forma como definimos problemas $\NP$"=completos,
 queremos, de alguma forma,
@@ -343,51 +341,3 @@ mas depois de serem pós"=processadas por $M$ por $n$ rodadas.%
     basta chutar uma atribuição de valores"=verdade para $\varphi$
     e simular $M$ por $n$ rodadas nas atribuições que satisfizerem a fórmula.
 \end{proof}
-
-\subsection{Oráculos Funcionais}
-
-\begin{definition}[Oráculo funcional]
-    Seja $f : \Sigma^* \rightarrow \Sigma^*$.
-    Uma máquina que usa $f$ como oráculo
-    possui uma fita especial para se ``comunicar'' com $f$.
-    A máquina escreve uma palavra nesta fita,
-    digamos $x$,
-    e consulta o oráculo
-    (isto é, transita para $q_?$).
-    Caso $f(x)$ exista,
-    a máquina transitará para $q_y$
-    e o conteúdo da ``fita de comunicação'' é alterado para $f(x)$.
-    Caso $f(x)$ não exista,
-    a máquina transita para $q_n$,
-    com a fita inalterada.
-\end{definition}
-
-Os estados $q_y$ e $q_n$ são apenas um preciosismo
-para que a definição permita qualquer função como oráculo,
-mesmo que não seja computável.
-No caso de máquinas de Turing,
-as funções computadas só não estarão definidas
-nas entradas em que a máquina não parar.
-Como estamos lidando com máquinas que possuem limites de tempo,
-a máquina sempre para
-(portanto a função sempre está definida),
-tornando o estado $q_n$ redundante.
-
-\begin{definition}
-    Seja $\mathcal A$ um conjunto de funções.
-    $\FP^\mathcal A$ é o conjunto das funções
-    que podem ser calculadas em tempo polinomial
-    por alguma máquinas de Turing que usa alguma função de $\mathcal A$ como oráculo.
-    Caso $\mathcal A$ seja um conjunto de linguagens,
-    interpretaremos a máquina como usando a função característica correspondente.
-    $\FNP^\mathcal A$ e $\coFNP^\mathcal A$
-    são definidas de maneira análoga.
-    \simbolo{$\FP^\mathcal A$}{$\FP$ usando um oráculo de $\mathcal A$}
-    \simbolo{$\FNP^\mathcal A$}{$\FNP$ usando um oráculo de $\mathcal A$}
-    \simbolo{$\coFNP^\mathcal A$}{$\coFNP$ usando um oráculo de $\mathcal A$}
-\end{definition}
-
-$\FP^\mathcal A$, $\FNP^\mathcal A$ e $\coFNP^\mathcal A$
-são os análogos funcionais de
-$\P^\mathcal A$, $\NP^\mathcal A$ e $\coNP^\mathcal A$,
-respectivamente.
