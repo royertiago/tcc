@@ -279,6 +279,69 @@ Agora podemos construir uma função $\FNP$"=completa um pouco mais natural.
     Mostrar que $\FdSAT \in \FNP$ é deixado para o leitor.
 \end{proof}
 
+Observe que, de certa forma,
+a cadeia inicial $0^n1$ ``explica'' para $d$
+como esta função deve extrair a resposta do restante da palavra.
+Podemos ir além e,
+em vez de apenas prover um parâmetro para uma função fixa $d$,
+prover uma \emph{função} que extrairá a ``parte que interessa'' da cadeia.
+Representaremos a função por uma máquina de Turing,
+associada a um limite de tempo.
+
+\newcommand{\CallbackSAT}{{\lang{CallbackSAT}}}
+\simbolo{$\CallbackSAT$}{Versão funcional de $\SAT$ com um callback}
+\begin{definition}
+    Se $M$ for uma máquina de Turing determinística,
+    denote por $t(M, x, n)$ o único elemento de $T(M, x, n)$.
+
+    Defina a função $\CallbackSAT: \{0, 1\}^* \to \{0, 1\}^*$ por
+    \begin{equation*}
+        \CallbackSAT(\langle \varphi, M, n \rangle) = \max\{
+            t(M, \omega, n) \mid \text{
+                $\omega$ codifica uma atribuição que satisfaz $\varphi$.%
+            }
+        \}
+    \end{equation*}
+\end{definition}
+Em outras palavras,
+as folhas da árvore de computação de $\CallbackSAT$
+serão as atribuições que satisfazem $\varphi$,
+mas depois de serem pós"=processadas por $M$ por $n$ rodadas.%
+\footnote{
+    Este mecanismo é semelhante à noção de \emph{callback} em linguagens de programação.
+}
+
+\begin{theorem}
+    $\CallbackSAT$ é $\FNP$"=completa.
+\end{theorem}
+
+\begin{proof}
+    Basta reduzir de $\FdSAT$.
+    Escolha $M$ como sendo uma máquina que computa $d$.
+    Como $d$ pode ser computada em tempo polinomial,
+    existe algum polinômio $p$ que limita o tempo de computação de $M$.
+    Então escolha $n = p(k)$ caso a fórmula de entrada possua $k$ variáveis,
+    e passe a fórmula $\varphi$ intocada para $\FdSAT$.
+
+    Como $n$ é grande o bastante para que a máquina $M$ sempre encerre a execução,
+    $t(M, x, n) = d(x)$.
+    Portanto, o conjunto que $\CallbackSAT(\langle \varphi, M, n \rangle)$ maximiza é
+    \begin{equation*}
+        \{d(\omega) \mid \text{
+            $\omega$ codifica uma atribuição que satisfaz $\varphi$.%
+        }\},
+    \end{equation*}
+    que é exatamente o conjunto maximizado por $\FdSAT(\varphi)$.
+    Portanto,
+    \begin{equation*}
+        \FdSAT(\varphi) = \CallbackSAT(\langle \varphi, M, n \rangle).
+    \end{equation*}
+
+    E, para executar $\CallbackSAT$ usando recursos de $\FNP$,
+    basta chutar uma atribuição de valores"=verdade para $\varphi$
+    e simular $M$ por $n$ rodadas nas atribuições que satisfizerem a fórmula.
+\end{proof}
+
 \subsection{Oráculos Funcionais}
 
 \begin{definition}[Oráculo funcional]
