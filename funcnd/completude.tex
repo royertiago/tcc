@@ -126,6 +126,35 @@ Usaremos esta função $T$ para definir nossa função $\FNP$"=completa.
     o que prova que $f \in \FNP$.
 \end{proof}
 
+Temos nossa primeira função $\FNP$"=completa.
+Entretanto, esta função é um tanto artificial.
+Idealmente, gostariamos que alguma função mais natural
+(como, por exemplo, alguma generalização de $\SAT$),
+fosse $\FNP$"=completa.
+
+Podemos tentar seguir justamente este caminho
+(generalizar $\SAT$),
+tentando reduzir da função $f$ definida acima.
+A generalização natural de $\SAT$ para $\FNP$
+é a função que retorna alguma atribuição que satisfaz a fórmula
+(a maior atribuição, no caso),
+ou $\varepsilon$ caso a fórmula não seja satisfazível.
+Sabemos da demonstração de $\NP$"=completude de $\SAT$
+que é possível codificar estados de computação em fórmulas lógicas;
+como esta codificação impõe,
+na fórmula lógica,
+o estado final da fita,
+podemos recuperar qual é a palavra deixada na fita pela computação
+a partir de uma atribuição que satisfaz aquela cláusula.
+
+Entretanto,
+não podemos simplesmente retornar uma atribuição para a fórmula gerada,
+pois a atribuição contém muito mais informação do que precisamos.
+Em particular,
+ela contém todas as escolhas não"=determinísticas feitas naquela computação;
+nós só precisamos da fita deixada pela máquina,
+que corresponde a alguns bits ao final da fórmula.
+
 \subsection{Oráculos Funcionais}
 
 \begin{definition}[Oráculo funcional]
