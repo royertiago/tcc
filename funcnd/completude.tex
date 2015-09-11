@@ -71,6 +71,7 @@ Se existirem ramos de computação que não se encerram em $n$ etapas,
 $T(M, x, n)$ conterá computações parciais,
 que podem ser lexicograficamente maiores que $M(x)$;
 portanto, neste caso, nada podemos afirmar sobre o máximo de $T(M, x, n)$.
+\simbolo{$T(M, x, n)$}{``Respostas'' da computação de $M$ em $x$ por $n$ passos.}
 
 Usaremos esta função $T$ para definir nossa função $\FNP$"=completa.
 
@@ -208,6 +209,7 @@ e $d(x) = \varepsilon$ se $x$ não contiver um caractere $1$.
 
 Agora podemos construir uma função $\FNP$"=completa um pouco mais natural.
 \newcommand{\FdSAT}{{\lang{F}d\lang{SAT}}}
+\simbolo{$\FdSAT$}{$\SAT$ funcional ``composto'' com $d$}
 \begin{definition}
     A função $\FdSAT: \{0, 1\}^* \to \{0, 1\}^*$ é definida por
     \begin{equation*}
