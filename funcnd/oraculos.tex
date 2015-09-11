@@ -53,3 +53,26 @@ $\FP^\mathcal A$, $\FNP^\mathcal A$ e $\coFNP^\mathcal A$
 são os análogos funcionais de
 $\P^\mathcal A$, $\NP^\mathcal A$ e $\coNP^\mathcal A$,
 respectivamente.
+
+Podemos definir e construir linguagens completas para estes três conjuntos
+usando as mesmas técnicas usadas para definir e construir problemas $\FNP$"=completos.
+
+\begin{definition}
+    Seja $\mathcal A$ um conjunto de funções.
+    Uma função $f$ é \emph{$\FP^\mathcal A$"=completa}
+    se $f \in \FP^\mathcal A$ e,
+    para toda função $g \in \FP^\mathcal A$,
+    existir alguma função $h \in \FP$ tal que
+    \begin{equation*}
+        g(x) = f(h(x))
+    \end{equation*}
+    para todo $x \in \{0, 1\}^*$.
+
+    $\FNP^\mathcal A$ e $\coFNP^\mathcal A$"=completude
+    são definidos analogamente.
+\end{definition}
+
+Esta definição é idêntica à definição de $\FNP$"=completude,
+mas equipando tudo com oráculos
+--- com exceção da função $h$,
+que ainda precisa operar em tempo determinístico polinomial sem oráculos.
