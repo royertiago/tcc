@@ -74,14 +74,16 @@ portanto, neste caso, nada podemos afirmar sobre o máximo de $T(M, x, n)$.
 
 Usaremos esta função $T$ para definir nossa função $\FNP$"=completa.
 
+\newcommand{\HaltFNP}{{\lang{HaltFNP}}}
+\simbolo{$\HaltFNP$}{Versão de $\FNP$ do problema da parada}
 \begin{theorem}
-    Defina a função $f: \{0,1\}^* \to \{0, 1\}^*$ por
+    Defina a função $\HaltFNP: \{0,1\}^* \to \{0, 1\}^*$ por
     \begin{equation*}
-        f(\langle M, x, n \rangle) = \max(T(M, x, n)),
+        \HaltFNP(\langle M, x, n \rangle) = \max(T(M, x, n)),
     \end{equation*}
     em que $T$ é o conjunto definido acima
     e $\max$ é o máximo lexicográfico dentre as palavras do conjunto.
-    Então $f$ é $\FNP$"=completa.
+    Então $\HaltFNP$ é $\FNP$"=completa.
     \label{thm:halt_fnp}
 \end{theorem}
 
@@ -103,15 +105,15 @@ Usaremos esta função $T$ para definir nossa função $\FNP$"=completa.
     que é igual a $g(x)$ pois $M$ computa $g$.
     Portanto,
     \begin{equation*}
-        f(h(x)) = M(x) = g(x).
+        \HaltFNP(h(x)) = M(x) = g(x).
     \end{equation*}
 
     O polinômio $p$ pode ser computado em tempo $O(p)$,
     e os outros dois termos da tripla $\langle M, x, 1^{p(|x|)} \rangle$
     só precisam ser copiados. Portanto, $h \in \FP$.
 
-    Isso mostra que toda função de $\FNP$ é redutível a $f$;
-    agora, falta mostrar que $f \in \FNP$.
+    Isso mostra que toda função de $\FNP$ é redutível a $\HaltFNP$;
+    agora, falta mostrar que $\HaltFNP \in \FNP$.
 
     Para isso, simplesmente rode $M$ em $x$,
     usando o próprio não"=determinismo para simular o não"=determinismo de $M$
@@ -123,8 +125,8 @@ Usaremos esta função $T$ para definir nossa função $\FNP$"=completa.
     Desta forma, todas as folhas desta árvore de computação
     corresponderão exatamente aos valores de $T(M, x, n)$;
     portanto, o valor da função calculado por esta máquina não"=determinística
-    é $f(\langle M, x, n \rangle)$,
-    o que prova que $f \in \FNP$.
+    é $\HaltFNP(\langle M, x, n \rangle)$,
+    o que prova que $\HaltFNP \in \FNP$.
 \end{proof}
 
 Temos nossa primeira função $\FNP$"=completa.
@@ -135,7 +137,7 @@ fosse $\FNP$"=completa.
 
 Podemos tentar seguir justamente este caminho
 (generalizar $\SAT$),
-tentando reduzir da função $f$ definida acima.
+tentando reduzir da função $\HaltFNP$ definida acima.
 A generalização natural de $\SAT$ para $\FNP$
 é a função que retorna alguma atribuição que satisfaz a fórmula
 (a maior atribuição, no caso),
@@ -224,7 +226,7 @@ Agora podemos construir uma função $\FNP$"=completa um pouco mais natural.
 \begin{proof}
     Basta seguir as ideias anunciadas acima.
 
-    Reduza da função $f$ do teorema~\ref{thm:halt_fnp}.
+    Reduza da função $\HaltFNP$ do teorema~\ref{thm:halt_fnp}.
     Para uma entrada $\langle M, x, n \rangle$,
     utilize a mesma técnica usada na demonstração da $\NP$"=completude de $\SAT$
     para construir um circuito lógico
@@ -256,7 +258,7 @@ Agora podemos construir uma função $\FNP$"=completa um pouco mais natural.
     pois tanto a codificação das etapas de computação
     quanto a codificação do circuito podem ser feitas em tempo polinomial.
 
-    Agora, mostraremos que $\FdSAT(h(y)) = f(y)$,
+    Agora, mostraremos que $\FdSAT(h(y)) = \HaltFNP(y)$,
     para $y = \langle M, x, n \rangle$.
     Pela construção da função $h$ acima,
     se $\omega$ codifica uma atribuição de valores"=verdade para $h(y)$,
@@ -268,10 +270,10 @@ Agora podemos construir uma função $\FNP$"=completa um pouco mais natural.
         \{d(\omega) \mid \text{$w$ codifica uma atribuição que satisfaz $\varphi$} \}
     \end{equation*}
     é exatamente $T(M, x, n)$.
-    Ou seja, o máximo deste conjunto é $f(y)$,
-    concluindo que $\FdSAT(h(y)) = f(y)$.
+    Ou seja, o máximo deste conjunto é $\HaltFNP(y)$,
+    concluindo que $\FdSAT(h(y)) = \HaltFNP(y)$.
 
-    Portanto, reduzimos $f$ a $\FdSAT$ e,
+    Portanto, reduzimos $\HaltFNP$ a $\FdSAT$ e,
     portanto,
     todas as funções de $\FNP$ para $\FdSAT$.
     Mostrar que $\FdSAT \in \FNP$ é deixado para o leitor.
