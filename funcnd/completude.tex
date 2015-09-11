@@ -82,6 +82,7 @@ Usaremos esta função $T$ para definir nossa função $\FNP$"=completa.
     em que $T$ é o conjunto definido acima
     e $\max$ é o máximo lexicográfico dentre as palavras do conjunto.
     Então $f$ é $\FNP$"=completa.
+    \label{thm:halt_fnp}
 \end{theorem}
 
 \begin{proof}
@@ -202,6 +203,79 @@ e $d(x) = \varepsilon$ se $x$ não contiver um caractere $1$.
         d(0001\ 10) &= 10
     \end{align*}
 \end{example}
+
+Agora podemos construir uma função $\FNP$"=completa um pouco mais natural.
+\newcommand{\FdSAT}{{\lang{F}d\lang{SAT}}}
+\begin{definition}
+    A função $\FdSAT: \{0, 1\}^* \to \{0, 1\}^*$ é definida por
+    \begin{equation*}
+        \FdSAT(\varphi) = \max\{d(w) \mid
+            \text{$w$ codifica uma atribuição que satisfaz $\varphi$}
+        \}
+    \end{equation*}
+    Por completude, se $x$ não for uma fórmula lógica,
+    defina $\FdSAT(x) = \varepsilon$.
+\end{definition}
+
+\begin{theorem}
+    A função $\FdSAT$ definida acima é $\FNP$"=completa.
+\end{theorem}
+
+\begin{proof}
+    Basta seguir as ideias anunciadas acima.
+
+    Reduza da função $f$ do teorema~\ref{thm:halt_fnp}.
+    Para uma entrada $\langle M, x, n \rangle$,
+    utilize a mesma técnica usada na demonstração da $\NP$"=completude de $\SAT$
+    para construir um circuito lógico
+    que codifique os $n$ primeiros movimentos de $M$ em $x$.
+    Então,
+    codifique um circuito lógico que ``prepara'' a atribuição que satisfaz a fórmula
+    para ``passar'' pela função $d$ e retornar apenas a fita.
+
+    Este circuito tem como entrada todas as variáveis que codificam a fita de $M$
+    (que podem ter espaços em branco tanto à esquerda quanto à direita),
+    num total de $n + |x|$ variáveis de entrada
+    (pois este é o tamanho máximo da fita resultante),
+    e tem $2(n + |x|) + 1$ variáveis de saída,
+    codificando uma cadeia $w$ tal que
+    $d(w)$ seja a fita que $M$ produz após $n$ rodadas computando sobre $x$.
+
+    O circuito pode ser projetado como tendo $n + |x|$ camadas
+    para deslocar a fita para a esquerda,
+    depois uma camada para transformar a fita no formato $0^{|w|}1w$
+    (com o $0^{|w|}1$ sendo introduzido à esquerda do $w$),
+    e depois mais $n + |x|$ camadas para deslocar esta cadeia resultante
+    novamente para a esquerda.
+    Preencha o resto com zeros, é irrelevante.
+
+    Reordenando as variáveis de forma que
+    a saída deste circuito combinatorial fiquem no começo,
+    temos nossa transformação $h$,
+    que pode ser efetuada em tempo polinomial,
+    pois tanto a codificação das etapas de computação
+    quanto a codificação do circuito podem ser feitas em tempo polinomial.
+
+    Agora, mostraremos que $\FdSAT(h(y)) = f(y)$,
+    para $y = \langle M, x, n \rangle$.
+    Pela construção da função $h$ acima,
+    se $\omega$ codifica uma atribuição de valores"=verdade para $h(y)$,
+    então $d(\omega)$ é a fita que $M$ deixa após $n$ rodadas sobre $x$.
+    Além disso, para toda computação de $M$ em $x$ por $n$ rodadas,
+    existe alguma atribuição $\omega'$ que satisfaz a fórmula lógica $h(y)$.
+    Portanto, o conjunto
+    \begin{equation*}
+        \{d(\omega) \mid \text{$w$ codifica uma atribuição que satisfaz $\varphi$} \}
+    \end{equation*}
+    é exatamente $T(M, x, n)$.
+    Ou seja, o máximo deste conjunto é $f(y)$,
+    concluindo que $\FdSAT(h(y)) = f(y)$.
+
+    Portanto, reduzimos $f$ a $\FdSAT$ e,
+    portanto,
+    todas as funções de $\FNP$ para $\FdSAT$.
+    Mostrar que $\FdSAT \in \FNP$ é deixado para o leitor.
+\end{proof}
 
 \subsection{Oráculos Funcionais}
 
