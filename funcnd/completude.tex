@@ -215,7 +215,8 @@ Agora podemos construir uma função $\FNP$"=completa um pouco mais natural.
             \text{$w$ codifica uma atribuição que satisfaz $\varphi$}
         \}
     \end{equation*}
-    Por completude, se $x$ não for uma fórmula lógica,
+    Por completude, se $x$ não for uma fórmula lógica
+    (ou não for satisfazível),
     defina $\FdSAT(x) = \varepsilon$.
 \end{definition}
 
@@ -302,6 +303,10 @@ associada a um limite de tempo.
             }
         \}
     \end{equation*}
+    Por completude,
+    se $\varphi$ não for uma fórmula lógica
+    (ou não for satisfazível),
+    defina $\CallbackSAT(\langle \varphi, M, n \rangle) = \varepsilon$.
 \end{definition}
 Em outras palavras,
 as folhas da árvore de computação de $\CallbackSAT$
