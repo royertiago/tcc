@@ -54,7 +54,65 @@ são os análogos funcionais de
 $\P^\mathcal A$, $\NP^\mathcal A$ e $\coNP^\mathcal A$,
 respectivamente.
 
-Podemos definir e construir linguagens completas para estes três conjuntos
+Agora,
+remetendo ao teorema~\ref{thm:fnp_to_np_conversion},
+podemos mostrar que,
+de certa forma,
+não ganhamos muito poder computacional
+ao utilizar a noção de ``função não"=determinística'' em oráculos.
+
+\begin{theorem}
+    \begin{equation*}
+        \FP^\NP = \FP^\FNP
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    Como as funções características de $\NP$ estão todas em $\FNP$,
+    a inclusão $\FP^\NP \subseteq \FP^\FNP$ segue direto da definição.
+
+    Seja $f \in \FP^\FNP$;
+    existe uma máquina polinomial determinística $M$
+    que faz chamadas a um certo oráculo $g$.
+    Usaremos a linguagem $L_g$,
+    do teorema~\ref{thm:fnp_to_np_conversion},
+    para fazer uma busca binária atrás do valor de $g$.
+
+    Seja $x$ a entrada de $M$.
+    Substitua cada chamada a $g$
+    pelo seguinte procedimento:
+
+    Primeiro, calcule qual o menor $n$
+    tal que $\langle x, 0^n \rangle \in L_g$;
+    como a ordenação lexicográfica que impomos
+    considera primeiro o tamanho,
+    isto nos dará qual é o tamanho de $g(x)$.
+    Depois,
+    faremos uma busca binária.
+    Avance da esquerda para a direita,
+    colocando um bit de $0^n$ para $1$ de cada vez.
+    Os bits que fazem o par $\langle x, y \rangle$
+    permanecerem em $L_g$ são mantidos,
+    os demais são colocados de volta para $0$.
+    Isto calculará o valor de $g(x)$,
+    bit a bit.
+
+    Este procedimento opera em tempo polinomial em $n$.
+    Como $n = |g(x)|$ e $g \in \FNP$,
+    $n$ precisa ser polinomial em $|x|$;
+    portanto, este procedimento opera em tempo polinomial em $|x|$.
+    Já que $M$ faz uma quantidade polinomial de chamadas a $g$,
+    a máquina resultante também terá tempo de execução polinomial.
+
+    Cada chamada ao oráculo $g$ foi substituída por
+    um procedimento que devolve sempre a mesma resposta que $g$;
+    portanto, a resposta final desta máquina modificada
+    será igual à resposta de $M$,
+    o que prova que $f \in \FP^\NP$.
+\end{proof}
+
+Podemos definir e construir linguagens completas para os três conjuntos
+$\FP^\mathcal A$, $\FNP^\mathcal A$ e $\coFNP^\mathcal A$,
 usando as mesmas técnicas usadas para definir e construir problemas $\FNP$"=completos.
 
 \begin{definition}
