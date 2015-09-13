@@ -135,3 +135,63 @@ Esta definição é idêntica à definição de $\FNP$"=completude,
 mas equipando tudo com oráculos
 --- com exceção da função $h$,
 que ainda precisa operar em tempo determinístico polinomial sem oráculos.
+
+Usando problemas completos para $\mathcal A$,
+podemos construir facilmente problemas completos para $\FP^\mathcal A$,
+$\FNP^\mathcal A$ e $\coFNP^\mathcal A$.
+
+\begin{theorem}
+    Se $\mathcal A$ possuir um problema polinomialmente completo,
+    então $\FP^\mathcal A$, $\FNP^\mathcal A$ e $\coFNP^\mathcal A$
+    possuem problemas completos.
+\end{theorem}
+
+\begin{proof}
+    Usaremos essencialmente o mesmo truque usado no teorema~\ref{thm:halt_fnp}
+    para mostrar que $\HaltFNP$ é $\FNP$"=completa.
+
+    Para o caso $\FNP^\mathcal A$,
+    defina
+    \begin{equation*}
+        \HaltFNP^\mathcal A(\langle M, x, n \rangle) =
+            \max(T(M^A, x, n)),
+    \end{equation*}
+    em que $A$ é um problema polinomialmente completo para $\mathcal A$.
+    Mostraremos que $\HaltFNP^\mathcal A$ é $\FNP^\mathcal A$"=completa.
+
+    Primeiro, mostraremos que esta função está em $\FNP^\mathcal A$.
+    Para isso, a máquina que computa esta função usará $A$ como oráculo.
+    Basta simular $M^A$ em $x$ por $n$ rodadas,
+    e usar o próprio oráculo para resolver as chamadas de $M$.
+    Como $A \in \mathcal A$ e estas simulações podem ser executadas em tempo polinomial,
+    temos $\HaltFNP^\mathcal A \in \FNP^\mathcal A$.
+
+    Agora, à completude.
+    Seja $f \in \FNP^\mathcal A$.
+    Primeiro, mostraremos como computar $f$ usando $A$ como oráculo
+    (e não usando um oráculo arbitrário de $\mathcal A$)
+    e depois como usar a máquina que faz esta computação
+    para reduzir $f$ a $\HaltFNP^\mathcal A$.
+
+    Seja $M$ uma máquina que computa $f$ usando $B \in \mathcal A$ como oráculo.
+    Como $A$ é $\mathcal A$"=completa,
+    podemos substituir todas as chamadas a $B$
+    por chamadas a $A$;
+    basta usar a função que reduz $B$ para $A$.
+    Como esta função de redução opera em tempo polinomial,
+    a máquina resultante também opera em tempo polinomial,
+    e computa $f$ usando apenas $A$ como recurso.
+
+    Agora reduziremos $f$ a $\HaltFNP^\mathcal A$.
+    Seja $p$ o polinômio que limita o tempo de computação da nova máquina $M'$.
+    Na entrada $x$,
+    basta escrever $\langle M', x, p(|x|) \rangle$ na fita.
+    Tempo $p(|x|)$ é suficiente para que $M'$ responda em todos os ramos;
+    portanto,
+    \begin{equation*}
+        \HaltFNP^\mathcal A(\langle M', x, p(|x|) \rangle) = M'(x) = f(x),
+    \end{equation*}
+    o que prova $\HaltFNP^\mathcal A$ ser $\FNP^\mathcal A$"=completa.
+
+    Para $\FP^\mathcal A$ e $\coFNP^\mathcal A$ a demonstração é análoga.
+\end{proof}
