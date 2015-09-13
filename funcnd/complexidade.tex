@@ -107,3 +107,40 @@ $\coFNP$ é o análogo a $\coNP$.
     encontrar o caminho hamiltoniano de menor custo,
     e calcular o número cromático.
 \end{example}
+
+O contrário também é possível;
+isto é,
+podemos transformar problemas de $\FNP$ em problemas de $\NP$.
+
+\begin{theorem}
+    Se $f$ é uma função de $\FNP$,
+    então a linguagem
+    \begin{equation*}
+        L_f = \{ \langle x, y \rangle \mid f(x) \geq y \},
+    \end{equation*}
+    em que $\geq$ significa comparação lexicográfica,
+    pertence a $\NP$.
+\end{theorem}
+
+\begin{proof}
+    A máquina não"=determinística $M$ que reconhecerá $L_f$
+    usará seu próprio não"=determinismo para computar $f(x)$.
+
+    Como $f \in \FNP$,
+    existe alguma máquina não"=determinística $N$ que a computa.
+    Caso $M$ execute $N$ como um passo intermediário,
+    eventualmente os ramos de computação de $M$
+    conterão todas as folhas de $N(x)$ calculadas.
+    Então, basta comparar com $y$;
+    caso algum ramo de computação resulte numa folha
+    cujo valor é maior ou igual a $y$,
+    significa que o valor de $N(x)$ é maior ou igual a $y$,
+    portanto, podemos aceitar o par $\langle x, y \rangle$.
+    Caso nenhum ramo de computação resulte numa folha maior ou igual a $y$,
+    significa que $N(x)$ não é maior ou igual a $y$,
+    portanto, devemos rejeitar $\langle x, y \rangle$.
+
+    Em outras palavras,
+    a máquina $M$ deve aceitar exatamente quando encontrar
+    alguma folha da computação de $N(x)$ que é maior que $y$.
+\end{proof}
