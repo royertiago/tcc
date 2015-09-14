@@ -124,22 +124,34 @@ podemos transformar problemas de $\FNP$ em problemas de $\NP$.
 \end{theorem}
 
 \begin{proof}
-    A máquina não"=determinística $M$ que reconhecerá $L_f$
-    usará seu próprio não"=determinismo para computar $f(x)$.
+    A ideia é fazer com que a máquina não"=determinística $M$,
+    que reconhecerá $L_f$,
+    compute $f$ usando seu próprio não"=determinismo,
+    e aceitará a entrada caso ache algum ramo de computação
+    que produza um valor maior ou igual a $y$.
 
-    Como $f \in \FNP$,
-    existe alguma máquina não"=determinística $N$ que a computa.
-    Caso $M$ execute $N$ como um passo intermediário,
-    eventualmente os ramos de computação de $M$
-    conterão todas as folhas de $N(x)$ calculadas.
-    Então, basta comparar com $y$;
-    caso algum ramo de computação resulte numa folha
-    cujo valor é maior ou igual a $y$,
-    significa que o valor de $N(x)$ é maior ou igual a $y$,
-    portanto, podemos aceitar o par $\langle x, y \rangle$.
-    Caso nenhum ramo de computação resulte numa folha maior ou igual a $y$,
-    significa que $N(x)$ não é maior ou igual a $y$,
-    portanto, devemos rejeitar $\langle x, y \rangle$.
+    Mais formalmente,
+    seja $N$ uma máquina não"=deterministica que computa $f$ em tempo polinomial.
+    Considere que a entrada é $\langle x, y \rangle$.
+    A primeira coisa que $M$ fará é executar $N$ em $x$.
+    Sabemos que isso é possível pois ambas as máquinas são não"=determinísticas.
+
+    Após $N$ parar
+    (o que ocorrerá em tempo polinomial),
+    $N$ deixará na fita um ``candidato'' a $f(x)$.
+    De fato,
+    todas as folhas da computação de $N$ estarão disponíveis nos ramos de $M$.
+    Como $N$ computa $f$,
+    apenas o maior destes valores será $f(x)$;
+    portanto,
+    se algum ramo encontrar algum candidato que seja maior ou igual a $y$,
+    a entrada $\langle x, y \rangle$ pode ser aceita.
+
+    O contrário também ocorre.
+    Se todos os ramos de computação gerarem candidatos a $f(x)$
+    que são menores que $y$,
+    o próprio valor de $f(x)$ será menor que $y$,
+    pontanto a entrada pode ser rejeitada.
 
     Em outras palavras,
     a máquina $M$ deve aceitar exatamente quando encontrar
