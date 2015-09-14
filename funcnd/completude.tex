@@ -146,16 +146,17 @@ que é possível codificar estados de computação em fórmulas lógicas;
 como esta codificação impõe,
 na fórmula lógica,
 o estado final da fita,
-podemos recuperar qual é a palavra deixada na fita pela computação
-a partir de uma atribuição que satisfaz aquela cláusula.
+podemos recuperar qual é a palavra deixada na fita pela computação codificada na fórmula,
+usando uma atribuição que satisfaz aquela fórmula.
 
 Entretanto,
 não podemos simplesmente retornar uma atribuição para a fórmula gerada,
 pois a atribuição contém muito mais informação do que precisamos.
-Em particular,
-ela contém todas as escolhas não"=determinísticas feitas naquela computação;
-nós só precisamos da fita deixada pela máquina,
-que corresponde a alguns bits ao final da fórmula.
+Ela contém todas as etapas da computação,
+incluindo todos os estados intermediários
+e todas as escolhas não"=determinísticas feitas pela máquina sendo reduzida.
+Nós só precisamos da fita deixada pela máquina,
+que corresponde a alguns bits da atribuição.
 
 Podemos tentar a seguinte estratégia:
 passamos à máquina que calcula nossa generalização de $\SAT$
