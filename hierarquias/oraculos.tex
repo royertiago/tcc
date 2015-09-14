@@ -96,13 +96,13 @@ mostramos que $L_u^1$ é decidível usando um oráculo para $S_1$
 O oposto também ocorre:
 
 Suponha que dispomos de um oráculo para $L_u^1$.
-Se a entrada for $\langle M \rangle$,
-construa uma máquina que ignore a entrada
-e enumera os pares $(i, j)$.
+Na entrada $\langle M \rangle$,
+construa uma máquina $M'$ que ignorará sua própria entrada
+e enumerar os pares $(i, j)$.
 Para cada par enumerado,
-ela $M$ na $i$-ésima palavra por $j$ movimentos.
-Caso $M$ aceite, aceite a entrada, qualquer que seja.
-Caso contrário, enumere o próximo par, e tente de novo.
+$M'$ executará $M$ na $i$"=ésima palavra por $j$ movimentos.
+Caso $M$ aceite, $M'$ aceita a entrada, qualquer que seja.
+Caso contrário, $M'$ enumera o próximo par, e tente de novo.
 De posse desta máquina, peça ao oráculo se ela aceita $\varepsilon$
 (ou qualquer palavra).
 Se sim, significa que, em algum par $(i, j)$,
