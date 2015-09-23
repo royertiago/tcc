@@ -112,3 +112,130 @@ inverter o ordenamento das cadeias de $\{0, 1\}^*$.
 
     Portanto, $f \in \Delta_{n+1}^f$.
 \end{proof}
+
+O teorema~\ref{thm:fp_np_equals_fp_fnp}
+pode ser refraseado como
+\begin{equation*}
+    \Delta_2^f = \FP^{\Sigma_1^p}.
+\end{equation*}
+Observe que o oráculo utilizado é $\Sigma_1^p$, não $\Sigma_1^f$.
+Podemos generalizar esta relação
+para todos os níveis de nossa hierarquia polinomial funcional.
+
+\begin{theorem}
+    Para todo $n$,
+    \begin{align*}
+        \Delta_{n+1}^f &= \FP^{\Sigma_n^p}, \\
+        \Sigma_{n+1}^f &= \FNP^{\Sigma_n^p}, \\
+        \Pi_{n+1}^f &= \coFNP^{\Sigma_n^p}. \\
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    Faremos por indução.
+    Observe que,
+    como $\Pi_n^p$ contém os complementos dos conjuntos de $\Sigma_n^p$,
+    \begin{equation*}
+        \coFNP^{\Sigma_n^p} = \coFNP^{\Pi_n^p};
+    \end{equation*}
+    esta observação ajudará a resolver o caso de $\Pi_{n+1}^f$.
+
+    Para $n = 0$, é simples, pois $\Sigma_0^p = \P$.
+    \begin{align*}
+        \Delta_1^f = \FP^\FP = \FP &= \FP^\P = \FP^{\Sigma_0^p}; \\
+        \Sigma_1^f = \FNP^\FP = \FNP &= \FNP^\P = \FNP^{\Sigma_0^p}; \\
+        \Pi_1^f = \coFNP^\FP = \coFNP &= \coFNP^\P = \coFNP^{\Sigma_0^p}.
+    \end{align*}
+
+    Para $n \geq 1$, usaremos a mesma técnica usada
+    para demonstrar o teorema~\ref{thm:fn_np_equals_fp_fnp}.
+    Em essência,
+    demonstraremos que uma chamada a um oráculos de $\Sigma_n^f$
+    podem ser substituídas por várias chamadas a um oráculo de $\Sigma_n^p$
+    (e algum processamento intermediário).
+    Como este número de chamadas se manterá polinomial,
+    toda a computação em si continuará sendo em tempo polinomial.
+    Além disso,
+    tomaremos cuidado para que a sequência de passos de computação
+    que simulará a chamada a $\Sigma_n^f$
+    seja feita de maneira determinística;
+    assim,
+    a mesma demonstração pode ser repetida para $\FP$, $\FNP$ e $\coFNP$.
+
+    Fixe um oráculo $f \in \Sigma_n^f$.
+    Construiremos um oráculo $L \in \Sigma_n^p$
+    e mostrar como substituir uma única chamada a $f$
+    por uma sequência de chamadas a $L$.
+    Defina
+    \begin{equation*}
+        L = \{\langle x, y\rangle \mid f(x) \geq y\}.
+    \end{equation*}
+    (Observe que $L$ é $L_f$, nos termos do teorema~\ref{thm:fnp_to_np_conversion}.)
+    Primeiro, mostraremos que $L \in \Sigma_n^p$.
+
+    O ponto crucial desta ``sub"=demonstração'' é perceber que,
+    como $f$ pertence a $\Sigma_n^f$,
+    $f$ pertence a $\FNP^{\Sigma_{n-1}^p}$,
+    pela hipótese indutiva.
+    De resto, procederemos como no teorema~\ref{thm:fnp_to_np_conversion}.
+
+    Seja $M$ uma máquina que calcula $f$,
+    usando $L' \in \Sigma_{n-1}^p$ como oráculo
+    --- a hipotese indutiva garante que tais $M$ e $L'$ existem.
+    Construia uma máquina $M'$ que,
+    na entrada $\langle x, y \rangle$,
+    agirá como $M$ em $x$ e calcular um dos ramos da computação de $M$ em $x$.
+    Se o resultado na fita for maior ou igual a $y$,
+    aceite;
+    caso contrário, rejeite.
+
+    Observe que $M'$ reconhece uma linguagem de $\Sigma_n^p$.
+    Argumentaremos que $L(M') = L$.
+    De fato, se $f(x) > y$,
+    algum dos ramos de computação de $M$ produzirá um valor maior ou igual a $y$,
+    portanto $M'$ aceitará a entrada.
+    Caso contrário,
+    todos os ramos geram valores menores que $y$,
+    portanto $M'$ rejeitará a entrada.
+    Assim, $L(M') = L$,
+    o que prova que $L \in \Sigma_n^p$.
+
+    Agora,
+    mostraremos como calcular $f(x)$ usando apenas chamadas a $L$:
+    basta fazer busca binária assim como na demonstração
+    do teorema~\ref{thm:fp_np_equals_fp_fnp}.
+    Primeiro,
+    encontre o menor $n$ tal que $f(x) < 0^n$,
+    exclua um $0$,
+    e vá fazendo chamadas sucessivas a $L$ para descobrir os demais bits de $f(x)$.
+    Desta forma, com $2n+1$ chamadas a $L$,
+    calculamos $f(x)$.
+
+    Em outras palavras,
+    \begin{equation*}
+        f \in \FP^{\Sigma_n^p}.
+    \end{equation*}
+
+    Portanto, se $g \in \FP^f$,
+    por exemplo,
+    temos
+    \begin{align*}
+        g &\in \FP^f \\
+          &\subseteq \FP^{\FP^{\Sigma_n^p}} \\
+          &= \FP^{\Sigma_n^p}.
+    \end{align*}
+
+    Como esse processo pode ser feito para qualquer $f \in \Sigma_n^f$,
+    acabamos de mostrar que
+    \begin{equation*}
+        \Delta_{n+1}^f \subseteq \FP^{\Sigma_n^p}.
+    \end{equation*}
+
+    Analogamente,
+    \begin{align*}
+        \Sigma_{n+1}^f &\subseteq \FNP^{\Sigma_n^p},\\
+        \Pi_{n+1}^f &\subseteq \coFNP^{\Sigma_n^p}.
+    \end{align*}
+
+    As inclusões contrárias são triviais.
+\end{proof}
