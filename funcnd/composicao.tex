@@ -1,0 +1,26 @@
+\section{Composição de Funções}
+
+Trabalhar com funções computadas por máquinas de Turing determinísticas
+nos permite implementar a composição destas funções de maneira muito simples:
+basta ``concatenar'' as duas máquinas.
+Assim que a primeira máquina parar,
+o cabeçote de leitura é movido para o começo da fita
+e a segunda máquina assume o controle.
+Nesta seção investigaremos a composição de funções não"=determinísticas.
+
+\begin{definition}[Fecho sob composição]
+    \simbolo{$\mathcal F^\circ$}{Fecho compositivo de $\mathcal F$}
+    Dado um conjunto $\mathcal F$ de funções de $\{0, 1\}^*$ em $\{0, 1\}^*$,
+    o \emph{fecho compositivo} de $\mathcal F$,
+    denotado por $\mathcal F^\circ$,
+    é o conjunto de todas as funções que podem ser obtidas
+    através da composição de um número finito de funções de $\mathcal F$.
+    Isto é,
+    \begin{equation*}
+        \mathcal F^\circ = \{g \mid
+            \text{Existem funções $f_1, f_2, \dots, f_n$ em $\mathcal F$
+                tais que $g = f_1, f_2, \dots, f_n$
+            }
+        \}.
+    \end{equation*}
+\end{definition}
