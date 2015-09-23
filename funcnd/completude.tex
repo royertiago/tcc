@@ -323,11 +323,10 @@ mas depois de serem pós"=processadas por $M$ por $n$ rodadas.%
 
 \begin{proof}
     Basta reduzir de $\FdSAT$.
-    Escolha $M$ como sendo uma máquina que computa $d$.
-    Como $d$ pode ser computada em tempo polinomial,
-    existe algum polinômio $p$ que limita o tempo de computação de $M$.
-    Então escolha $n = p(k)$ caso a fórmula de entrada possua $k$ variáveis,
-    e passe a fórmula $\varphi$ intocada para $\FdSAT$.
+    Escolha $M$ como sendo uma máquina que computa $d$ em tempo polinomial.
+    Se $p$ é um polinômio que limita o tempo de computação de $M$,
+    escolha $n = p(k)$ quando a fórmula de entrada possuir $k$ variáveis,
+    e passe a fórmula $\varphi$ intocada para $\CallbackSAT$.
 
     Como $n$ é grande o bastante para que a máquina $M$ sempre encerre a execução,
     $t(M, x, n) = d(x)$.
