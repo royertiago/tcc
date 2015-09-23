@@ -1,0 +1,22 @@
+\section{Hierarquia Polinomial}
+
+Munidos da definição de oráculo funcional,
+da seção~\ref{sec:functional_oracles},
+podemos construir um análogo à hierarquia polinomial,
+mas usando funções.
+
+\begin{definition}[Hierarquia Polinomial Funcional]
+    \simbolo{$\Sigma_n^f$}{Versão funcional de $\Sigma_n^p$}
+    \simbolo{$\Delta_n^f$}{Versão funcional de $\Delta_n^p$}
+    \simbolo{$\Pi_n^f$}{Versão funcional de $\Pi_n^p$}
+    \begin{align*}
+        \Sigma_1^f &= \Delta_1^f = \Pi_1^f = \FP, \\
+        \Sigma_{n+1}^f &= \FNP^{\Sigma_n^f}, \\
+        \Delta_{n+1}^f &= \FP^{\Sigma_n^f}, \\
+        \Pi_{n+1}^f &= \coFNP^{\Sigma_n^f}.
+    \end{align*}
+\end{definition}
+
+$\Sigma_n^f$ é a generalização funcional de $\Sigma_n^p$,
+$\Delta_n^f$ é a de $\Delta_n^p$
+e $\Pi_n^f$ a de $\Pi_n^p$.
