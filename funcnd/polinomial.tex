@@ -20,3 +20,87 @@ mas usando funções.
 $\Sigma_n^f$ é a generalização funcional de $\Sigma_n^p$,
 $\Delta_n^f$ é a de $\Delta_n^p$
 e $\Pi_n^f$ a de $\Pi_n^p$.
+
+Assim como na hierarquia polinomial,
+$\Delta_n^f$ está contido tanto em $\Sigma_n^f$ quanto em $\Pi_n^f$.
+O fato de $\Sigma_n^f$ estar contido em $\Delta_{n+1}^f$
+é simples de ser verificado,
+pois $\Delta_{n+1}^f$ possui acesso a oráculos
+que resolvem problemas de $\Sigma_n^f$.
+Para provar que $\Delta_{n+1}^f$ também inclui $\Pi_n^f$,
+precisaremos, de alguma forma,
+inverter o ordenamento das cadeias de $\{0, 1\}^*$.
+
+\begin{proposition}
+    Para todo $n$,
+    \begin{equation*}
+        \Pi_n^f \subseteq \Delta_{n+1}^f.
+    \end{equation*}
+\end{proposition}
+
+\begin{proof}
+    Uma função $f \in \Pi_n^f$
+    é computada por uma máquina de Turing não"=determinística $M$
+    com acesso a um oráculo de $\Sigma_{n-1}^f$,
+    tomando"=se o mínimo de seus ramos.
+    Construiremos uma máquina não"=determinística $M'$,
+    usando o mesmo oráculo,
+    de forma que a função em $\Sigma_n^f$ que $M'$ computa
+    precisará apenas de um pós"=processamento
+    para resultar no valor de $f$.
+    Este pós"=processamento será feito por uma máquina determinística,
+    que usará $M'$ como oráculo;
+    esta máquina determinística,
+    portanto, computará $f$ usando os recursos de $\Delta_{n+1}^f$.
+    (A ideia é que $M'$ inverta o ordenamento das cadeias
+    produzidas por $M$.
+    No pós"=processamento, iremos ``desfazer'' a inversão.)
+
+    Usaremos a função $d$ de decodificação definida acima.
+    Na entrada $x$, $M'$ começará executando exatamente como $M$
+    até $M$ parar, deixando (digamos) $y$ na fita neste ramo de computação.
+    (Podemos fazer esta computação pois o oráculo de $M$
+    está em $\Sigma_{n-1}^f$,
+    portanto também podemos usá"=lo como oráculo.)
+    Como $M$ opera em tempo polinomial,
+    $|y|$ está limitado superiormente por $p(|x|)$ para algum polinômio $p$.
+    Então,
+    antes de encerrar a computação,
+    $M'$ substituirá o valor $y$ por
+    \begin{equation*}
+        0^{|y|}1 y 0^{2*p(|x|) - 2*|y|}.
+    \end{equation*}
+    A primeira cadeia de zeros garante que o valor de $d(M'(x))$
+    corresponda a algum dos ramos da computação de $M$.
+    A última garante que todos os ramos de computação de $M'$
+    resultem numa palavra de tamanho $2*p(|x|)+1$.
+
+    Chame de $e(y)$ a cadeia resultante da substituição acima,
+    de forma que $d(e(y)) = y$
+    para todo $y$ de tamanho menor que $p(|x|)$.
+    Toda esta demonstração se baseia na observação de que,
+    se $y_1 < y_2$, então $e(y_1) > e(y_2)$,
+    para $|y_1|, |y_2| \leq p(|x|)$.
+    Portanto,
+    ao aplicar a transformação $e$,
+    efetivamente invertemos localmente a ordenação das cadeias de $\{0, 1\}^*$.
+
+    Dessa forma, se tanto $M$ quanto $M'$ tomam menos de $k$ passos de computação
+    ao processar $x$,
+    \begin{align*}
+        M'(x) &= \max T(M', x, k) \\
+              &= \max \{e(y) \mid y \in T(M, x, k) \} \\
+              &= e \left( \min \{y \mid y \in T(M, x, k) \} \right) \\
+              &= e \left( \min T(M, x, k) \right) \\
+              &= e( f(x) ).
+    \end{align*}
+    Como consequência,
+    acabamos de demonstrar que a função $e \circ f$ pertence a $\Sigma_n^f$.
+    Agora,
+    basta usar uma terceira máquina $M''$,
+    determinística,
+    que usa $e \circ f$ como oráculo,
+    e calcular $d$ na resposta para obter o valor original de $f$.
+
+    Portanto, $f \in \Delta_{n+1}^f$.
+\end{proof}
