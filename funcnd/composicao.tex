@@ -74,3 +74,55 @@ Esta operação também possui algumas propriedades análogas ao fecho de Kleene
     concluímos que elas são composições de funções de
     $\mathcal F \cup \mathcal G$.
 \end{proof}
+
+Ao compor duas funções calculadas por máquinas de Turing determinísticas,
+o tempo de execução da máquina resultante
+será proporcional à soma dos tempos de execução das máquinas originais.
+Portanto,
+caso ambas as funções estejam em $\FP$,
+o tempo de computação resultante também será limitado por um polinômio,
+resultando em outra função de $\FP$.
+Portanto,
+a classe $\FP$ é fechada sob composição
+($\FP^\circ = \FP$).
+
+Ao equipar as máquinas com oráculos,
+encontramos um pequeno problema na hora de concatenar a máquina.
+Caso os oráculos sejam iguais,
+a concatenação descrita anteriormente funciona,
+pois a máquina resultante usará o mesmo oráculo das máquinas originais.
+Caso os oráculos sejam diferentes,
+não podemos simplesmente emendar as duas máquinas
+pois esta nova máquina precisaria de dois oráculos;
+mas podemos fazer a coisa funcionar sob as condições certas.
+
+\begin{theorem}
+    Se $\mathcal A$ possui um problema polinomialmente completo,
+    então $\FP^\mathcal A$ é fechado sob composição.
+\end{theorem}
+
+\begin{proof}
+    Basta unificar os oráculos usando o problema completo de $\mathcal A$.
+    Seja $A$ o problema completo de $\mathcal A$,
+    e suponha que $g$ é a composição
+    \begin{equation*}
+        f_1 \circ f_2 \circ \dots \circ f_n,
+    \end{equation*}
+    para $f_i \in \FP^\mathcal A$.
+
+    Tome máquinas $M_1, \dots, M_n$ que computam,
+    respectivamente, $f_1, \dots, f_n$,
+    e substitua seus oráculos pelo problema $A$;
+    sabemos que isso é possível pois $A$ é polinomialmente completo para $\mathcal A$.
+    Agora,
+    basta concatenar as máquinas.
+    A substituição do oráculo manteve todas as máquinas $M_i$
+    operando em tempo polinomial,
+    portanto a máquina resultante também operará em tempo polinomial;
+    isso mostra que $g \in \FP^\mathcal A$,
+    o que prova que $\FP^\mathcal A$ é fechado sob composição.
+\end{proof}
+
+\begin{ucorollary}
+    $\Delta_n^f$ é fechado sob composição.
+\end{ucorollary}
