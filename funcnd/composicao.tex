@@ -24,3 +24,53 @@ Nesta seção investigaremos a composição de funções não"=determinísticas.
         \}.
     \end{equation*}
 \end{definition}
+
+Se entendermos que a composição de zero funções resulta
+na função identidade,
+podemos construir esta operação da mesma forma como construímos o fecho de Kleene:
+
+Defina $\mathcal F^{\circ 0} = \{I\}$,
+em que $I$ é a função de identidade.
+Defina
+\begin{equation*}
+    \mathcal F^{\circ n+1} = \{ f \circ g \mid
+        f \in \mathcal F, g \in \mathcal F^{\circ n}
+    \}.
+\end{equation*}
+
+Assim, temos
+\begin{equation*}
+    \mathcal F^\circ = \bigcup_{n \in \mathbb N} \mathcal F^{\circ n}.
+\end{equation*}
+
+Esta operação também possui algumas propriedades análogas ao fecho de Kleene.
+
+\begin{proposition}
+    \begin{align*}
+        (\mathcal F^\circ)^\circ &= \mathcal F^\circ \\
+        \mathcal F &\subseteq \mathcal F^\circ \\
+        (\mathcal F^\circ \cup \mathcal G^\circ)^\circ &=
+            (\mathcal F \cup \mathcal G)^\circ
+    \end{align*}
+\end{proposition}
+
+\begin{proof}
+    Todas as funções de $(\mathcal F^\circ)^\circ$
+    são composições de funções de $\mathcal F^\circ$,
+    que, por sua vez,
+    são composições de funções de $\mathcal F$;
+    portanto, as funções de $(\mathcal F^\circ)^\circ$
+    são composições de funções de $\mathcal F$,
+    o que prova a primeira fórmula.
+
+    Para a segunda fórmula,
+    basta escolher $n = 1$ na definição de fecho compositivo.
+
+    Para a última,
+    observe que as funções de $(\mathcal F^\circ \cup \mathcal G^\circ)^\circ$
+    são composições de funções de $\mathcal F^\circ$ e $\mathcal G^\circ$,
+    possivelmente intercaladas;
+    portanto, usando o mesmo raciocínio do primeiro parágrafo,
+    concluímos que elas são composições de funções de
+    $\mathcal F \cup \mathcal G$.
+\end{proof}
