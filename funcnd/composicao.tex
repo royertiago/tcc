@@ -58,6 +58,7 @@ Esta operação também possui propriedades análogas às do fecho de Kleene.
     \begin{equation*}
         \mathcal F^\circ \subseteq \mathcal G^\circ.
     \end{equation*}
+    \label{thm:compositive_closure_properties}
 \end{proposition}
 
 \begin{proof}
@@ -112,6 +113,7 @@ mas podemos fazer a coisa funcionar sob as condições certas.
 \begin{theorem}
     Se $\mathcal A$ possui um problema polinomialmente completo,
     então $\FP^\mathcal A$ é fechado sob composição.
+    \label{thm:fp_closed_under_composition}
 \end{theorem}
 
 \begin{proof}
@@ -138,4 +140,290 @@ mas podemos fazer a coisa funcionar sob as condições certas.
 
 \begin{ucorollary}
     $\Delta_n^f$ é fechado sob composição.
+\end{ucorollary}
+
+Para funções calculadas por máquinas não"=determinísticas,
+não podemos meramente emendar as duas máquinas
+pois,
+em alguns ramos de computação,
+a segunda máquina pode estar operando com algum valor menor do que máximo
+--- que é o valor real da função.
+
+Para $\FNP$, por exemplo,
+podemos calcular as funções de $\FNP^\circ$
+usando o poder computacional de $\FP^\FNP$:
+como $\FNP$ possui problemas completos,
+nós podemos emendar máquinas determinísticas
+que somente chamam seus oráculos de $\FNP$
+para calcular a função composta.
+Portanto,
+\begin{equation*}
+    \FNP^\circ \subseteq \FP^\FNP.
+\end{equation*}
+
+De fato,
+podemos fortalecer este ``$\subseteq$'' para um ``$=$''.
+
+\begin{theorem}
+    Se $\mathcal A$ possui problemas polinomialmente completos,
+    então
+    \begin{equation*}
+        (\FNP^\mathcal A)^\circ = \FP^{\FNP^\mathcal A}
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    Provar que o primeiro conjunto está contido no segundo é fácil.
+    Pelo teorema~\ref{thm:polinomially_complete_problems},
+    o conjunto $\FNP^\mathcal A$
+    possui problemas polinomialmente completos;
+    portanto,
+    pelo teorema~\ref{thm:fp_closed_under_composition},
+    $\FP^{\FNP^\mathcal A}$ é fechado sob composição.
+    Agora, como
+    \begin{equation*}
+        \FNP^\mathcal A \subseteq \FP^{\FNP^\mathcal A},
+    \end{equation*}
+    pela quarta propriedade da proposição~\ref{thm:compositive_closure_properties},
+    \begin{equation*}
+        (\FNP^\mathcal A)^\circ \subseteq
+            \left(\FP^{\FNP^\mathcal A}\right)^\circ
+            = \FP^{\FNP^\mathcal A}.
+    \end{equation*}
+
+    Para a inclusão contrária,
+    usaremos um caminho indireto.
+    Demonstraremos primeiro que algum problema completo de
+    $\FP^{\FNP^\mathcal A}$
+    pode ser escrito como a composição de dois problemas de $\FNP^\mathcal A$.
+    Chame de $f$ este problema.
+    Como $f$ é polinomialmente completo para $\FP^{\FNP^\mathcal A}$,
+    para toda função $g \in \FP^{\FNP^\mathcal A}$ existe uma função $h \in FP$
+    tal que $g = f \circ h$.
+    Como $h \in \FNP^\mathcal A$ e $f \in \left(\FNP^\mathcal A\right)^\circ$,
+    a composição $f \circ h = g$
+    também estará em $\left(\FNP^\mathcal A\right)^\circ$.
+
+    Tiraremos o problema $f$
+    da demonstração do teorema~\ref{thm:polinomially_complete_problems}.
+    Escolha
+    \newcommand{\HaltFP}{{\lang{HaltFP}}}
+    \begin{equation*}
+        f = \HaltFP^{\FNP^\mathcal A},
+    \end{equation*}
+    em que $\HaltFP^{\FNP^\mathcal A}$ é definida por
+    \begin{equation*}
+        \HaltFP^{\FNP^\mathcal A}(\langle M, x, n \rangle) = t(M^A, x, n),
+    \end{equation*}
+    em que $A$ é um problema completo para $\FNP^\mathcal A$.
+    Observe que $f$ é,
+    nos termos do teorema~\ref{thm:polinomially_complete_problems},
+    $\HaltFP^\mathcal B$
+    para $\mathcal B = \FNP^\mathcal A$.
+    $A$ é um problema polinomialmente completo para $\mathcal B$,
+    portanto,
+    pelo mesmo teorema,
+    $f$ é polinomialmente completo para $\FP^\mathcal B = \FP^{\FNP^\mathcal A}$.
+
+    De posse do problema completo $f$,
+    o próximo passo é escrevê"=lo como uma composição
+    de duas funções de $\FNP^\mathcal A$.
+    Estas duas funções serão computadas por máquinas
+    que usam o problema $A$,
+    que é completo para $\FNP^\mathcal A$.
+
+    Dada a entrada $\langle M, x, n \rangle$,
+    o problema $f$ consiste em simular a máquina $M^A$ por $n$ estados,
+    na entrada $x$.
+    $M$ é determinística, portanto a mera simulação é fácil de ser feita,
+    usando recursos de $\FNP^\mathcal A$.
+    O problema são as chamadas ao oráculo $A$,
+    que é polinomialmente completo para $\FNP^\mathcal A$.
+    Como este oráculo representa uma função não"=determinística,
+    não podemos simplesmente computar $A$
+    e prosseguir a simulação com o que quer que tenhamos obtido,
+    pois o valor obtido neste ramo
+    pode não ser o valor correto;
+    usando apenas recursos de $\FNP^\mathcal A$,
+    só temos acesso à maximização global
+    no final de todas as etapas de computação.
+    Então, precisaremos usar esta ``pós"=maximização''
+    para obter esta maximização intermediária.
+
+    Seja $p$ um polinômio que limita o tamanho de $A(x)$;
+    isto é, $|A(x)| \leq p(|x|)$ para todo $x$.
+    Sabemos que tal polinômio existe
+    pois $A \in \FNP^\mathcal A$,
+    e uma máquina de $\FNP^\mathcal A$ só tem ``tempo''
+    de escrever uma quantidade polinomial de bits na saída.
+
+    Se a máquina $M$ faz $k$ invocações ao oráculo $A$ na entrada $x$
+    nos primeiros $n$ movimentos,
+    enumere os valores chamados por $y_1, y_2, \dots, y_k$.
+    Defina
+    \begin{equation*}
+        Y(M, x, i, n) = 0^{|A(y_i)|} 1 A(y_i)\ 0^{2*p(n)+1 - |A(y_i)|};
+    \end{equation*}
+    ou seja, $Y(M, x, i)$ é a resposta da $i$"=ésima invocação ao oráculo ($A(y_i)$),
+    mas codificada num formato especial:
+    a resposta $A(y_i)$ é sucedida por uma cadeia de zeros de tamanho variavel,
+    fazendo com que todos os $Y(M, x, i, n)$ sejam de tamanho $2*p(n) + 1$;
+    além disso, a resposta está precedida de $0^{|A(y_i)|}1$,
+    de forma que podemos recuperar $A(y_i)$
+    usando a função $d$ de decodificação.
+    (Observe que todas as perguntas feitas ao oráculo
+    terão tamanho menor ou igual a $n$,
+    portanto todas as respostas terão tamanho menor ou igual a $p(n)$.
+    O $p(n)+1$ adicional é para englobar o prefixo inicial para a função $d$.)
+    Defina $Y(M, x, i, n) = 0^{2*p(|x|)+1}$ caso $i > k$.
+
+    É importante notar que esta codificação
+    preserva a ordem lexicográfica de todas as palavras
+    de tamanho menor ou igual a $p(n)$.
+
+    Nossa primeira função $F$,
+    dentre as duas que serão compostas para formar $f$,
+    é definida por
+    \begin{equation*}
+        F(\langle M, x, n \rangle) = \langle M, x, n \rangle
+            Y(M, x, 1, n) Y(M, x, 2, n) \cdots Y(M, x, n, n).
+    \end{equation*}
+    Isto é,
+    $F$ retorna as respostas a todas as perguntas feitas pela máquina $M$ ao oráculo $A$
+    ao rodar $n$ passos sobre $x$
+    --- além da entrada inicial $\langle M, x, n \rangle$, é claro.
+    Mostraremos que $F \in \FNP^\mathcal A$.
+    (A entrada inicial $\langle M, x, n \rangle$
+    é incluida pois precisaremos propagar esta informação para a segunda função
+    que comporemos com $F$,
+    mas, por ora,
+    ignoraremos a existência deste ``pedacinho'' de $F$ na argumentação.)
+
+    A máquina não"=determinística que calcula esta função
+    usará exatamente a ``pós"=maximização'' global,
+    que ela possui por calcular uma função não"=determinística,
+    para conseguir maximizações locais nas perguntas ao oráculo $A$.
+    Entretanto,
+    como $F$ e $A$ estão no mesmo ``nível de complexidade''
+    (isto é, ambas as funções estão em $\FNP^\mathcal A$),
+    não podemos usar $A$ como oráculo;
+    aí entrará a notação de $Y$.
+
+    Chame de $M_A$ a máquina não"=determinística que calcula $A$,
+    e $M_F$ a máquina que calcula $F$
+    (construiremos $M_F$ agora).
+    $M_F$ simplesmente simula a execução de $M$ em $x$.
+    Quando $M$ faz uma pergunta ao oráculo,
+    $M_F$ age como $M_A$,
+    gerando vários ramos de computação.
+    (Alguns levarão à resposta correta $A(y_1)$,
+    mas outros não.)
+    Independente de $M_F$ ter acertado o valor de $M_A$ ou não,
+    $M_F$ escreverá a resposta que acabou de achar na fita de saída,
+    deixando"=a na formatação dos $Y(M, x, i, n)$.
+    Então, $M_F$ retorna o controle a $M$,
+    imaginando que a resposta ao oráculo está no ramo atual da fita,
+    e prossegue a computação.
+    Quando a quantidade de passos passar de $n$,
+    basta preencher os $Y$ faltantes com zeros.
+
+    Em outras palavras,
+    cada ramo de computação de $M_F$
+    retornará uma lista de palavras $w_1 w_2 \dots w_n$,
+    todas elas com tamanho $2*p(n)+1$.
+    $d(w_1)$ é um candidato a $A(y_i)$;
+    De fato, $d(w_1)$ é uma das folhas da computação de $M_A$ em $y_1$.
+    Caso $d(w_1)$ seja a resposta certa,
+    a simulação feita por $M_F$
+    coincidirá com a computação de $M$ em $x$,
+    e a próxima pergunta de $M$ ao oráculo será $y_2$.
+    Então, $d(w_2)$ será um candidato a $A(y_2)$,
+    novamente aparecendo numa das folhas da computação de $M_A$ em $y_2$,
+    e assim por diante.
+
+    Entretanto, caso $w_1$ não seja a resposta certa,
+    $M_F$ prosseguirá a simulação com a resposta errada,
+    e a próxima pergunta feita por $M$ ao oráculo
+    (neste ramo de computação)
+    pode não ser $y_2$;
+    neste caso,
+    a simulação é ``inválida'',
+    no sentido de não corresponder exatamente à computação de $M$ em $x$.
+    Argumentaremos que,
+    no máximo lexicográfico destas listas de palavras,
+    todos os $w_i$ correspondem às respostas certas do oráculo $A$;
+    isto é, estes erros não ocorrem
+    e $M_F$ corretamente computa $F$.
+
+    Primeiro,
+    note que todos os ramos de computação retornarão palavras de mesmo tamanho.
+    Dessa forma,
+    dadas duas listas, $w_1 w_2 \dots w_n$ e $v_1 v_2 \dots v_n$,
+    se $w_1 > v_1$ lexicográficamente,
+    a primeira lista tem precedência sobre a segunda.
+    Portanto,
+    o máximo dentre os ramos de computação
+    também terá de maximizar, localmente,
+    o candidado à primeira resposta ao oráculo.
+    Isto é,
+    se o máximo lexicográfico é
+    \begin{equation*}
+        \omega_1 \omega_2 \dots \omega_n,
+    \end{equation*}
+    sabemos com certeza que $d(\omega_1) = A(y_1)$,
+    pois algum ramo de computação gerou $A(y_1)$ como candidato à primeira resposta,
+    e nenhum outro ramo pode ter gerado um valor maior.
+
+    Agora, como acertamos a primeira resposta do oráculo,
+    a simulação de $M_F$ corresponderá à computação de $M$ em $x$,
+    e a segunda pergunta feita na simulação será $y_2$.
+    Usando um raciocínio similar,
+    concluimos que $d(\omega_2) = A(y_2)$,
+    e assim por diante,
+    até concluir que $d(\omega_i) = A(y_i)$ para todo $i$.
+
+    Isso prova que $F \in \FNP^\mathcal A$.
+    Agora,
+    construiremos a segunda função, $G$,
+    que será composta com $F$ para gerar $f$.
+
+    A máquina $M_G$ que calculará $G$
+    pegará a saída de $M_F$ e descobrirá o valor de $t(M, x, n)$.
+    Para isso,
+    basta simular $M$ em $x$ por $n$ rodadas;
+    as respostas à todas as consultas a $A$ já foram descobertas por $M_F$.
+    Portanto,
+    $M_G$ pode ser determinística sem oráculos.
+
+    Assim, por construção, $G(F(\langle M, x, n \rangle)) = t(M, x, n)$;
+    portanto,
+    \begin{equation*}
+        G \circ F = \HaltFP^{\FNP^\mathcal A} = f.
+    \end{equation*}
+
+    Como $G$ e $F$ pertencem a $\FNP^\mathcal A$,
+    mostramos, finalmente, que
+    \begin{equation*}
+        f \in \left(\FNP^\mathcal A\right) ^ \circ.
+    \end{equation*}
+    Agora, podemos repetir a argumentação dada no início da demonstração.
+
+    Se $g \in \FP^{\FNP^\mathcal A}$,
+    então existe alguma função $h \in \FP$
+    tal que $f \circ h = g$
+    (pois $f$ é completa para $\FP^{\FNP^\mathcal A}$).
+    Portanto,
+    como $f \in \left( \FNP^\mathcal A \right) ^ \circ$
+    e $\FP \subseteq \FNP^\mathcal A$,
+    temos $g \in \left( \FNP^\mathcal A \right) ^ \circ$,
+    o que prova que
+    \begin{equation*}
+        \FP^{\FNP^\mathcal A} \subseteq \left( \FNP^\mathcal A \right) ^ \circ.
+    \end{equation*}
+\end{proof}
+
+\begin{ucorollary}
+    \begin{equation*}
+        (\Sigma_n^f) ^ \circ = \Delta_{n+1}^f.
+    \end{equation*}
 \end{ucorollary}
