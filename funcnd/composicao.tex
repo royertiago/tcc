@@ -46,12 +46,18 @@ Assim, temos
 Esta operação também possui propriedades análogas às do fecho de Kleene.
 
 \begin{proposition}
+    Se $\mathcal F$ e $\mathcal G$ são conjuntos de funções, então
     \begin{align*}
         (\mathcal F^\circ)^\circ &= \mathcal F^\circ \\
         \mathcal F &\subseteq \mathcal F^\circ \\
         (\mathcal F^\circ \cup \mathcal G^\circ)^\circ &=
-            (\mathcal F \cup \mathcal G)^\circ
+            (\mathcal F \cup \mathcal G)^\circ.
     \end{align*}
+    Além disso, se $\mathcal F \subseteq \mathcal G$,
+    então
+    \begin{equation*}
+        \mathcal F^\circ \subseteq \mathcal G^\circ.
+    \end{equation*}
 \end{proposition}
 
 \begin{proof}
@@ -66,13 +72,20 @@ Esta operação também possui propriedades análogas às do fecho de Kleene.
     Para a segunda fórmula,
     basta escolher $n = 1$ na definição de fecho compositivo.
 
-    Para a última,
+    Para a terceira,
     observe que as funções de $(\mathcal F^\circ \cup \mathcal G^\circ)^\circ$
     são composições de funções de $\mathcal F^\circ$ e $\mathcal G^\circ$,
     possivelmente intercaladas;
     portanto, usando o mesmo raciocínio do primeiro parágrafo,
     concluímos que elas são composições de funções de
     $\mathcal F \cup \mathcal G$.
+
+    E, para a última,
+    note que todas as funções de $\mathcal F^\circ$
+    são composições de funções de $\mathcal F$,
+    portanto também de $\mathcal G$;
+    isto é, todas as funções de $\mathcal F^\circ$
+    também estão em $\mathcal G$.
 \end{proof}
 
 Ao compor duas funções calculadas por máquinas de Turing determinísticas,
