@@ -436,3 +436,34 @@ Com este corolário,
 atingimos um dos objetivos deste trabalho;
 nós encontramos uma relação na hierarquia polinomial
 através da composição de funções não"=determinísticas.
+
+Analisando mais cuidadosamente a demonstração,
+podemos fortalecer levemente o teorema.
+A função $G$ é calculada por uma máquina determinística sem oráculos;
+portanto, na verdade,
+temos $G \in \FP$.
+Portanto, toda função $f \in \FP^{\FNP^\mathcal A}$
+pode ser escrita como
+\begin{equation*}
+    G \circ F \circ h,
+\end{equation*}
+em que $G$ e $h$ pertencem a $\FP$ e $F$ pertence a $\FNP^\mathcal A$.
+
+Mas, como $h$ é uma função determinística que opera em tempo polinomial,
+podemos ``emendar'' a máquina que computa $h$
+no início da máquina que computa $F$ sem prejuízos.
+Ou seja,
+a função $H = F \circ h$ pertence a $\FNP^\mathcal A$;
+provamos, portanto,
+o seguinte teorema.
+
+\begin{ucorollary}
+    Se $\mathcal A$ possui problemas polinomialmente completos,
+    então todo problema $f \in \FP^{\FNP^\mathcal A}$
+    pode ser escrito como
+    \begin{equation*}
+        G \circ H,
+    \end{equation*}
+    em que $G \in \FP$ e $H \in \FNP^\mathcal A$.
+    Além disso, $G$ não depende de $f$.
+\end{ucorollary}
