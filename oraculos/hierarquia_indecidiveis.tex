@@ -1,0 +1,91 @@
+\section{Hierarquia de problemas indecidíveis}
+
+Muitos outros problemas podem ser demonstrados equivalentes
+(como oráculos)
+ao problema da parada,
+como o problema da correspondência de Post \cite[p.~214]{HopcroftUllman1979}.
+Entretanto,
+nem todos os problemas podem ser resolvidos com oráculos para a parada.
+De fato, a mesma técnica que mostra que a parada é indecidível
+pode ser usado para gerar um problema indecidível
+para máquinas que usam o problema da parada como oráculo.
+
+Defina
+\simbolo{$L_u^n$}{Problema da parada, generalizado via oráculos}
+\simbolo{$S_n$}{Problema da vacuidade, generalizado via oráculos}
+\begin{align*}
+    L_u^{n+1} &= \{ \langle M^{L_u^n}, x \rangle \mid M^{L_u^n} \text{ aceita } x \}, \\
+    S_{n+1} &= \{ \langle M^{S_n} \rangle \mid L^{S_n}(M) = \emptyset \}.
+\end{align*}
+$L_u^{n+1}$ é o problema da parada
+para máquinas de Turing que usam $L_u^n$ como oráculo;
+$S_{n+1}$ é o problema da vacuidade
+para máquinas de Turing que usam $S_n$ como oráculo.%
+\footnote{
+    Observe que,
+    se definirmos $L_u^0 = S_0 = \emptyset$
+    (ou algum conjunto recursivo qualquer),
+    a fórmula é válida também para $n = 1$.
+}
+Podemos demonstrar por indução que $S_n$ é equivalente a $L_u^n$;
+e, imitando o teorema da parada,
+podemos mostrar que $L_u^n$ é indecidível para máquinas que usam $L_u^n$ como oráculo.
+
+Defina
+\simbolo{$\R_n$}{Linguagens decidíveis usando um oráculo para $L_u^n$}
+\begin{equation*}
+    \R_n = \{ L \mid L = L^{L_u^n}(M) \text{ para alguma máquina $M^{L_u^n}$ } \}.
+\end{equation*}
+Ou seja, $\R_n$ é o conjunto das linguagens
+que são decidíveis usando $L_u^n$ como oráculo.%
+\footnote{
+    Se usarmos a convenção de que $L_u^0 = \emptyset$,
+    o conjunto $\R_0$ é exatamente o conjunto das linguagens recursivas
+    (geralmente denotado por \R).
+}
+O parágrafo anterior mostra que $L_u^{n+1}, S_{n+1} \notin \R_n$.
+
+Podemos demonstrar (por indução) que $\R_n \subset \R_{n+1}$.
+Desta forma,
+criamos uma hierarquia de problemas indecidíveis.%
+\footnote{
+    Em outras palavras,
+    existem problemas ``mais indecidíveis'' que outros;
+    é uma situação análoga à existência de infinitos de tamanhos diferentes.
+}
+
+Estes conjuntos também podem ser denotados por $\R^{L_u^n}$;
+as ``linguagens recursivas que usam $L_u^n$ como oráculo''.
+São as linguagens que são decididas
+pelo mesmo tipo de máquina usado para definir $\R$,
+mas agora equipadas com um oráculo para $L_u^n$.
+
+Observe que,
+de posse de um oráculo para $S_n$ (por exemplo),
+ao ``programar'' uma máquina de Turing com esse oráculo,
+podemos ``fingir'' que podemos usar qualquer linguagem de $\R_n$ como oráculo
+--- como esta linguagem possui um algoritmo que a resolve
+usando o nosso oráculo $S_n$,
+podemos substituir todas as chamadas àquele oráculo
+por este algoritmo.
+Abusando um pouco da notação,
+podemos escrever
+\begin{equation}
+    \begin{aligned}
+        \R_0 &= \R \\
+        \R_{n+1} &= \R^{\R_n}.
+    \end{aligned}
+    \label{eq:oracle_notation_abuse}
+\end{equation}
+A interpretação é que $\R_{n+1}$ é o conjunto das linguagens
+decididas pelas mesmas máquinas de $\R$,
+mas equipadas com um oráculo qualquer de $\R_n$.
+Como $S_n \in \R_n$, esta nova definição inclui a definição anterior;
+Como todas as linguagens de $\R_n$ podem ser decididas usando um oráculo para $S_n$,
+qualquer linguagem de $\R_{n+1}$
+pode ser decidida usando apenas $S_n$
+(basta fazer aquela troca de chamadas ao oráculo);
+portanto as duas definições são equivalentes.
+Usaremos esta notação novamente na seção~\ref{sec:polynomial_hierarchy},
+mas indo direto à esta construção alternativa,
+sem passar pela definição via $S_n$ primeiro.

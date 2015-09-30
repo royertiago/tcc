@@ -1,0 +1,42 @@
+\section{Problemas indecidíveis como oráculos}
+
+É importante ressaltar que esta visão do oráculo $A$
+como outra máquina de Turing acoplada à máquina principal
+é puramente intuitiva;
+a linguagem $A$ não precisa ser sequer computável
+para que ela possa ser usada como oráculo.
+De fato, \citeonline[p.~210]{HopcroftUllman1979}
+introduzem este conceito no contexto de decidibilidade.
+Intuitivamente, se houvesse um algoritmo para o problema da parada,
+poderíamos resolver o problema da vacuidade para máquinas de Turing,
+por exemplo.
+Mas não podemos partir da premissa de que
+``existe uma máquina de Turing que resolve o problema da parada'',
+pois esta hipótese contradiz o teorema da parada.
+Oráculos podem ser entendidos como uma formalização deste ``e se?''.
+
+Mais precisamente, defina
+\simbolo{$L_u^1$}{Problema da parada}
+\simbolo{$S_1$}{Problema da vacuidade}
+\begin{align*}
+    L_u^1 &= \{ \langle M, x \rangle \mid M \text{ aceita } x \} \\
+    S_1 &= \{ \langle M \rangle \mid L(M) = \emptyset \}
+\end{align*}
+$L_u^1$ é o problema da parada; $S_1$ é o problema da vacuidade.%
+\footnote{
+    A notação $S_n$ é usada também por \citeonline[p.~210]{HopcroftUllman1979}.
+    A notação $L_u^n$ é derivada da notação para o problema da parada
+    destes mesmos autores \cite[p.~183]{HopcroftUllman1979}.
+}
+
+A demonstração padrão de que $S_1$ é indecidível
+é uma redução do problema da parada para o problema da vacuidade.
+Em essência, ela diz que,
+caso houvesse um algoritmo para a vacuidade,
+poderíamos usar este algoritmo para resolver o problema da parada.
+Como não há algoritmo para a parada,
+não pode haver algoritmo para a vacuidade.
+
+Em termos de oráculos,
+isso significa que podemos decidir $L_u^1$
+utilizando um oráculo para $S_1$.

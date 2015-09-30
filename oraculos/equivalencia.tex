@@ -1,0 +1,41 @@
+\section{Equivalência entre oráculos}
+
+Na subseção anterior,
+mostramos que $L_u^1$ é decidível usando um oráculo para $S_1$
+(isto é, $L_u^1$ é \emph{recursiva em} $S_1$).
+O oposto também ocorre:
+
+Suponha que dispomos de um oráculo para $L_u^1$.
+Na entrada $\langle M \rangle$,
+construa uma máquina $M'$ que ignorará sua própria entrada
+e enumerar os pares $(i, j)$.
+Para cada par enumerado,
+$M'$ executará $M$ na $i$"=ésima palavra por $j$ movimentos.
+Caso $M$ aceite, $M'$ aceita a entrada, qualquer que seja.
+Caso contrário, $M'$ enumera o próximo par, e tente de novo.
+De posse desta máquina, peça ao oráculo se ela aceita $\varepsilon$
+(ou qualquer palavra).
+Se sim, significa que, em algum par $(i, j)$,
+a $M$ aceitou a entrada $i$; portanto, $L(M) \neq \emptyset$.
+Caso contrário, significa que $M$ nunca aceitou palavra alguma;
+portanto, $L(M) = \emptyset$.
+
+\begin{definition}
+    Dois oráculos $A$ e $B$ são ditos equivalentes
+    se existem máquinas $M$ e $N$ tais que
+    $L^A(M) = B$ e $L^B(N) = A$.
+\end{definition}
+
+Isto é, usando uma linguagem como oráculo, conseguimos decidir a outra,
+e vice"=versa.
+O que nós mostramos no parágrafo anterior é que
+$L_u^1$ e $S_1$ são equivalentes.
+
+A intuição por trás da equivalência é que,
+ao ``programar'' uma máquina de Turing com oráculo $S_1$ (por exemplo),
+podemos fingir que também podemos usar $L_u^1$ como oráculo,
+e fazer uma ``chamada'' a este oráculo;
+como eles são equivalentes,
+há um algoritmo que traduz de um para outro,
+portanto, podemos usar este algoritmo de tradução
+para simular uma chamada a $L_u^1$.
