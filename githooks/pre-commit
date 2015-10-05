@@ -11,7 +11,7 @@ unset GIT_DIR
 # que informa onde está o diretório .git, relativo ao diretório de trabalho.
 # Esta variável permite que coloquemos o .git num disco à parte, por exemplo;
 # mas, sempre que rodarmos algum comando Git,
-# precisaremos informar
+# precisaremos informar o valor de GIT_DIR.
 # Entretanto, trocar de diretório não altera GIT_DIR, apenas PWD.
 # Então, ao rodar algum comando, como 'git diff',
 # o Git tentará acessar o diretório $PWD/$GIT_DIR.

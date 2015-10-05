@@ -16,7 +16,7 @@ modified_files=$(git diff --name-only --cached |
 )
 
 # print_line filename lines
-# Imprime as linhas especificatas, com o nome do arquivo prefixado em roxo.
+# Imprime as linhas especificadas, com o nome do arquivo prefixado em roxo.
 #
 # Caso 'file' seja um caminho prefixado por toplevel,
 # a função remove os diretórios iniciais antes de imprimir.
