@@ -266,7 +266,7 @@ podemos fortalecer este ``$\subseteq$'' para um ``$=$''.
     \end{equation*}
     ou seja, $Y(M, x, i)$ é a resposta da $i$"=ésima invocação ao oráculo ($A(y_i)$),
     mas codificada num formato especial:
-    a resposta $A(y_i)$ é sucedida por uma cadeia de zeros de tamanho variavel,
+    a resposta $A(y_i)$ é sucedida por uma cadeia de zeros de tamanho variável,
     fazendo com que todos os $Y(M, x, i, n)$ sejam de tamanho $2*p(n) + 1$;
     além disso, a resposta está precedida de $0^{|A(y_i)|}1$,
     de forma que podemos recuperar $A(y_i)$
@@ -294,7 +294,7 @@ podemos fortalecer este ``$\subseteq$'' para um ``$=$''.
     --- além da entrada inicial $\langle M, x, n \rangle$, é claro.
     Mostraremos que $F \in \FNP^\mathcal A$.
     (A entrada inicial $\langle M, x, n \rangle$
-    é incluida pois precisaremos propagar esta informação para a segunda função
+    é incluída pois precisaremos propagar esta informação para a segunda função
     que comporemos com $F$,
     mas, por ora,
     ignoraremos a existência deste ``pedacinho'' de $F$ na argumentação.)
@@ -359,12 +359,12 @@ podemos fortalecer este ``$\subseteq$'' para um ``$=$''.
     note que todos os ramos de computação retornarão palavras de mesmo tamanho.
     Dessa forma,
     dadas duas listas, $w_1 w_2 \dots w_n$ e $v_1 v_2 \dots v_n$,
-    se $w_1 > v_1$ lexicográficamente,
+    se $w_1 > v_1$ lexicograficamente,
     a primeira lista tem precedência sobre a segunda.
     Portanto,
     o máximo dentre os ramos de computação
     também terá de maximizar, localmente,
-    o candidado à primeira resposta ao oráculo.
+    o candidato à primeira resposta ao oráculo.
     Isto é,
     se o máximo lexicográfico é
     \begin{equation*}
@@ -378,7 +378,7 @@ podemos fortalecer este ``$\subseteq$'' para um ``$=$''.
     a simulação de $M_F$ corresponderá à computação de $M$ em $x$,
     e a segunda pergunta feita na simulação será $y_2$.
     Usando um raciocínio similar,
-    concluimos que $d(\omega_2) = A(y_2)$,
+    concluímos que $d(\omega_2) = A(y_2)$,
     e assim por diante,
     até concluir que $d(\omega_i) = A(y_i)$ para todo $i$.
 
