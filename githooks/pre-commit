@@ -31,4 +31,5 @@ source pre-commit.hyphens.sh
 source pre-commit.citeties.sh
 source pre-commit.refties.sh
 source pre-commit.verbo-ir.sh
+source pre-commit.aspell.sh
 exit $error
