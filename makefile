@@ -33,9 +33,15 @@ define dirss
 $(patsubst %/,%,$(dir $1))
 endef
 
+# O único diretório que possui um makefile próprio é bib/.
+# Neste diretório, não procuraremos arquivos para compilar.
+# A variável $findignore contém parte de um predicado para o comando find
+# que ignora o diretório bib/.
+findignore := -path './bib/*' -prune -o
+
 # Convenção: todos os arquivos que são transformáveis em pdf possuem
 # o comando \end{document} numa linha por si só.
-TEX := $(shell find . -name "*.tex" -exec \
+TEX := $(shell find . $(findignore) -name "*.tex" -exec \
 	grep --files-with-matches '^\\end{document}$$' {} +)
 
 # Dependências
