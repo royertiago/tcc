@@ -34,7 +34,22 @@ Formalmente:
 Intuitivamente,
 $\P^\mathcal A$ é a classe de problemas que dá para resolver
 se pegarmos as máquinas que resolvem os problemas em $\P$
-e darmos oráculos em $\mathcal A$ para elas.
+e darmos oráculos em $\mathcal A$ para elas.%
+\footnote{
+    Note que, caso $\mathcal A$ possua um problema polinomialmente completo $B$
+    (isto é, todos os problemas de $\mathcal A$ se reduzem
+    em tempo polinomial a algum problema $B \in \mathcal A$ em questão),
+    a classe $\P^\mathcal A$
+    é a mesma classe que $\P^B$,
+    pois qualquer problema de $\mathcal A$
+    pode ser resolvido em tempo polinomial usando $B$ como oráculo;
+    basta substituir a chamada ao oráculo de $\mathcal A$
+    pelo algoritmo que o resolve usando $B$.
+    Embora esta troca possa aumentar o tempo de computação,
+    a máquina ainda termina de executar em tempo polinomial.
+    Isso justifica a notação $\P^\mathcal A$;
+    é como se tivéssemos todos os problemas de $\mathcal A$ à nossa disposição.
+}
 
 Importante ressaltar que esta notação
 não está associada semanticamente ao conceito de potência;
@@ -72,22 +87,7 @@ podemos definir a hierarquia polinomial de maneira muito enxuta.
     \end{align*}
 \end{definition}
 \footnotetext{
-    \citeonline[p.~417]{Papadimitriou1994} e \citeonline[p.~104]{AroraBarak2009}
-    notam que, caso $\mathcal A$ possua problemas polinomialmente completos
-    (isto é, todos os problemas de $\mathcal A$ se reduzem
-    em tempo polinomial a algum problema $B \in \mathcal A$ em questão),
-    a classe $\P^\mathcal A$
-    é a mesma classe que $\P^B$,
-    pois qualquer problema de $\mathcal A$
-    pode ser resolvido em tempo polinomial;
-    basta substituir a chamada ao oráculo de $\mathcal A$
-    pelo algoritmo que o resolve usando $B$.
-    Embora esta troca possa aumentar o tempo de computação,
-    a máquina ainda termina de executar em tempo polinomial.
-    Isso justifica a notação $\P^\mathcal A$;
-    é como se tivéssemos todos os problemas de $\mathcal A$ à nossa disposição.
-
-    Com base nesta ideia,
+    Através de problemas completos para os níveis anteriores,
     \citeonline[p.~102]{AroraBarak2009}
     mostram uma caracterização da hierarquia polinomial
     usando apenas um oráculo por nível.
