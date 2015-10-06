@@ -1,19 +1,34 @@
 \section{Reduções e oráculos}
 \label{sec:oracles_and_reductions}
 
-Um problema é $\NP$"=completo se
-ele está em $\NP$
-e se todo problema em $\NP$ pode ser \emph{reduzido em tempo polinomial}
-ao problema em questão.
+\begin{definition}[$\NP$"=completude]
+    Uma linguagem $L$ é $\NP$"=completa se
+    \begin{itemize}
+        \item $L \in \NP$; e
+        \item Para toda linguagem $L' \in \NP$ existe alguma função $f$,
+            computável em tempo polinomial,
+            tal que
+            \begin{equation*}
+                x \in L' \iff f(x) \in L.
+            \end{equation*}
+    \end{itemize}
+\end{definition}
 
-A consequência desejada da definição de $\NP$"=completude é que,
-se um problema que estamos tentando resolver é $\NP$"=completo,
-então achar um algoritmo polinomial para ele
-resultará num algoritmo polinomial para \emph{todos} os problemas da classe $\NP$.
-Intuitivamente,
-os problemas $\NP$"=completos são os ``mais difíceis'' da classe $\NP$,
-pois resolver qualquer $\NP$"=completo em tempo polinomial
-significa resolver todos os $\NP$ em tempo polinomial.%
+Esta é a definição usual de $\NP$"=completude,
+encontrada, por exemplo,
+nos livros didáticos de \citeonline[p.~288]{Sipser2006}
+e \citeonline[p.~42]{AroraBarak2009}.
+\citeonline[p.~324]{HopcroftUllman1979} e \citeonline[p.~174]{Papadimitriou1994}
+apresentam uma definição um pouco mais restritiva:
+a função $f$ precisa ser computada em espaço logarítmico
+(o que implica tempo polinomial).
+
+O termo ``$\NP$"=completude'' tenta formalizar a noção de
+``ser um problema difícil da classe $\NP$''.
+Com a definição acima,
+podemos provar que,
+se acharmos algum algoritmo polinomial para um problema $\NP$"=completo,
+podemos resolver \emph{todos} os problemas da classe $\NP$ em tempo polinomial.%
 \footnote{
     Na vida real,
     após provar que certo problema é $\NP$"=completo,
@@ -21,6 +36,17 @@ significa resolver todos os $\NP$ em tempo polinomial.%
     e tentamos desenvolver heurísticas
     ou usamos técnicas baseadas em inteligência artificial.
 }
+Isto é,
+resolver um significa resolver todos;
+portanto,
+intuitivamente,
+estes problemas devem ser os ``mais difíceis'' da classe $\NP$.
+Por exemplo,
+deve ser mais fácil achar um algoritmo polinomial para fatoração de inteiros,
+que ainda não foi nem provado estar em $\P$
+nem ser $\NP$"=completo \cite[p.~120]{DuKo2014},
+do que achar um algoritmo polinomial para $\SAT$,
+o primeiro problema natural provado $\NP$"=completo \cite[p.~80]{DuKo2014}.
 
 Podemos interpretar a redução de forma algorítmica,
 usando o conceito de oráculo.
