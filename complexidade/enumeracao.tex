@@ -34,6 +34,7 @@ Observe que a notação $M(x)$ coincide com a notação de chamada de função.
 É exatamente esta a analogia que pretendemos fazer;
 
 \begin{definition}
+    \label{def:recursive_function}
     Seja $M$ uma máquina de Turing.
     A \emph{função computada por $M$}
     é a função parcial $f: \{0, 1\}^* \to \{0, 1\}^*$
@@ -150,6 +151,9 @@ definida na seção~\ref{sec:binary_encoding}.
     \end{equation*}
     Funções recursivas totais são definidas analogamente.
 \end{definition}
+
+Observe que esta definição não é autorreferencial
+pois a recursividade de $g$ é estabelecida na definição~\ref{def:recursive_function}.
 
 \subsection{Enumeração de máquinas de Turing}
 \subsection{Teorema da Máquina Universal}
