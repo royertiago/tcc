@@ -87,10 +87,21 @@ a partir de $\langle x_1, \dots, x_n \rangle$.
 
 (Em geral, $\langle x \rangle$ denotará a representação em binário
 do objeto matemático $x$.
-\citeonline[p.~2]{AroraBarak2009} usa $\llcorner x \rlcorner$
+\citeonline[p.~2]{AroraBarak2009} usa
+$\sideset{_\llcorner}{_\lrcorner}{\mathop{\makebox[0.5ex]{$x$}}}$
 para o mesmo fim;
 eu escolhi a notação $\langle x \rangle$
 por conformidade com a notação de \citeonline[p.~182]{HopcroftUllman1979}.)
+
+% Explicando o comando acima:
+% \sideset permite adicionar símbolos matemáticos "orbitando" o símbolo subsequente
+% nos quatro cantos possíveis. (O primeiro argumento diz o que vai à esquerda
+% e o segundo argumento diz o que vai à direita.)
+% \sideset exige que o terceiro argumento seja um operador matemático,
+% que eu obtenho usando \mathop.
+% Mas se for usado "\mathop x" diretamente, as duas marcas sob x
+% ficarão muito espaçadas; então, a largura do x é alterada artificialmente
+% para 0.5ex usando o \makebox.
 
 \subsection{Enumeração de máquinas de Turing}
 \subsection{Teorema da Máquina Universal}
