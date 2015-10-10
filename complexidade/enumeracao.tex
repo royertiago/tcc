@@ -114,6 +114,41 @@ por conformidade com a notação de \citeonline[p.~182]{HopcroftUllman1979}.)
 % ficarão muito espaçadas; então, a largura do x é alterada artificialmente
 % para 0.5ex usando o \makebox.
 
+\subsubsection{Funções de várias variáveis}
+
+Observe que o termo ``função recursiva''
+foi definido apenas para funções de uma variável.
+Entretanto,
+em alguns pontos do texto,
+precisaremos nos referir a funções de mais de uma variável.
+
+É possível estender as máquinas de Turing
+para trabalhar diretamente com com funções de várias variáveis.
+Por exemplo, \citeonline[p.~151]{HopcroftUllman1979}
+fazem a extensão no contexto de funções de inteiros.
+Dada uma máquina $M$,
+para calcular o valor de $M(i)$,
+executamos $M$ na entrada $0^i$.
+Os vários argumentos são separados por caracteres $1$;
+isto é, para calcular $M(i_1, i_2, \dots, i_k)$,
+executamos $M$ na entrada $0^{i_1} 1 0^{i_2} 1 \dots 1 0^{i_k}$.
+
+Para não precisar alterar a definição de máquinas de Turing,
+recorreremos à codificação $\langle \cdot \rangle$,
+definida acima.
+
+\begin{definition}
+    Uma função parcial $f: (\{0, 1\}^*)^k \to \{0, 1\}^*$ é \emph{recursiva parcial}
+    se existir alguma função recursiva parcial $g: \{0, 1\}^* \to \{0, 1\}^*$
+    tal que $g(\langle i_1, i_2, \dots, i_k \rangle)$
+    está definida se, e somente se, $f(i_1, i_2, \dots, i_k)$ está definida,
+    e, neste caso,
+    \begin{equation*}
+        g(\langle i_1, i_2, \dots, i_k \rangle) = f(i_1, i_2, \dots, i_k).
+    \end{equation*}
+    Funções recursivas totais são definidas analogamente.
+\end{definition}
+
 \subsection{Enumeração de máquinas de Turing}
 \subsection{Teorema da Máquina Universal}
 \subsection{Teorema $s-m-n$}
