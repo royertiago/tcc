@@ -50,6 +50,7 @@ em particular, utilizaremos funções que mapeiam palavras para palavras
 em vez de funções que mapeiam números naturais para números naturais.)
 
 \subsubsection{Codificação de objetos}
+\label{sec:binary_encoding}
 
 Conforme observado por \citeonline[p.~2]{AroraBarak2009},
 não perdemos generalidade restringir funções a palavras de $\{0, 1\}^*$,
@@ -96,6 +97,7 @@ a partir de $\langle x_1, \dots, x_n \rangle$.
     \end{equation*}
 \end{example}
 
+\simbolo{$\langle x \rangle$}{Codificação em binário do objeto matemático $x$}
 (Em geral, $\langle x \rangle$ denotará a representação em binário
 do objeto matemático $x$.
 \citeonline[p.~2]{AroraBarak2009} usa
@@ -135,7 +137,7 @@ executamos $M$ na entrada $0^{i_1} 1 0^{i_2} 1 \dots 1 0^{i_k}$.
 
 Para não precisar alterar a definição de máquinas de Turing,
 recorreremos à codificação $\langle \cdot \rangle$,
-definida acima.
+definida na seção~\ref{sec:binary_encoding}.
 
 \begin{definition}
     Uma função parcial $f: (\{0, 1\}^*)^k \to \{0, 1\}^*$ é \emph{recursiva parcial}
