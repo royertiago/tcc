@@ -1,10 +1,53 @@
 \section{Enumerações de Funções Recursivas}
 \label{sec:enumerations_of_recursive_functions}
 
-Os axiomas de Blum definem ``complexidade''
-para qualquer modelo de computação que satisfaça algumas restrições.
-Nesta seção,
-será apresentada a maquinaria necessária para definir estas restrições.
+\subsection{Funções Recursivas}
+
+Usualmente,
+``máquina de Turing'' é definida como uma tupla
+na qual um de seus elementos,
+$\Sigma$,
+denota o alfabeto de entrada.
+Por simplicidade,
+assumiremos que $\Sigma = \{0, 1\}$,
+em todo o TCC.
+Observe que não há perda de generalidade nesta definição,
+pois outros alfabetos podem ser codificados de forma não"=ambígua
+usando apenas este alfabeto binário.
+
+\begin{notation}
+    Seja $M$ uma máquina de Turing determinística
+    e $x \in \{0, 1\}^*$ uma palavra.
+    Suponha que $M$ pare ao computar $x$.
+    Se o conteúdo deixado na fita por $M$,
+    após remover os caracteres brancos à direita e à esquerda,
+    contiver apenas os símbolos $0$ e $1$
+    (isto é, não houverem brancos ou outros símbolos de fita),
+    este conteúdo forma uma palavra de $\{0, 1\}^*$.
+    Denotaremos esta palavra por $M(x)$.
+    Caso haja outros símbolos na fita
+    ou $M$ não parar ao computar $x$,
+    deixaremos $M(x)$ indefinido.
+\end{notation}
+
+Observe que a notação $M(x)$ coincide com a notação de chamada de função.
+É exatamente esta a analogia que pretendemos fazer;
+
+\begin{definition}
+    Seja $M$ uma máquina de Turing.
+    A \emph{função computada por $M$}
+    é a função parcial $f: \{0, 1\}^* \to \{0, 1\}^*$
+    tal que $f(x)$ está definida se e somente se $M(x)$ existe,
+    e, nestes casos, $f(x) = M(x)$.
+
+    Uma função $f$ é \emph{recursiva parcial}
+    se for computada por alguma máquina $M$.
+    Se $f$ estiver definida para todo $x \in \{0, 1\}^*$,
+    dizemos que $f$ é \emph{recursiva total}.
+\end{definition}
+(Esta definição é uma variação da definição de \citeonline[p.~151]{HopcroftUllman1979};
+em particular, utilizaremos funções que mapeiam palavras para palavras
+em vez de funções que mapeiam números naturais para números naturais.)
 
 \subsection{Enumeração de máquinas de Turing}
 \subsection{Teorema da Máquina Universal}
