@@ -195,6 +195,47 @@ que generaliza este mapeamento.
 \subsection{Teorema da Máquina Universal}
 \label{sec:universal_turing_machine}
 
+Durante a demonstração da indecidibilidade do problema da parada,
+é construída uma máquina de Turing universal,
+que é capaz de simular qualquer outra máquina de Turing,
+bastando apenas lhe ser fornecida uma representação da máquina de Turing simulada.
+(De certa forma,
+os computadores modernos são máquinas de Turing universais.)
+Podemos sintetizar esta construção através do mapeamento de funções recursivas
+definido na seção anterior.
+
+\begin{theorem}
+    Existe uma função recursiva parcial $g$ de duas variáveis tal que
+    $g(x, y)$ existe se, e somente se, $f_x(y)$ existe,
+    e, neste caso,
+    \begin{equation*}
+        g(x, y) = f_x(y).
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    A função $g$ é a função computada por uma máquina de Turing universal.
+    Em nosso caso,
+    a máquina universal $U$,
+    na entrada $\langle x, y \rangle$,
+    usará a tabela de transições disponível em $x$
+    para executar as etapas de computação de alguma máquina $M$
+    que satisfaz $\langle M \rangle = x$.
+    $x$ é a codificação binária de $M$;
+    portanto,
+    ao simular as etapas de computação de $M$ em $y$,
+    $U$ estará, efetivamente,
+    calculando o valor de $f_x$ (que é a função computada por $M$).
+
+    $f_x(y)$ só não está definida se $M$ nunca parar ao processar $y$;
+    neste caso, $U$ também não parará ao processar $\langle x, y \rangle$.
+    Caso contrário,
+    após a simulação chegar a um estado final,
+    basta que $U$ escreva a ``resposta'' de $M$ na saída.
+    Como a resposta de $M$ é $M(y) = f_x(y)$,
+    obtemos a igualdade $g(x, y) = f_x(y)$.
+\end{proof}
+
 \subsection{Teorema $s-m-n$}
 \label{sec:s_m_n_theorem}
 
