@@ -1,64 +1,32 @@
 \section{Teoria de Complexidade Axiomática: Axiomas de Blum}
 \label{sec:blum_axioms}
 
-Dada uma máquina de Turing $M$
-e uma palavra $x$,
-denotaremos por $M(x)$ a ``saída''
-de $M$ quando lhe é dado $x$ na entrada.
-
 \begin{definition}
-    Uma \emph{medida de complexidade}
-    é uma função $\Phi$ que satisfaz aos seguintes axiomas:%
-    \footnotemark
+    Seja $\phi$ uma enumeração de Gödel aceitável.
+    Uma \emph{medida de complexidade} é uma função
+    $\Phi: \{0, 1\}^* \times \{0, 1\}^* \to \mathbb N$,
+    que satisfaz aos seguintes axiomas:\footnotemark
     \begin{enumerate} [label=\textbf{Axioma \arabic*}, ref=\arabic*, align=left]
         \item
             \label{ax:blum_def}
-            $\Phi(M, x)$ está definido
+            $\Phi(x, y)$ está definido
             se, e somente se,
-            $M(x)$ está definido.
+            $\phi_x(y)$ está definido.
         \item
             \label{ax:blum_rec}
-            Dados $M$, $x$ e $k$,
-            é decidível se $\Phi(M, x) = k$.
+            A função $R(x, y, m)$,
+            definida como $1$ se $\Phi(x, y) = m$,
+            e $0$ caso contrário,
+            é recursiva total.
     \end{enumerate}
 
     \footnotetext{
-        Esta é a definição provida por
-        \citeonline[p.~156]{Papadimitriou1994}.
-
-        A definição usual dos axiomas de Blum
-        (encontrada, por exemplo,
-        no texto de \citeonline[p.~313]{HopcroftUllman1979}
-        e no próprio artigo original de \citeonline[p.~3]{Blum1967})
-        aparece no contexto de computadores de funções de inteiros.
-        Seja $M_1, M_2, \dots$ uma enumeração de máquinas de Turing.
-        Consideraremos que a máquina $M_i$
-        computa a função recursiva parcial $\phi_i$
-        (isto é, a lista $\{\phi_1, \phi_2, \dots\}$
-        enumera todas as funções recursivas).
-        Uma medida de complexidade é uma lista de funções
-        $\{\Phi_1', \Phi_2', \dots\}$
-        que satisfaz aos seguintes axiomas:
-
-        \begin{enumerate} [label=Axioma \arabic*', ref=\arabic*', align=left]
-            \item
-                \label{ax:ax:blum_def_orig}
-                $\Phi_i'(n)$ está definido
-                se, e somente se,
-                $\phi_i(n)$ está definido.
-            \item
-                \label{ax:ax:blum_rec_orig}
-                A função $R(i, n, m)$,
-                definida como $1$ se $\Phi_i'(n) = m$,
-                e $0$ caso contrário,
-                é recursiva.
-        \end{enumerate}
-
-        As duas definições são análogas.
-        O valor $\Phi_i'(n)$ corresponde a $\Phi(M_i, 0^n)$.
-        O axioma~\ref{ax:blum_def} corresponde ao axioma~\ref{ax:ax:blum_def_orig},
-        enquanto que a decidibilidade exigida pelo axioma~\ref{ax:blum_rec}
-        é expressada pela função $R$ no axioma~\ref{ax:ax:blum_rec_orig}.
+        A definição original de \citeonline[p.~3]{Blum1967}
+        é dada no contexto do cálculo de funções de inteiros.
+        Em particular,
+        as enumerações de Gödel aceitáveis são indexadas por números,
+        não por cadeias de $\{0, 1\}^*$.
+        Esta adaptação é baseada na definição de \citeonline[p.~156]{Papadimitriou1994}.
     }
 \end{definition}
 
