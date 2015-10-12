@@ -352,63 +352,154 @@ vindo direto da teoria das funções recursivas.
     \label{thm:recursion}
 \end{lemma}
 
-\begin{proof}
-    Ilustraremos o teorema com o caso $\phi_x = f_x$.
-    %TODO: Demonstrar por completo.
+Esta demonstração foi adaptada de \cite[p.~208]{HopcroftUllman1979}.
 
-    Primeiro, construiremos uma máquina $M$ que,
-    ao receber $x$ na entrada,
-    computará uma máquina equivalente a $\phi_x(x)$.
-    Isto é, para todo $y$,
+\begin{proof}
+    Primeiro,
+    construiremos uma função recursiva total $f$
+    tal que $f(x)$ é uma máquina equivalente a $\phi_x(x)$.
+    Isto é,
+    para todo $y$,
     \begin{equation}
-        \phi_{M(x)}(y) = \phi_{f_x(x)}(y),
-        \label{eq:diagonal_N}
+        \phi_{f(x)}(y) \simeq \phi_{\phi_x(x)}(y),
+        \label{eq:diagonal_M}
     \end{equation}
-    sempre que $f_x(x)$ existir.
+    se o valor $\phi_x(x)$ estiver definido.
+
+    A maior dificuldade será contornar a possibilidade de $\phi_x(x)$ estar indefinido,
+    pois queremos que a função $f$ seja recursiva total.
+
+    Usaremos a função universal e a função $S_{mn}$ para isso.
+    Mais especificamente,
+    sejam $U$ e $S$ duas funções recursivas de uma variável tais que
+    \begin{align*}
+        U(\langle x, y \rangle) &\simeq \phi_x(y) \\
+        \phi_{S(\langle x, y \rangle)}(z) &\simeq \phi_x(\langle y, z \rangle) \\
+    \end{align*}
+    Sabemos que estas duas funções existem
+    pois $\phi$ é uma enumeração de Gödel aceitável.
+    Além disso, $S$ é recursiva total.
+    (Tecnicamente, $U$ e $S$ não são exatamente as funções
+    dadas pelo teorema da função universal e pelo teorema $S_{mn}$,
+    pois estas duas últimas funções são de duas variáveis.
+    $U$ e $S$ são as funções correspondentes de uma variável,
+    de acordo com a definição~\ref{def:multi_valued_recursive_function}.)
+
+    Construa uma máquina de Turing $M$ que,
+    na entrada $\langle x, y \rangle$,
+    calcula o valor
+    \begin{equation}
+        z = \phi_x(x) = U(\langle x, x \rangle),
+        \label{eq:f_x_x}
+    \end{equation}
+    e em seguida calcula
+    \begin{equation}
+        f_z(y) = U(\langle z, y \rangle)
+        \label{eq:f_f_x_x_y}
+    \end{equation}
+    Como $U$ é uma função recursiva parcial,
+    $M$ calcula uma função recursiva parcial.
+    Mais especificamente,
+    se $f_x(x)$ e $f_{f_x(x)}(y)$ ambos existirem,
+    então
+    \begin{equation*}
+        M(\langle x, y \rangle) = f_{f_x(x)}(y).
+    \end{equation*}
+    Caso contrário (se $f_x(x)$ ou $f_{f_x(x)}(y)$ não existirem),
+    $M(\langle x, y \rangle)$ também não existirá.
+
+    Usando esta máquina $M$,
+    podemos construir nossa função $f$.
+    Seja $m$ um índice\footnotemark{} para a função computada por $M$;
+    a função recursiva total desejada é dada por
+    \begin{equation*}
+        f(x) = S(\langle m, x \rangle).
+    \end{equation*}
     \footnotetext{
-        Duas palavras $u$ e $v$ são equivalentes
-        se, para todo $x$, $f_u(x) \simeq f_v(x)$.
+        Um \emph{índice} para uma função recursivamente enumerável $f$
+        é uma cadeia $w$ que representa uma máquina de Turing para $f$;
+        isto é,
+        $\phi_w = f$
+        \cite[p.~130]{EpsteinCarnielli2008}.
+        Todas as funções recursivas parciais possuem índices,
+        mesmo que a enumeração de Gödel aceitável $\phi$ em questão
+        não esteja relacionada com máquinas de Turing,
+        pois exigimos que $\phi$
+        (cujo contradomínio é o conjunto de todas as funções recursivas parciais)
+        seja uma função sobrejetora.
     }
 
-    A abordagem direta,
-    calcular $\phi_x(x)$,
-    não funciona,
-    pois $\phi_x(x)$ pode não existir.
-    pois a máquina representada por $x$ pode nunca parar ao processar $x$.
+    Mostraremos que,
+    de fato,
+    \begin{equation*}
+        \phi_{f(x)}(y) \simeq \phi_{\phi_x(x)}(y)
+    \end{equation*}
+    Primeiro, a condição de existência.
 
-    Observe que não precisamos retornar $M_x(x)$,
-    e sim, apenas uma máquina equivalente a $M_x(x)$,
-    caso $M_x(x)$ exista.
-    Na entrada $x$, $N$ retornará uma máquina que,
-    ao receber $y$ na entrada,
-    compute $M_x(x)$,
-    e, somente após $M_x$ retornar,
-    rode $M_x(x)$ em $y$
-    (usando uma máquina de Turing universal).
+    Caso o valor de $\phi_x(x)$ não exista,
+    então a máquina $M$ jamais sairá do primeiro ``estágio'' de computação
+    (a equação~\ref{eq:f_x_x}),
+    portanto,
+    apesar de $f(x)$ existir,
+    $\phi_{f(x)}(y) = \phi_{S(\langle m, x \rangle)}(y)$
+    não existirá para nenhum $y$.
+    Caso $\phi_x(x)$ exista,
+    mas $\phi_{\phi_x(x)}(y)$ não,
+    então $M$ passará pelo primeiro ``estágio'',
+    calculando o $z$ da equação~\ref{eq:f_x_x},
+    mas $M$ nunca terminará o segundo ``estágio'',
+    que é calcular $f_z(y)$ (equação~\ref{eq:f_f_x_x_y}).
+    Portanto, novamente,
+    $\phi_{f(x)}(y)$ não existe.
+    No caso oposto,
+    em que tanto $\phi_x(x)$ quanto $\phi_{\phi_x(x)}(y)$ existem,
+    a máquina $M$ eventualmente encerrará a computação,
+    passando pelos dois ``estágios'' com sucesso.
+    Concluímos que $\phi_{f(x)}(y)$ existe se,
+    e somente se, $\phi_{\phi_x(x)}(y)$ existe.
 
-    É importante notar que $N$ sempre pára;
-    $M_x(x)$ pode não parar ao computar $x$,
-    mas isso significa, apenas,
-    que $N(x)$ nunca parará ao computar qualquer coisa
-    --- o valor $N(x)$ existirá.
+    Agora, à condição de igualdade.
+    Se tanto $\phi_x(x)$ quanto $\phi_{\phi_x(x)}(y)$ existem, então
+    \begin{align*}
+        \phi_{f(x)}(y) &= \phi_{S(\langle m, x \rangle)}(y) \\
+                       &= \phi_m( \langle x, y \rangle ) \\
+                       &= M( \langle x, y \rangle ) \\
+                       &= U( \langle U(\langle x, x \rangle), y \rangle ) \\
+                       &= U( \langle \phi_x(x), y \rangle ) \\
+                       &= \phi_{\phi_x(x)}(y).
+    \end{align*}
 
-    De posse da máquina $N$, podemos prosseguir.
-    Escolha $k$ como sendo um índice para $\sigma \circ N$.
+    Isso prova a equação~\ref{eq:diagonal_M}.
+    Como $f$ foi definida com base na função recursiva total $S$,
+    sabemos que $f$ é recursiva total,
+    independentemente de $\phi_x(x)$ existir ou não.
+    \footnote{
+        De certa forma,
+        a tarefa de computar $\phi_x(x)$ é delegada à ``máquina'' $f(x)$;
+        portanto, $f$ sempre para ao processar $x$,
+        mesmo que $\phi_x(x)$ não exista
+        --- neste último caso, a ``máquina'' $f(x)$ pode até não parar,
+        mas a função $f$ em si finaliza a computação.
+    }
+
+    De posse da função $f$,
+    podemos, finalmente, demonstrar o teorema.
+    Escolha $k$ como sendo um índice para $\sigma \circ f$.
     Isto é,
     \begin{equation}
-        M_k(x) = \sigma(N(x))
-        \label{eq:k_sigma_N}
+        \phi_k(x) = \sigma(f(x))
+        \label{eq:k_sigma_f}
     \end{equation}
     para todo $x$.
-    Afirmamos que $m = N(k)$
+    Afirmamos que $w = f(k)$
     satisfaz às exigências do teorema.
 
-    De fato,
+    De fato, para todo $x$,
     \begin{align*}
-        M_m(x) &= M_{N(k)}(x) \\
-               &= M_{M_k(k)}(x) && \text{Pela equação~\ref{eq:diagonal_N}}\\
-               &= M_{\sigma(N(k))}(x) && \text{Pela equação~\ref{eq:k_sigma_N}}\\
-               &= M_{\sigma(m)}(x) && \text{Pela definição de $m$.}
+        \phi_w(x) &\simeq \phi_{f(k)}(x) \\
+              &\simeq \phi_{\phi_k(k)}(x) && \text{Pela equação~\ref{eq:diagonal_M}}\\
+              &\simeq \phi_{\sigma(f(k))}(x) && \text{Pela equação~\ref{eq:k_sigma_f}}\\
+              &\simeq \phi_{\sigma(w)}(x) && \text{Pela definição de $w$.}
     \end{align*}
 \end{proof}
 
