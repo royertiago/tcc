@@ -159,6 +159,7 @@ Observe que esta definição não é autorreferencial
 pois a recursividade de $g$ é estabelecida na definição~\ref{def:recursive_function}.
 
 \subsection{Enumeração de Funções Recursivas}
+\label{sec:definition_enumeration_of_recursive_functions}
 
 A existência de uma codificação em binário de máquinas de Turing
 permite, de certa forma,
@@ -191,6 +192,7 @@ contém teoremas que nos permitem trabalhar com as funções $f_x$
 e a seção~\ref{sec:acceptable_godel_numbering}
 define o conceito de ``Enumeração de Gödel aceitável'',
 que generaliza este mapeamento.
+\simbolo{$f_x$}{Função computada pela máquina codificada por $x$}
 
 \subsection{Teorema da Máquina Universal}
 \label{sec:universal_turing_machine}
@@ -347,7 +349,9 @@ e, neste caso,
 \end{equation*}
 
 \begin{example}
-    O mapeamento $x \mapsto f_x$ é uma enumeração de Gödel aceitável.
+    O mapeamento $x \mapsto f_x$,
+    definido na seção~\ref{sec:definition_enumeration_of_recursive_functions},
+    é uma enumeração de Gödel aceitável.
 \end{example}
 
 Podemos pensar nas enumerações de Gödel aceitáveis
