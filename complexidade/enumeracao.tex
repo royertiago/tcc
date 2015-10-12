@@ -238,7 +238,7 @@ definido na seção anterior.
     obtemos a igualdade $g(x, y) = f_x(y)$.
 \end{proof}
 
-\subsection{Teorema $s-m-n$}
+\subsection{Teorema $S_{mn}$}
 \label{sec:s_m_n_theorem}
 
 \begin{theorem}
@@ -308,7 +308,7 @@ esta versão será suficiente.
 \subsection{Enumerações de Gödel aceitáveis}
 \label{sec:acceptable_godel_numbering}
 
-De posse dos teoremas da máquina universal e $s-m-n$,
+De posse dos teoremas da máquina universal e $S_{mn}$,
 podemos definir as restrições sob as quais definiremos os axiomas de Blum.
 
 \begin{definition}
@@ -316,7 +316,7 @@ podemos definir as restrições sob as quais definiremos os axiomas de Blum.
     Uma \emph{enumeração de Gödel aceitável}
     é uma função $\phi: \{0, 1\}^* \to \mathcal P$, sobrejetora,
     que satisfaz às conclusões do teorema da máquina universal
-    e do teorema $s-m-n$.
+    e do teorema $S_{mn}$.
     (\citeauthor{Rogers1987}, \citeyear{Rogers1987}, p.~41;
     \citeauthor{Blum1967}, \citeyear{Blum1967}, p.~3)
     % TODO: Descobrir como citar dois autores separadamente,
@@ -339,7 +339,7 @@ e, neste caso,
 \begin{equation*}
     g(x, y) = \phi_x(y).
 \end{equation*}
-Similarmente, por ``satisfazer ao teorema $s-m-n$'' queremos dizer que
+Similarmente, por ``satisfazer ao teorema $S_{mn}$'' queremos dizer que
 existe alguma função recursiva total $\sigma$ de duas variáveis
 tal que $\phi_{\sigma(x, y)}(z)$ está definido se,
 e somente se, $\phi_x(\langle x, y \rangle)$ está definido,
@@ -365,5 +365,5 @@ Computacionalmente,
 não podemos trabalhar diretamente com as enumerações,
 pois são estruturas infinitas;
 as restrições adicionais
-(possuir uma função universal e satisfazer ao teorema $s-n-m$)
+(possuir uma função universal e satisfazer ao teorema $S_{mn}$)
 nos permite trabalhar com estas enumerações indiretamente.
