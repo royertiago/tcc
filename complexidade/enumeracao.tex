@@ -305,3 +305,61 @@ esta versão será suficiente.
 
 \subsection{Enumerações de Gödel aceitáveis}
 \label{sec:acceptable_godel_numbering}
+
+De posse dos teoremas da máquina universal e $s-m-n$,
+podemos definir as restrições sob as quais definiremos os axiomas de Blum.
+
+\begin{definition}
+    Seja $\mathcal P$ o conjunto de todas as funções recursivas parciais.
+    Uma \emph{enumeração de Gödel aceitável}
+    é uma função $\phi: \{0, 1\}^* \to \mathcal P$, sobrejetora,
+    que satisfaz às conclusões do teorema da máquina universal
+    e do teorema $s-m-n$.
+    (\citeauthor{Rogers1987}, \citeyear{Rogers1987}, p.~41;
+    \citeauthor{Blum1967}, \citeyear{Blum1967}, p.~3)
+    % TODO: Descobrir como citar dois autores separadamente,
+    % incluindo os números de páginas para ambos.
+\end{definition}
+
+Uma enumeração de Gödel aceitável é uma função $\phi$ que associa
+cada cadeia de $\{0, 1\}^*$ a uma função recursiva parcial.
+Como $f$ é sobrejetora,
+o contrário também acontece:
+toda função recursiva parcial é ``enumerada'' por $\phi$.
+Denotaremos $\phi(x)$ por $\phi_x$.
+
+Por ``satisfazer às conclusões do teorema da máquina universal''
+quer"=se dizer que,
+para esta enumeração $\phi$,
+existe alguma função recursiva parcial $g$, de duas variáveis,
+tal que $g(x, y)$ está definido se, e somente se, $\phi_x(y)$ está definido,
+e, neste caso,
+\begin{equation*}
+    g(x, y) = \phi_x(y).
+\end{equation*}
+Similarmente, por ``satisfazer ao teorema $s-m-n$'' queremos dizer que
+existe alguma função recursiva total $\sigma$ de duas variáveis
+tal que $\phi_{\sigma(x, y)}(z)$ está definido se,
+e somente se, $\phi_x(\langle x, y \rangle)$ está definido,
+e, neste caso,
+\begin{equation*}
+    \phi_{\sigma(x, y)}(z) = \phi_x(\langle x, y \rangle).
+\end{equation*}
+
+\begin{example}
+    O mapeamento $x \mapsto f_x$ é uma enumeração de Gödel aceitável.
+\end{example}
+
+Podemos pensar nas enumerações de Gödel aceitáveis
+como mapeamentos semânticos;
+são regras que atribuem a cada cadeia de $\{0, 1\}^*$
+uma função de $\mathcal P$.
+Portanto,
+cada modelo de computação equivalente à máquina de Turing
+induz uma função enumeração de Gödel aceitável.
+Computacionalmente,
+não podemos trabalhar diretamente com as enumerações,
+pois são estruturas infinitas;
+as restrições adicionais
+(possuir uma função universal e satisfazer ao teorema $s-n-m$)
+nos permite trabalhar com estas enumerações indiretamente.
