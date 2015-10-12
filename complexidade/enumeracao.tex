@@ -71,9 +71,11 @@ Observe que a notação $M(x)$ coincide com a notação de chamada de função.
     \label{def:recursive_function}
     Seja $M$ uma máquina de Turing.
     A \emph{função computada por $M$}
-    é a função parcial $f: \{0, 1\}^* \to \{0, 1\}^*$
-    tal que $f(x)$ está definida se e somente se $M(x)$ existe,
-    e, nestes casos, $f(x) = M(x)$.
+    é a função parcial $f: \{0, 1\}^* \to \{0, 1\}^*$ tal que
+    \begin{equation*}
+        f(x) \simeq M(x)
+    \end{equation*}
+    para todo $x$.
 
     Uma função $f$ é \emph{recursiva parcial}
     se for computada por alguma máquina $M$.
@@ -180,11 +182,9 @@ definida na seção~\ref{sec:binary_encoding}.
 \begin{definition}
     Uma função parcial $f: (\{0, 1\}^*)^k \to \{0, 1\}^*$ é \emph{recursiva parcial}
     se existir alguma função recursiva parcial $g: \{0, 1\}^* \to \{0, 1\}^*$
-    tal que $g(\langle i_1, i_2, \dots, i_k \rangle)$
-    está definida se, e somente se, $f(i_1, i_2, \dots, i_k)$ está definida,
-    e, neste caso,
+    tal que
     \begin{equation*}
-        g(\langle i_1, i_2, \dots, i_k \rangle) = f(i_1, i_2, \dots, i_k).
+        g(\langle i_1, i_2, \dots, i_k \rangle) \simeq f(i_1, i_2, \dots, i_k).
     \end{equation*}
     Funções recursivas totais são definidas analogamente.
 \end{definition}
@@ -242,10 +242,8 @@ definido na seção anterior.
 
 \begin{theorem}
     Existe uma função recursiva parcial $g$ de duas variáveis tal que
-    $g(x, y)$ existe se, e somente se, $f_x(y)$ existe,
-    e, neste caso,
     \begin{equation*}
-        g(x, y) = f_x(y).
+        g(x, y) \simeq f_x(y).
     \end{equation*}
 \end{theorem}
 
@@ -278,11 +276,8 @@ definido na seção anterior.
 \begin{theorem}
     Existe uma função recursiva total $\sigma$ de duas variáveis tal que,
     para todo $x, y, z \in \{0, 1\}^*$,
-    $f_x( \langle y, z \rangle )$ está definido se, e somente se,
-    $f_{\sigma(x, y)}(z)$ está definido, e,
-    neste caso,
     \begin{equation*}
-        f_{\sigma(x, y)}(z) = f_x(y, z).
+        f_{\sigma(x, y)}(z) \simeq f_x(y, z).
     \end{equation*}
 \end{theorem}
 
@@ -368,18 +363,14 @@ Por ``satisfazer às conclusões do teorema da máquina universal''
 quer"=se dizer que,
 para esta enumeração $\phi$,
 existe alguma função recursiva parcial $g$, de duas variáveis,
-tal que $g(x, y)$ está definido se, e somente se, $\phi_x(y)$ está definido,
-e, neste caso,
+tal que
 \begin{equation*}
-    g(x, y) = \phi_x(y).
+    g(x, y) \simeq \phi_x(y).
 \end{equation*}
 Similarmente, por ``satisfazer ao teorema $S_{mn}$'' queremos dizer que
-existe alguma função recursiva total $\sigma$ de duas variáveis
-tal que $\phi_{\sigma(x, y)}(z)$ está definido se,
-e somente se, $\phi_x(\langle x, y \rangle)$ está definido,
-e, neste caso,
+existe alguma função recursiva total $\sigma$ de duas variáveis tal que
 \begin{equation*}
-    \phi_{\sigma(x, y)}(z) = \phi_x(\langle x, y \rangle).
+    \phi_{\sigma(x, y)}(z) \simeq \phi_x(\langle x, y \rangle).
 \end{equation*}
 
 \begin{example}
