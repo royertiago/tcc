@@ -31,11 +31,21 @@
 \end{definition}
 
 O axioma~\ref{ax:blum_rec}
-nos dá um semialgoritmo para calcular $\Phi(M, x)$.
+nos dá um semialgoritmo para calcular $\Phi(x, y)$.
 Entretanto, pelo axioma~\ref{ax:blum_def},
 não podemos ir muito além disso,
-pois $M(x)$ não está definido para todo $M$ e $x$.
-De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
+pois $\phi_x(y)$ não está definido para todo $x$ e $y$.
+(De fato, decidir se $\Phi(x, y)$ existe
+é exatamente o problema da parada para o modelo de computação de $\phi$.)
+
+Nos exemplos que se seguem,
+quando estivermos usando a enumeração de Gödel $f_x$,
+utilizaremos a notação $\Phi(\langle M \rangle, x)$
+para nos referir a $\Phi(w, x)$,
+em que $w$ é a codificação (em binário) da máquina $M$.
+Não há problemas de ambiguidade,
+pois a codificação $w = \langle M \rangle$ como definida
+identifica a função $f_w$ unicamente.
 
 \begin{example}
     \label{ex:time_complexity}
@@ -46,7 +56,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     uma máquina de Turing faz até retornar uma resposta.
     Isto é,
     \begin{equation*}
-        \PhiDT(M, x) = \begin{cases}
+        \PhiDT( \langle M \rangle, x ) = \begin{cases}
             k, & \text{
                 \parbox{0.6\textwidth}{
                     se $M$ executa exatamente $k$ passos em $x$ antes de parar.
@@ -59,11 +69,11 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
             }
         \end{cases}
     \end{equation*}
-    Para determinar se $\PhiDT(M, x) = k$,
+    Para determinar se $\PhiDT( \langle M \rangle, x) = k$,
     execute a máquina $M$ por $k$ passos
     e veja se é a primeira vez que
     $M$ atinge um estado aceitador.
-    E, como $\PhiDT(M, x)$ só está definido se $M$ para ao computar $x$,
+    E, como $\PhiDT( \langle M \rangle, x)$ só está definido se $M$ para ao computar $x$,
     $\PhiDT$ satisfaz aos dois axiomas de Blum.
 \end{example}
 
@@ -75,7 +85,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     assumiremos que $M$ possui uma fita somente"=leitura
     específica para a entrada.
     \begin{equation*}
-        \PhiDS(M, x) = \begin{cases}
+        \PhiDS( \langle M \rangle, x) = \begin{cases}
             k, & \text{
                 \parbox{0.6\textwidth}{
                     se~$M$ para ao computar~$x$,
@@ -103,7 +113,7 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     Caso $M$ extrapole $k$ células lidas
     em alguma de suas fitas,
     podemos rejeitar a entrada
-    (isto é, $\Phi(M, x) = k$ é falso).
+    (isto é, $\Phi(\rangle M \langle, x) = k$ é falso).
     Caso contrário,
     existirá um número finito de configurações da máquina.
 
@@ -125,13 +135,13 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     \footnote{
         Este cuidado adicional é imprescindível
         para garantir que o predicado
-        ``$\Phi(M, x) = k$''
+        ``$\Phi(\langle M \rangle, x) = k$''
         seja decidível,
         não apenas semidecidível.
 
         Note que precisamos rejeitar a entrada
         caso a máquina entre em loop
-        porque $\Phi(M, x)$ só está definido
+        porque $\Phi( \langle M \rangle, x)$ só está definido
         quando $M(x)$ está
         --- não é o caso se $M$ entra em loop
         ao computar $x$.
@@ -163,22 +173,26 @@ De fato, sequer podemos decidir se $\Phi(M, x)$ existe.
     }
 
     A complexidade de tempo não"=determinística,
-    que denotaremos por $\PhiNT(M, x)$,
+    que denotaremos por $\PhiNT(\langle M \rangle, x)$,
     definiremos como sendo a maior quantidade de movimentos
     tomadas por $M$ ao computar $x$
     dentre todas as escolhas de transições possíveis.
 
     Analogamente,
     definiremos a complexidade de espaço não"=determinística,
-    que denotaremos por $\PhiNS(M, x)$,
+    que denotaremos por $\PhiNS(\langle M \rangle, x)$,
     como sendo a maior quantidade de células lidas
     em qualquer dos ramos da computação de $M$ em $x$.
     Aqui, precisamos tomar o mesmo cuidado que tomamos
     com $\PhiDS$ para demonstrar o axioma~\ref{ax:blum_rec}.
 \end{example}
 
-Observe que, neste exemplo,
-jogamos o problema de
+Nos exemplos \ref{ex:time_complexity} e~\ref{ex:space_complexity},
+a enumeração utilizada é a $f_x$
+definida na seção~\ref{sec:definition_enumeration_of_recursive_functions}.
+No exemplo~\ref{ex:nondeterministic_complexity},
+ficou faltando definir a enumeração de Gödel associada;
+isto é, jogamos o problema de
 explicar como uma máquina não"=determinística computa uma função
 para ``debaixo do tapete''.
 Voltaremos a este problema no capítulo~\ref{ch:nondeterministic_functions}.
@@ -187,18 +201,18 @@ será suficiente nos restringirmos às funções booleanas,
 usando a mesma definição usada para decisores.
 
 \begin{example}
-    Escolher $\Phi(M, x) = 0$ para todo $M$ e $x$
+    Escolher $\Phi(w, x) = 0$ para todo $M$ e $x$
     satisfaz ao axioma~\ref{ax:blum_rec},
     mas não ao axioma~\ref{ax:blum_def},
-    pois $\Phi(M, x)$ está definida mesmo quando $M(x)$ não está.
-    Já definir $\Phi(M, x) = |M(x)|$
+    pois $\Phi(w, x)$ está definida mesmo quando $f_w(x)$ não está.
+    Já definir $\Phi(w, x) = |f_w(x)|$
     satisfaz ao axioma~\ref{ax:blum_def},
     mas não ao axioma~\ref{ax:blum_rec},
     pois poderíamos resolver o problema da parada:
     dada uma máquina $M$, podemos modificá"=la
     para apagar sua fita logo antes de parar.
     Então, para esta $M'$,
-    $\Phi(M', x) = 0$ se, e somente se,
+    $\Phi(\langle M' \rangle, x) = 0$ se, e somente se,
     a $M$ original para ao computar $x$.
     Estes dois exemplos mostram que os axiomas são independentes
     \cite[p.~3]{Blum1967}.
@@ -209,23 +223,24 @@ Para ler uma posição da fita,
 é necessário gastar ao menos uma unidade de tempo.
 Ou seja,
 \begin{equation*}
-    \PhiDS(M, x) \leq \PhiDT(M, x).
+    \PhiDS(\langle M \rangle, x) \leq \PhiDT(M, x).
 \end{equation*}
 E, de acordo com o raciocínio do exemplo~\ref{ex:space_complexity},
 para todo $M$ existe algum $c$ que
 \begin{equation*}
-    \PhiDT(M, x) \leq c^{\PhiDS(M, x)}.
+    \PhiDT(\langle M \rangle, x) \leq c^{\PhiDS(M, x)}.
 \end{equation*}
 De fato, podemos relacionar quaisquer duas medidas de complexidade.
 
 \begin{theorem}
     \label{thm:measure_related}
-    Dadas duas medidas de complexidade $\Phi$ e $\hat \Phi$,
+    Dada uma enumeração de Gödel aceitável $\phi$
+    e duas medidas de complexidade $\Phi$ e $\hat \Phi$ para $\phi$,
     existe uma função recursiva $r$ tal que
     \begin{equation*}
-        \Phi(M, x) \leq r( x, \hat \Phi(M, x))
+        \Phi(w, x) \leq r( x, \hat \Phi(w, x))
     \end{equation*}
-    para todo $M$ e quase todo $x$.%
+    para todo $w$ e quase todo $x$.%
     \footnote{
         Um predicado é ``verdadeiro para quase todo $n$''
         quando ele é falso para apenas uma quantidade finita de números $n$.
@@ -238,25 +253,24 @@ De fato, podemos relacionar quaisquer duas medidas de complexidade.
 \begin{proof}
     Defina
     \begin{equation*}
-        r( x, k ) = \max \{ \Phi(M, x) \mid
-            \text{A descrição de $M$ é mais curta que $|x|$}
-            \text{ e }
-            \hat \Phi(M, x) = k
-        \}
+        r( x, k ) = \max \{ \Phi(w, x) \mid |w| \leq |x| \land \hat \Phi(w, x) = k \}
     \end{equation*}
     Fixado $x$, existe um número finito de máquinas de Turing
     cuja descrição é menor que $|x|$.
-    O conjunto na definição acima é um subconjunto desta lista.
-    O predicado $\hat \Phi(M, x) = k$ é recursivo.
+    O conjunto na definição acima é um subconjunto desta lista
+    (pois, além da exigência $|w| \leq |x|$,
+    exigimos que $\hat \Phi(w, x) = k$.)
+
+    O predicado $\hat \Phi(w, x) = k$ é recursivo.
     Quando este predicado é verdadeiro,
-    $M(x)$ está definido, pelo axioma~\ref{ax:blum_def},
-    portanto $\Phi(M, x)$ também está definido.
+    $\phi_w(x)$ está definido, pelo axioma~\ref{ax:blum_def},
+    portanto $\Phi(w, x)$ também está definido e pode ser calculado.
     Concluímos que $r$ é recursiva.
 
-    Agora, para todos os $x$ que são mais longos que a descrição de $M$,
-    $\Phi(M, x)$ será um dos elementos do conjunto acima
-    para $r( x, \hat \Phi(M, x))$,
-    portanto é menor ou igual a este número.
+    Agora, para todos os $x$ que são mais longos que $w$,
+    $\Phi(w, x)$ será um dos elementos do conjunto acima
+    para $r(x, \hat \Phi(w, x))$,
+    portanto é menor ou igual a $\Phi(w, x)$.
 \end{proof}
 
 \citeonline[p.~4]{Blum1967} demonstra uma versão ligeiramente mais forte
@@ -264,11 +278,11 @@ deste teorema.
 Ele prova que $r$ pode ser tal que,
 simultaneamente,
 \begin{equation*}
-    \Phi(M, x) \leq r( x, \hat \Phi(M, x))
+    \Phi(w, x) \leq r( x, \hat \Phi(w, x))
 \end{equation*}
 e
 \begin{equation*}
-    \hat \Phi(M, x) \leq r( x, \Phi(M, x))
+    \hat \Phi(w, x) \leq r( x, \Phi(w, x))
 \end{equation*}
 Podemos construir uma função dessas
 pegando o máximo de duas funções obtidas
@@ -280,8 +294,8 @@ não pode ser fortalecido
 para que $r$ seja uma função de apenas uma variável.
 Considere $A$ uma máquina de Turing
 que opere como um autômato finito.
-$\PhiDT(A, x) = |x|$ para toda palavra $x$,
-enquanto que $\PhiDS(A, x) = 1$ para toda palavra $x$.%
+$\PhiDT(\langle A \rangle, x) = |x|$ para toda palavra $x$,
+enquanto que $\PhiDS(\langle A \rangle, x) = 1$ para toda palavra $x$.%
 \footnote{
     A complexidade de espaço não é $0$
     pois $A$ é obrigada a ler
@@ -289,21 +303,21 @@ enquanto que $\PhiDS(A, x) = 1$ para toda palavra $x$.%
     embora a máquina não use aquela célula.
 }
 Se $r$ pudesse depender apenas da segunda variável,
-isto é, $r(x, m) = r'(m)$ para alguma função $r'$,
+isto é, $r(x, k) = r'(m)$ para alguma função $r'$,
 teríamos
 \begin{align*}
-    |x| &= \PhiDT(A, x) \\
-        &\leq r(x, \PhiDS(A, x)) \\
+    |x| &= \PhiDT(\langle A \rangle, x) \\
+        &\leq r(x, \PhiDS(\langle A \rangle, x)) \\
         &= r(x, 1) \\
         &= r'(1)
 \end{align*}
 que é falso para todo $x$ suficientemente comprido.
 
 Caso $r$ pudesse depender apenas da primeira variável,
-isto é, $r(x, m) = r''(x)$ para alguma função $r''$,
+isto é, $r(x, k) = r''(x)$ para alguma função $r''$,
 teríamos, para todas as máquinas de Turing,
 \begin{equation*}
-    \PhiDT(M, x) \leq r''(x).
+    \PhiDT(\langle M \rangle, x) \leq r''(x).
 \end{equation*}
 Mas, como $r''$ é recursiva
 (pois $r$ o é),
@@ -312,7 +326,7 @@ desperdiça $r''(x)$ movimentos,
 e aceita a entrada.
 Para esta $M'$,
 \begin{equation*}
-    \PhiDT(M', x) > r''(x),
+    \PhiDT(\rangle M' \langle, x) > r''(x),
 \end{equation*}
 contradizendo a equação anterior.
 
@@ -327,13 +341,11 @@ Precisamos de um lema,
 vindo direto da teoria das funções recursivas.
 
 \begin{lemma}[Teorema da Recursão]
-    Denote por $M_x$ a máquina de Turing
-    representada pela palavra $x$.
-
-    Para qualquer função recursiva total $\sigma$,
-    existe um valor $m$ tal que
+    Para qualquer enumeração de Gödel aceitável $\phi$
+    e qualquer função recursiva total $\sigma$,
+    existe um valor $w$ tal que
     \begin{equation*}
-        M_m(x) = M_{\sigma(m)}(x)
+        \phi_w(x) = \phi_{\sigma(w)}(x)
     \end{equation*}
     para todo $x$.
     (Tal valor é chamado de \emph{ponto fixo} para $\sigma$.)
@@ -341,30 +353,28 @@ vindo direto da teoria das funções recursivas.
 \end{lemma}
 
 \begin{proof}
-    Primeiro, construiremos uma máquina $N$ que,
+    Ilustraremos o teorema com o caso $\phi_x = f_x$.
+    %TODO: Demonstrar por completo.
+
+    Primeiro, construiremos uma máquina $M$ que,
     ao receber $x$ na entrada,
-    devolverá um índice\footnotemark{} para $M_x(x)$.
-    Isto é,
-    para todo $y$,
+    computará uma máquina equivalente a $\phi_x(x)$.
+    Isto é, para todo $y$,
     \begin{equation}
-        M_{N(x)}(y) = M_{M_x(x)}(y),
+        \phi_{M(x)}(y) = \phi_{f_x(x)}(y),
         \label{eq:diagonal_N}
     \end{equation}
-    sempre que $M_x(x)$ existir.
+    sempre que $f_x(x)$ existir.
     \footnotetext{
-        Um \emph{índice} para uma função recursivamente enumerável $f$
-        é um número $i$ que representa uma máquina de Turing para $f$;
-        isto é,
-        $M_i(x)$ está definido se, e só se, $f(x)$ está definido,
-        e, neste caso,
-        $M_i(x) = f(x)$
-        \cite[p.~130]{EpsteinCarnielli2008}.
+        Duas palavras $u$ e $v$ são equivalentes
+        se, para todo $x$, $f_u(x) \simeq f_v(x)$.
     }
 
-    A abordagem direta
-    (fazer $M_x$ computar $x$)
+    A abordagem direta,
+    calcular $\phi_x(x)$,
     não funciona,
-    pois $M_x$ pode nunca parar.
+    pois $\phi_x(x)$ pode não existir.
+    pois a máquina representada por $x$ pode nunca parar ao processar $x$.
 
     Observe que não precisamos retornar $M_x(x)$,
     e sim, apenas uma máquina equivalente a $M_x(x)$,
@@ -403,72 +413,73 @@ vindo direto da teoria das funções recursivas.
 \end{proof}
 
 \begin{proposition}
-    Sejam $f$ e $g$ duas funções recursivas totais,
-    e $\Phi$ uma medida de complexidade.
-    Então existe uma máquina de Turing $M$ que computa $f$
-    tal que
+    Seja $\phi$ uma numeração de Gödel aceitável,
+    $\Phi$ uma medida de complexidade para $\phi$,
+    e $f$ e $g$ funções recursivas totais.
+    (Interpretaremos $g$ como sendo uma função de inteiros.)
+    Então existe um índice $w$ para a função $f_w$ tal que
     \begin{equation*}
-        \Phi(M, x) > g(|x|)
+        \Phi(w, x) > g(\langle|x|\rangle)
     \end{equation*}
     para todo $x$.
     \label{thm:resource_waste}
 \end{proposition}
 
+Ou seja,
+o dispositivo computacional representado por $w$
+desperdiça mais de $g(n)$ unidades do recurso medido por $\Phi$
+ao processar uma palavra de tamanho $n$.
+Em outras palavras,
+código ruim pode ser feito em qualquer linguagem.
+
 \begin{proof}
     Defina a função $h$, de duas variáveis, por
     \begin{equation*}
-        h(m, x) = \begin{cases}
-            M_m(x) a & \text{se $\Phi(M_m, x) \leq g(|x|)$} \\
+        h(w, x) = \begin{cases}
+            \phi_w(x)1 & \text{se $\Phi(w, x) \leq g(\langle|x|\rangle)$} \\
             f(x) & \text{caso contrário.}
         \end{cases}
     \end{equation*}
-    ($M_m(x)a$ é o valor de $M_m(x)$ concatenado com a letra $a$.)
+    ($\phi_w(x)a$ é o valor de $\phi_w(x)$ concatenado com o símbolo $1$.)
 
     Observe que $h$ é uma função computável,
     pois $\Phi$, $g$ e $f$ o são,
-    e, caso $\Phi(M_m, x)$ esteja definido,
-    $M_m(x)$ também estará.
+    e, caso $\Phi(w, x)$ esteja definido,
+    $\phi_w(x)$ também estará.
 
+    Seja $S$ a função $S_{mn}$ da enumeração $\phi$,
+    e $v$ um índice para $h$.
     Construa a função $\sigma$ que,
-    ao receber $m$ na entrada,
-    altere"=a para que,
-    quando ela receber $x$ na entrada,
-    compute $h(m, x)$.
-    Ou seja,
+    na entrada $w$, calcula $S(v, w)$
+    --- isto é, $\sigma(w) = S(v, w)$.
+    Portanto,
     \begin{equation*}
-        M_{\sigma(m)}(x) = h(m, x).
+        \phi_{\sigma(w)}(x) = \phi_{S(v, w)}(x) = \phi_v(\langle w, x \rangle) = h(w, x).
     \end{equation*}
-    $\sigma$ pode, por exemplo,
-    codificar $m$ nos estados de $\sigma(m)$;
-    esta máquina imprimirá $m$ na fita,
-    ao lado do $x$,
-    e executar uma sub"=rotina que computa $h$ no restante.
+    Observe que $\sigma$ é recursiva total, pois $S$ o é.
 
     Pelo teorema da recursão (lema~\ref{thm:recursion}),
-    $\sigma$ possui um ponto fixo $m_0$.
-    Demonstraremos que $m_0$ satisfaz às exigências do teorema.
+    $\sigma$ possui um ponto fixo $w_0$.
+    Demonstraremos que $w_0$ satisfaz às exigências do teorema.
 
-    Caso a função $h$, ao computar o valor de $h(m_0, x)$
+    Caso a função $h$, ao computar o valor de $h(w_0, x)$
     para algum $x$,
     tenha escolhido a primeira cláusula,
-    a saída final de $\sigma(m_0)$ teria sido
-    $M_{m_0} (x)$ concatenado com $a$,
-    que é diferente de apenas $M_{m_0}(x)$.
-    Portanto, $m_0$ não seria um ponto fixo de $\sigma$,
+    a saída final de $\sigma(w_0)$ teria sido
+    $\phi_{w_0} (x)$ concatenado com $1$,
+    que é diferente de apenas $\phi_{w_0}(x)$.
+    Portanto, $w_0$ não seria um ponto fixo de $\sigma$,
     contradizendo o teorema da recursão.
 
     Portanto, $h$ nunca seleciona a primeira cláusula
-    ao computar $h(m_0, x)$, para qualquer $x$.
-    Isto significa que $\Phi(m_0, x) > g(|x|)$ para todo $x$,
+    ao computar $h(w_0, x)$, para qualquer $x$.
+    Isto significa que $\Phi(w_0, x) > g(\langle |x| \rangle)$ para todo $x$,
     o que garante a exigência de complexidade,
     e que
     \begin{equation*}
-        M_{\sigma(m_0)}(x) = f(x).
+        \phi_{\sigma(w_0)}(x) = f(x).
     \end{equation*}
-    Mas, como $m_0$ é um ponto fixo de $\sigma$,
-    a própria $m_0$ já computava $f$ antes de passar por $\sigma$,
+    Mas, como $w_0$ é um ponto fixo de $\sigma$,
+    a própria $w_0$ já computava $f$ antes de passar por $\sigma$,
     o que prova a exigência da função.
 \end{proof}
-
-Em outras palavras,
-código ruim pode ser feito em qualquer linguagem.
