@@ -36,20 +36,20 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
         \mathcal C_\Phi(f_4) \subseteq
         \dots;
     \end{equation*}
-    se alguma máquina $M_j$ possui sua linguagem
-    na união destas classes de complexidade,
-    significa que $L(M_j) \in \mathcal C_\Phi(f_k)$
-    para algum $k$,
-    mas também que $L(M_j) \in \mathcal C_\Phi(f_i)$
+    se alguma função $\phi_w$ pertence a união destas classes de complexidade,
+    então $\phi_w \in \mathcal C_\Phi(f_k)$ para algum $k$,
+    mas também que $\phi_w \in \mathcal C_\Phi(f_i)$
     para todas as classes de complexidade com $i \geq k$.
 
+    Enumere as palavras de $\{0, 1\}^*$ por $w_1, w_2, \dots, w_n, \dots$,
+    ordenando lexicograficamente.
     Para definir o valor de $g(n)$,
-    analisaremos as máquinas $M_1, \dots, M_n$,
+    analisaremos as funções $\phi_{w_1}, \dots, \phi_{w_n}$
     e manteremos uma lista de ``chutes''
-    da forma $L(M_i) \in \mathcal C_\Phi(f_j)$,
+    da forma $\phi_{w_i} \in \mathcal C_\Phi(f_j)$,
     que denotaremos $\mathcal C(i) = j$.
     Isto é, tentaremos ``adivinhar''
-    em qual dos conjuntos a linguagem da máquina $M_j$ entra.%
+    em qual dos conjuntos a função $\phi_{w_i}$ entra.%
     \footnote{
         Embora estejamos usando os termos
         ``adivinhar'' e ``chute'',
@@ -63,25 +63,26 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
         Observe também que não precisamos
         ``acertar na mosca'';
         basta algum conjunto $\mathcal C_\Phi(f_k)$
-        ao qual $L(M_i)$ pertença.
+        ao qual $\phi_{w_i}$ pertença.
     }
 
     Ao computar o valor de $g(n)$,
     um chute errado
     é um chute $\mathcal C(i) = j$
-    em que $\Phi(M_i, x) > f_j(|x|)$
+    em que $\Phi(w_i, x) > f_j(|x|)$
     para algum $x$ com $|x| = n$.
     Conforme computamos $g(n)$,
     sempre que descobrirmos que nosso chute,
-    digamos, para $M_i$, está errado,
-    definiremos $g$ para um valor menor que $\Phi(M_i, x)$
-    (para $|x| = n$)
-    e faremos um novo chute.
+    digamos, para $\phi_{w_i}$, está errado,
+    definiremos $g$ para um valor menor que $\Phi(w_i, x)$
+    (para $|x| = n$),
+    e faremos um novo chute,
+    desta vez ``aumentando as apostas''.
 
     Defina $g(1)$ para $f_1(1)$
     (ou qualquer valor arbitrário)
     e inicialize a lista com o chute
-    $\mathcal C_1 = 1$.
+    $\mathcal C(1) = 1$.
     A lista terá sempre tamanho $n-1$
     ao começar a decidir o valor de $g(n)$.
 
@@ -90,7 +91,7 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     Percorra a lista atrás de chutes errados;
     isto é,
     pares $\mathcal C_i = k_i$
-    tais que $\Phi(M_i, x) > f_{k_i}$
+    tais que $\Phi(w_i, x) > f_{k_i}(x)$
     para algum $x$ com $|x| = n$.
     Dentre os chutes errados,
     escolha $i$ de forma a minimizar $k_i$.
@@ -104,19 +105,21 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
         Imprima $g(1) = f_1(1)$ \;
         \For{$n = 2$ \KwTo $\infty$}{
             Adicione $\mathcal C(n) = n$ à lista \texttt{chutes} \;
-            \texttt{chute\_errado} = $-1$ \;
+            \tcc{Valor sentinela:}
+            \texttt{chute\_errado} = $\infty$ \;
             \For{$i \leftarrow 1$ \KwTo $n$}{
                 \tcc{acharemos o menor chute errado}
-                \If{$\Phi(M_i, x) > f_{\mathcal C(i)}(|x|)$
+                \If{$\Phi(w_i, x) > f_{\mathcal C(i)}(|x|)$
                     para algum $x$ de tamanho $n$
                 }{
                     \tcc{Achamos um chute errado.}
                     Substitua \texttt{chute\_errado} por $i$
-                    caso isso reduza (ou defina) o valor de
+                    caso isso reduza o valor de
                     $\mathcal C(\texttt{chute\_errado})$ \;
                 }
             }
-            \If{\texttt{chute\_errado} = $-1$}{
+            \If{\texttt{chute\_errado} = $\infty$}{
+                \tcc{Todos os chutes estavam certos.}
                 Imprima $g(n) = f_n(n)$ \;
             }
             \Else{
@@ -132,13 +135,13 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
         \label{algo:union_theorem}
     \end{algorithm}
 
-    Caso $L(M_i)$ esteja em algum $\mathcal C_\Phi(f_k)$,
+    Caso $\phi_{w_i}$ esteja em algum $\mathcal C_\Phi(f_k)$,
     assim que redefinirmos o chute para algum valor maior que $k$,
     erraremos, no máximo,
     mais uma quantidade finita de vezes.
-    Caso $L(M_i)$ não esteja na união das classes de complexidade,
+    Caso $\phi_{w_i}$ não esteja na união das classes de complexidade,
     erraremos o chute infinitas vezes,
-    e $g(|x|)$ será maior que $\Phi(M, x)$ para todos esses erros.
+    e $g(|x|)$ será maior que $\Phi(w_i, x)$ para todos esses erros.
 
     Observe que os novos chutes que adicionamos à lista
     sempre serão maiores que todos os demais chutes existentes;
@@ -152,12 +155,12 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     que resultarão na definição de $g(n)$ como $f_k(n)$
     para algum $k < i$.
 
-    Então, se $L(M_i) \in \mathcal C_\Phi(f_k)$,
-    teremos $\Phi(M, x) > g(|x|)$
+    Então, se $\phi_{w_i} \in \mathcal C_\Phi(f_k)$,
+    teremos $\Phi(w_i, x) > g(|x|)$
     para, no máximo, $k-1$ valores de $|x|$ maiores que $k$.
     Concluímos que
     \begin{equation*}
-        L(M_i) \in \mathcal C_\Phi(g),
+        \phi_{w_i} \in \mathcal C_\Phi(g),
     \end{equation*}
     pois $\Phi(M, x) > g(|x|)$ apenas um número finito de vezes.
 
@@ -167,14 +170,14 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     \end{equation*}
 
     Do outro lado,
-    pegue $L$ fora da união das classes de complexidade.
-    Qualquer máquina $M_j$ para $L$
+    pegue $\phi_{w_i}$ fora da união das classes de complexidade.
+    Qualquer índice $w_j$ para $L$
     terá, para todo $k$,
-    $\Phi(M_j, x) > f_k(|x|)$ para infinitos $x$.
+    $\Phi(w_j, x) > f_k(|x|)$ para infinitos $x$.
     Em todos esses valores de $|x|$,
     iremos ``errar o chute''
     e definir $g(n)$
-    para um valor menor que $\Phi(M_j, x)$,
+    para um valor menor que $\Phi(w_j, x)$,
     para algum $x$ com $|x| = n$.
 
     Isso prova
@@ -207,7 +210,7 @@ Neste último caso
 (que abrange o anterior),
 apenas teríamos que alterar a quantidade máxima de vezes
 em que podem haver chutes errados.
-Se $L(M_t) \in \mathcal C_\Phi(f_i)$,
+Se $\phi_{w_t} \in \mathcal C_\Phi(f_i)$,
 então existem, no máximo,
 $i - 1$ definições de $g(n)$
 que poderiam ser baseados em $f_k$
@@ -220,7 +223,7 @@ Agora, além desses valores,
 precisamos levar em conta que
 todas as definições até $n_i$
 podem ser inferiores a $f_i$
-(e, possivelmente, abaixo da complexidade de $M_t$).
+(e, possivelmente, abaixo da complexidade de $\phi_{w_t}$).
 
 Em outras palavras,
 é essencial que as funções $f_i$
