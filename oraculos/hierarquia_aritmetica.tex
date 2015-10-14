@@ -33,20 +33,20 @@ e, imitando o teorema da parada,
 podemos mostrar que $L_u^n$ é indecidível para máquinas que usam $L_u^n$ como oráculo.
 
 Defina
-\simbolo{$\R_n$}{Linguagens decidíveis usando um oráculo para $L_u^n$}
+\simbolo{$\Sigma_n$}{Linguagens decidíveis usando um oráculo para $L_u^n$}
 \begin{equation*}
-    \R_n = \{ L \mid L = L^{L_u^n}(M) \text{ para alguma máquina $M^{L_u^n}$ } \}.
+    \Sigma_n = \{ L \mid L = L^{L_u^n}(M) \text{ para alguma máquina $M^{L_u^n}$ } \}.
 \end{equation*}
-Ou seja, $\R_n$ é o conjunto das linguagens
+Ou seja, $\Sigma_n$ é o conjunto das linguagens
 que são decidíveis usando $L_u^n$ como oráculo.%
 \footnote{
     Se usarmos a convenção de que $L_u^0 = \emptyset$,
-    o conjunto $\R_0$ é exatamente o conjunto das linguagens recursivas
-    (geralmente denotado por \R).
+    o conjunto $\Sigma_0$ é exatamente o conjunto das linguagens recursivas
+    (geralmente denotado por $\R$).
 }
-O parágrafo anterior mostra que $L_u^{n+1}, S_{n+1} \notin \R_n$.
+O parágrafo anterior mostra que $L_u^{n+1}, S_{n+1} \notin \Sigma_n$.
 
-Podemos demonstrar (por indução) que $\R_n \subset \R_{n+1}$.
+Podemos demonstrar (por indução) que $\Sigma_n \subset \Sigma_{n+1}$.
 Desta forma,
 criamos uma hierarquia de problemas indecidíveis.%
 \footnote{
@@ -64,7 +64,7 @@ mas agora equipadas com um oráculo para $L_u^n$.
 Observe que,
 de posse de um oráculo para $S_n$ (por exemplo),
 ao ``programar'' uma máquina de Turing com esse oráculo,
-podemos ``fingir'' que podemos usar qualquer linguagem de $\R_n$ como oráculo
+podemos ``fingir'' que podemos usar qualquer linguagem de $\Sigma_n$ como oráculo
 --- como esta linguagem possui um algoritmo que a resolve
 usando o nosso oráculo $S_n$,
 podemos substituir todas as chamadas àquele oráculo
@@ -73,20 +73,61 @@ Abusando um pouco da notação,
 podemos escrever
 \begin{equation}
     \begin{aligned}
-        \R_0 &= \R \\
-        \R_{n+1} &= \R^{\R_n}.
+        \Sigma_0 &= \R \\
+        \Sigma_{n+1} &= \R^{\Sigma_n}.
     \end{aligned}
     \label{eq:oracle_notation_abuse}
 \end{equation}
-A interpretação é que $\R_{n+1}$ é o conjunto das linguagens
+A interpretação é que $\Sigma_{n+1}$ é o conjunto das linguagens
 decididas pelas mesmas máquinas de $\R$,
-mas equipadas com um oráculo qualquer de $\R_n$.
-Como $S_n \in \R_n$, esta nova definição inclui a definição anterior;
-Como todas as linguagens de $\R_n$ podem ser decididas usando um oráculo para $S_n$,
-qualquer linguagem de $\R_{n+1}$
+mas equipadas com um oráculo qualquer de $\Sigma_n$.
+Como $S_n \in \Sigma_n$, esta nova definição inclui a definição anterior;
+Como todas as linguagens de $\Sigma_n$ podem ser decididas usando um oráculo para $S_n$,
+qualquer linguagem de $\Sigma_{n+1}$
 pode ser decidida usando apenas $S_n$
 (basta fazer aquela troca de chamadas ao oráculo);
 portanto as duas definições são equivalentes.
 Usaremos esta notação novamente na seção~\ref{sec:polynomial_hierarchy},
 mas indo direto à esta construção alternativa,
 sem passar pela definição via $S_n$ primeiro.
+
+Estendendo o exemplo do $\Sigma_n$,
+podemos construir a hierarquia aritmética.%
+\footnote{
+    A hierarquia aritmética costuma ser caracterizada
+    através de fórmulas de primeira ordem.
+    Isto é,
+    as linguagens de $\Sigma_n$ são as que podem ser descritas por
+    \begin{equation*}
+        \exists x_1 \forall x_2 \exists x_3 \dots Q x_n P(x, x_1, \dots, x_n)
+    \end{equation*}
+    em que o quantificador $Q$ depende da paridade de $n$.
+    $\Pi_n$ é definido de maneira análoga,
+    mas com o primeiro quantificador sendo um $\forall$.
+
+    Esta construção alternativa é de \citeonline[p.~234]{DavisSigalWeyuker1994}.
+}
+\begin{definition}[Hierarquia aritmética]
+    \begin{align*}
+        \Sigma_0 &= \R \\
+        \Sigma_{n+1} &= \R^{\Sigma_n} \\
+        \Pi_n &= \ComplexityFont{co}\Sigma_n =
+            \big\{ \{0, 1\}^* \backslash L \mid L \in \Sigma_n \big\} \\
+        \Delta_n &= \Sigma_n \cap \Pi_n \\
+    \end{align*}
+\end{definition}
+
+A hierarquia aritmética provê uma forma de ``medir''
+o quão ``indecidível'' um problema é.
+Intuitivamente, quão mais alto um problema está na hierarquia,
+``mais indecidível'' este problema é.
+
+Podemos mostrar que $\Sigma_n$ é um subconjunto próprio de $\Sigma_{n+1}$,
+e que o mesmo vale para $\Pi_n$ e $\Pi_{n+1}$.
+Similarmente,
+\begin{equation*}
+    \Pi_n \cup \Sigma_n \subset \Delta_{n+1} = \Sigma_{n+1} \cap \Pi_{n+1}.
+\end{equation*}
+
+Encontraremos uma estrutura de inclusões similar a esta
+na seção~\ref{sec:polynomial_hierarchy}.
