@@ -1,6 +1,6 @@
 \subsection{Classes de Complexidade}
 
-\begin{definition}
+\begin{definition}\cite[p.~242]{Kozen2006}
     Dada uma medida de complexidade $\Phi$
     e uma função recursiva total
     $f: \mathbb N \rightarrow \mathbb N$,
@@ -19,7 +19,7 @@ para generalizar algumas demonstrações.%
     Por razões didáticas, \citeonline[p.~285]{HopcroftUllman1979}
     definem classes de complexidade individualmente para cada medida de complexidade.
     Para tempo e espaço,
-    que são as duas únicas medidas levadas em consideração por estes autores,
+    que são as medidas levadas em consideração por estes autores,
     não precisamos nos preocupar com este número finito de elementos
     que extrapola o limite de complexidade,
     pois sempre podemos embutir suas respostas no controle finito da máquina.
@@ -30,9 +30,10 @@ para generalizar algumas demonstrações.%
     não há garantia de que possamos fazer esta modificação
     --- a medida de complexidade poderia, por exemplo,
     depender também da quantidade de estados da máquina.
-    Portanto, para que possamos generalizar estes resultados,
-    escolhi embutir esta liberdade adicional
-    na própria definição de classe de complexidade.
+    Portanto, para que estes resultados possam ser generalizados,
+    embutimos esta liberdade adicional
+    na própria definição de classe de complexidade
+    \cite[p.~80]{McCreightMeyer1969}.
 }
 
 Embora faça sentido definir $\mathcal C_\Phi(f)$
