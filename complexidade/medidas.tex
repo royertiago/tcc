@@ -1,14 +1,30 @@
 \section{Medidas de Complexidade Computacional}
 \label{sec:default_measures}
 
+Nesta seção,
+desceremos da ``estratosfera'',
+em que lidávamos com os axiomas de Blum,
+e trabalharemos com medidas de complexidade concretas.
+
+\simbolo{$\mathcal B$}{Conjunto das funções booleanas}
 \begin{provisionaldefinition}
+    Seja $\mathcal B$ o conjunto das funções booleanas
+    (isto é, cuja imagem é $\{0, 1\}$).
+    Então,
     \begin{align*}
-        \DTIME(f) &= \mathcal C_\PhiDT(f) \\
-        \DSPACE(f) &= \mathcal C_\PhiDS(f) \\
-        \NTIME(f) &= \mathcal C_\PhiNT(f) \\
-        \NSPACE(f) &= \mathcal C_\PhiNS(f)
+        \DTIME(f) &= \mathcal C_\PhiDT(f) \cap \mathcal B \\
+        \DSPACE(f) &= \mathcal C_\PhiDS(f) \cap \mathcal B \\
+        \NTIME(f) &= \mathcal C_\PhiNT(f) \cap \mathcal B \\
+        \NSPACE(f) &= \mathcal C_\PhiNS(f) \cap \mathcal B
     \end{align*}
 \end{provisionaldefinition}
+
+(Isto é, $\DTIME(f)$ são todas as funções booleanas de $\mathcal C_\PhiDT(f)$.
+Observe que existe uma correspondência direta entre
+uma função booleana $g : \{0, 1\}^* \to \{0, 1\}$
+e a linguagem correspondente $L = \{x \mid g(x) = 1\}$;
+portanto,
+usaremos os termos intercambiavelmente.)
 
 Estas são as principais medias de complexidade computacional
 para máquinas de Turing.
@@ -38,7 +54,7 @@ Outra diferença é o fato de nós permitirmos
 (por exemplo) $\DSPACE(f)$
 extrapolar o limite de $f(n)$ células
 para um número finito de entradas.
-Isto não costuma causar problemas,
+Isto não costuma causar problemas;
 de fato,
 podemos mostrar que,
 caso $f(n) \geq 1$,
@@ -94,8 +110,8 @@ Portanto, adotaremos esta hipótese de
 
 \begin{definition}
     \begin{align*}
-        \DSPACE(f(n)) &= \mathcal C_\PhiDS(\max(f(n), 1)) \\
-        \NSPACE(f(n)) &= \mathcal C_\PhiNS(\max(f(n), 1))
+        \DSPACE(f(n)) &= \mathcal C_\PhiDS(\max(f(n), 1)) \cap \mathcal B \\
+        \NSPACE(f(n)) &= \mathcal C_\PhiNS(\max(f(n), 1)) \cap \mathcal B
     \end{align*}
 \end{definition}
 
@@ -119,8 +135,8 @@ a de que $f(n) \geq n$.
 Adotaremos a hipótese de \citeauthoronline{HopcroftUllman1979}.
 \begin{definition}
     \begin{align*}
-        \DTIME(f(n)) &= \mathcal C_\PhiDT(\max(f(n), n+1)) \\
-        \NTIME(f(n)) &= \mathcal C_\PhiNT(\max(f(n), n+1))
+        \DTIME(f(n)) &= \mathcal C_\PhiDT(\max(f(n), n+1)) \cap \mathcal B \\
+        \NTIME(f(n)) &= \mathcal C_\PhiNT(\max(f(n), n+1)) \cap \mathcal B
     \end{align*}
 \end{definition}
 
