@@ -89,7 +89,18 @@ Precisamos de um lema.%
     Seja $\mathcal C_\Phi(f)$ uma classe de complexidade
     com relação à $\Phi$.
     Então existe uma função total recursiva $g$
-    que não pertence à esta classe de complexidade.
+    que não pertence à esta classe de complexidade.%
+    \footnote{
+        Observe que este teorema possui uma afirmação mais forte
+        do que o teorema~\ref{thm:resource_waste};
+        lá,
+        nós encontramos um índice (para uma função)
+        que desperdiça recursos ao computá"=la.
+        Aqui,
+        construiremos uma função que,
+        não importa que técnica seja usada,
+        a quantidade de recursos gastos eventualmente superará $f$.
+    }
     Além disso, $g$ pode ser construída de forma que
     sua imagem seja o conjunto $\{0, 1\}$.
     \label{thm:outside_class}
