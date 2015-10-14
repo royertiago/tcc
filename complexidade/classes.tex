@@ -1,18 +1,19 @@
 \subsection{Classes de Complexidade}
 
 \begin{definition}\cite[p.~242]{Kozen2006}
-    Dada uma medida de complexidade $\Phi$
+    Dada uma enumeração de Gödel aceitável $\phi$,
+    uma medida de complexidade $\Phi$ para $\phi$,
     e uma função recursiva total
     $f: \mathbb N \rightarrow \mathbb N$,
     a \emph{classe de complexidade $f$} com relação a $\Phi$
     é o conjunto
     \begin{equation*}
-        \mathcal C_\Phi(f) = \{ L(M) \mid \Phi(M, x) \leq f(|x|)
+        \mathcal C_\Phi(f) = \{ \phi_w \mid \Phi(w, x) \leq f(|x|)
             \text{ para quase todos os $x$}
         \}.
     \end{equation*}
 \end{definition}
-Permitiremos que a complexidade de $M$
+Permitiremos que a complexidade de $\phi_w$
 possa ser maior que $f$ para um número finito de elementos
 para generalizar algumas demonstrações.%
 \footnote{
@@ -35,6 +36,14 @@ para generalizar algumas demonstrações.%
     na própria definição de classe de complexidade
     \cite[p.~80]{McCreightMeyer1969}.
 }
+Como esta permissão existe apenas para um número finito de elementos,
+para todo $w$, o valor de $\Phi(w, x)$ precisa estar definido
+para todo $x$ suficientemente longo.
+Portanto,
+as funções $\phi_w$ que pertencem a alguma classe de complexidade
+estão definidas para todo $x$ suficientemente longo
+(o quão longo é depende de $w$).
+Isto é, o domínio destas funções é \emph{cofinito}.
 
 Embora faça sentido definir $\mathcal C_\Phi(f)$
 para funções $f$ arbitrárias,
