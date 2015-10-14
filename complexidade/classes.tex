@@ -54,8 +54,7 @@ suscetíveis a argumentos por diagonalização.
 Por exemplo,
 podemos mostrar que
 nenhuma classe de complexidade contém todas as linguagens recursivas.
-Precisamos de um resultado preliminar,
-que demonstraremos através de três lemas.%
+Precisamos de um lema.%
 \footnote{
     A maior parte dos teoremas não precisou ser alterada significativamente
     para ser adaptado à esta noção de classe de complexidade.
@@ -64,127 +63,96 @@ que demonstraremos através de três lemas.%
 }
 
 \begin{lemma}
-    Existe um mapeamento bijetivo computável
-    entre $\mathbb N$ e $\mathbb N \times \mathbb N$.
+    Existe uma função total recursiva $h: \{0, 1\}^* \to \{0, 1\}^*$
+    tal que, para todos $x$,
+    existem infinitos $y$ tais que $h(y) = x$.
+    Isto é, as imagens inversas por $f$ são sempre é infinitas.
 \end{lemma}
 
 \begin{proof}
-    Percorra o caminho descrito pelas setas na figura~\ref{fig:cantor_walk}.
-
-    \begin{figure}[h]
-        \centering
-        \begin{tikzpicture}
-            \foreach \i in {0,...,3}
-            \foreach \j in {0,...,3} {
-                \node[font=\footnotesize]
-                    (a\i\j) at (2*\i, -1.2*\j) {$(\i, \j)$};
-            }
-
-            \foreach \a/\b in {a00/a10, a01/a20, a02/a30} {
-                \draw[->, dashed] (\a) .. controls
-                +(-1,-1.8) and
-                +(1, 1.8) .. (\b);
-            }
-
-            \foreach \a/\b in {
-                a10/a01, a20/a11, a11/a02,
-                a30/a21, a21/a12, a12/a03%
-            } {
-                \draw[->] (\a) -- (\b);
-            }
-        \end{tikzpicture}
-        \caption{Passeio de Cantor.}
-        \label{fig:cantor_walk}
-    \end{figure}
-
-    Em essência, primeiro enumeraremos todas os pares $(m, n)$
-    para os quais $m + n = 0$,
-    depois todos aqueles que $m + n = 1$,
-    depois todos os que $m + n = 2$,
-    e assim por diante.
-
-    Esta técnica é conhecida como ``passeio de Cantor''
-    \cite[p.~6]{CarnielliConiglioBianconi2006}.
-\end{proof}
-
-\begin{lemma}
-    Existe uma função sobrejetora computável
-    $f: \mathbb N \rightarrow \mathbb N$
-    tal que,
-    para todo $y$,
-    existem infinitos $x$ tais que $f(x) = y$.
-\end{lemma}
-\begin{proof}
-    Considere $g$ como a função do lema anterior,
-    e defina
+    Defina $h$ por
     \begin{equation*}
-        f(x) = y \quad \text{se} \quad g(x) = (y, z).
+        h( \langle x_1, x_2, \dots, x_n \rangle ) = x_1;
     \end{equation*}
-\end{proof}
+    se $x$ não representa uma tupla,
+    conforme definido na seção~\ref{sec:binary_encoding},
+    defina $h(x) = \varepsilon$
+    (ou qualquer outra cadeia fixa).
 
-\begin{lemma}
-    Existe uma máquina de Turing $N$
-    tal que $N(x)$ sempre está definido,
-    e representa uma máquina de Turing,
-    de forma que toda \emph{representação}
-    de uma máquina de Turing
-    é $N(x)$ para infinitamente muitos $x$.
-    Isto é, $N$ produz todas as representações de máquinas de Turing
-    infinitas vezes,
-    conforme permitimos que $x$ tome valores arbitrários de $\Sigma^*$.
-\end{lemma}
-
-\begin{proof}
-    Observe que existe uma bijeção computável
-    entre palavras de $\Sigma^*$
-    e números naturais.
-    $N$ computará,
-    dado um $x$,
-    o número natural equivalente a ele
-    e usar a função do lema anterior
-    para gerar outro número.
-    Então, $N$ converterá este outro número
-    novamente para uma palavra de $\Sigma^*$.
-
-    Todas as palavras de $\Sigma^*$
-    são representações de máquinas de Turing;
-    portanto, esta palavra produzida é a máquina desejada.
-
-    Como a função do lema anterior
-    produz todos números naturais infinitas vezes
-    (e $N$ é capaz de suprir todos os números naturais
-    como entrada para aquela função),
-    todas as representações de máquinas de Turing
-    são produzidas por $N$ infinitas vezes.
+    A função $h$ assim definida é recursiva total;
+    além disso, para todo $x$ e todo $z$,
+    $h(\langle x, z \rangle) = y$,
+    portanto todos os $x$ são $g(y)$ para infinitos $y$.
 \end{proof}
 
 \begin{theorem}
     Seja $\mathcal C_\Phi(f)$ uma classe de complexidade
     com relação à $\Phi$.
-    Então existe uma linguagem $L$
+    Então existe uma função total recursiva $g$
     que não pertence à esta classe de complexidade.
+    Além disso, $g$ pode ser construída de forma que
+    sua imagem seja o conjunto $\{0, 1\}$.
     \label{thm:outside_class}
 \end{theorem}
 
 \begin{proof}
-    Construiremos uma linguagem $L$
-    que discorda de todas as máquinas de Turing que gastam menos de
-    $f(n)$ recursos ao computar uma palavra de tamanho $n$.
+    Construiremos uma função $g$
+    que discorda de todas as funções
+    que gastam menos de $f(n)$ recursos ao computar uma palavra de tamanho $n$.
 
-    Usaremos a máquina $N$ do lema anterior.
-    Denotaremos por $M_x$
-    a máquina de Turing que $N$ produz
-    ao lhe ser dada a palavra $x$.
-    Colocaremos $x$ em $L$
-    de acordo com o comportamento que $M_x$ tem ao computar $x$.
-    Caso esta máquina encerre sua computação
-    gastando no máximo $f(|x|)$ recursos,
-    executaremos"=na até o final da computação
-    e inverteremos o resultado:
-    se $M_x$ aceita $x$, então $x \notin L$;
-    se $M_x$ rejeita $x$, então $x \in L$.
-    Caso $M_x$ exija mais do que $f(|x|)$ recursos,
-    coloque $x$ em $L$.%
+    Usaremos a função $h$ do lema anterior.
+    Defina a função $g$ por
+    \begin{equation*}
+        g(x) = \begin{cases}
+            1, & \text{
+                    se $\phi_{h(x)}(x)$ existe,
+                    $\Phi(h(x), x) \leq f(|x|)$
+                    e $\phi_{h(x)}(x) = 0$
+                } \\
+            0, & \text{ caso contrário.}
+        \end{cases}
+    \end{equation*}
+
+    Observe que $g$ é uma função total.
+    Para computar $g$,
+    primeiro use o fato de que o predicado $\Phi(w, x) = n$ é decidível
+    para descobrir se $\Phi(h(x), x) \leq f(|x|)$.
+    Caso isso seja falso,
+    então independente de $\phi_{h(x)}(x)$ existir ou não,
+    $g(x)$ será igual a $0$.
+    Agora, se $\Phi(h(x), x) \leq f(|x|)$,
+    sabemos automaticamente que $\phi_{h(x)}(x)$ existe,
+    e podemos computar este valor usando a função universal da enumeração $\phi$;
+    então, usamos o resultado desta computação para calcular $g(x)$.
+    Concluímos que $g$ é recursiva.
+
+    Agora,
+    tome $\phi_w$ uma função de $\mathcal C_\Phi(f)$.
+    Mostraremos que $g \neq \phi_w$.
+
+    Como $\phi_w \in \mathcal C_\Phi(f)$,
+    existe algum $n_0$ tal que todos os $x$ com $|x| > n_0$ satisfaz
+    $\Phi(w, x) \leq f(|x|)$.
+    Escolha algum $y$ com $|y| > n_0$ tal que $h(y) = w$.
+    Sabemos que tal $y$ existe pois a imagem inversa de $w$ por $h$ é infinita.
+
+    Argumentaremos que $\phi_w(y) \neq g(y)$.
+    Sabemos que $\Phi(w, y) \leq f(|y|)$,
+    pois $|y| > n_0$;
+    portanto, $\phi_w(y)$ está definido.
+    Mas $w = g(y)$;
+    portanto, das três condições do primeiro caso da definição de $g(y)$,
+    duas já foram atendidas.
+    Se a terceira também for atendida,
+    isto é, $\phi_w(y) = 0$,
+    o primeiro caso é selecionado e $g(y) = 1 \neq \phi_w(y)$.
+    Entretanto,
+    se a terceira não for atendida,
+    temos $\phi_w(y) \neq 0 = g(y)$,
+    pois o segundo caso será escolhido.
+    Ou seja, $\phi_w \neq g$.
+
+    Como $g$ é diferente de todas as funções de $\mathcal C_\Phi(f)$,%
     \footnote{
         Este argumento é,
         de certa forma,
@@ -192,47 +160,7 @@ que demonstraremos através de três lemas.%
         (por $f$)
         do problema da parada.
     }
-
-    Em outras palavras,
     \begin{equation*}
-        L = \{ x \mid \text{%
-            $M_x$ não aceita $x$ gastando menos de $f(|x|)+1$ recursos%
-        } \}.
-    \end{equation*}
-
-    Determinar se $M_x$ computa $x$ usando no máximo $f(|x|)$ de recursos
-    é equivalente a determinar se $\Phi(M_x, x) = k$
-    para algum $k \leq f(|x|)$.
-    Como $f(|x|)$ é computável
-    e ``$\Phi(M_x, x) = k$'' é decidível
-    (pelo axioma~\ref{ax:blum_rec}),
-    esta verificação é realizável por uma máquina de Turing.
-    Caso a resposta seja negativa
-    ($M_x$ gasta mais do que $f(|x|)$ recursos ao computar $x$),
-    já sabemos que $x$ está em $L$.
-    Caso contrário,
-    $\Phi(M_x, x)$ está definido;
-    pelo axioma~\ref{ax:blum_def},
-    $M_x(x)$ também está.
-    Portanto, podemos executar $M_x$ em $x$
-    e inverter a resposta.
-
-    Podemos computar $M_x$ e executar a operação descrita no parágrafo anterior;
-    isso garante que $L$ é recursiva.
-
-    Suponha agora que alguma máquina $M$ reconheça $L$.
-    $M$ é $M_x$ para infinitos $x$ diferentes.
-    $M$ aceita todos esses $x$
-    e precisa fazê"=lo gastando mais do que $f(|x|)$ recursos,
-    caso contrário $L$ discordaria de $L(M)$ nesses pontos.
-    Portanto, $\Phi(M, x) \geq f(|x|)$ para infinitos $x$.
-
-    Ou seja, qualquer máquina que aceite $L$
-    precisa gastar mais de $f(|x|)$ recursos para infinitos $x$,
-    portanto o predicado ``$\Phi(M, x) \leq f(|x|)$ para quase todos os $x$''
-    não pode ser verdadeiro.
-    Portanto,
-    \begin{equation*}
-        L \notin \mathcal C_\Phi(f).
+        g \notin \mathcal C_\Phi(f).
     \end{equation*}
 \end{proof}
