@@ -155,3 +155,57 @@ definida na seção~\ref{sec:binary_encoding}.
 
 Observe que esta definição não é autorreferencial
 pois a recursividade de $g$ é estabelecida na definição~\ref{def:recursive_function}.
+
+\subsubsection{Funções de inteiros}
+
+Embora na maior parte deste TCC usaremos funções da forma
+\begin{equation*}
+    f : \{0, 1\}^* \to \{0, 1\}^*,
+\end{equation*}
+em alguns pontos do texto precisaremos usar números naturais para contar coisas
+--- por exemplo,
+quantos passos uma máquina de Turing fez ao computar uma função.
+Além disso,
+queremos usar máquinas de Turing para manipular estas funções;
+portanto,
+é importante definir o que significa para uma função dessas ser ``recursiva''.
+
+\begin{definition}
+    Uma função parcial $f: \mathbb N \to \mathbb N$ é \emph{recursiva}
+    se existir uma função recursiva parcial $g: \{0, 1\}^* \to \{0, 1\}^*$
+    tal que, para todo $x$,
+    \begin{equation*}
+        g(\langle n \rangle) \simeq \langle f(n) \rangle.
+    \end{equation*}
+    O caso em que o domínio ou o contradomínio é $\{0, 1\}^*$,
+    ou $f$ for uma função de várias variáveis,
+    é definido analogamente.
+\end{definition}
+
+Em outras palavras,
+$f$ é recursiva quando existir uma função $g$
+que calcula $f$ usando a representação em binário dos números.
+
+\begin{example}
+    A função de soma,
+    \begin{equation*}
+        +: \mathbb N \times \mathbb N \to \mathbb N,
+    \end{equation*}
+    é recursiva.
+    Podemos construir uma máquina de Turing $M$ que,
+    ao receber na entrada o valor $\langle m, n \rangle$
+    --- isto é, a representação em binário de $m$ e $n$ ---
+    soma estes dois números
+    (usando adição com \emph{carry}, o ``vai um'')
+    e escreve a soma na fita de saída.
+    Esta máquina satisfaz
+    \begin{equation*}
+        M(\langle m, n \rangle) = \langle m+n \rangle,
+    \end{equation*}
+    portanto, a operação de soma é recursiva.
+\end{example}
+
+Todas as operações matemáticas que são realizáveis num computador
+correspondem a funções recursivas;
+portanto,
+nos limitarmos a funções de inteiros recursivas não é uma restrição significativa.
