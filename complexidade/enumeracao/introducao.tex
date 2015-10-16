@@ -1,0 +1,33 @@
+\begin{notation}
+    Dadas duas funções $f, g: A \to B$,
+    escreveremos
+    \begin{equation*}
+        f(x) \simeq g(y)
+    \end{equation*}
+    para expressar o fato de que
+    $f$ está definida em $x$ se, e somente se, $g$ está definida em $y$;
+    e, caso ambas estejam definidas,
+    $f(x) = g(y)$.
+    (Esta notação foi extraída de \citeonline[p.~124]{EpsteinCarnielli2008}.
+    Nos casos em que $x = y$,
+    podemos ler esta notação como ``$f$ e $g$ concordam em $x$''.)
+\end{notation}
+
+\begin{example}
+    Defina $f, g: \mathbb R \to \mathbb R$, dadas por
+    \begin{align*}
+        f(x) &= \sqrt{x^2} & g(x) = {(\sqrt x)}^2.
+    \end{align*}
+    Então, para $x \geq 0$,
+    \begin{equation*}
+        f(x) \simeq g(x),
+    \end{equation*}
+    mas isso não é válido para $x < 0$.
+    Além disso, por exemplo,
+    \begin{equation*}
+        g(-1) \simeq g(-3)
+    \end{equation*}
+    pois tanto $g(-1)$ quanto $g(-3)$ não existem.
+\end{example}
+
+Esta notação simplificará o enunciado de alguns teoremas.

@@ -1,0 +1,63 @@
+\subsection{Teorema $S_{mn}$}
+\label{sec:s_m_n_theorem}
+
+\begin{theorem}
+    Existe uma função recursiva total $\sigma$ de duas variáveis tal que,
+    para todo $x, y, z \in \{0, 1\}^*$,
+    \begin{equation*}
+        f_{\sigma(x, y)}(z) \simeq f_x(\langle y, z \rangle).
+    \end{equation*}
+\end{theorem}
+
+Isto é,
+dado um índice $x$ para a função de duas variáveis $f_x$
+e uma palavra $y$ qualquer,
+a função $\sigma$ devolve uma máquina de Turing $M$
+(quer dizer, $\sigma(x, y) = \langle M \rangle$)
+que, na entrada $z$,
+calcula o valor $f_x(\langle y, z \rangle)$.
+
+Em outras palavras,
+a função $\sigma$ deixa o primeiro argumento da função $f_x$
+fixo em $y$.
+Esta versão do teorema
+(mencionada por \citeonline[p.~324]{Blum1967})
+lida apenas com o caso de fixar uma entrada, $y$,
+e deixar uma entrada livre, $z$.
+A ``versão completa'' do teorema
+está presente no livro de \citeonline[p.~23]{Rogers1987};
+ele diz como transformar uma função de $m + n$ variáveis
+numa função de $n$ variáveis
+fixando as $m$ primeiras para valores pré"=estabelecidos.
+
+Entretanto, para nossos propósitos,
+esta versão será suficiente.
+
+\begin{proof}
+    Dado $x$ e $y$ na entrada,
+    $\sigma$ terá de retornar uma representação de uma máquina de Turing.
+    A função $\sigma$ é total,
+    o que significa que $\sigma(x, y)$ sempre existirá;
+    entretanto,
+    pode ser que a máquina $\sigma(x, y)$ não pare em todas as entradas.
+
+    Se $M = \sigma(x, y)$,
+    a ideia é fazer com que $M$ substitua a entrada $z$ por $\langle y, z \rangle$,
+    e execute a máquina representada por $x$ no resultado.
+    Para isso,
+    basta embutir em $M$ o valor $y$ e as transições de $x$.
+
+    Esta construção pode ser executada para todo $x$ e $y$,
+    tornando $\sigma$ uma função recursiva total.
+    A máquina $M$ representada por $\sigma(x, y)$ executará,
+    na entrada $z$, a máquina $x$ em $\langle y, z \rangle$;
+    portanto,
+    $M(z)$ estará definido se, e só se, $f_x(\langle y, z \rangle)$ está definido;
+    e, neste caso,
+    \begin{equation*}
+        M(z) = f_x( \langle y, z \rangle ).
+    \end{equation*}
+    Mas como $\langle M \rangle = \sigma(x, y)$,
+    a função calculada por $M$ é, exatamente, $f_{\sigma(x, y)}$,
+    o que prova o teorema.
+\end{proof}

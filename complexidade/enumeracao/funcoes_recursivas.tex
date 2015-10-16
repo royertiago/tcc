@@ -1,0 +1,157 @@
+\subsection{Funções Recursivas}
+
+Usualmente,
+``máquina de Turing'' é definida como uma tupla
+na qual um de seus elementos,
+$\Sigma$,
+denota o alfabeto de entrada.
+Por simplicidade,
+assumiremos que $\Sigma = \{0, 1\}$,
+em todo o TCC.
+Observe que não há perda de generalidade nesta definição,
+pois outros alfabetos podem ser codificados de forma não"=ambígua
+usando apenas este alfabeto binário.
+
+\begin{notation}
+    Seja $M$ uma máquina de Turing determinística
+    e $x \in \{0, 1\}^*$ uma palavra.
+    Suponha que $M$ pare ao computar $x$.
+    Se o conteúdo deixado na fita por $M$,
+    após remover os caracteres brancos à direita e à esquerda,
+    contiver apenas os símbolos $0$ e $1$
+    (isto é, não houverem brancos ou outros símbolos de fita),
+    este conteúdo forma uma palavra de $\{0, 1\}^*$.
+    Denotaremos esta palavra por $M(x)$.
+    Caso haja outros símbolos na fita
+    ou $M$ não parar ao computar $x$,
+    deixaremos $M(x)$ indefinido.
+\end{notation}
+
+Observe que a notação $M(x)$ coincide com a notação de chamada de função.
+É exatamente esta a analogia que pretendemos fazer;
+
+\begin{definition}
+    \label{def:recursive_function}
+    Seja $M$ uma máquina de Turing.
+    A \emph{função computada por $M$}
+    é a função parcial $f: \{0, 1\}^* \to \{0, 1\}^*$ tal que
+    \begin{equation*}
+        f(x) \simeq M(x)
+    \end{equation*}
+    para todo $x$.
+
+    Uma função $f$ é \emph{recursiva parcial}
+    se for computada por alguma máquina $M$.
+    Se $f$ estiver definida para todo $x \in \{0, 1\}^*$,
+    dizemos que $f$ é \emph{recursiva total}.
+    \footnote{
+        Não confundir com o conceito de \emph{recursão} em linguagens de programação.
+    }
+\end{definition}
+(Esta definição é uma variação da definição de \citeonline[p.~151]{HopcroftUllman1979};
+em particular, utilizaremos funções que mapeiam palavras para palavras
+em vez de funções que mapeiam números naturais para números naturais.)
+
+\subsubsection{Codificação de objetos}
+\label{sec:binary_encoding}
+
+Conforme observado por \citeonline[p.~2]{AroraBarak2009},
+não perdemos generalidade restringir funções a palavras de $\{0, 1\}^*$,
+pois podemos codificar objetos matemáticos complexos usando o sistema binário
+--- de fato,
+é exatamente isso o que fazemos nos computadores modernos.
+Podemos, por exemplo,
+codificar inteiros usando sua representação binária,
+e grafos podem ser representados por sua matriz de adjacência
+ou pelos pares de nodos adjacentes.
+\citeonline[p.~10]{GareyJohnson1979} argumentam que
+não é necessário se ater aos detalhes da representação dos objetos,
+pois quaisquer duas codificações ``razoáveis'' destes objetos
+irão diferir polinomialmente de tamanho.
+
+Neste trabalho,
+dois objetos aparecerão mais frequentemente:
+máquinas de Turing e tuplas.
+Uma máquina de Turing pode ser representada em binário
+listando todos elementos da função de transição
+\cite[p.~182]{HopcroftUllman1979};
+os detalhes estão no apêndice~\ref{app:turing_machines}.
+Denotaremos por $\langle M \rangle$ a representação em binário da máquina $M$.
+
+Já uma tupla $(x_1, x_2, \dots, x_n)$ pode ser codificada
+combinando as representações em binário de $x_1, \dots, x_n$.
+A ideia é trocar, nas representações em binário,
+$0$ por $00$ e $1$ por $01$;
+então, a cadeia $1$ faz o papel de separador.
+Denotaremos por $\langle x_1, x_2, \dots, x_n \rangle$
+a representação binária da tupla $(x_1, x_2, \dots, x_n)$.
+Observe que esta codificação é não"=ambígua;
+podemos recuperar a representação em binário de cada um dos $x_i$
+a partir de $\langle x_1, \dots, x_n \rangle$.
+
+\begin{example}
+    Podemos representar o número $2$ por $10$ e o número $5$ por $101$,
+    em binário.
+    A transformação mencionada acima troca $10$ por $0100$
+    e $101$ por $010001$;
+    portanto, a tripla ordenado $(2, 5, 2)$ é representada por
+    \begin{equation*}
+        \langle 2, 5, 2 \rangle = 0100\ 1\ 010001\ 1\ 0100.
+    \end{equation*}
+\end{example}
+
+\simbolo{$\langle x \rangle$}{Codificação em binário do objeto matemático $x$}
+(Em geral, $\langle x \rangle$ denotará a representação em binário
+do objeto matemático $x$.
+\citeonline[p.~2]{AroraBarak2009} usa
+$\sideset{_\llcorner}{_\lrcorner}{\mathop{\makebox[0.5ex]{$x$}}}$
+para o mesmo fim;
+eu escolhi a notação $\langle x \rangle$
+por conformidade com a notação de \citeonline[p.~182]{HopcroftUllman1979}.)
+
+% Explicando o comando acima:
+% \sideset permite adicionar símbolos matemáticos "orbitando" o símbolo subsequente
+% nos quatro cantos possíveis. (O primeiro argumento diz o que vai à esquerda
+% e o segundo argumento diz o que vai à direita.)
+% \sideset exige que o terceiro argumento seja um operador matemático,
+% que eu obtenho usando \mathop.
+% Mas se for usado "\mathop x" diretamente, as duas marcas sob x
+% ficarão muito espaçadas; então, a largura do x é alterada artificialmente
+% para 0.5ex usando o \makebox.
+
+\subsubsection{Funções de várias variáveis}
+
+Observe que o termo ``função recursiva''
+foi definido apenas para funções de uma variável.
+Entretanto,
+em alguns pontos do texto,
+precisaremos nos referir a funções de mais de uma variável.
+
+É possível estender as máquinas de Turing
+para trabalhar diretamente com com funções de várias variáveis.
+Por exemplo, \citeonline[p.~151]{HopcroftUllman1979}
+fazem a extensão no contexto de funções de inteiros.
+Dada uma máquina $M$,
+para calcular o valor de $M(i)$,
+executamos $M$ na entrada $0^i$.
+Os vários argumentos são separados por caracteres $1$;
+isto é, para calcular $M(i_1, i_2, \dots, i_k)$,
+executamos $M$ na entrada $0^{i_1} 1 0^{i_2} 1 \dots 1 0^{i_k}$.
+
+Para não precisar alterar a definição de máquinas de Turing,
+recorreremos à codificação $\langle \cdot \rangle$,
+definida na seção~\ref{sec:binary_encoding}.
+
+\begin{definition}
+    \label{def:multi_valued_recursive_function}
+    Uma função parcial $f: (\{0, 1\}^*)^k \to \{0, 1\}^*$ é \emph{recursiva parcial}
+    se existir alguma função recursiva parcial $g: \{0, 1\}^* \to \{0, 1\}^*$
+    tal que
+    \begin{equation*}
+        g(\langle i_1, i_2, \dots, i_k \rangle) \simeq f(i_1, i_2, \dots, i_k).
+    \end{equation*}
+    Funções recursivas totais são definidas analogamente.
+\end{definition}
+
+Observe que esta definição não é autorreferencial
+pois a recursividade de $g$ é estabelecida na definição~\ref{def:recursive_function}.

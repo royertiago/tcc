@@ -1,0 +1,35 @@
+\subsection{Enumeração de Funções Recursivas}
+\label{sec:definition_enumeration_of_recursive_functions}
+
+A existência de uma codificação em binário de máquinas de Turing
+permite, de certa forma,
+enumerar todas as funções recursivas parciais
+--- basta listar todos os códigos possíveis para máquinas de Turing.
+Estritamente falando,
+não é as funções que estão sendo listadas
+(isso seria impossível pois funções são objetos matemáticos infinitos),
+mas sim códigos em binário para máquinas que as computam.
+
+A construção da codificação das máquinas de Turing não é ``injetora'';
+isto é, existem máquinas $M$ e $N$ diferentes
+tais que
+\begin{equation*}
+    \langle M \rangle = \langle N \rangle.
+\end{equation*}
+Entretanto,
+a construção foi feita de forma que
+as funções computadas por $M$ e $N$ coincidam
+sempre que a equação acima for satisfeita.
+Portanto,
+dada uma cadeia $x \in \{0, 1\}^*$,
+existe uma única função recursiva parcial
+que é computada pelas máquinas cuja codificação em binário é $x$.
+Chamaremos esta função de $f_x$.
+Observe que o mapeamento $x \mapsto f_x$
+enumera todas as funções recursivas;
+as seções \ref{sec:universal_turing_machine} e~\ref{sec:s_m_n_theorem}
+contém teoremas que nos permitem trabalhar com as funções $f_x$
+e a seção~\ref{sec:acceptable_godel_numbering}
+define o conceito de ``Enumeração de Gödel aceitável'',
+que generaliza este mapeamento.
+\simbolo{$f_x$}{Função computada pela máquina codificada por $x$}
