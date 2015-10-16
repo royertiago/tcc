@@ -119,6 +119,25 @@ por conformidade com a notação de \citeonline[p.~182]{HopcroftUllman1979}.)
 % ficarão muito espaçadas; então, a largura do x é alterada artificialmente
 % para 0.5ex usando o \makebox.
 
+É importante notar que codificaremos números naturais
+sempre usando sua expansão binária.
+\citeonline[p.~151]{HopcroftUllman1979},
+por exemplo,
+utilizam uma representação unária;
+isto é, o número $n$ é representado por $0^n$,
+Entretanto,
+esta codificação faz com que o tamanho da palavra resultante
+seja proporcional a $n$.
+Já a expansão binária de $n$ possui tamanho $\lfloor \log_2 n \rfloor + 1$;
+ou seja, o tamanho da expansão binária é proporcional ao logaritmo do número.
+
+Em outras palavras,
+a representação em unário é exponencialmente maior que a representação em binário.
+Isto será importante ao considerarmos classes de complexidade;
+portanto,
+seguiremos a convenção de \citeonline[p.~2]{AroraBarak2009}
+de usar sempre a expansão binária para representar números naturais.
+
 \subsubsection{Funções de várias variáveis}
 
 Observe que o termo ``função recursiva''
