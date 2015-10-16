@@ -202,26 +202,45 @@ que obtemos ao conceder não"=determinismo à máquinas de Turing.
         com a hierarquia polinomial.
 \end{enumerate}
 
-\section{Próximos passos}
+\section{Estruturação do texto}
 
-Para o desenvolvimento da teoria,
-preciso estudar a fundo a hierarquia polinomial,
-em particular problemas completos para cada nível da hierarquia.
-Minha meta é chegar num resultado parecido com
-``A classe $\P^\NP$ é o fecho compositivo das funções em $\NP$'';
-e, para isso,
-creio que a rota mais simples é usar completude de problemas.
+Os axiomas de Blum definem a noção de complexidade computacional
+não apenas para máquinas de Turing,
+mas sim para qualquer modelo de computação que satisfaça algumas restrições.
+O capítulo~\ref{ch:enumeration_of_recursive_functions}
+contém a maquinaria matemática para formular,
+precisamente,
+quais são estas restrições.
+Este capítulo discorre sobre funções recursivas,
+formas de enumerá"=las
+e características desejáveis destas enumerações.
 
-Na medida do possível,
-também pretendo estudar outras definições de função não"=determinística,
-mesmo que estas definições não permitam composição de funções.
+O capítulo~\ref{ch:computational_complexity}
+apresenta os axiomas de Blum
+e o conceito associado de classes de complexidade computacional.
+Também são definidas formalmente
+as duas principais classes de complexidade computacional
+--- $\P$ e $\NP$.
+Neste capítulo aparece o teorema da união,
+que justifica
+(do ponto de vista da definição axiomática de ``complexidade'')
+chamar as classes $\P$, $\NP$, $\PSPACE$ etc.\ de ``classes de complexidade''.
 
-Para a escrita do TCC,
-falta definir ``máquina de Turing'' e os conceitos associados.
-Embora no desenvolvimento do TCC eu use o conceito de máquinas de Turing,
-tanto como decisores de linguagens,
-quanto como computadores de funções de inteiros,
-em nenhum momento eu formalizo este conceito.
-Pretendo escrever um anexo ao TCC dizendo exatamente quais definições
-(dentre as muitas disponíveis na literatura)
-que eu estou utilizando.
+A noção de ``oráculo computacional'' é explorada no capítulo~\ref{ch:oracles}.
+Aqui,
+são definidas as hierarquias aritmética e polinomial.
+
+Finalmente,
+no capítulo~\ref{ch:nondeterministic_functions},
+é definida ``função não"=determinística''.
+Podemos finalmente estender a noção de complexidade computacional
+para máquinas de Turing não"=determinísticas.
+Também é definido ``oráculo funcional'',
+que permite construir uma hierarquia de funções
+análoga às hierarquias aritmética e polinomial.
+E, atingindo um dos objetivos do TCC,
+demonstramos que o fecho compositivo da classe $\Sigma_n^f$
+é a classe $\Delta_{n+1}^f$;
+de certa forma,
+encontramos uma relação na hierarquia polinomial
+através da composição de funções não"=determinísticas.
