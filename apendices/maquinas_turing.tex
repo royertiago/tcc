@@ -130,6 +130,31 @@ Assim, se $d \in D$ é um deslocamento
 e $n \in \mathbb N$ é uma posição do cabeçote,
 $n + d$ é o efeito de deslocar $n$ por $d$.
 
+A partir de um estado de computação $E = (x, y, z, q, m, n)$,
+para descobrir qual é a próxima ação da máquina $M = (Q, \Gamma, \delta, q_0)$,
+precisamos consultar a função $\delta$.
+Precisamos passar a $\delta$ uma tupla $(q, a, b)$,
+em que $q$ é o próprio estado $q$ de $E$,
+$a$ é o que está debaixo do cabeçote da primeira fita
+e $b$ é o que está debaixo do cabeçote da segunda fita
+(lembre"=se de que não autorizaremos $M$ a consultar a fita de saída).
+Se $1 \leq m \leq |x|$,
+então $a = x[m]$.
+Caso contrário, o cabeçote de leitura da máquina
+estará fora da cadeia de entrada.
+Interpretaremos a fita como sendo preenchida com brancos ($\B$)
+onde não há outros caracteres;
+portanto, neste caso, $a = \B$.
+Similarmente, se $1 \leq n \leq |y|$, $b = y[n]$; caso contrário, $b = \B$.
+Portanto,
+a ação da máquina $M$ no estado $E$
+será $\delta(q, a, b)$;
+denotaremos este valor por $\delta(E)$.%
+\footnote{
+    Observe que estamos abusando da notação aqui,
+    pois nenhum estado de computação está no domínio de $\delta$.
+}
+
 Seja $E = (x, y, z, q, m, n)$ um estado de computação
 e $A = (q', d_1, d_2, e, s)$ uma ação da máquina de Turing
 (pode ser um valor retornado por $\delta$ se a máquina for determinística,
