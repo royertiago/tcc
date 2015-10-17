@@ -29,16 +29,18 @@ e porquê não há problemas ao usar problemas indecidíveis como oráculos.
             tais que $0, 1, \B \in \Gamma$.
         \item $\delta$ é uma função parcial definida sobre
             \begin{equation*}
-                \delta: \{0, 1, \B\} \times \Gamma
-                    \to D \times D \times \Gamma \times \{0, 1, \varepsilon\}.
+                \delta: Q \times \{0, 1, \B\} \times \Gamma
+                    \to Q \times D \times D \times \Gamma \times \{0, 1, \varepsilon\}.
             \end{equation*}
-            Um par ordenado $(a, b)$ no domínio
+            Uma tupla $(q, a, b)$ no domínio
             representa os símbolos que a máquina está lendo das fitas
             ($a \in \{0, 1, \B\}$ é lido da fita somente"=leitura de entrada,
-            e $b \in \Gamma$ é lido da fita de trabalho).
-            Uma tupla $(d_1, d_2, e, s)$ no domínio
+            $b \in \Gamma$ é lido da fita de trabalho,
+            e $q$ é o estado atual).
+            Uma tupla $(q', d_1, d_2, e, s)$ no domínio
             representa a ação da máquina
-            ($d_1 \in D$ é a direção do movimento do cabeçote de leitura,
+            ($q'$ é o estado para o qual a máquina transitará,
+            $d_1 \in D$ é a direção do movimento do cabeçote de leitura,
             $d_2 \in D$ é a do cabeçote de trabalho,
             $e \in \Gamma$ é o que a máquina escreveu na fita de trabalho,
             e $s \in \{0, 1, \varepsilon\}$ é o que a máquina escreveu
@@ -80,11 +82,11 @@ apresenta alguns símbolos ``faltando''.
     em que $Q$, $\Gamma$ e $q_0$ possuem a mesma semântica
     das máquinas determinísticas,
     mas a imagem de $\delta$,
-    em vez de ser $D \times D \times \Gamma \times \{0, 1, \varepsilon\}$,
+    em vez de ser $Q \times D \times D \times \Gamma \times \{0, 1, \varepsilon\}$,
     é o conjunto potência deste conjunto.
     Isto é, $\delta$ é definida sobre
     \begin{equation*}
         \delta: \{0, 1, \B\} \times \Gamma
-            \to 2^{D \times D \times \Gamma \times \{0, 1, \varepsilon\}}.
+            \to 2^{Q \times D \times D \times \Gamma \times \{0, 1, \varepsilon\}}.
     \end{equation*}
 \end{definition}
