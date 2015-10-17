@@ -204,3 +204,49 @@ dada por
         Outro abuso de notação de chamada de função.
     }
 \end{notation}
+
+Usando estas duas noções,
+podemos definir como uma máquina de Turing computa sobre uma palavra.
+
+\begin{definition}
+    Seja $M = (Q, \Gamma, \delta, q_0)$ uma máquina de Turing determinística
+    e $x \in \{0, 1\}^*$ uma palavra.
+    O $k$"=ésimo estado de computação de $M$ em $x$,
+    denotado por $\mathbb E(M, x, k)$,
+    é definido recursivamente por
+    \begin{align*}
+        \mathbb E(M, x, 0) &= (x, \varepsilon, \varepsilon, q_0, 1, 1); \\
+        \mathbb E(M, x, k+1) &= A(E(M, x, n)), \quad \text{
+            se $A = \delta(\mathbb E(M, x, k))$.
+        }
+    \end{align*}
+    Se, para algum $n$, $\delta(E(M, x, k))$ não existir
+    --- que é quando a tripla $(q, a, b)$ não pertencer ao domínio de $\delta$,
+    na terminologia do parágrafo que define $\delta(E)$ ---
+    então defina $\mathbb E(M, x, k+1) = \mathbb E(M, x, k)$.
+\end{definition}
+De acordo com a definição, quando a máquina para,
+todos os estados futuros serão os mesmos.
+De certa forma,
+o contrário também acontece;
+para que dois estados sejam iguais,
+nenhum dos cabeçotes da máquina podem se mexer
+(nem mesmo o de saída),
+e a máquina também não pode escrever na sua fita de trabalho
+um símbolo diferente do qual ela está lendo.
+Podemos sistematicamente remover todas as transições que causam este ``travamento''
+de uma máquina de Turing,
+portanto não perdemos generalidade ao assumir que a máquina parou nestes casos.
+Então,
+podemos, finalmente,
+definir formalmente $M(x)$ e $t(M, x, k)$.
+\begin{definition}
+    Se $\mathbb E(M, x, k) = (x, y, z, q, m, n)$,
+    defina $t(M, x, k) = z$.
+    Se existir algum $k_0$ tal que
+    \begin{equation*}
+        \mathbb E(M, x, k) = \mathbb E(M, x, k+1)
+    \end{equation*}
+    para todo $k \geq k_0$,
+    defina $M(x) = t(M, x, k_0)$.
+\end{definition}
