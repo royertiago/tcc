@@ -23,7 +23,7 @@ mensagem_cacoete_ir() {
     fi
 }
 
-conjugacoes_ir="[Ii]rá\|[Ii]remos"
+conjugacoes_ir="[Ii]rá\|[Ii]remos\|[Ii]rão"
 
 for file in $modified_files; do
     offending_lines=$(added_lines "$file" |
