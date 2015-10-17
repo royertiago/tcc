@@ -90,3 +90,84 @@ apresenta alguns símbolos ``faltando''.
             \to 2^{Q \times D \times D \times \Gamma \times \{0, 1, \varepsilon\}}.
     \end{equation*}
 \end{definition}
+
+\subsection{Estados de computação}
+
+Os estados de computação de uma máquina de Turing
+representam a ``descrição instantânea'' de uma etapa do processo de computação.
+Eles agregam informações como o estado da máquina e as fitas.
+Nossa definição de ``computação'' será um pouco diferente da definição de
+\citeonline[p.~149]{HopcroftUllman1979},
+visando simplificar a definição da função $T$ da seção~\ref{sec:fnp_complete}.
+
+\begin{definition}
+    Seja $M = (Q, \Gamma, \delta, q_0)$.
+    Um \emph{estado de computação} $E$ de $M$ é uma tupla
+    \begin{equation*}
+        E = (x, y, z, q, m, n),
+    \end{equation*}
+    em que
+    \begin{itemize}
+        \setlength{\labelsep}{1ex}
+        \item $x \in \{0, 1\}^*$ é a fita de entrada.
+        \item $y \in \Gamma^*$ é a fita de trabalho.
+        \item $z \in \{0, 1\}^*$ é fita de saída.
+        \item $q \in Q$ é o estado atual da máquina.
+        \item $m \in \mathbb N$ é a posição do cabeçote de leitura.
+        \item $n \in \mathbb N$ é a posição do cabeçote de trabalho.
+    \end{itemize}
+\end{definition}
+
+Construiremos agora o formalismo de transição de estados.
+
+Por conveniência, denote por $w[i]$ a $i$"=ésima letra da palavra $w$;
+indexaremos $w$ em $1$,
+portanto $w[1]$ é o primeiro símbolo de $w$ e $w[|w|]$ é o último.
+Também identifique o conjunto $D = \{\leftarrow, \rightarrow, \dot\}$
+com o conjunto $\{-1, 1, 0\}$;
+isto é, $\leftarrow = -1$, $\rightarrow = 1$ e $\dot = 0$.
+Assim, se $d \in D$ é um deslocamento
+e $n \in \mathbb N$ é uma posição do cabeçote,
+$n + d$ é o efeito de deslocar $n$ por $d$.
+
+Seja $E = (x, y, z, q, m, n)$ um estado de computação
+e $A = (q', d_1, d_2, e, s)$ uma ação da máquina de Turing
+(pode ser um valor retornado por $\delta$ se a máquina for determinística,
+ou um dos elementos do conjunto retornado por $\delta$
+se a máquina for não"=determinística).
+O \emph{efeito de $A$ em $E$},
+que denotaremos por $A(E)$\footnotemark{},
+\footnotetext{
+    Observe que,
+    apesar de usarmos a notação funcional,
+    $A$ não é uma função.
+}
+é a tupla $(x', y', z', q', m', n')$,
+dada por
+\begin{itemize}
+    \setlength{\labelsep}{1ex}
+    \item $x' = x$ (isto é, nunca alteraremos $x$).
+    \item Se $n = 0$, $y' = y$
+        (a máquina não pode escrever no primeiro branco da fita de trabalho);
+        se $n = |y| + 1$, $y' = ye$
+        (se a máquina estiver imediatamente à direita dos elementos da fita,
+        estendemos a representação da fita com o caractere que a máquina escreveu);
+        caso contrário,
+        $y'$ é $y$ com o $n$"=ésimo simbolo trocado por $e$
+        --- $y'[i] = y[i]$ se $i \neq n$, e $y'[n] = e$.
+    \item $z' = zs$.
+        Se $s$ for $0$ ou $1$,
+        isso corresponde a escrever um destes caracteres na fita de saída.
+        Se $s$ for $\varepsilon$,
+        isso corresponde a manter o cabeçote na fita de saída intacto.
+    \item $q'$ é o próprio $q'$ de $A$.
+    \item Se $m = 0$ e $d_1 = -1$ (quer dizer, $d_1 = \leftarrow$),
+        então $m' = 0$; caso contrário, $m' = m + d_1$.
+        Não deixaremos o cabeçote de leitura ler mais de um branco
+        à esquerda do início,
+        mas permitiremos que ele ``navegue'' livremente à direita.
+    \item Se $n = 0$ e $d_2 = -1$, então $n' = 0$; senão, $n' = n + d_2$.
+        Também não permitiremos o cabeçote de trabalho ``navegar'' demais à esquerda,
+        portanto, efetivamente,
+        a fita é apenas infinita à direita.
+\end{itemize}
