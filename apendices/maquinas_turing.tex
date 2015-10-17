@@ -148,21 +148,27 @@ portanto, neste caso, $a = \B$.
 Similarmente, se $1 \leq n \leq |y|$, $b = y[n]$; caso contrário, $b = \B$.
 Portanto,
 a ação da máquina $M$ no estado $E$
-será $\delta(q, a, b)$;
-denotaremos este valor por $\delta(E)$.%
-\footnote{
-    Observe que estamos abusando da notação de chamada de função aqui.
-}
+será $\delta(q, a, b)$.
+\begin{notation}
+    \simbolo{$\delta(E)$}{Ação tomada no estado de computação $E$.}
+    Denotaremos a ação da máquina $M = (Q, \Gamma, \delta, q_0)$
+    no estado $E$ por $\delta(E)$.%
+    \footnote{
+        Observe que estamos abusando da notação de chamada de função aqui.
+    }
+\end{notation}
+Note que,
+caso $M$ for uma máquina não"=determinística,
+$\delta(q, a, b)$ retornará um conjunto;
+portanto, $\delta(E)$ será uma lista de ações,
+não apenas uma.
 
 Seja $E = (x, y, z, q, m, n)$ um estado de computação
 e $A = (q', d_1, d_2, e, s)$ uma ação da máquina de Turing
 (pode ser um valor retornado por $\delta$ se a máquina for determinística,
 ou um dos elementos do conjunto retornado por $\delta$
 se a máquina for não"=determinística).
-O \emph{efeito de $A$ em $E$},
-que denotaremos por $A(E)$,\footnote{
-    Outro abuso de notação de chamada de função.
-}
+O \emph{efeito de $A$ em $E$}
 é a tupla $(x', y', z', q', m', n')$,
 dada por
 \begin{itemize}
@@ -192,3 +198,9 @@ dada por
         portanto, efetivamente,
         a fita é apenas infinita à direita.
 \end{itemize}
+\begin{notation}
+    \simbolo{$A(E)$}{Efeito da ação $A$ no estado de computação $E$.}
+    O efeito de $A$ em $E$ será denotado por $A(E)$.\footnote{
+        Outro abuso de notação de chamada de função.
+    }
+\end{notation}
