@@ -69,3 +69,20 @@ nossa definição apresenta alguns símbolos ``faltando''.
         foi ``embutido'' diretamente em $\Gamma$.
     \item Não há marcadores de início/fim de fita.
 \end{itemize}
+
+\begin{definition}
+    Uma \emph{máquina de Turing não"=determinística} $M$ é uma quádrupla
+    \begin{equation*}
+        M = (Q, \Gamma, \delta, q_0),
+    \end{equation*}
+    em que $Q$, $\Gamma$ e $q_0$ possuem a mesma semântica
+    das máquinas determinísticas,
+    mas a imagem de $\delta$,
+    em vez de ser $D \times D \times \Gamma \times \{0, 1, \varepsilon\}$,
+    é o conjunto potência deste conjunto.
+    Isto é, $\delta$ é definida sobre
+    \begin{equation*}
+        \delta: \{0, 1, \B\} \times \Gamma
+            \to 2^{D \times D \times \Gamma \times \{0, 1, \varepsilon\}}.
+    \end{equation*}
+\end{definition}
