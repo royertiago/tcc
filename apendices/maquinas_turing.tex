@@ -3,17 +3,64 @@
 
 Este apêndice contêm uma formalização de máquinas de Turing
 e seu uso como decisores e computadores de funções recursivas.
+O objetivo deste apêndice é prover uma fundamentação matemática
+para algumas afirmações feitas no texto,
+como, por exemplo,
+como uma máquina de Turing pode simular outra,
+porquê as codificações identificam unicamente uma função recursiva,
+e porquê não há problemas ao usar problemas indecidíveis como oráculos.
 
 \section{Definição Matemática}
 
-\subsection{Decisores e Enumeradores}
+\begin{definition}
+    Seja $D = \{\leftarrow, \rightarrow, \cdot\}$.
+    Uma \emph{máquina de Turing} $M$ é uma quádrupla
+    \begin{equation*}
+        M = (Q, \Gamma, \delta, q_0),
+    \end{equation*}
+    em que
+    \begin{itemize}
+        \item $Q$ é um conjunto finito de estados.
+        \item $\Gamma$ é um conjunto finito de símbolos de fita,
+            tais que $0, 1, B \in \Gamma$.
+        \item $\delta$ é uma função parcial definida sobre
+            \begin{equation*}
+                \delta: \{0, 1, B\} \times \Gamma
+                    \to D \times D \times \Gamma \times \{0, 1, \varepsilon\}.
+            \end{equation*}
+            Um par ordenado $(a, b)$ no domínio
+            representa os símbolos que a máquina está lendo das fitas
+            ($a \in \{0, 1, B\}$ é lido da fita somente"=leitura de entrada,
+            e $b \in \Gamma$ é lido da fita de trabalho).
+            Uma tupla $(c, d, e, f)$ no domínio
+            representa a ação da máquina
+            ($c \in D$ é a direção do movimento do cabeçote de leitura,
+            $d \in D$ é a do cabeçote de trabalho,
+            $e \in \Gamma$ é o que a máquina escreveu na fita de trabalho,
+            e $f \in \{0, 1, \varepsilon\}$ é o que a máquina escreveu
+            na fita de saída).
+        \item $q_0 \in Q$ é o estado inicial.
+    \end{itemize}
+\end{definition}
 
-\subsection{Funções de Inteiros}
+$0$ e $1$ são os símbolo do alfabeto binário $\{0, 1\}$,
+que é o alfabeto sobre o qual são definidas as funções recursivas.
+$B$ é o caractere branco.
 
-\section{Máquinas Multifitas}
-
-\subsection{Fitas de Entrada e Saída}
-
-\section{Codificação de Máquinas de Turing}
-
-\subsection{Máquinas de Turing Universais}
+Esta definição interpreta máquinas como calculadores de funções.
+Em relação às definições usuais de ``máquina de Turing''
+(encontrada, por exemplo,
+em \cite[p.~148]{HopcroftUllman1979},
+\cite[p.~140]{Sipser2006},
+e \cite[p.~6]{Kozen2006}),
+nossa definição apresenta alguns símbolos ``faltando''.
+\begin{itemize}
+    \item Omitimos $\Sigma$, que representa o alfabeto de entrada,
+        pois usaremos sempre $\Sigma = \{0, 1\}$.
+    \item Os estados de aceitação e rejeição são desnecessários,
+        pois a máquina não decide uma palavra,
+        mas sim, calcula uma função.
+    \item O símbolo $B$, o caractere branco,
+        foi ``embutido'' diretamente em $\Gamma$.
+    \item Não há marcadores de início/fim de fita.
+\end{itemize}
