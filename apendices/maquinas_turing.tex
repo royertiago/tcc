@@ -1,6 +1,9 @@
 \chapter{Máquinas de Turing}
 \label{app:turing_machines}
 
+% Definição do símbolo de branco, usável no modo matemático
+\newcommand\B{\tikz{\draw (0, 0.5ex) -- (0, 0) -- (0.5em, 0) -- (0.5em, 0.5ex);}}
+
 Este apêndice contêm uma formalização de máquinas de Turing
 e seu uso como decisores e computadores de funções recursivas.
 O objetivo deste apêndice é prover uma fundamentação matemática
@@ -23,15 +26,15 @@ e porquê não há problemas ao usar problemas indecidíveis como oráculos.
         \setlength{\labelsep}{1ex}
         \item $Q$ é um conjunto finito de estados.
         \item $\Gamma$ é um conjunto finito de símbolos de fita,
-            tais que $0, 1, B \in \Gamma$.
+            tais que $0, 1, \B \in \Gamma$.
         \item $\delta$ é uma função parcial definida sobre
             \begin{equation*}
-                \delta: \{0, 1, B\} \times \Gamma
+                \delta: \{0, 1, \B\} \times \Gamma
                     \to D \times D \times \Gamma \times \{0, 1, \varepsilon\}.
             \end{equation*}
             Um par ordenado $(a, b)$ no domínio
             representa os símbolos que a máquina está lendo das fitas
-            ($a \in \{0, 1, B\}$ é lido da fita somente"=leitura de entrada,
+            ($a \in \{0, 1, \B\}$ é lido da fita somente"=leitura de entrada,
             e $b \in \Gamma$ é lido da fita de trabalho).
             Uma tupla $(c, d, e, f)$ no domínio
             representa a ação da máquina
@@ -46,7 +49,7 @@ e porquê não há problemas ao usar problemas indecidíveis como oráculos.
 
 $0$ e $1$ são os símbolo do alfabeto binário $\{0, 1\}$,
 que é o alfabeto sobre o qual são definidas as funções recursivas.
-$B$ é o caractere branco.
+$\B$ é o caractere branco.
 
 Esta definição interpreta máquinas como calculadores de funções.
 Em relação às definições usuais de ``máquina de Turing''
@@ -62,7 +65,7 @@ nossa definição apresenta alguns símbolos ``faltando''.
     \item Os estados de aceitação e rejeição são desnecessários,
         pois a máquina não decide uma palavra,
         mas sim, calcula uma função.
-    \item O símbolo $B$, o caractere branco,
+    \item O símbolo $\B$, o caractere branco,
         foi ``embutido'' diretamente em $\Gamma$.
     \item Não há marcadores de início/fim de fita.
 \end{itemize}
