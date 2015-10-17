@@ -151,8 +151,7 @@ a ação da máquina $M$ no estado $E$
 será $\delta(q, a, b)$;
 denotaremos este valor por $\delta(E)$.%
 \footnote{
-    Observe que estamos abusando da notação aqui,
-    pois nenhum estado de computação está no domínio de $\delta$.
+    Observe que estamos abusando da notação de chamada de função aqui.
 }
 
 Seja $E = (x, y, z, q, m, n)$ um estado de computação
@@ -161,11 +160,8 @@ e $A = (q', d_1, d_2, e, s)$ uma ação da máquina de Turing
 ou um dos elementos do conjunto retornado por $\delta$
 se a máquina for não"=determinística).
 O \emph{efeito de $A$ em $E$},
-que denotaremos por $A(E)$\footnotemark{},
-\footnotetext{
-    Observe que,
-    apesar de usarmos a notação funcional,
-    $A$ não é uma função.
+que denotaremos por $A(E)$,\footnote{
+    Outro abuso de notação de chamada de função.
 }
 é a tupla $(x', y', z', q', m', n')$,
 dada por
