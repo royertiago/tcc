@@ -20,16 +20,34 @@ Entretanto,
 a construção foi feita de forma que
 as funções computadas por $M$ e $N$ coincidam
 sempre que a equação acima for satisfeita.
+Isto é,
+se $\langle M \rangle = \langle N \rangle$,
+então, para todo $x$,
+\begin{equation*}
+    M(x) \simeq N(x).
+\end{equation*}
+
+Ou seja,
+$M$ e $N$ computam exatamente a mesma função parcial.
 Portanto,
-dada uma cadeia $x \in \{0, 1\}^*$,
+dada uma cadeia $w \in \{0, 1\}^*$,
 existe uma única função recursiva parcial
-que é computada pelas máquinas cuja codificação em binário é $x$.
-Chamaremos esta função de $f_x$.
-Observe que o mapeamento $x \mapsto f_x$
-enumera todas as funções recursivas;
-as seções \ref{sec:universal_turing_machine} e~\ref{sec:s_m_n_theorem}
-contém teoremas que nos permitem trabalhar com as funções $f_x$
+que é computada pelas máquinas cuja codificação em binário é $w$.
+Chamaremos esta função de $f_w$.
+
+\begin{notation}
+    \simbolo{$f_w$}{Função computada pela máquina codificada pela palavra $w$}
+    Se $w = \langle M \rangle$, então $f_w$ é a função parcial computada por $M$.
+\end{notation}
+
+Toda máquina de Turing é representada por uma palavra de $\{0, 1\}^*$,
+portanto o mapeamento $w \mapsto f_w$
+enumera todas as funções recursivas.
+Além disso,
+toda palavra de $\{0, 1\}^*$ representa alguma máquina;
+assim, $f_w$ sempre está bem definido.
+As seções \ref{sec:universal_turing_machine} e~\ref{sec:s_m_n_theorem}
+contém teoremas que nos permitem trabalhar com as funções $f_w$
 e a seção~\ref{sec:acceptable_godel_numbering}
 define o conceito de ``Enumeração de Gödel aceitável'',
 que generaliza este mapeamento.
-\simbolo{$f_x$}{Função computada pela máquina codificada por $x$}
