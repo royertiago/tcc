@@ -1,0 +1,38 @@
+\section{Modelo de máquina utilizado}
+
+Para os propósitos deste trabalho,
+assumiremos que todas as máquinas de Turing possuem três fitas.
+\begin{itemize}
+    \item A primeira fita será utilizada apenas para a entrada da máquina;
+        ela sempre conterá uma palavra de $\{0, 1\}^*$,
+        e o seu conteúdo não poderá ser alterado.
+    \item A segunda fita será a fita de trabalho da máquina.
+        A máquina poderá ler e escrever símbolos arbitrários nesta fita infinita,
+        que começará totalmente em branco.
+    \item A terceira fita será utilizada apenas para saída.
+        O cabeçote desta fita poderá realizar apenas três movimentos:
+        \begin{itemize}
+            \item Escrever um $0$ e mover"=se para a direita;
+            \item Escrever um $1$ e mover"=se para a esquerda;
+            \item Manter"=se parada.
+        \end{itemize}
+\end{itemize}
+
+A função de transição da máquina poderá depender apenas das duas primeiras fitas.
+Como estaremos interessados no cálculo de funções,
+não precisaremos de estados de aceitação ou rejeição;
+basta não haver transição partindo do estado atual para que a máquina pare.
+(Podemos codificar ``aceitação'' como sendo a escrita de um único $1$ da fita de saída
+e ``rejeição'' como a escrita de um único $0$.)
+
+Observe que não há perda de generalidade
+ao fazer com que a fita de saída seja somente"=leitura,
+pois a máquina poderia construir a saída toda na máquina de trabalho,
+e escrevê"=la de uma só vez na fita de saída.
+
+Este modelo precisará ser ajustado no capítulo~\ref{ch:oracles},
+quando adicionaremos mais uma fita à máquina,
+que será usada para comunicação com o oráculo.
+
+O apêndice~\ref{app:turing_machines}
+contém a definição formal deste modelo.
