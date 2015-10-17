@@ -15,15 +15,12 @@ usando apenas este alfabeto binário.
 \begin{notation}
     Seja $M$ uma máquina de Turing determinística
     e $x \in \{0, 1\}^*$ uma palavra.
-    Suponha que $M$ pare ao computar $x$.
-    Se o conteúdo deixado na fita por $M$,
-    após remover os caracteres brancos à direita e à esquerda,
-    contiver apenas os símbolos $0$ e $1$
-    (isto é, não houverem brancos ou outros símbolos de fita),
-    este conteúdo forma uma palavra de $\{0, 1\}^*$.
-    Denotaremos esta palavra por $M(x)$.
-    Caso haja outros símbolos na fita
-    ou $M$ não parar ao computar $x$,
+    Se $M$ parar ao computar $x$
+    (isto é,
+    ao colocar a palavra $x$ na fita de entrada de $M$,
+    a sequência de passos de computação que se seguem é finita),
+    denotaremos por $M(x)$ a palavra deixada na fita de saída.
+    Caso $M$ não pare ao computar $x$,
     deixaremos $M(x)$ indefinido.
 \end{notation}
 
