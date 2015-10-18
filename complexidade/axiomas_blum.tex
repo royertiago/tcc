@@ -374,30 +374,26 @@ Esta demonstração foi adaptada de \cite[p.~208]{HopcroftUllman1979}.
 
     Usaremos a função universal e a função $S_{mn}$ para isso.
     Mais especificamente,
-    sejam $U$ e $S$ duas funções recursivas de uma variável tais que
+    sejam $U$ e $S$ estas duas funções;
+    isto é,
     \begin{align*}
-        U(\langle x, y \rangle) &\simeq \phi_x(y) \\
-        \phi_{S(\langle x, y \rangle)}(z) &\simeq \phi_x(\langle y, z \rangle) \\
+        U(x, y) &\simeq \phi_x(y) \\
+        \phi_{S(x, y)}(z) &\simeq \phi_x(\langle y, z \rangle) \\
     \end{align*}
     Sabemos que estas duas funções existem
     pois $\phi$ é uma enumeração de Gödel aceitável.
     Além disso, $S$ é recursiva total.
-    (Tecnicamente, $U$ e $S$ não são exatamente as funções
-    dadas pelo teorema da função universal e pelo teorema $S_{mn}$,
-    pois estas duas últimas funções são de duas variáveis.
-    $U$ e $S$ são as funções correspondentes de uma variável,
-    de acordo com a definição~\ref{def:multi_valued_recursive_function}.)
 
     Construa uma máquina de Turing $M$ que,
     na entrada $\langle x, y \rangle$,
     calcula o valor
     \begin{equation}
-        z = \phi_x(x) = U(\langle x, x \rangle),
+        z = \phi_x(x) = U(x, x),
         \label{eq:f_x_x}
     \end{equation}
     e em seguida calcula
     \begin{equation}
-        f_z(y) = U(\langle z, y \rangle)
+        f_z(y) = U(z, y)
         \label{eq:f_f_x_x_y}
     \end{equation}
     Como $U$ é uma função recursiva parcial,
@@ -416,7 +412,7 @@ Esta demonstração foi adaptada de \cite[p.~208]{HopcroftUllman1979}.
     Seja $m$ um índice\footnotemark{} para a função computada por $M$;
     a função recursiva total desejada é dada por
     \begin{equation*}
-        f(x) = S(\langle m, x \rangle).
+        f(x) = S(m, x).
     \end{equation*}
     \footnotetext{
         Um \emph{índice} para uma função recursivamente enumerável $f$
@@ -444,7 +440,7 @@ Esta demonstração foi adaptada de \cite[p.~208]{HopcroftUllman1979}.
     (a equação~\ref{eq:f_x_x}),
     portanto,
     apesar de $f(x)$ existir,
-    $\phi_{f(x)}(y) = \phi_{S(\langle m, x \rangle)}(y)$
+    $\phi_{f(x)}(y) = \phi_{S(m, x)}(y)$
     não existirá para nenhum $y$.
     Caso $\phi_x(x)$ exista,
     mas $\phi_{\phi_x(x)}(y)$ não,
@@ -464,11 +460,11 @@ Esta demonstração foi adaptada de \cite[p.~208]{HopcroftUllman1979}.
     Agora, à condição de igualdade.
     Se tanto $\phi_x(x)$ quanto $\phi_{\phi_x(x)}(y)$ existem, então
     \begin{align*}
-        \phi_{f(x)}(y) &= \phi_{S(\langle m, x \rangle)}(y) \\
+        \phi_{f(x)}(y) &= \phi_{S(m, x)}(y) \\
                        &= \phi_m( \langle x, y \rangle ) \\
                        &= M( \langle x, y \rangle ) \\
-                       &= U( \langle U(\langle x, x \rangle), y \rangle ) \\
-                       &= U( \langle \phi_x(x), y \rangle ) \\
+                       &= U( U(x, x), y \rangle ) \\
+                       &= U( \phi_x(x), y ) \\
                        &= \phi_{\phi_x(x)}(y).
     \end{align*}
 
