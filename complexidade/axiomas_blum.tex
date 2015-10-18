@@ -238,10 +238,10 @@ De fato, podemos relacionar quaisquer duas medidas de complexidade.
 \begin{theorem}
     \label{thm:measure_related}
     Dada uma enumeração de Gödel aceitável $\phi$
-    e duas medidas de complexidade $\Phi$ e $\hat \Phi$ para $\phi$,
+    e duas medidas de complexidade $\Phi$ e $\Phi'$ para $\phi$,
     existe uma função recursiva $r$ tal que
     \begin{equation*}
-        \Phi(w, x) \leq r( x, \hat \Phi(w, x))
+        \Phi(w, x) \leq r( x, \Phi'(w, x))
     \end{equation*}
     para todo $w$ e quase todo $x$.%
     \footnote{
@@ -256,15 +256,15 @@ De fato, podemos relacionar quaisquer duas medidas de complexidade.
 \begin{proof}
     Defina
     \begin{equation*}
-        r( x, k ) = \max \{ \Phi(w, x) \mid |w| \leq |x| \land \hat \Phi(w, x) = k \}
+        r( x, k ) = \max \{ \Phi(w, x) \mid |w| \leq |x| \land \Phi'(w, x) = k \}
     \end{equation*}
     Fixado $x$, existe um número finito de máquinas de Turing
     cuja descrição é menor que $|x|$.
     O conjunto na definição acima é um subconjunto desta lista
     (pois, além da exigência $|w| \leq |x|$,
-    exigimos que $\hat \Phi(w, x) = k$.)
+    exigimos que $\Phi'(w, x) = k$.)
 
-    O predicado $\hat \Phi(w, x) = k$ é recursivo.
+    O predicado $\Phi'(w, x) = k$ é recursivo.
     Quando este predicado é verdadeiro,
     $\phi_w(x)$ está definido, pelo axioma~\ref{ax:blum_def},
     portanto $\Phi(w, x)$ também está definido e pode ser calculado.
@@ -272,7 +272,7 @@ De fato, podemos relacionar quaisquer duas medidas de complexidade.
 
     Agora, para todos os $x$ que são mais longos que $w$,
     $\Phi(w, x)$ será um dos elementos do conjunto acima
-    para $r(x, \hat \Phi(w, x))$,
+    para $r(x, \Phi'(w, x))$,
     portanto é menor ou igual a $\Phi(w, x)$.
 \end{proof}
 
@@ -281,11 +281,11 @@ deste teorema.
 Ele prova que $r$ pode ser tal que,
 simultaneamente,
 \begin{equation*}
-    \Phi(w, x) \leq r( x, \hat \Phi(w, x))
+    \Phi(w, x) \leq r( x, \Phi'(w, x))
 \end{equation*}
 e
 \begin{equation*}
-    \hat \Phi(w, x) \leq r( x, \Phi(w, x))
+    \Phi'(w, x) \leq r( x, \Phi(w, x))
 \end{equation*}
 Podemos construir uma função dessas
 pegando o máximo de duas funções obtidas
