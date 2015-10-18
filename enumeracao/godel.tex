@@ -40,7 +40,9 @@ existe alguma função recursiva total $\sigma$ de duas variáveis tal que
 \begin{example}
     O mapeamento $w \mapsto f_w$,
     definido na seção~\ref{sec:definition_enumeration_of_recursive_functions},
-    é uma enumeração de Gödel aceitável.
+    é uma enumeração de Gödel aceitável,
+    pois enumera todas as funções recursivas (por definição)
+    e satisfaz aos teoremas da máquina universal e $S_{mn}$.
 \end{example}
 
 Podemos pensar nas enumerações de Gödel aceitáveis
@@ -54,6 +56,27 @@ Em particular,
 o formalismo das máquinas de Turing com oráculos,
 que definiremos na seção~\ref{sec:oracle_definition},
 pode ser traduzido numa enumeração de Gödel aceitável.
+
+\begin{example}
+    Toda linguagem de programação Turing"=completa pode,
+    de certa forma,
+    ser vista como uma enumeração de Gödel aceitável.
+    Para isso,
+    precisamos restringir os programas a serem não"=interativos.
+    Por exemplo,
+    se restringirmos os programas da linguagem \verb"C"
+    a se comunicar com o mundo externo
+    usando apenas \verb"scanf", \verb"printf" e similares
+    (isto é, sem arquivos, sockets, prompts interativos, etc.),
+    definimos o mapeamento
+    \begin{equation*}
+        \texttt{file.c} \mapsto C_{\texttt{file.c}},
+    \end{equation*}
+    em que $C_{\texttt{file.c}}$ é a função calculada pelo arquivo \verb"file.c"
+    depois de compilado.
+
+    (De certa forma, o mapeamento $C$ é um ``compilador''.)
+\end{example}
 
 Computacionalmente,
 não podemos trabalhar diretamente com as enumerações,
