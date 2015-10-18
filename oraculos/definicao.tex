@@ -42,6 +42,89 @@ e obter diferentes $L^A(M)$ com isso.%
     o $A$ sobrescrito está junto de $L$, não de $M$.
 }
 
-Utilizaremos oráculos para definir a hierarquia polinomial,
-uma generalização das classes $\P$ e $\NP$,
-na seção~\ref{sec:polynomial_hierarchy}.
+Como a linguagem $A$ não faz parte da máquina $M^A$,
+do ponto de vista formal,
+$M^A$ continua sendo, essencialmente,
+uma tabela de transições;
+portanto,
+podemos estender de maneira natural a codificação $\langle \cdot \rangle$
+para máquinas com oráculos.
+Da mesma forma, conceitos como $M^A(x)$ e função associada
+podem ser definidos de maneira análoga.
+
+Assim,
+podemos definir uma enumeração de Gödel aceitável usando oráculos.
+
+\begin{definition}
+    \simbolo{$\phi^A$}{Enumeração das funções recursivas em $A$}
+    Seja $A$ uma linguagem.
+    A enumeração de funções recursivas em $A$,
+    denotada por $\phi^A$,
+    é o mapeamento
+    \begin{equation*}
+        \langle M^A \rangle \mapsto \phi^A_{\langle M \rangle},
+    \end{equation*}
+    em que $\phi^A_{\langle M \rangle}$
+    é a função definida por
+    \begin{equation*}
+        \phi^A_{\langle M \rangle}(x) \simeq M^A(x).
+    \end{equation*}
+\end{definition}
+
+Nem sempre $\phi^A$ será uma enumeração de Gödel aceitável.
+O próximo teorema delimita as situações em que isso não acontece.
+
+\begin{theorem}
+    $\phi^A$ é uma enumeração de Gödel aceitável se,
+    e somente se,
+    $A$ for uma linguagem decidível.
+\end{theorem}
+
+\begin{proof}
+    Suponha que $A$ não seja decidível.
+    Defina a função $f: \{0, 1\}^* \to \{0, 1\}^*$ por
+    \begin{equation*}
+        f(x) =
+        \begin{cases}
+            1,& \text{ se } x \in A; \\
+            0,& \text{ se } x \notin A.
+        \end{cases}
+    \end{equation*}
+    Observe que $f$ não é uma função recursiva
+    (pois $A$ não é decidível),
+    mas ela pode ser computada facilmente usando $A$ como oráculo.
+    Portanto, $\phi^A$ enumera uma função que não é recursiva,
+    fazendo com que não seja uma enumeração de Gödel.
+
+    Agora, suponha que $A$ seja decidível.
+    Primeiro,
+    observe que qualquer máquina de Turing sem oráculos $M$
+    pode ser transformada numa máquina de Turing com oráculo $M^A$,
+    que simplesmente ignora seu próprio oráculo.
+    Portanto,
+    todas as funções recursivas parciais são enumeradas por $\phi^A$.
+
+    Agora,
+    como $A$ é uma linguagem decidível,
+    existe uma máquina de Turing que sempre para que decide pertinência a $A$.
+    Dada uma máquina $M^A$,
+    podemos transformá"=la numa máquina sem oráculo $M$
+    equivalente --- isto é,
+    \begin{equation*}
+        M^A(x) \simeq M(x);
+    \end{equation*}
+    basta trocar as chamadas ao oráculo $A$
+    pelo algoritmo que a decide.
+    Portanto, $\phi^A$ só enumera funções recursivas parciais.
+
+    Concluímos que $\phi^A$ é uma função sobrejetora
+    cuja imagem é o conjunto das funções recursivas parciais.
+    A construção da máquina universal
+    e do teorema $S_{mn}$ é análoga às máquinas sem oráculos.%
+    \footnote{
+        Observe que construir a máquina universal
+        e o teorema $S_{mn}$ pode ser feito mesmo que $A$ não seja decidível;
+        o problema é, justamente,
+        a possibilidade de enumerar funções que não são recursivas.
+    }
+\end{proof}
