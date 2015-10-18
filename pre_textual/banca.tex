@@ -12,4 +12,23 @@
     Universidade Federal de Santa Catarina
 }
 
+\def\ABNTorientadordata{Orientadora \\ Universidade Federal de Santa Catarina}
 \folhaaprovacao
+
+% Gambiarra.
+% Cada "personagem" que precisa assinar alguma coisa
+% (membro da banca, orientador, coorientador, coordenador)
+% é impresso da mesma forma: primeiro a linha da assinatura,
+% depois o nome, armazenados nos comandos \ABNTorientadornome, \bancanameA, etc.,
+% e por fim uma variável nomeada "\ABNTorientadordata", ou "\bancadataA", etc.,
+% com "dados adicionais".
+% No caso da banca, por exemplo, os "dados adicionais" jamais são definidos;
+% no caso do orientador, é definido para "Orientador" (ou "Orientadora" no meu caso).
+%
+% Para incluir a universidade da minha orientadora abaixo do nome,
+% eu redefini \ABNTorientadordata para o texto que aparecerá abaixo;
+% assim, evita-se de gerar uma nova página apenas para a banca.
+% (No meu caso, a ordem fica certa pois "Jerusa" precede lexicograficamente
+% "Karina", "Ricardo" e "Rosvelter"; não sei como corrigir isso
+% sem alterar \folhaaprovacao para lidar com todos os casos.
+% Ou o orientador sempre vem antes dos outros membros da banca?)
