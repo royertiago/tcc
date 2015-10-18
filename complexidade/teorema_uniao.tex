@@ -10,15 +10,15 @@ de acordo com nossa definição de classe de complexidade.
 
 \begin{theorem}[Teorema da União]
     \label{thm:union}
-    Seja $\{f_1, f_2, f_3, \dots\}$ uma lista infinita de funções computáveis
+    Seja $\{h_1, h_2, h_3, \dots\}$ uma lista infinita de funções computáveis
     tais que, para todo $i$ e $n$,
     \begin{equation*}
-        f_i(n) \leq f_{i+1}(n).
+        h_i(n) \leq h_{i+1}(n).
     \end{equation*}
     Então existe uma função computável $g$
     tal que
     \begin{equation*}
-        \bigcup_i \ \mathcal C_\Phi(f_i) = \mathcal C_\Phi(g).
+        \bigcup_i \ \mathcal C_\Phi(h_i) = \mathcal C_\Phi(g).
     \end{equation*}
 \end{theorem}
 
@@ -30,15 +30,15 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
 
     Observe que
     \begin{equation*}
-        \mathcal C_\Phi(f_1) \subseteq
-        \mathcal C_\Phi(f_2) \subseteq
-        \mathcal C_\Phi(f_3) \subseteq
-        \mathcal C_\Phi(f_4) \subseteq
+        \mathcal C_\Phi(h_1) \subseteq
+        \mathcal C_\Phi(h_2) \subseteq
+        \mathcal C_\Phi(h_3) \subseteq
+        \mathcal C_\Phi(h_4) \subseteq
         \dots;
     \end{equation*}
     se alguma função $\phi_w$ pertence a união destas classes de complexidade,
-    então $\phi_w \in \mathcal C_\Phi(f_k)$ para algum $k$,
-    mas também que $\phi_w \in \mathcal C_\Phi(f_i)$
+    então $\phi_w \in \mathcal C_\Phi(h_k)$ para algum $k$,
+    mas também que $\phi_w \in \mathcal C_\Phi(h_i)$
     para todas as classes de complexidade com $i \geq k$.
 
     Enumere as palavras de $\{0, 1\}^*$ por $w_1, w_2, \dots, w_n, \dots$,
@@ -46,7 +46,7 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     Para definir o valor de $g(n)$,
     analisaremos as funções $\phi_{w_1}, \dots, \phi_{w_n}$
     e manteremos uma lista de ``chutes''
-    da forma $\phi_{w_i} \in \mathcal C_\Phi(f_j)$,
+    da forma $\phi_{w_i} \in \mathcal C_\Phi(h_j)$,
     que denotaremos $\mathcal C(i) = j$.
     Isto é, tentaremos ``adivinhar''
     em qual dos conjuntos a função $\phi_{w_i}$ entra.%
@@ -62,14 +62,14 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
 
         Observe também que não precisamos
         ``acertar na mosca'';
-        basta algum conjunto $\mathcal C_\Phi(f_k)$
+        basta algum conjunto $\mathcal C_\Phi(h_k)$
         ao qual $\phi_{w_i}$ pertença.
     }
 
     Ao computar o valor de $g(n)$,
     um chute errado
     é um chute $\mathcal C(i) = j$
-    em que $\Phi(w_i, x) > f_j(|x|)$
+    em que $\Phi(w_i, x) > h_j(|x|)$
     para algum $x$ com $|x| = n$.
     Conforme computamos $g(n)$,
     sempre que descobrirmos que nosso chute,
@@ -79,7 +79,7 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     e faremos um novo chute,
     desta vez ``aumentando as apostas''.
 
-    Defina $g(1)$ para $f_1(1)$
+    Defina $g(1)$ para $h_1(1)$
     (ou qualquer valor arbitrário)
     e inicialize a lista com o chute
     $\mathcal C(1) = 1$.
@@ -91,25 +91,25 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     Percorra a lista atrás de chutes errados;
     isto é,
     pares $\mathcal C_i = k_i$
-    tais que $\Phi(w_i, x) > f_{k_i}(x)$
+    tais que $\Phi(w_i, x) > h_{k_i}(x)$
     para algum $x$ com $|x| = n$.
     Dentre os chutes errados,
     escolha $i$ de forma a minimizar $k_i$.
-    Defina, então, $g(n) = f_{k_i}(n)$
+    Defina, então, $g(n) = h_{k_i}(n)$
     e atualize o chute para $\mathcal C_i = n$.
     Caso não haja chutes errados,
-    apenas defina $g(n) = f_n(n)$.
+    apenas defina $g(n) = h_n(n)$.
 
     \begin{algorithm}[h]
         Inicialize a lista \texttt{chutes} com o par $\mathcal C(1) = 1$ \;
-        Imprima $g(1) = f_1(1)$ \;
+        Imprima $g(1) = h_1(1)$ \;
         \For{$n = 2$ \KwTo $\infty$}{
             Adicione $\mathcal C(n) = n$ à lista \texttt{chutes} \;
             \tcc{Valor sentinela:}
             \texttt{chute\_errado} = $\infty$ \;
             \For{$i \leftarrow 1$ \KwTo $n$}{
                 \tcc{acharemos o menor chute errado}
-                \If{$\Phi(w_i, x) > f_{\mathcal C(i)}(|x|)$
+                \If{$\Phi(w_i, x) > h_{\mathcal C(i)}(|x|)$
                     para algum $x$ de tamanho $n$
                 }{
                     \tcc{Achamos um chute errado.}
@@ -120,11 +120,11 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
             }
             \If{\texttt{chute\_errado} = $\infty$}{
                 \tcc{Todos os chutes estavam certos.}
-                Imprima $g(n) = f_n(n)$ \;
+                Imprima $g(n) = h_n(n)$ \;
             }
             \Else{
                 \texttt k $\leftarrow$ $\mathcal C(\texttt{chute\_errado})$ \;
-                Imprima $g(n) = f_\texttt k (n)$ \;
+                Imprima $g(n) = h_\texttt k (n)$ \;
                 Altere o chute errado para $\mathcal C(\texttt{chute\_errado}) = n$ \;
             }
         }
@@ -135,7 +135,7 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
         \label{algo:union_theorem}
     \end{algorithm}
 
-    Caso $\phi_{w_i}$ esteja em algum $\mathcal C_\Phi(f_k)$,
+    Caso $\phi_{w_i}$ esteja em algum $\mathcal C_\Phi(h_k)$,
     assim que redefinirmos o chute para algum valor maior que $k$,
     erraremos, no máximo,
     mais uma quantidade finita de vezes.
@@ -152,10 +152,10 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     (evento que ocorreu ao computar $g(i)$),
     ocorrerão, no máximo,
     $i-1$ chutes diferentes
-    que resultarão na definição de $g(n)$ como $f_k(n)$
+    que resultarão na definição de $g(n)$ como $h_k(n)$
     para algum $k < i$.
 
-    Então, se $\phi_{w_i} \in \mathcal C_\Phi(f_k)$,
+    Então, se $\phi_{w_i} \in \mathcal C_\Phi(h_k)$,
     teremos $\Phi(w_i, x) > g(|x|)$
     para, no máximo, $k-1$ valores de $|x|$ maiores que $k$.
     Concluímos que
@@ -166,14 +166,14 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
 
     Isso prova
     \begin{equation*}
-        \bigcup_i \ \mathcal C_\Phi(f_i) \subseteq \mathcal C_\Phi(g).
+        \bigcup_i \ \mathcal C_\Phi(h_i) \subseteq \mathcal C_\Phi(g).
     \end{equation*}
 
     Do outro lado,
     pegue $\phi_{w_i}$ fora da união das classes de complexidade.
     Qualquer índice $w_j$ para $L$
     terá, para todo $k$,
-    $\Phi(w_j, x) > f_k(|x|)$ para infinitos $x$.
+    $\Phi(w_j, x) > h_k(|x|)$ para infinitos $x$.
     Em todos esses valores de $|x|$,
     iremos ``errar o chute''
     e definir $g(n)$
@@ -182,38 +182,38 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
 
     Isso prova
     \begin{equation*}
-        \overline{\bigcup_i \ \mathcal C_\Phi(f_i)}
+        \overline{\bigcup_i \ \mathcal C_\Phi(h_i)}
         \subseteq \overline{\mathcal C_\Phi(g)}.
     \end{equation*}
 
     Combinando as duas inclusões, prova"=se o teorema.
 \end{proof}
 
-Observe que a hipótese $f_i(n) \leq f_{i+1}(n)$
+Observe que a hipótese $h_i(n) \leq h_{i+1}(n)$
 para todo $i$ e todo $n$
 pode ser enfraquecida.
 Podemos exigir, apenas,
 que a desigualdade seja verdadeira para todo $n$
 maior que algum $n_0$,
 independente de $i$
---- isto é, eventualmente todos os $f_i$
+--- isto é, eventualmente todos os $h_i$
 deixam de se cruzar
 ---
 ou que, para todo $i$,
 exista algum $n_i$ em que
-$f_i(n) \leq f_j(n)$ para todo $n > n_i$
+$h_i(n) \leq h_j(n)$ para todo $n > n_i$
 e todo $j > i$
 --- isto é, eventualmente,
-cada $f_i$ deixa de cruzar com todos os outros.
+cada $h_i$ deixa de cruzar com todos os outros.
 
 Neste último caso
 (que abrange o anterior),
 apenas teríamos que alterar a quantidade máxima de vezes
 em que podem haver chutes errados.
-Se $\phi_{w_t} \in \mathcal C_\Phi(f_i)$,
+Se $\phi_{w_t} \in \mathcal C_\Phi(h_i)$,
 então existem, no máximo,
 $i - 1$ definições de $g(n)$
-que poderiam ser baseados em $f_k$
+que poderiam ser baseados em $h_k$
 com $k < j$.
 No teorema original,
 esses são os únicos valores que temos de nos preocupar
@@ -222,11 +222,11 @@ após definir $g(i)$).
 Agora, além desses valores,
 precisamos levar em conta que
 todas as definições até $n_i$
-podem ser inferiores a $f_i$
+podem ser inferiores a $h_i$
 (e, possivelmente, abaixo da complexidade de $\phi_{w_t}$).
 
 Em outras palavras,
-é essencial que as funções $f_i$
+é essencial que as funções $h_i$
 eventualmente parem de se cruzar.
 
 \begin{counterexample}
