@@ -90,8 +90,7 @@ identifica a função $f_w$ unicamente.
                 \parbox{0.6\textwidth}{
                     se~$M$ para ao computar~$x$,
                     tendo lido exatamente~$k$ células
-                    de uma de suas fitas de trabalho
-                    e no máximo $k$~células nas demais fitas.
+                    de sua fitas de trabalho.
                 }
             } \\
             \text{indefinido}, & \text{
@@ -101,37 +100,40 @@ identifica a função $f_w$ unicamente.
             }
         \end{cases}
     \end{equation*}
-    Precisamos desta definição intrincada
-    pois~$M$ pode não ler $k$~células de todas as suas fitas,
-    apenas de algumas.
-
     Claramente o axioma~\ref{ax:blum_def} é satisfeito.
     Para o axioma~\ref{ax:blum_rec},
     o algoritmo é um pouco mais complicado.
 
     Comece executando $M$ em $x$.
-    Caso $M$ extrapole $k$ células lidas
-    em alguma de suas fitas,
+    Caso $M$ extrapole $k$ células lidas,
     podemos rejeitar a entrada
-    (isto é, $\Phi(\rangle M \langle, x) = k$ é falso).
+    (isto é, $\PhiDS(\langle M \rangle, x) = k$ é falso).
     Caso contrário,
     existirá um número finito de configurações da máquina.
 
-    Existem~$|\Gamma|^k$ possíveis fitas com $k$ termos
-    e $k+1$ possíveis posições da cabeça de leitura;
-    teremos, portanto,
-    $(k+1)|\Gamma|^k$~diferentes configurações para cada fita.
-    Para $l$ diferentes fitas e $|Q|$~possíveis estados da máquina,
-    existem, no máximo,
-    \begin{equation}
-        |Q| \left((k+1)|\Gamma|^k\right)^l
-        \label{eq:configurations_count}
-    \end{equation}
-    possíveis configurações.
+    Argumentaremos que existe um número finito de diferentes estados de computação
+    em que a máquina lê, no máximo,
+    $k$ células da fita.
+
+    Para $M = (Q, \Gamma, \delta, q_0)$,
+    existem $|\Gamma|^k$ diferentes fitas de tamanho $k$.
+    (Como o caractere branco pertence a $\Gamma$,
+    este também é a quantidade de fitas de tamanho menor ou igual a $k$.)
+    Existem $k$ diferentes posições para o cabeçote de trabalho,
+    $|x|$ diferentes posições para o cabeçote de leitura,
+    e $|Q|$ diferentes estados.
+
+    Como estas informações são a única coisa que importa
+    para determinar o próximo estado de computação da máquina,
+    existem
+    \begin{equation*}
+        k * |x| * |Q| * |\Gamma|^k
+    \end{equation*}
+    diferentes estados de computação para $M$.
     Portanto, se a máquina executar
     mais movimentos do que este número,
     significa que ela entrou em loop.
-    Podemos rejeitar a entrada.%
+    Podemos ``rejeitar'' a entrada%
     \footnote{
         Este cuidado adicional é imprescindível
         para garantir que o predicado
@@ -145,13 +147,14 @@ identifica a função $f_w$ unicamente.
         quando $M(x)$ está
         --- não é o caso se $M$ entra em loop
         ao computar $x$.
-    }
+    };
+    isto é, deixar $\PhiDS(\langle M \rangle, x)$ indefinido.
 
     E, por último,
     caso $M$ pare,
     precisamos nos assegurar que,
     de fato,
-    em alguma das fitas $k$ células foram lidas.
+    $k$~células foram lidas.
 \end{example}
 
 \begin{example}
