@@ -504,7 +504,19 @@ em mais um passo de custo proporcional a $n*m$,
 podemos atualizar as posições dos cabeçotes,
 atualizar o estado atual,
 e substituir a célula da fita sob o cabeçote de trabalho.
+Se, neste passo,
+$M$ decidir escrever algo na fita de saída,
+basta utilizar a própria fita de saída da máquina simuladora.
 Portanto, podemos efetuar um passo de computação em tempo $O(n * m)$.
+
+(Em alguns casos, precisaremos utilizar o valor de saída de $M$,
+para pós"=processamento, ou usar como entrada em outra máquina.
+Neste caso,
+adicione mais uma trilha à fita de trabalho da máquina simuladora;
+quer dizer, o $\Gamma$ da máquina simuladora terá pares de símbolos.
+O símbolo ``de cima'' é a fita que estávamos usando até agora,
+e o símbolo ``de baixo'' armazenará a saída de $M$.
+Observe que isso não aumenta a complexidade assintótica do algoritmo.)
 
 Se a máquina $M$ realizar $k$ passos de computação antes de parar,
 o valor de $m$ será menor ou igual a $k$.
