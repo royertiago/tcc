@@ -446,3 +446,78 @@ de acordo com a definição acima;
 para que o mapeamento fique completo,
 para estas cadeias $x$,
 defina $f_x$ como a função que não está definida para $x$ algum.
+
+\subsection{Simulação eficiente de máquinas de Turing}
+
+Em vários pontos do texto,
+é usado o fato de que é uma máquina de Turing pode simular outra
+com apenas uma perda polinomial no tempo de execução.
+Como estamos ignorando as diferenças polinomiais entre os algoritmos,
+esta perda de desempenho é aceitável,
+e ``merece'' o título de ``eficiente''.
+
+Para fazer esta simulação eficiente,
+a máquina que está simulando terá de manter, na fita de trabalho,
+uma cópia da fita de entrada da máquina simulada,
+a fita de trabalho da máquina simulada,
+e um espaço adicional para gravar o estado atual
+e o que está por baixo dos cabeçotes da máquina simulada.
+
+Se organizado da forma
+\begin{equation*}
+    q \B a \B b \B x \B y,
+\end{equation*}
+com os três primeiros espaços tendo o tamanho máximo de um estado de $Q$,
+de um símbolo de $\{0, 1\}$, e de um símbolo de $\Gamma$,
+respectivamente,
+a estrutura da fita fica fixa,
+permitindo que o $y$ cresça arbitrariamente.
+
+Observe que esta informação pode ter vindo de uma codificação $\langle M \rangle$;
+portanto, a máquina simulada pode ter mais símbolos de fita
+do que a máquina simuladora,
+então a máquina simuladora precisará usar codificações.
+Os símbolos $q$ e $b$ podem ter tamanho variado,
+mas existe um valor máximo possível;
+portanto, basta ``alocar'' esse espaço máximo no início da simulação.
+$x \in \{0, 1\}^*$, portanto é fácil de lidar com ele
+--- apenas coloque alguma marcação para saber onde está o cabeçote de leitura
+da máquina simulada.
+$y$ volta a causar problemas;
+ele pode ser da forma
+\begin{equation*}
+    0^{i_1} 1^{n-i_1} 2\ \ 0^{i_2} 1^{n-i_1} 2 \cdots 2\ \ 0^{i_k} 1^{n-i_k},
+\end{equation*}
+em que $n$ é a quantidade de símbolos de fita.
+Assim, todas as subcadeias $0^{i_j} 1^{n-i_j}$ possuem tamanho fixo.
+Precisaremos marcar aqui também qual é a posição do cabeçote de trabalho.
+
+Para avançar o estado de computação,
+a máquina inicialmente descobre qual a transição será usada,
+atualizando $a$ e $b$
+e varrendo $\langle M \rangle$.
+Isso pode ser feito em tempo proporcional a $n*m$,
+em que $m$ é o tamanho dos símbolos codificados
+e $m$ é o tamanho da fita no momento.
+Depois,
+em mais um passo de custo proporcional a $n*m$,
+podemos atualizar as posições dos cabeçotes,
+atualizar o estado atual,
+e substituir a célula da fita sob o cabeçote de trabalho.
+Portanto, podemos efetuar um passo de computação em tempo $O(n * m)$.
+
+Se a máquina $M$ realizar $k$ passos de computação antes de parar,
+o valor de $m$ será menor ou igual a $k$.
+Portanto,
+podemos simular $M$ em $x$ em tempo $O(k^3)$,
+sendo que a constante ``oculta'' pela notação $O$ depende apenas da máquina simuladora,
+não da máquina simulada.
+
+\citeonline[p.~292]{HopcroftUllman1979}
+mostram que, se pudermos usar duas fitas para fazer a simulação,
+ela pode ser feita de forma consideravelmente mais eficiente:
+$O(k \ln k)$,
+mesmo que a máquina simulada use mais fitas e mais símbolos de fita
+do que a máquina simuladora.
+Entretanto,
+este desaceleramento cúbico será suficiente para nossos propósitos.
