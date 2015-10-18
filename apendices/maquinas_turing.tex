@@ -216,11 +216,11 @@ podemos definir como uma máquina de Turing computa sobre uma palavra.
     é definido recursivamente por
     \begin{align*}
         \mathbb E(M, x, 0) &= (x, \varepsilon, \varepsilon, q_0, 1, 1); \\
-        \mathbb E(M, x, k+1) &= A(E(M, x, n)), \quad \text{
+        \mathbb E(M, x, k+1) &= A(\mathbb E(M, x, n)), \quad \text{
             se $A = \delta(\mathbb E(M, x, k))$.
         }
     \end{align*}
-    Se, para algum $n$, $\delta(E(M, x, k))$ não existir
+    Se, para algum $n$, $\delta(\mathbb E(M, x, k))$ não existir
     --- que é quando a tripla $(q, a, b)$ não pertencer ao domínio de $\delta$,
     na terminologia do parágrafo que define $\delta(E)$ ---
     então defina $\mathbb E(M, x, k+1) = \mathbb E(M, x, k)$.
@@ -250,3 +250,94 @@ definir formalmente $M(x)$ e $t(M, x, k)$.
     para todo $k \geq k_0$,
     defina $M(x) = t(M, x, k_0)$.
 \end{definition}
+
+Para máquinas de Turing não"=determinísticas,
+não há apenas uma possível sequência de computação,
+portanto, $\mathbb E$ deve ser um conjunto.
+Entretanto,
+isto cria um problema;
+pode ser que hajam dois estados $E$ e $F$, no conjunto $\mathbb E(M, x, k)$,
+que se sucedem mutuamente;
+isto é, $A(E) = F$ para algum $A \in \delta(E)$,
+e $B(F) = E$ para algum $B \in \delta(F)$.
+Se $E$ e $F$ forem os únicos elementos de $\mathbb E(M, x, k)$
+e $A$ e $B$ forem as únicas ações possíveis de $M$,
+então $\mathbb E(M, x, k) = \mathbb E(M, x, k+1)$,
+mesmo que $M$ não tenha \emph{parado} de computar em $x$.
+
+Precisamos,
+portanto,
+ser mais cuidadosos ao definir transição e parada.
+
+\begin{definition}
+    Seja $M = (Q, \Gamma, \delta, q_0)$ uma máquina de Turing não"=determinística
+    e $x \in \{0, 1\}^*$ uma palavra.
+    $\mathbb A(M, x, k)$ é o $k$"=ésimo conjunto de estados
+    \emph{ativos} de computação de $M$ em $x$,
+    e $\mathbb T(M, x, k)$ é o de estados \emph{terminais} de computação.
+    Estes dois conjuntos são mutuamente definidos recursivamente por
+    \begin{align*}
+        \mathbb A(M, x, 0) &= \{ (x, \varepsilon, \varepsilon, q_0, 1, 1) \}; \\
+        \mathbb T(M, x, 0) &= \emptyset; \\
+        \mathbb A(M, x, k+1) &= \{
+            A(E) \mid E \in \mathbb A(M, x, k) \wedge
+            A \in \delta(E)
+        \} \\
+        \mathbb T(M, x, k+1) &= \mathbb T(M, x, k) \cup \{
+            E \in \mathbb A(M, x, k) \mid \text{$\delta(E)$ não está definido}
+        \}.
+    \end{align*}
+\end{definition}
+
+Observe que $\mathbb T(M, x, k+1)$ necessariamente inclui $\mathbb T(M, x, k)$;
+portanto, $\mathbb T(M, x, k)$ conterá todos os ramos de computação
+que já se encerraram.
+Desta forma,
+a união
+\begin{equation*}
+    \mathbb T(M, x, k) \cup \mathbb A(M, x, k)
+\end{equation*}
+corresponde a $\mathbb E(M, x, k)$, do caso determinístico.
+Podemos,
+portanto,
+definir o símbolo $T(M, x, n)$ usando este conjunto.
+
+\begin{definition}
+    \begin{equation*}
+        T(M, x, n) = \{
+            z \mid (x, y, z, q, m, n) \in \mathbb A(M, x, n) \cup \mathbb T(M, x, n)
+        \}
+    \end{equation*}
+\end{definition}
+
+Tecnicamente,
+o conjunto $\mathbb A(M, x, k)$ pode conter estados terminais de computação;
+para um estado terminal $E$, $\delta(E)$ não está definido,
+então $\mathbb A(M, x, k+1)$ não conterá estados da forma $A(E)$.
+Além disso,
+este estado $E$ estará em $\mathbb T(M, x, k+1)$;
+portanto,
+tecnicamente, $\mathbb A(M, x, k)$
+contém os estados que estavam ativos no passo anterior,
+mas que não necessariamente estarão ativos agora.
+
+Caso todos os ramos de computação de $M$ em $x$ eventualmente se encerrem,
+$\mathbb A(M, x, k)$ eventualmente ficará vazio;
+diremos,
+portanto,
+que $M$ para ao computar $x$ se $\mathbb A(M, x, k_0) = \emptyset$
+para algum $k_0$.
+
+\begin{definition}
+    Seja $M$ uma máquina de Turing não"=determinística.
+    Se $\mathbb A(M, x, k_0) = \emptyset$,
+    defina $M(x)$ como sendo o maior valor
+    (lexicograficamente)
+    de $T(M, x, k_0)$.
+\end{definition}
+(A ordenação lexicográfica usada neste texto
+considera que palavras menores precedem palavras maiores,
+independente de quais símbolos estejam envolvidos;
+por exemplo, $1 < 000$.)
+
+Esta definição é a formalização da definição~\ref{def:nondeterministic_function}.
