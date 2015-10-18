@@ -345,3 +345,93 @@ independente de quais símbolos estejam envolvidos;
 por exemplo, $1 < 000$.)
 
 Esta definição é a formalização da definição~\ref{def:nondeterministic_function}.
+
+\section{Codificação de máquinas de Turing}
+
+O objetivo de definir uma codificação em binário para máquinas de Turing
+é poder enumerar as funções recursivas que elas computam
+e, de alguma forma,
+manipulá"=las.
+Portanto,
+representaremos em nossa codificação apenas os aspectos ``mais importantes''
+das máquinas de Turing.
+
+Exclusivamente do ponto de vista de \emph{funções},
+a única coisa que importa é o resultado final: $M(x)$.
+Entretanto,
+existem várias maneiras de se computar uma função,
+e nós estamos usando medidas de complexidade para distinguir estas maneiras.
+Portanto,
+precisaremos ser um pouco mais conservadores antes de descartar alguma informação.
+Em particular,
+estaremos interessados em,
+de alguma forma,
+manter os estados de computação das máquinas.
+
+Portanto, a quantidade de estados de uma máquina $M$
+(isto é, $|Q|$)
+é uma informação relevante;
+entretanto,
+\emph{quais} estados são utilizados não é.
+Poderíamos assumir que $Q$ sempre é um conjunto da forma
+\begin{equation*}
+    Q = \{1, 2, \dots, n\},
+\end{equation*}
+e que $q_0 = 1$;
+existe um mapeamento direto entre estados de computação para esta máquina
+e estados de computação da máquina original,
+de forma que a estrutura dos $\mathbb E$, $\mathbb A$ e $\mathbb T$ se mantenha.
+
+Da mesma forma,
+exatamente quais símbolos estão em $\Gamma$
+não é relevante.
+Ficamos apenas com $\delta$,
+que é a única informação essencial da quádrupla $(Q, \Gamma, \delta, q_0)$.
+É exatamente esta informação que codificaremos em $\langle M \rangle$.
+Nossa construção é similar à de \citeonline[p.~182]{HopcroftUllman1979}.
+
+\begin{definition}
+    Seja $M = (Q, \Gamma, \delta, q_0)$ uma máquina de Turing.
+    Identificaremos os elementos do conjunto $Q$
+    com os números $\{1, 2, \dots, |Q|\}$,
+    de forma que $q_0$ seja identificado com $1$.
+    Da mesma forma,
+    identificaremos os elementos de $\Gamma$
+    com o conjunto $\{1, 2, \dots, |\Gamma|\}$
+    de forma que o símbolo $0$ corresponda ao número $1$,
+    o símbolo $1$ corresponda ao número $2$,
+    e o símbolo $\B$ corresponda ao número $3$.
+    Por fim, identifique $D$ e $\{0, 1, \varepsilon\}$ com $\{1, 2, 3\}$.
+    Codifique a transição
+    \begin{equation*}
+        \delta(q, a, b) = (q', d_1, d_2, e, s)
+    \end{equation*}
+    por
+    \begin{equation*}
+        0^q 1 0^a 1 0^b 1 0^{q'} 1 0^{d_1} 0^{d_2} 1 0^e 1 0^s.
+    \end{equation*}
+    (Nós identificamos os conjuntos $Q$, $\Gamma$ etc.\ com subconjuntos de $\mathbb N$
+    para que a notação $0^q$ faça sentido.
+    Além disso,
+    escolhemos os valores como começando em $1$
+    para que sempre haja ao menos um dígito $0$ entre cada par de $1$'s.)
+
+    Agora,
+    defina
+    \begin{equation*}
+        \langle M \rangle = 11 c_1 11 c_2 11 \dots 11 c_n 11,
+    \end{equation*}
+    em que cada $c_i$ é uma codificação para uma transição,
+    e todas as transições são codificadas em algum $c_i$.
+    Se a máquina de Turing for não"=determinística,
+    basta usar vários $c_i$ com o mesmo $(q, a, b)$.
+\end{definition}
+
+Rigorosamente falando,
+usar o símbolo de igualdade na definição de $\langle M \rangle$
+é um abuso de notação,
+pois o lado direito pode se apresentar em várias ordens.
+Entretanto,
+qualquer que seja a ordem,
+a máquina representada é a mesma,
+portanto este abuso de notação (e nomenclatura) é tolerável.
