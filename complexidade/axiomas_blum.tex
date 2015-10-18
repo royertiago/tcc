@@ -509,18 +509,18 @@ Esta demonstração foi adaptada de \cite[p.~208]{HopcroftUllman1979}.
 \begin{proposition}
     Seja $\phi$ uma numeração de Gödel aceitável,
     $\Phi$ uma medida de complexidade para $\phi$,
-    e $f$ e $g$ funções recursivas totais.
-    (Interpretaremos $g$ como sendo uma função de inteiros.)
-    Então existe um índice $w$ para a função $f_w$ tal que
+    e $f: \{0, 1\}^* \to \{0, 1\}^*$ e $g: \mathbb N \to \mathbb N$
+    funções recursivas totais.
+    Então existe um índice $w$ para a função $f$ tal que
     \begin{equation*}
-        \Phi(w, x) > g(\langle|x|\rangle)
+        \Phi(w, x) > g(|x|)
     \end{equation*}
     para todo $x$.
     \label{thm:resource_waste}
 \end{proposition}
 
 Ou seja,
-o dispositivo computacional representado por $w$
+o programa $w$, ao computar $f$,
 desperdiça mais de $g(n)$ unidades do recurso medido por $\Phi$
 ao processar uma palavra de tamanho $n$.
 Em outras palavras,
@@ -530,11 +530,13 @@ código ruim pode ser feito em qualquer linguagem.
     Defina a função $h$, de duas variáveis, por
     \begin{equation*}
         h(w, x) = \begin{cases}
-            \phi_w(x)1 & \text{se $\Phi(w, x) \leq g(\langle|x|\rangle)$} \\
+            \phi_w(x) \cdot 1 & \text{se $\Phi(w, x) \leq g(|x|)$} \\
             f(x) & \text{caso contrário.}
         \end{cases}
     \end{equation*}
-    ($\phi_w(x)1$ é o valor de $\phi_w(x)$ concatenado com o símbolo $1$.)
+    ($\phi_w(x) \cdot 1$ é o valor de $\phi_w(x)$ concatenado com o símbolo $1$;
+    o importante aqui é que $\phi_w(x) \cdot 1$ seja diferente de $\phi_w(x)$,
+    pois queremos fazer algo parecido com diagonalização.)
 
     Observe que $h$ é uma função computável,
     pois $\Phi$, $g$ e $f$ o são,
@@ -553,27 +555,27 @@ código ruim pode ser feito em qualquer linguagem.
     Observe que $\sigma$ é recursiva total, pois $S$ o é.
 
     Pelo teorema da recursão (lema~\ref{thm:recursion}),
-    $\sigma$ possui um ponto fixo $w_0$.
-    Demonstraremos que $w_0$ satisfaz às exigências do teorema.
+    $\sigma$ possui um ponto fixo $v$.
+    Demonstraremos que $v$ satisfaz às exigências do teorema.
 
-    Caso a função $h$, ao computar o valor de $h(w_0, x)$
+    Caso a função $h$, ao computar o valor de $h(v, x)$
     para algum $x$,
     tenha escolhido a primeira cláusula,
-    a saída final de $\sigma(w_0)$ teria sido
-    $\phi_{w_0} (x)$ concatenado com $1$,
-    que é diferente de apenas $\phi_{w_0}(x)$.
-    Portanto, $w_0$ não seria um ponto fixo de $\sigma$,
+    a saída final de $\sigma(v)$ teria sido
+    $\phi_{v} (x)$ concatenado com $1$,
+    que é diferente de apenas $\phi_{v}(x)$.
+    Portanto, $v$ não seria um ponto fixo de $\sigma$,
     contradizendo o teorema da recursão.
 
     Portanto, $h$ nunca seleciona a primeira cláusula
-    ao computar $h(w_0, x)$, para qualquer $x$.
-    Isto significa que $\Phi(w_0, x) > g(\langle |x| \rangle)$ para todo $x$,
+    ao computar $h(v, x)$, para qualquer $x$.
+    Isto significa que $\Phi(v, x) > g(|x|)$ para todo $x$,
     o que garante a exigência de complexidade,
     e que
     \begin{equation*}
-        \phi_{\sigma(w_0)}(x) = f(x).
+        \phi_{\sigma(v)}(x) = f(x).
     \end{equation*}
-    Mas, como $w_0$ é um ponto fixo de $\sigma$,
-    a própria $w_0$ já computava $f$ antes de passar por $\sigma$,
+    Mas, como $v$ é um ponto fixo de $\sigma$,
+    a própria $v$ já computava $f$ antes de passar por $\sigma$,
     o que prova a exigência da função.
 \end{proof}
