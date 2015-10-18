@@ -9,13 +9,13 @@
     \begin{enumerate} [label=\textbf{Axioma \arabic*}, ref=\arabic*, align=left]
         \item
             \label{ax:blum_def}
-            $\Phi(x, y)$ está definido
+            $\Phi(w, x)$ está definido
             se, e somente se,
             $\phi_x(y)$ está definido.
         \item
             \label{ax:blum_rec}
-            A função $R(x, y, m)$,
-            definida como $1$ se $\Phi(x, y) = m$,
+            A função $R(w, x, m)$,
+            definida como $1$ se $\Phi(w, x) = m$,
             e $0$ caso contrário,
             é recursiva total.
     \end{enumerate}
@@ -31,15 +31,15 @@
 \end{definition}
 
 O axioma~\ref{ax:blum_rec}
-nos dá um semialgoritmo para calcular $\Phi(x, y)$.
+nos dá um semialgoritmo para calcular $\Phi(w, x)$.
 Entretanto, pelo axioma~\ref{ax:blum_def},
 não podemos ir muito além disso,
-pois $\phi_x(y)$ não está definido para todo $x$ e $y$.
-(De fato, decidir se $\Phi(x, y)$ existe
+pois $\phi_w(x)$ não está definido para todo $w$ e $x$.
+(De fato, decidir se $\Phi(w, x)$ existe
 é exatamente o problema da parada para o modelo de computação de $\phi$.)
 
 Nos exemplos que se seguem,
-quando estivermos usando a enumeração de Gödel $f_x$,
+quando estivermos usando a enumeração de Gödel $f_w$,
 utilizaremos a notação $\Phi(\langle M \rangle, x)$
 para nos referir a $\Phi(w, x)$,
 em que $w$ é a codificação (em binário) da máquina $M$.
@@ -188,7 +188,7 @@ identifica a função $f_w$ unicamente.
 \end{example}
 
 Nos exemplos \ref{ex:time_complexity} e~\ref{ex:space_complexity},
-a enumeração utilizada é a $f_x$
+a enumeração utilizada é a $f_w$
 definida na seção~\ref{sec:definition_enumeration_of_recursive_functions}.
 No exemplo~\ref{ex:nondeterministic_complexity},
 ficou faltando definir a enumeração de Gödel associada;
