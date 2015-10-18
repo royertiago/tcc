@@ -55,16 +55,16 @@ Outra diferença é o fato de nós permitirmos
 extrapolar o limite de $f(n)$ células
 para um número finito de entradas.
 Isto não costuma causar problemas;
-de fato,
-podemos mostrar que,
-caso $f(n) \geq 1$,
-podemos retirar esta permissão.
-(O ponto crucial da demonstração é embutir,
-no controle finito,
-a lista das palavras que violam o limite de $f(n)$ células.)
+podemos embutir no controle finito da máquina
+a ``resposta certa''
+para todas as palavras que violam o limite.
 
-Entretanto, é justamente nesta hipótese de que $f(n) \geq 1$
-que reside nosso problema. Defina
+Entretanto,
+mesmo assim,
+a máquina lerá ao menos uma célula da fita de trabalho,
+pois ela precisa realizar ao menos um movimento para escrever a resposta;
+encontramos problemas caso $f(n) = 0$ seja zero em algum ponto.
+Por exemplo, defina $f$ por
 \begin{equation*}
     f(n) = \begin{cases}
         0, & n < 2 \\
