@@ -83,3 +83,40 @@ dificulta a formalização do conceito de oráculo
 mas sim várias)
 e impossibilita a análise do efeito da composição de funções,
 como a feita na seção~\ref{sec:function_composition}.
+
+\section{Conjunto potência como contradomínio (Andreev)}
+
+\citeonline[p.~3]{Andreev1994}
+apresenta uma abordagem diferente.
+Em vez de tentar amarrar algum dos ramos de computação,
+a função retornará todos eles.
+
+\begin{definition}
+    Sejam $\mathcal A$ e $\mathcal B$ conjuntos finitos,
+    e $2^\mathcal B$ o conjunto potência de $\mathcal B$.
+    Uma \emph{função não"=determinística de $\mathcal A$ em $\mathcal B$}
+    é uma função da forma
+    \begin{equation*}
+        f : \mathcal A \to 2^\mathcal B.
+    \end{equation*}
+    \cite[p.~3]{Andreev1994}
+\end{definition}
+
+Os conjuntos $\mathcal A$ e $\mathcal B$ usados por \citeonline[p.~4]{Andreev1994}
+são da forma $\{0, 1\}^k$.
+A ideia é que $\mathcal A$ represente as possíveis entradas para um circuito booleano,
+e que $\mathcal B$ represente as saídas desse circuito.
+Dado um circuito computacional $S$,
+com $k$ entradas e $l$ saídas,
+dizemos que $S$ computa a função não"=determinística $F$ de $\{0, 1\}^k$ em $\{0, 1\}^l$
+se,
+para todo $a \in \{0, 1\}^k$,
+$S(a) \in F(a)$.
+Isto é,
+todas as saídas possíveis de $S$ estão previstas em $F$.
+Esta definição é similar à definição de \citeonline[p.~229]{Papadimitriou1994},
+no sentido de que basta retornar um valor de $F(a)$.
+\citeonline[p.~4]{Andreev1994}
+define, então,
+a \emph{complexidade} de uma função não"=determinística $F$
+como sendo o tamanho do menor circuito que computa $F$.
