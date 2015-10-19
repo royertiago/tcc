@@ -45,9 +45,8 @@ são justamente estes casos que mereceram
 atenção especial ao definir $\PhiDS$
 da forma como definimos
 e provar que esta função satisfaz ao axioma~\ref{ax:blum_def}.
-Mesmo \citeauthoronline{HopcroftUllman1979}
-notam que é necessário fazer este ajuste,
-em \cite[p.~313]{HopcroftUllman1979}.
+Mesmo \citeonline[p.~313]{HopcroftUllman1979}
+notam que é necessário fazer este ajuste.
 
 Outra diferença é o fato de nós permitirmos
 às máquinas que computam linguagens em
@@ -71,7 +70,7 @@ Por exemplo, defina $f$ por
         1, & n \geq 2
     \end{cases}.
 \end{equation*}
-Na definição de \citeonline{HopcroftUllman1979},
+Na definição de \citeonline[p.~288]{HopcroftUllman1979},
 $\DTIME(f)$ é o conjunto vazio,
 pois toda máquina de Turing
 é obrigada a ler ao menos a célula inicial;%
@@ -132,7 +131,7 @@ para ler toda a entrada.
 adota uma suposição similar:
 a de que $f(n) \geq n$.
 
-Adotaremos a hipótese de \citeauthoronline{HopcroftUllman1979}.
+Adotaremos a hipótese de \citeonline[p.~287]{HopcroftUllman1979}.
 \begin{definition}
     \begin{align*}
         \DTIME(f(n)) &= \mathcal C_\PhiDT(\max(f(n), n+1)) \cap \mathcal B \\
@@ -206,7 +205,7 @@ conseguimos provar equivalência entre as definições.
 \begin{ucorollary}
     Nossas definições de complexidade de espaço
     são equivalentes à complexidade de espaço
-    de \citeauthoronline{AroraBarak2009}.
+    de \citeonline[p.~78]{AroraBarak2009}.
 \end{ucorollary}
 
 Para complexidade de tempo,
@@ -332,7 +331,7 @@ Esta demonstração foi retirada de \cite[p.~290]{HopcroftUllman1979}.
     para quase todo $n$,
     nossas definições de complexidade de tempo
     em relação à função $f$
-    são equivalentes às de \citeauthoronline{AroraBarak2009}.
+    são equivalentes às de \citeonline[p.~25]{AroraBarak2009}.
 \end{ucorollary}
 
 \citeonline[p.~32]{Papadimitriou1994}
@@ -345,13 +344,13 @@ que cobre os dois casos:
 \end{utheorem}
 
 Já provamos que nossa definição
-é equivalente à de \citeauthoronline{AroraBarak2009}
+é equivalente à de \citeonline[p.~25]{AroraBarak2009}
 (exceto no caso extremo
 em que $f(n)$ fica eventualmente menor que $cn$
 para todo $c > 1$).
 Usando estes dois teoremas,
 podemos provar a afirmação dada no início do capítulo
-de que nossas definições e as de \citeonline{HopcroftUllman1979}
+de que nossas definições e as de \citeonline[p.~288]{HopcroftUllman1979}
 são equivalentes.
 
 \begin{theorem}
@@ -481,8 +480,8 @@ Estes dois teoremas mostram que
 toda linguagem em $\DSPACE(f)$,
 de acordo com nossa definição,
 também está em $\DSPACE(f)$
-de acordo com as definições de \citeonline{HopcroftUllman1979}
-e \citeonline{Papadimitriou1994}
+de acordo com as definições de \citeonline[p.~288]{HopcroftUllman1979}
+e \citeonline[p.~141]{Papadimitriou1994}
 (e afirmações análogas para $\DTIME$, $\NSPACE$ e $\NTIME$).
 
 Finalizamos esta seção demostrando que
