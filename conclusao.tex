@@ -281,3 +281,40 @@ no século passado.
 Seria interessante refazer a pesquisa bibliográfica,
 mas direcionando para trabalhos que lidem com problemas de otimização
 (como a classe OptP, de Krentel).
+
+Os dois principais problemas que ficaram em aberto
+estão relacionados à hierarquia polinomial funcional desenvolvida.
+A demonstração do teorema~\ref{thm:compositive_closure}
+utilizou o problema completo
+\begin{equation*}
+    \HaltFNP^{\FNP^\mathcal A},
+\end{equation*}
+retirado do teorema~\ref{thm:polinomially_complete_problems}.
+A formulação deste problema é baseada no problema da parada.
+Como observado por \citeonline[p.~255]{Papadimitriou1994},
+esse tipo de classe de complexidade\footnote{
+    As \emph{classes de complexidade sintáticas}
+    são aquelas em que a pertinência à classe
+    depende apenas do modelo de máquina utilizado
+    \cite[p.~255]{Papadimitriou1994}.
+    (Note que esta não é uma definição formal.)
+    Por exemplo,
+    classes como $\P$, $\NP$, $\FNP$ etc.\ são classes de complexidade sintáticas;
+    enquanto que a classe dos problemas $\NP$"=completos não é
+    --- esta é uma classe \emph{semântica}.
+}
+sempre possuirá um problema completo da forma como é $\HaltFNP$.
+Fica em aberto determinar se existem problemas mais naturais
+que sejam completos para os demais níveis da hierarquia polinomial funcional.
+
+Outro problema é o mencionado no final do capítulo~\ref{ch:nondeterministic_functions},
+que é a possibilidade de termos ``exagerado na dose''
+ao definir o valor de $M(x)$ como sendo o máximo dos ramos de computação.
+Dessa forma,
+com um simples pós"=processamento
+(conforme o teorema~\ref{thm:strong_compositive_closure}),
+podemos simular várias chamadas a um mesmo oráculo.
+Seria interessante tentar ``enfraquecer'' esta definição,
+não permitindo mais que uma única chamada
+dê informação equivalente a várias,
+criando uma hierarquia mais densa de problemas.
