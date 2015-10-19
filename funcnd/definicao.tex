@@ -166,3 +166,20 @@ para decisores.%
 
     A volta é trivial.
 \end{proof}
+
+Usando as mesmas técnicas usadas para máquinas determinísticas,
+podemos construir uma máquina não"=determinística universal
+e o teorema $S_{mn}$;
+portanto, acabamos de provar o seguinte teorema
+(e, efetivamente,
+concluir o exemplo~\ref{ex:nondeterministic_complexity}).
+
+\begin{ucorollary}
+    Seja $\phi$ a função que associa a cada $w = \langle M \rangle$
+    (em que $M$ é não"=determinística)
+    a função $\phi_w$ dada por
+    \begin{equation*}
+        \phi_w(x) \simeq M(x).
+    \end{equation*}
+    Então, $\phi$ é uma enumeração de Gödel aceitável.
+\end{ucorollary}
