@@ -1,4 +1,5 @@
 \section{Complexidade Funcional}
+\label{sec:functional_complexity}
 
 De posse do formalismo de funções não"=determinísticas,
 finalmente,
@@ -28,33 +29,10 @@ em tempo polinomial por máquinas determinísticas,
 e $\FNP$, por máquinas não"=determinísticas.\footnotemark
 $\coFNP$ é o análogo a $\coNP$.
 \footnotetext{
-    Nossa definição de $\FNP$ diverge da definição da literatura.
-    A definição de \citeonline[p.~229]{Papadimitriou1994},
-    por exemplo,
-    é baseada em linguagens polinomialmente equilibradas
-    (mencionadas na nota de rodapé~\ref{foot:polinomially_balanced},
-    na página~\pageref{foot:polinomially_balanced}).
-
-    Tome um problema de decisão $L \in \NP$
-    e construa uma linguagem polinomialmente equilibrada $R_L$ associada a $L$.
-    $R_L$ será um conjunto de pares $(x, y)$,
-    em que $x \in L$ e $y$ é um ``certificado'' de que $x \in L$.
-
-    O \emph{problema funcional associado} a $L$, $\class{F}L$,
-    consiste em encontrar algum $y$ tal que $(x, y) \in R_L$,
-    ou determinar que tal $y$ não existe;
-    então,
-    \citeonline[p.~229]{Papadimitriou1994} define $\FNP$
-    como o conjunto de todos os $\class{F}L$
-    para $L \in \NP$.
-
-    Estes problemas são por vezes chamados de \emph{problemas de busca}
-    (do inglês \emph{search problem}),
-    em oposição a \emph{problemas de decisão}.
-
-    A diferença crucial é que \citeauthoronline{Papadimitriou1994}
-    pede apenas que encontremos algum $y$,
-    enquanto que nossa definição exige que encontremos o maior deles.
+    \citeonline[p.~229]{Papadimitriou1994}
+    também define uma classe de problemas para o símbolo $\FNP$,
+    mas a definição dele é substancialmente diferente da nossa.
+    Veja a seção~\ref{sec:papadimitriou_comparison} para uma comparação.
 }
 
 \begin{example}
