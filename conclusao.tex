@@ -132,3 +132,59 @@ são diferentes,
 seria necessário um malabarismo adicional
 para desenvolver a noção de composição de funções,
 assim como na definição de Papadimitriou.
+
+\section{Definição de Hopcroft e Ullman}
+
+A definição de \citeonline[p.~313]{HopcroftUllman1979},
+mencionada na introdução,
+é a que motivou este trabalho.
+\begin{definition}
+    Seja $M$ uma máquina de Turing não"=determinística.
+    Dizemos que $M(x) = y$ se
+    algum dos ramos de computação de $M$ em $x$ produz $y$,
+    e nenhum outro ramo de computação que se encerre
+    produz um valor diferente de $y$.
+    \cite[p.~313]{HopcroftUllman1979}
+\end{definition}
+
+O problema é que esta definição não enumera corretamente as funções recursivas.
+O grande vilão está na permissão que damos à máquina $M$
+não parar em todos os ramos de computação.
+
+Por exemplo,
+construa uma máquina $N$ que,
+na entrada $\langle M, x \rangle$,
+assuma dois ramos de computação:
+no primeiro,
+$N$ incondicionalmente escreve $1$ na fita de saída e para.
+No outro, $N$ simula a máquina determinística $M$ em $x$ e,
+caso $M$ pare ao computar $x$,
+$N$ escreve $0$ na fita.
+
+Se $M$ não para em $x$,
+então $N$ possui um único ramo de computação que para,
+e este ramo produz $1$ na fita;
+portanto, $N(\langle M, x \rangle) = 1$.
+Caso $M$ pare ao computar $x$,
+$N(\langle M, x \rangle)$ estará indefinido,
+pois dois ramos de computação de $N$ escrevem coisas diferentes na fita.
+
+Ou seja,
+esta máquina computa
+\begin{equation*}
+    f(\langle M, x \rangle) = 1, \text{ se $M$ não parar ao computar $x$,}
+\end{equation*}
+que é exatamente o complemento do problema da parada.
+Portanto,
+pela definição de Hopcroft e Ullman,
+conseguimos enumerar funções não"=recursivas.
+
+Mas,
+se impormos à definição de Hopcroft e Ullman a restrição adicional
+de que todos os ramos de $M$ devem parar para que $M(x)$ exista,
+então não há a necessidade de haver vários ramos de computação,
+pois todos eles retornam o mesmo resultado.
+Basta fixar uma das possíveis transições não"=determinísticas,
+tornando a máquina \emph{determinística}.
+Neste caso,
+perdemos o aparente ganho de tempo exponencial ao usar não"=determinismo.
