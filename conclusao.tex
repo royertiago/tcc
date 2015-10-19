@@ -238,3 +238,46 @@ podemos resolver todos os problemas de $\Delta_n^f$
 apenas pós"=processando um resultado de $\FNP$.
 Portanto não é possível construir uma ``hierarquia polinomial funcional''
 com base em $\OptP$.
+
+\section{Considerações finais}
+
+Neste trabalho,
+desenvolvemos uma teoria de funções não"=determinísticas,
+guiados pelo objetivo de poder definir sua complexidade
+em termos dos axiomas de Blum.
+Conseguimos generalizar a classe $\NP$ para problemas funcionais
+(a classe $\FNP$)
+da mesma forma como a classe $\FP$ generaliza a classe $\P$;
+problemas de $\NP$,
+como $\SAT$,
+possuem uma generalização natural em nossa classe $\FNP$,
+como encontrar uma atribuição satisfazível, no caso de $\SAT$.
+
+O objetivo de manter compatibilidade com os axiomas de Blum foi atingido.
+É interessante notar que, dos trabalhos analisados neste capítulo,
+apenas Hopcroft se preocupa com os axiomas de Blum.
+Além disso,
+nenhum dos autores tenta interpretar as funções não"=determinísticas
+como uma enumeração de Gödel,
+que é um passo necessário para que uma medida de complexidade
+satisfaça aos axiomas de Blum.
+
+Também pudemos construir uma ``hierarquia polinomial funcional'',
+simplesmente adaptando as definições da hierarquia polinomial ``tradicional''.
+O fato de estarmos trabalhando com funções
+cujo domínio e contradomínio coincidem
+nos permitiu compô"=las,
+possibilitando resultados como o teorema~\ref{thm:compositive_closure},
+que nos deu uma interpretação de $\Delta_n^f$
+em termos da composição de funções de $\Sigma_n^f$.
+
+Dentre os trabalhos analisados,
+o único que contém definições parecidas com o que foi desenvolvido neste TCC
+é o de \cite[p.~3]{Krentel1988},
+que foi encontrado apenas no final do desenvolvimento.
+Com isso,
+as referências bibliográficas acabaram todas ``presas''
+no século passado.
+Seria interessante refazer a pesquisa bibliográfica,
+mas direcionando para trabalhos que lidem com problemas de otimização
+(como a classe OptP, de Krentel).
