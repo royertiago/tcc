@@ -1,0 +1,99 @@
+\documentclass[utf8,notheorems]{beamer}
+\usetheme[compress]{Singapore}
+
+\usepackage[brazil]{babel}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\newtheorem*{theorem}{Teorema}
+\newtheorem*{corollary}{Corolário}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definição}
+
+\let\C\someundefinedcommand
+\let\G\someundefinedcommand
+% These two commands are defined by hyperref in file puenc.def,
+% and conflict with complexity - which also defines them.
+% \C encodes some unicode character (U+030f), \G is textdoublegrave.
+% Seems safe to simply undefine them.
+\usepackage{complexity}
+
+\begin{document}
+
+\author{Tiago Royer}
+\title{
+    Máquinas de Turing não-determinísticas \\
+    como computadores de funções
+}
+\subtitle{Defesa do TCC}
+\date{12 de novembro de 2015}
+\institute{UFSC}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\section{Axiomas de Blum}
+
+\subsection{Enumerações de Gödel}
+\begin{frame}
+    \frametitle{Enumerações de Gödel aceitáveis das funções recursivas}
+\end{frame}
+
+\subsection{Axiomas de Blum}
+\begin{frame}
+    \frametitle{Axiomas de Blum}
+\end{frame}
+
+\subsection{Programador Incompetente}
+\begin{frame}
+    \frametitle{``Teorema do programador incompetente''}
+\end{frame}
+
+\subsection{Máquinas não-determinísticas}
+\begin{frame}
+    \frametitle{E para máquinas não-determinísticas?}
+\end{frame}
+
+\section{Funções não-determinísticas}
+
+\subsection{Definição}
+\begin{frame}
+    \frametitle{Problemas de decisão vs. problemas de busca}
+\end{frame}
+\begin{frame}
+    \frametitle{Definição}
+\end{frame}
+
+\subsection{Definições alternativas}
+\begin{frame}
+    \frametitle{Outras definições}
+\end{frame}
+
+\subsection{$\NP$-completude funcional}
+\begin{frame}
+    \frametitle{$\NP$-completude funcional}
+\end{frame}
+
+\section{Hierarquia polinomial}
+
+\subsection{Hierarquia polinomial}
+\begin{frame}
+    \frametitle{Hierarquia polinomial}
+\end{frame}
+
+\subsection{Hierarquia polinomial funcional}
+\begin{frame}
+    \frametitle{Hierarquia polinomial funcional}
+\end{frame}
+
+\subsection{Fecho compositivo}
+\begin{frame}
+    \frametitle{Fecho compositivo}
+\end{frame}
+
+\section{Trabalhos futuros}
+\begin{frame}
+    \frametitle{Trabalhos futuros}
+\end{frame}
+
+\end{document}
