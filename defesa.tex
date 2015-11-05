@@ -101,19 +101,49 @@
 \subsection{Definição}
 \begin{frame}
     \frametitle{Problemas de decisão vs. problemas de busca}
+    \begin{itemize}
+        \item Relação com funções booleanas
+        \item Instância $\SAT$ tautológica retorna $\{1\}$
+        \item Instância $\SAT$ contraditória retorna $\{0\}$
+        \item Instância $\SAT$ satisfazível, mas não tautológica retorna $\{0, 1\}$
+    \end{itemize}
 \end{frame}
 \begin{frame}
     \frametitle{Definição}
+    Seja $M$ uma máquina de Turing não-determinística
+    e $x$ uma entrada.
+
+    Se todos os ramos da computação de $M$ em $x$ pararem,
+    chame de $M(x)$ o maior valor
+    (lexicograficamente)
+    dentre todos os ramos de computação.
+
+    Se algum ramo não parar,
+    deixe $M(x)$ indefinido.
 \end{frame}
 
 \subsection{Definições alternativas}
 \begin{frame}
     \frametitle{Outras definições}
+    \begin{itemize}
+        \item Linguagens polinomialmente equilibradas
+        \item Conjunto potência como contradomínio
+        \item Definição de Hopcroft e Ullman
+        \item Classe $\OptP$
+    \end{itemize}
 \end{frame}
 
 \subsection{$\NP$-completude funcional}
 \begin{frame}
     \frametitle{$\NP$-completude funcional}
+    \begin{definition}
+        Uma função $f \in \FNP$ é $\FNP$-completa se,
+        para toda função $g \in \FNP$
+        existir alguma função $h \in \FP$ tal que
+        \begin{equation*}
+            g(x) = f(h(x)).
+        \end{equation*}
+    \end{definition}
 \end{frame}
 
 \section{Hierarquia polinomial}
@@ -121,21 +151,75 @@
 \subsection{Hierarquia polinomial}
 \begin{frame}
     \frametitle{Hierarquia polinomial}
+    \centering
+    \begin{tikzpicture}
+        \draw let \n1 = {0}, \n2 = {8}, \n3 = {1.5}, \n4 = {0.5} in
+            (\n1, -\n4) -- (\n2, -\n4)
+            (\n1, 0) -- (\n2, \n3)
+            (\n1, \n3) -- (\n2, 0)
+            (\n1, \n3) -- (\n2, 2*\n3)
+            (\n1, 2*\n3) -- (\n2, \n3)
+            (\n1, 2*\n3) -- (\n2, 3*\n3)
+            (\n1, 3*\n3) -- (\n2, 2*\n3)
+            (\n1, 4*\n3) -- (\n2, 4*\n3)
+            (\n1, -\n4) -- (\n1, 4*\n3)
+            (\n2, -\n4) -- (\n2, 4*\n3)
+            node (a) at ({(\n1+\n2)/2}, 0) {
+                $\Sigma_0^p = \Delta_0^p = \Pi_0^p = p$
+            }
+            node (a) at (\n1+2*\n4, \n3/2) {$\Sigma_1^p = \NP$}
+            node (a) at (\n2-2*\n4, \n3/2) {$\Pi_1^p = \coNP$}
+            node (a) at ({\n1+\n2/2}, \n3) {$\Delta_2^p = \P^\NP$}
+            node (a) at (\n1+\n4, 3*\n3/2) {$\Sigma_2^p$}
+            node (a) at (\n2-\n4, 3*\n3/2) {$\Pi_2^p$}
+            node (a) at ({\n1+\n2/2}, 2*\n3) {$\Delta_3^p$}
+            node (a) at (\n1+\n4, 5*\n3/2) {$\Sigma_3^p$}
+            node (a) at (\n2-\n4, 5*\n3/2) {$\Pi_3^p$}
+            node (a) at ({\n1+\n2/2}, 3*\n3) {$\vdots$}
+            node (a) at ({\n1+\n2/2}, 7*\n3/2) {$\PH \subseteq \PSPACE$};
+    \end{tikzpicture}
 \end{frame}
 
+\newlang\coFNP{coFNP}
 \subsection{Hierarquia polinomial funcional}
 \begin{frame}
     \frametitle{Hierarquia polinomial funcional}
+    \begin{align*}
+        \Sigma_0^f &= \Delta_0^f = \Pi_0^f = \FP, \\
+        \Sigma_{n+1}^f &= \FNP^{\Sigma_n^f}, \\
+        \Delta_{n+1}^f &= \FP^{\Sigma_n^f}, \\
+        \Pi_{n+1}^f &= \coFNP^{\Sigma_n^f}.
+    \end{align*}
 \end{frame}
 
 \subsection{Fecho compositivo}
 \begin{frame}
     \frametitle{Fecho compositivo}
+
+    Se $\mathcal F$ é um conjunto de funções,
+    chame de $\mathcal F^\circ$
+    o \emph{fecho compositivo} de $\mathcal F$;
+    isto é, o conjunto de todas as funções na forma
+    \begin{equation*}
+        f_1 \circ f_2 \circ \dots \circ f_n
+    \end{equation*}
+    para $f_1, \dots, f_n \in \mathcal F$.
+
+    \begin{theorem}
+        \begin{equation*}
+            (\Sigma_n^f)^\circ = \Delta_{n+1}^f
+        \end{equation*}
+    \end{theorem}
 \end{frame}
 
 \section{Trabalhos futuros}
 \begin{frame}
     \frametitle{Trabalhos futuros}
+    \begin{itemize}
+        \item Problemas completos
+        \item Talvez a definição tenha ficado forte demais
+        \item Relação com a classe $\OptP$, de Krentel
+    \end{itemize}
 \end{frame}
 
 \end{document}
