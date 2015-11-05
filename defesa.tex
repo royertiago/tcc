@@ -184,12 +184,24 @@
 \subsection{Hierarquia polinomial funcional}
 \begin{frame}
     \frametitle{Hierarquia polinomial funcional}
-    \begin{align*}
-        \Sigma_0^f &= \Delta_0^f = \Pi_0^f = \FP, \\
-        \Sigma_{n+1}^f &= \FNP^{\Sigma_n^f}, \\
-        \Delta_{n+1}^f &= \FP^{\Sigma_n^f}, \\
-        \Pi_{n+1}^f &= \coFNP^{\Sigma_n^f}.
-    \end{align*}
+    \begin{columns}
+        \begin{column}{0.2\textwidth}
+            \begin{align*}
+                \Sigma_0^p &= \Delta_0^p = \Pi_0^p = \P \\
+                \Sigma_{n+1}^p &= \NP^{\Sigma_n^p} \\
+                \Delta_{n+1}^p &= \P^{\Sigma_n^p} \\
+                \Pi_{n+1}^p &= \coNP^{\Sigma_n^p}
+            \end{align*}
+        \end{column}
+        \begin{column}{0.2\textwidth}
+            \begin{align*}
+                \Sigma_0^f &= \Delta_0^f = \Pi_0^f = \FP \\
+                \Sigma_{n+1}^f &= \FNP^{\Sigma_n^f} \\
+                \Delta_{n+1}^f &= \FP^{\Sigma_n^f} \\
+                \Pi_{n+1}^f &= \coFNP^{\Sigma_n^f}
+            \end{align*}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \subsection{Fecho compositivo}
