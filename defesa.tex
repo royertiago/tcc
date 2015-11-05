@@ -37,21 +37,60 @@
 \subsection{Enumerações de Gödel}
 \begin{frame}
     \frametitle{Enumerações de Gödel aceitáveis das funções recursivas}
+    \begin{definition}
+        Seja $\mathcal P$ o conjunto das funções recursivas parciais.
+        Uma \emph{enumeração de Gödel aceitável}
+        é uma função sobrejetora $\phi: \{0, 1\}^* \to \mathcal P$,
+        tal que exista uma função recursiva parcial $g$ tal que
+        \begin{equation*}
+            g(x, y) = \phi_x(y)
+        \end{equation*}
+        e uma função recursiva total $\sigma$ tal que
+        \begin{equation*}
+            \phi_{\sigma(x, y)}(z) = \phi_x(y, z).
+        \end{equation*}
+    \end{definition}
 \end{frame}
 
 \subsection{Axiomas de Blum}
 \begin{frame}
     \frametitle{Axiomas de Blum}
+    \begin{definition}
+        Uma \emph{medida de complexidade}
+        é uma função $\Phi:\{0, 1\}^* \times \{0, 1\}^* \to \mathbb N$
+        tal que
+        \begin{itemize}
+            \item $\Phi(w, x)$ está definido se, e somente se, $\phi_w(x)$ está definido;
+            \item O predicado ``$\Phi(w, x) = n?$'' é recursivo.
+        \end{itemize}
+    \end{definition}
 \end{frame}
 
 \subsection{Programador Incompetente}
 \begin{frame}
     \frametitle{``Teorema do programador incompetente''}
+    \begin{theorem}
+        Seja $\phi$ uma numeração de Gödel aceitável,
+        $\Phi$ uma medida de complexidade para $\phi$,
+        e $f: \{0, 1\}^* \to \{0, 1\}^*$ e $g: \mathbb N \to \mathbb N$
+        funções recursivas totais.
+        Então existe um índice $w$ para a função $f$ tal que
+        \begin{equation*}
+            \Phi(w, x) > g(|x|)
+        \end{equation*}
+        para todo $x$.
+    \end{theorem}
 \end{frame}
 
 \subsection{Máquinas não-determinísticas}
 \begin{frame}
     \frametitle{E para máquinas não-determinísticas?}
+
+    \begin{itemize}
+        \item Para definir complexidade, precisamos de uma enumeração de Gõdel
+        \item Para definir a enumeração, precisamos calcular funções
+        \item Como uma máquina não-determinística calcula uma função?
+    \end{itemize}
 \end{frame}
 
 \section{Funções não-determinísticas}
