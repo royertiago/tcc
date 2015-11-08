@@ -1,3 +1,15 @@
+# O único diretório que possui um makefile próprio é bib/.
+# Neste diretório, não procuraremos arquivos para compilar.
+# A variável $findignore contém parte de um predicado para o comando find
+# que ignora o diretório bib/.
+#
+# (Na verdade, usaremos este comando repetidamente
+# para que invocações ao 'find' não interfiram com o subdiretório bib/;
+# a ideia é que, como bib/ possui seu próprio makefile,
+# ele deve ser capaz de "se virar sozinho",
+# e nossa interferência pode causar problemas.)
+findignore := -path './bib/*' -prune -o
+
 # clean-section name
 # Localiza, no .gitignore, uma seção delimitada por
 # '# name' no início e uma linha em branco no fim
@@ -10,7 +22,7 @@ pattern_list=$$( \
 	| sed '/^$$/,$$d' \
 ); \
 for pattern in $$pattern_list; do \
-	find -name $$pattern -exec rm {} +; \
+	find $(findignore) -name $$pattern -exec rm {} +; \
 done
 endef
 
@@ -32,12 +44,6 @@ endef
 define dirss
 $(patsubst %/,%,$(dir $1))
 endef
-
-# O único diretório que possui um makefile próprio é bib/.
-# Neste diretório, não procuraremos arquivos para compilar.
-# A variável $findignore contém parte de um predicado para o comando find
-# que ignora o diretório bib/.
-findignore := -path './bib/*' -prune -o
 
 # Convenção: todos os arquivos que são transformáveis em pdf possuem
 # o comando \end{document} numa linha por si só.
