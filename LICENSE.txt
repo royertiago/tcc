@@ -1,10 +1,6 @@
-Template for the UFSCTeX LaTeX class.
+Tiago Royer's TCC (senior thesis).
 
-Copyright 2013 Roberto Simoni (roberto.emc@gmail.com)
-               Carlos R Rocha (cticarlo@gmail.com)
-               Rafael M Casali (rafaelmcasali@yahoo.com.br)
-
-Copyright 2015 Tiago Royer
+Copyright 2014, 2015 Tiago Royer
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,7 +15,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-This work incorporates code from the original
-example for ufscThesis class, avaliable in
-http://sbu.paginas.ufsc.br/files/2011/03/modelo.zip.
+The code is based on the example for the ufscThesis class,
+which is copyright 2013 by Roberto Simoni (roberto.emc@gmail.com),
+Carlos Rocha (cticarlo@gmail.com),
+and Rafael Casali (rafaelmcasali@yahoo.com.br),
+avaliable in http://sbu.paginas.ufsc.br/files/2011/03/modelo.zip.
