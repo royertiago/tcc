@@ -134,6 +134,28 @@
     \end{itemize}
 \end{frame}
 
+\subsection{Definição de Hopcroft e Ullman}
+\begin{frame}
+    \frametitle{Definição de Hopcroft e Ullman}
+    ``We may establish that nondeterministic time and space
+    satisfy the axioms if we make an intelligent definition of what it means
+    for an NTM to compute a function.
+    For example, we might say that $\phi_i(n) = j$
+    if and only if there is some sequence of choices by $M_i$ with input $0^n$
+    that halts with $0^j$ ond the tape,
+    and no sequence of choices that leads to halting with some $0^k$, $k \neq j$,
+    on the tape.''
+
+    {\scriptsize
+        Hopcroft e Ullman, \emph{Introduction to Automata Theory} (1979), pg.~313
+    }
+
+    \pause
+    \begin{itemize}
+        \item Se a máquina parar sempre, é determinístico
+        \item Se a máquina às vezes não parar, é não-computável
+    \end{itemize}
+\end{frame}
 
 \section{Funções não-determinísticas}
 
@@ -158,17 +180,6 @@
 
     Se algum ramo não parar,
     deixe $M(x)$ indefinido.
-\end{frame}
-
-\subsection{Definições alternativas}
-\begin{frame}
-    \frametitle{Outras definições}
-    \begin{itemize}
-        \item Linguagens polinomialmente equilibradas
-        \item Conjunto potência como contradomínio
-        \item Definição de Hopcroft e Ullman
-        \item Classe $\OptP$
-    \end{itemize}
 \end{frame}
 
 \subsection{$\NP$-completude funcional}
