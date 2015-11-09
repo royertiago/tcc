@@ -4,6 +4,7 @@
 \usepackage[brazil]{babel}
 \usepackage{tikz}
 \usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
 
 \newtheorem*{theorem}{Teorema}
 \newtheorem*{corollary}{Corolário}
@@ -17,6 +18,36 @@
 % \C encodes some unicode character (U+030f), \G is textdoublegrave.
 % Seems safe to simply undefine them.
 \usepackage{complexity}
+
+% Desenha uma máquina de Turing usando o TikZ.
+% Parâmetros:
+% #1 - Canto inferior esquerdo do desenho
+% #2 - Fita a ser usada
+%   A fita deve estar num formato apropriado para ser iterada
+%   usando \foreach \x in {#2}
+% #3 - Posição da cabeça da fita, indexado em zero
+% #4 - Conteúdo da cabeça da fita
+%
+% As células da máquina terão tamanho 0.5;
+% a cabeça da máquina será um quadrado de lado 0.75.
+\newcommand\drawTuringMachine[4]{
+    % Desenha a fita
+    \foreach \letter[count=\index] in {#2} {
+        \draw #1 ++(\index/2 - 0.5, 0) rectangle ++(0.5, 0.5);
+        \path #1 ++(\index/2 - 0.25, 0.25) node {\strut\letter};
+    }
+
+    % Desenha a célula rasgada à direita
+    \draw #1 ++(\index/2, 0) -- +(0.25, 0) +(0, 0.5) -- +(0.25, 0.5);
+    \draw[decorate, decoration={zigzag, segment length = 4pt, amplitude = 1pt}]
+        #1 ++(\index/2 + 0.25, 0) -- +(0, 0.5);
+
+    % Desenha a cabeça da fita
+    \draw #1 ++(#3/2 + 0.25, 0.5) % Centro da aresta de cima da célula selecionada
+        -- ++(120:0.25) -- ++(0:0.25) -- ++(-120:0.25) % Triângulo equilátero
+        ++(120:0.25) ++(-0.25, 0) rectangle +(0.75, 0.75) % Quadrado acima do triângulo
+        ++(0.375, 0.375) node {#4}; % Estado no centro do quadrado
+}
 
 \begin{document}
 
