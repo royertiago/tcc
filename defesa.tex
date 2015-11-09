@@ -19,34 +19,88 @@
 % Seems safe to simply undefine them.
 \usepackage{complexity}
 
+\usepackage{etoolbox}
+
 % Desenha uma máquina de Turing usando o TikZ.
 % Parâmetros:
-% #1 - Canto inferior esquerdo do desenho
-% #2 - Fita a ser usada
+% #1 - Nome do desenho
+%   Esta macro irá criar um retângulo que englobará a máquina de Turing.
+%   O nome do nodo correspondente a este retângulo é #1;
+%   portanto, ele pode ser usado para simular um nodo.
+% #2 - Centro do desenho
+% #3 - Fita a ser usada
 %   A fita deve estar num formato apropriado para ser iterada
 %   usando \foreach \x in {#2}
-% #3 - Posição da cabeça da fita, indexado em zero
-% #4 - Conteúdo da cabeça da fita
+% #4 - Posição da cabeça da fita, indexado em zero
+% #5 - Conteúdo da cabeça da fita
 %
 % As células da máquina terão tamanho 0.5;
 % a cabeça da máquina será um quadrado de lado 0.75.
-\newcommand\drawTuringMachine[4]{
-    % Desenha a fita
-    \foreach \letter[count=\index] in {#2} {
-        \draw #1 ++(\index/2 - 0.5, 0) rectangle ++(0.5, 0.5);
-        \path #1 ++(\index/2 - 0.25, 0.25) node {\strut\letter};
+\makeatletter
+\newcommand\drawTuringMachine[5]{
+    % Anatomia do desenho
+    %
+    %   ______
+    %   |    |
+    %   | #5 |
+    %   |____|
+    %    _\/______________
+    %    |  |  |  |  |  | <
+    %    |__|__|__|__|__|_>
+    %
+    %
+    % Cada célula da fita será um quadrado de lado 0.5.
+    % A cabeça da fita será um quadrado de lado 0.75.
+    % O triângulo entre a cabeça e a célula será equilátero e terá lado 0.25.
+    % Após a última célula, desenharemos meia célula "rasgada",
+    % para denotar infinitude da fita.
+    %
+    % Altura total: 0.5 + 0.75 + sqrt{3}/2 * 0.25 ~= 1.26
+    % Se existem N elementos na fita, a largura total da fita será N/2 + 0.25.
+    % Ignorando pequenas diferenças causadas pela possibilidade de
+    % a cabeça da fita estar na primeira célula
+    % (como é o caso mostrado no desenho acima),
+    % parece seguro definir as dimensões do nodo que representará a máquina
+    % por 1.75 de altura e N/2 + 0.75 de largura.
+    %
+    % O primeiro passo é computar N; chamaremos de letterCount.
+    \foreach \turing@letter [count=\turing@letterCount] in {#3} {
+        % nop
+    }
+
+    % Retângulo que englobará toda a máquina de Turing
+    \ifdefempty{#1}{
+        \def\turing@node{}
+    }{
+        \def\turing@node{(#1)}
+    }
+    \expandafter\node \turing@node at #2 [rectangle,
+        minimum width = \turing@letterCount cm/2 + 0.75cm,
+        minimum height = 1.75 cm
+    ] {};
+
+    % x e y do canto inferior esquerdo da fita, em relação ao centro
+    \pgfmathsetmacro{\turing@x}{-\turing@letterCount/4 - 0.125}
+    \pgfmathsetmacro{\turing@y}{-(0.5 + 0.75 + sqrt(3)*0.125)/2}
+
+    % Fita
+    \foreach \letter[count=\index] in {#3} {
+        \draw #2 ++(\turing@x + \index/2 - 0.5, \turing@y) rectangle ++(0.5, 0.5);
+        \path #2 ++(\turing@x + \index/2 - 0.25, \turing@y + 0.25) node {\strut\letter};
     }
 
     % Desenha a célula rasgada à direita
-    \draw #1 ++(\index/2, 0) -- +(0.25, 0) +(0, 0.5) -- +(0.25, 0.5);
+    \draw #2 ++(\turing@x + \index/2, \turing@y) -- +(0.25, 0) +(0, 0.5) -- +(0.25, 0.5);
     \draw[decorate, decoration={zigzag, segment length = 4pt, amplitude = 1pt}]
-        #1 ++(\index/2 + 0.25, 0) -- +(0, 0.5);
+        #2 ++(\turing@x + \index/2 + 0.25, \turing@y + 0) -- +(0, 0.5);
 
     % Desenha a cabeça da fita
-    \draw #1 ++(#3/2 + 0.25, 0.5) % Centro da aresta de cima da célula selecionada
+    \draw
+        #2 ++(\turing@x, \turing@y) ++(#4/2 + 0.25, 0.5)
+        % Deslocado para o centro da aresta de cima da célula selecionada.
         -- ++(120:0.25) -- ++(0:0.25) -- ++(-120:0.25) % Triângulo equilátero
         ++(120:0.25) ++(-0.25, 0) rectangle +(0.75, 0.75) % Quadrado acima do triângulo
-        ++(0.375, 0.375) node {#4}; % Estado no centro do quadrado
+        ++(0.375, 0.375) node {#5}; % Estado no centro do quadrado
 }
 
 \begin{document}
@@ -69,22 +123,22 @@
     \frametitle{Problemas de decisão vs problemas de busca}
     \centering
     \begin{tikzpicture}
-        \drawTuringMachine{(0, 5)}{a,a,b,b,\textvisiblespace}{0}{$q_0$}
-        \node at (1.25, 4.625) {$\downarrow$};
-        \drawTuringMachine{(0, 2.75)}{x,a,b,b,\textvisiblespace}{1}{$q_3$}
-        \node at (1.25, 2.25) {$\vdots$};
-        \drawTuringMachine{(0, 0)}{x,x,y,y,\textvisiblespace}{3}{$q_a$}
-        \node at (3.5, 1) {Aceita/rejeita};
+        \drawTuringMachine{A}{(0, 5)}{a,a,b,b,\textvisiblespace}{0}{$q_0$}
+        \drawTuringMachine{B}{(0, 2.75)}{x,a,b,b,\textvisiblespace}{1}{$q_3$}
+        \drawTuringMachine{C}{(0, 0)}{x,x,y,y,\textvisiblespace}{3}{$q_a$}
+        \draw[->] (A) -- (B);
+        \draw[dotted, thick] (B) -- (C);
+        \node at (2.25, 0.25) {Aceita/rejeita};
 
         \begin{scope}[xshift = 6cm]
-            \drawTuringMachine{(0, 5)}{a,a,b,b,\textvisiblespace}{0}{$q_0$}
-            \node at (1.25, 4.625) {$\downarrow$};
-            \drawTuringMachine{(0, 2.75)}{a,a,b,b,\textvisiblespace}{1}{$q_0$}
-            \node at (1.25, 2.25) {$\vdots$};
-            \drawTuringMachine{(0, 0)}{
+            \drawTuringMachine{A}{(0, 5)}{a,a,b,b,\textvisiblespace}{0}{$q_0$}
+            \drawTuringMachine{B}{(0, 2.75)}{a,a,b,b,\textvisiblespace}{1}{$q_0$}
+            \drawTuringMachine{C}{(0, 0)}{
                 $1$,$0$,\textvisiblespace,\textvisiblespace,\textvisiblespace
             }{3}{$q_f$}
-            \node at (3.5, 1) {Retorna ``$10$''};
+            \draw[->] (A) -- (B);
+            \draw[dotted, thick] (B) -- (C);
+            \node at (2.25, 0.25) {Retorna ``$10$''};
         \end{scope}
     \end{tikzpicture}
 \end{frame}
@@ -92,29 +146,29 @@
 \begin{frame}
     \frametitle{Problemas de decisão com máquinas não-determinísticas}
     \centering
-    \begin{tikzpicture}[font=\tiny, scale=0.666]
-        \drawTuringMachine{(0.333, 0)}{$p$,$\land$,$q$}{0}{$q_0$};
+    \begin{tikzpicture}[scale=0.666, transform shape]
+        \drawTuringMachine{top}{(0.333, 0)}{$p$,$\land$,$q$}{0}{$q_0$};
+        \drawTuringMachine{left}{(-1.5, -2.5)}{$\mathbf f$,$\land$,$q$}{1}{$q_1$};
+        \drawTuringMachine{right}{(2.5, -2.5)}{$\mathbf t$,$\land$,$q$}{1}{$q_2$};
 
-        \draw[->] (0.5, -0.25) -- ++(-0.5, -0.5);
-        \drawTuringMachine{(-1.5, -2.5)}{$\mathbf f$,$\land$,$q$}{1}{$q_1$};
-        \draw[->] (2, -0.25) -- ++(0.5, -0.5);
-        \drawTuringMachine{(2.5, -2.5)}{$\mathbf t$,$\land$,$q$}{1}{$q_2$};
+        \draw[->] (top) -- (left);
+        \draw[->] (top) -- (right);
 
-        \draw[->] (-0.625, -2.75) -- ++(0, -0.5);
-        \drawTuringMachine{(-1.5, -5)}{$\mathbf f$,$\land$,$q$}{1}{$q_r$};
-        \node at(-2, -4) {Rejeita};
+        \drawTuringMachine{leftReject}{(-1.5, -5)}{$\mathbf f$,$\land$,$q$}{1}{$q_r$};
+        \draw[->] (left) -- (leftReject);
+        \node at(-2.75, -4.5) {Rejeita};
 
-        \draw[->] (2.875, -2.75) -- ++(-0.333, -0.5);
-        \drawTuringMachine{(1, -5)}{$\mathbf t$,$\land$,$\mathbf f$}{2}{$q_1$};
-        \draw[->] (4, -2.75) -- ++(0.333, -0.5);
-        \drawTuringMachine{(3.5, -5)}{$\mathbf t$,$\land$,$\mathbf t$}{2}{$q_2$};
+        \drawTuringMachine{rLeft}{(1, -5)}{$\mathbf t$,$\land$,$\mathbf f$}{2}{$q_1$};
+        \drawTuringMachine{rRight}{(3.5, -5)}{$\mathbf t$,$\land$,$\mathbf t$}{2}{$q_2$};
+        \draw[->] (right) -- (rLeft);
+        \draw[->] (right) -- (rRight);
 
-        \draw[->] (2, -5.25) -- ++(0, -0.5);
-        \drawTuringMachine{(1, -7.5)}{$\mathbf t$,$\land$,$\mathbf f$}{2}{$q_r$};
-        \draw[->] (4.5, -5.25) -- ++(0, -0.5);
-        \drawTuringMachine{(3.5, -7.5)}{$\mathbf t$,$\land$,$\mathbf t$}{2}{$q_a$};
-        \node at(0.5, -6.5) {Rejeita};
-        \node at(6, -6.5) {Aceita};
+        \drawTuringMachine{rlT}{(1, -7.5)}{$\mathbf t$,$\land$,$\mathbf f$}{2}{$q_r$};
+        \drawTuringMachine{rrT}{(3.5, -7.5)}{$\mathbf t$,$\land$,$\mathbf t$}{2}{$q_a$};
+        \draw[->] (rLeft) -- (rlT);
+        \draw[->] (rRight) -- (rrT);
+        \node at(0, -7) {Rejeita};
+        \node at(5, -7) {Aceita};
     \end{tikzpicture}
 \end{frame}
 
