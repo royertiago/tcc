@@ -105,7 +105,10 @@
 
 \begin{document}
 
-\author{Tiago Royer}
+\author[Tiago Royer]{
+    Tiago Royer \\
+    Orientadora: Jerusa Marchi
+}
 \title{
     Máquinas de Turing não-determinísticas \\
     como computadores de funções
@@ -127,7 +130,7 @@
         \drawTuringMachine{B}{(0, 2.75)}{x,a,b,b,\textvisiblespace}{1}{$q_3$}
         \drawTuringMachine{C}{(0, 0)}{x,x,y,y,\textvisiblespace}{3}{$q_a$}
         \draw[->] (A) -- (B);
-        \draw[dotted, thick] (B) -- (C);
+        \path (B) -- (C) node [midway] {$\vdots$};
         \node at (2.25, 0.25) {Aceita/rejeita};
 
         \begin{scope}[xshift = 6cm]
@@ -137,7 +140,7 @@
                 $1$,$0$,\textvisiblespace,\textvisiblespace,\textvisiblespace
             }{3}{$q_f$}
             \draw[->] (A) -- (B);
-            \draw[dotted, thick] (B) -- (C);
+            \path (B) -- (C) node [midway] {$\vdots$};
             \node at (2.25, 0.25) {Retorna ``$10$''};
         \end{scope}
     \end{tikzpicture}
