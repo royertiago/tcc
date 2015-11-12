@@ -1,2 +1,2 @@
 # See https://github.com/royertiago/git-lastbuild
-lastbuild_files=$(find . -name "*.pdf")
+lastbuild_files=$(find . -path ./bib -prune -o -name "*.pdf" -print)
