@@ -126,9 +126,9 @@ Construiremos agora o formalismo de transição de estados.
 Por conveniência, denote por $w[i]$ a $i$"=ésima letra da palavra $w$;
 indexaremos $w$ em $1$,
 portanto $w[1]$ é o primeiro símbolo de $w$ e $w[|w|]$ é o último.
-Também identifique o conjunto $D = \{\leftarrow, \rightarrow, \dot\}$
+Também identifique o conjunto $D = \{\leftarrow, \rightarrow, \cdot\}$
 com o conjunto $\{-1, 1, 0\}$;
-isto é, $\leftarrow = -1$, $\rightarrow = 1$ e $\dot = 0$.
+isto é, $\leftarrow = -1$, $\rightarrow = 1$ e $\cdot = 0$.
 Assim, se $d \in D$ é um deslocamento
 e $n \in \mathbb N$ é uma posição do cabeçote,
 $n + d$ é o efeito de deslocar $n$ por $d$.
@@ -454,7 +454,7 @@ defina $f_w$ como a função que não está definida para $w$ algum.%
 \subsection{Simulação eficiente de máquinas de Turing}
 
 Em vários pontos do texto,
-é usado o fato de que é uma máquina de Turing pode simular outra
+é usado o fato de que uma máquina de Turing pode simular outra
 com apenas uma perda polinomial no tempo de execução.
 Como estamos ignorando as diferenças polinomiais entre os algoritmos,
 esta perda de desempenho é aceitável,
@@ -497,7 +497,7 @@ Assim, todas as subcadeias $0^{i_j} 1^{n-i_j}$ possuem tamanho fixo.
 Precisaremos marcar aqui também qual é a posição do cabeçote de trabalho.
 
 Para avançar o estado de computação,
-a máquina inicialmente descobre qual a transição será usada,
+a máquina inicialmente descobre qual transição será usada,
 atualizando $a$ e $b$
 e varrendo $\langle M \rangle$.
 Isso pode ser feito em tempo proporcional a $n*m$,

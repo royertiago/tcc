@@ -18,7 +18,7 @@ podemos definir as restrições sob as quais definiremos os axiomas de Blum.
 
 Uma enumeração de Gödel aceitável é uma função $\phi$ que associa
 cada cadeia de $\{0, 1\}^*$ a uma função recursiva parcial.
-Como $f$ é sobrejetora,
+Como $\phi$ é sobrejetora,
 o contrário também acontece:
 toda função recursiva parcial é ``enumerada'' por $\phi$.
 Denotaremos $\phi(w)$ por $\phi_w$.
@@ -34,7 +34,7 @@ tal que
 Similarmente, por ``satisfazer ao teorema $S_{mn}$'' queremos dizer que
 existe alguma função recursiva total $\sigma$ de duas variáveis tal que
 \begin{equation*}
-    \phi_{\sigma(x, y)}(z) \simeq \phi_x(\langle x, y \rangle).
+    \phi_{\sigma(x, y)}(z) \simeq \phi_x(\langle y, z \rangle).
 \end{equation*}
 
 \begin{example}

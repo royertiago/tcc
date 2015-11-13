@@ -11,7 +11,7 @@
             \label{ax:blum_def}
             $\Phi(w, x)$ está definido
             se, e somente se,
-            $\phi_x(y)$ está definido.
+            $\phi_w(x)$ está definido.
         \item
             \label{ax:blum_rec}
             A função $R(w, x, m)$,
@@ -227,12 +227,12 @@ Para ler uma posição da fita,
 é necessário gastar ao menos uma unidade de tempo.
 Ou seja,
 \begin{equation*}
-    \PhiDS(\langle M \rangle, x) \leq \PhiDT(M, x).
+    \PhiDS(\langle M \rangle, x) \leq \PhiDT(\langle M \rangle, x).
 \end{equation*}
 E, de acordo com o raciocínio do exemplo~\ref{ex:space_complexity},
 para todo $M$ existe algum $c$ que
 \begin{equation*}
-    \PhiDT(\langle M \rangle, x) \leq c^{\PhiDS(M, x)}.
+    \PhiDT(\langle M \rangle, x) \leq c^{\PhiDS(\langle M \rangle, x)}.
 \end{equation*}
 De fato, podemos relacionar quaisquer duas medidas de complexidade.
 
