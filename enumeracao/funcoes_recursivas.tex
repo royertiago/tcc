@@ -23,7 +23,13 @@ Observe que a notação $M(x)$ coincide com a notação de chamada de função.
     \begin{equation*}
         f(x) \simeq M(x)
     \end{equation*}
-    para todo $x$.
+    para todo $x$.%
+    \footnote{
+        Esta definição é uma variação da definição de
+        \citeonline[p.~151]{HopcroftUllman1979};
+        em particular, utilizaremos funções que mapeiam palavras para palavras
+        em vez de funções que mapeiam números naturais para números naturais.
+    }
 
     Uma função $f$ é \emph{recursiva parcial}
     se for computada por alguma máquina $M$.
@@ -33,9 +39,6 @@ Observe que a notação $M(x)$ coincide com a notação de chamada de função.
         Não confundir com o conceito de \emph{recursão} em linguagens de programação.
     }
 \end{definition}
-(Esta definição é uma variação da definição de \citeonline[p.~151]{HopcroftUllman1979};
-em particular, utilizaremos funções que mapeiam palavras para palavras
-em vez de funções que mapeiam números naturais para números naturais.)
 
 \subsection{Codificação de objetos}
 \label{sec:binary_encoding}
@@ -69,7 +72,26 @@ A ideia é trocar, nas representações em binário,
 $0$ por $00$ e $1$ por $01$;
 então, a cadeia $1$ faz o papel de separador.
 Denotaremos por $\langle x_1, x_2, \dots, x_n \rangle$
-a representação binária da tupla $(x_1, x_2, \dots, x_n)$.
+a representação binária da tupla $(x_1, x_2, \dots, x_n)$.%
+\footnote{
+    \simbolo{$\langle x \rangle$}{Codificação em binário do objeto matemático $x$}%
+    Em geral, $\langle x \rangle$ denotará a representação em binário
+    do objeto matemático $x$.
+    \citeonline[p.~2]{AroraBarak2009} usa
+    $\sideset{_\llcorner}{_\lrcorner}{\mathop{\makebox[0.5ex]{$x$}}}$
+    para o mesmo fim;
+    usaremos a notação $\langle x \rangle$
+    por conformidade com a notação de \citeonline[p.~182]{HopcroftUllman1979}.
+    % Explicando o comando acima:
+    % \sideset permite adicionar símbolos matemáticos "orbitando" o símbolo subsequente
+    % nos quatro cantos possíveis. (O primeiro argumento diz o que vai à esquerda
+    % e o segundo argumento diz o que vai à direita.)
+    % \sideset exige que o terceiro argumento seja um operador matemático,
+    % que eu obtenho usando \mathop.
+    % Mas se for usado "\mathop x" diretamente, as duas marcas sob x
+    % ficarão muito espaçadas; então, a largura do x é alterada artificialmente
+    % para 0.5ex usando o \makebox.
+}
 Observe que esta codificação é não"=ambígua;
 podemos recuperar a representação em binário de cada um dos $x_i$
 a partir de $\langle x_1, \dots, x_n \rangle$.
@@ -84,25 +106,6 @@ a partir de $\langle x_1, \dots, x_n \rangle$.
         \langle 2, 5, 2 \rangle = 0100\ 1\ 010001\ 1\ 0100.
     \end{equation*}
 \end{example}
-
-\simbolo{$\langle x \rangle$}{Codificação em binário do objeto matemático $x$}
-(Em geral, $\langle x \rangle$ denotará a representação em binário
-do objeto matemático $x$.
-\citeonline[p.~2]{AroraBarak2009} usa
-$\sideset{_\llcorner}{_\lrcorner}{\mathop{\makebox[0.5ex]{$x$}}}$
-para o mesmo fim;
-usaremos a notação $\langle x \rangle$
-por conformidade com a notação de \citeonline[p.~182]{HopcroftUllman1979}.)
-
-% Explicando o comando acima:
-% \sideset permite adicionar símbolos matemáticos "orbitando" o símbolo subsequente
-% nos quatro cantos possíveis. (O primeiro argumento diz o que vai à esquerda
-% e o segundo argumento diz o que vai à direita.)
-% \sideset exige que o terceiro argumento seja um operador matemático,
-% que eu obtenho usando \mathop.
-% Mas se for usado "\mathop x" diretamente, as duas marcas sob x
-% ficarão muito espaçadas; então, a largura do x é alterada artificialmente
-% para 0.5ex usando o \makebox.
 
 É importante notar que codificaremos números naturais
 sempre usando sua expansão binária.
