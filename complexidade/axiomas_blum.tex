@@ -230,7 +230,7 @@ Ou seja,
     \PhiDS(\langle M \rangle, x) \leq \PhiDT(\langle M \rangle, x).
 \end{equation*}
 E, de acordo com o raciocínio do exemplo~\ref{ex:space_complexity},
-para todo $M$ existe algum $c$ que
+para todo $M$ existe algum $c$ tal que
 \begin{equation*}
     \PhiDT(\langle M \rangle, x) \leq c^{\PhiDS(\langle M \rangle, x)}.
 \end{equation*}
@@ -293,7 +293,7 @@ pegando o máximo de duas funções obtidas
 usando o teorema~\ref{thm:measure_related}.
 
 O teorema,
-assim como provamos,
+assim como provado,
 não pode ser fortalecido
 para que $r$ seja uma função de apenas uma variável.
 Considere $A$ uma máquina de Turing
@@ -561,14 +561,15 @@ código ruim pode ser feito em qualquer linguagem.
 
     Caso a função $h$, ao computar o valor de $h(v, x)$
     para algum $x$,
-    tenha escolhido a primeira cláusula,
+    tenha escolhido a primeira opção
+    (isto é, $\Phi(w, x) \leq g(|x|)$),
     a saída final de $\sigma(v)$ teria sido
     $\phi_{v} (x)$ concatenado com $1$,
     que é diferente de apenas $\phi_{v}(x)$.
     Portanto, $v$ não seria um ponto fixo de $\sigma$,
     contradizendo o teorema da recursão.
 
-    Portanto, $h$ nunca seleciona a primeira cláusula
+    Portanto, $h$ nunca seleciona a primeira opção
     ao computar $h(v, x)$, para qualquer $x$.
     Isto significa que $\Phi(v, x) > g(|x|)$ para todo $x$,
     o que garante a exigência de complexidade,

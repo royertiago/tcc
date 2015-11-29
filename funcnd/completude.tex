@@ -14,7 +14,7 @@ para toda função $f: \Sigma^* \to \Sigma^*$ em $\FNP$,
 podemos construir uma função $g$ tal que $g(x) = \alpha$ para todo $x$,
 para algum $\alpha \notin \Sigma$.
 Isto é, para qualquer $x$, $g$ retorna a palavra com o único símbolo $\alpha$.
-Como $\alpha \notin \Sigma$,
+Como $\alpha \notin \Sigma^*$,
 $f$ é inerentemente incapaz de produzir $\alpha$ na saída;
 portanto, qualquer que seja a função de redução $h$,
 $g(x)$ e $f(h(x))$ serão sempre diferentes.
@@ -40,7 +40,7 @@ assumiremos que o domínio e o contradomínio das funções de $\FNP$
 
 Na definição de $\NP$"=completude,
 a função $h$ que faz a redução é obrigada a ter a seguinte propriedade:
-$x \in L$ se e somente se $f(x) \in L'$.
+$x \in L$ se e somente se $h(x) \in L'$.
 Ou seja, os valores booleanos das proposições
 ``$x \in L$'' e ``$h(x) \in L'$'' são os mesmos.
 Se $g$ e $f$ são, respectivamente,
@@ -167,7 +167,7 @@ e a máquina retornará apenas os últimos $n$
 bits das atribuições que satisfazem a fórmula.
 Entretanto, isto assume que todos os tamanhos de fita serão iguais,
 o que pode não ser verdade.
-Portanto, precisamos de alguma forma codificar na própria fórmula lógica
+Portanto, precisamos, de alguma forma, codificar na própria fórmula lógica
 um meio de computar este $n$.
 
 Ignoremos por um momento a interpretação de uma palavra sobre $\{0, 1\}^*$

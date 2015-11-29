@@ -22,8 +22,8 @@ também é resolvível pelo outro.%
     com ``memória infinita'',
     enquanto que os computadores estão limitados
     a uma quantidade finita de memória;
-    esta limitação impõe restrições no tamanho das entradas
-    que não existem nas máquinas de Turing.
+    esta limitação impõe restrições no tamanho das entradas,
+    o que não ocorre com as máquinas de Turing.
 }
 Portanto, podemos pensar nos problemas decidíveis
 como aqueles que podem ser resolvidos com o uso de um computador
@@ -44,15 +44,15 @@ Um exemplo notável é determinar se dois programas são equivalentes.%
 }
 
 Entretanto,
-apenas ser decidível não é suficiente.
+apenas ser decidível não é o suficiente.
 Existem alguns problemas
 (de fato, categorias inteiras deles)
 que, por mais rápido que seja o computador
-que esteja tentando resolvê"=lo,
+que esteja tentando resolvê"=los,
 o tempo necessário torna"=se excessivamente grande
 muito rapidamente.
 Chamamos estes problemas de \emph{intratáveis}
-\cite[p.~1]{HopcroftMotwaniUllman2001}
+\cite[p.~1]{HopcroftMotwaniUllman2001}.
 Por mais que eles sejam decidíveis,
 pode ser que demore até o Sol esfriar
 (evento que, estima"=se, vai ocorrer em 5 bilhões de anos)
@@ -64,8 +64,8 @@ Essencialmente,
 é a quantidade de recursos que são gastos
 para obter a solução de determinado problema.
 Geralmente nos concentramos em um único recurso;
-os dois principais são
-o tempo de execução e a quantidade de memória usada.
+os dois principais são o tempo de execução e a quantidade de memória usada
+\cite[p.~285]{HopcroftUllman1979}.
 
 A complexidade computacional classifica os problemas
 de acordo com os recursos necessários para que sejam resolvidos.
@@ -100,7 +100,7 @@ A maior parte dos pesquisadores acredita que
 esta inclusão é estrita \cite[p.~54]{Gasarch2012}.
 
 Os modelos determinístico e não"=determinístico de máquinas de Turing são equivalentes,
-no sentido de que qualquer problema que pode ser resolvido por um modelo
+no sentido de que qualquer problema que pode ser resolvido por um
 também pode ser resolvido por outro.
 Entretanto, o modelo não"=determinístico
 aparenta ser exponencialmente mais rápido que
@@ -114,12 +114,13 @@ Curiosamente,
 o ganho exponencial de desempenho
 só é atingido se considerarmos o tempo de execução.
 A complexidade de espaço permite apenas um ganho quadrático;
-este resultado é conhecido como teorema de Savitch.
+este resultado é conhecido como teorema de Savitch
+\cite[p.~86]{AroraBarak2009}.
 
 Apesar desta discrepância entre o ganho de eficiência via não"=determinismo,
 complexidade de tempo e complexidade de espaço
 compartilham muitos teoremas semelhantes;
-isso sugere que eles são casos particulares de uma noção abstrata,
+isso sugere que elas são casos particulares de uma noção abstrata,
 a de ``recurso computacional''.
 \citeonline[p.~324]{Blum1967} formalizou a noção de ``medida de complexidade''
 através de dois axiomas,
@@ -247,5 +248,5 @@ algumas afirmações feitas no texto
 (por exemplo, a de que uma representação em binário
 identifica unicamente uma máquina de Turing)
 depende da definição formal deste dispositivo
---- isto é, os ``detalhes de implementação''.
+--- isto é, dos ``detalhes de implementação''.
 Estes detalhes estão no apêndice~\ref{app:turing_machines}.

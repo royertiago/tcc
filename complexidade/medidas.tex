@@ -9,7 +9,7 @@ e trabalharemos com medidas de complexidade concretas.
 \simbolo{$\mathcal B$}{Conjunto das funções booleanas}
 \begin{provisionaldefinition}
     Seja $\mathcal B$ o conjunto das funções booleanas
-    (isto é, cuja imagem é $\{0, 1\}$).
+    (isto é, as funções cuja imagem é $\{0, 1\}$).
     Então,
     \begin{align*}
         \DTIME(f) &= \mathcal C_\PhiDT(f) \cap \mathcal B \\
@@ -19,12 +19,13 @@ e trabalharemos com medidas de complexidade concretas.
     \end{align*}
 \end{provisionaldefinition}
 
-(Isto é, $\DTIME(f)$ são todas as funções booleanas de $\mathcal C_\PhiDT(f)$.
+Isto é, $\DTIME(f)$ são todas as funções booleanas de $\mathcal C_\PhiDT(f)$,
+por exemplo.
 Observe que existe uma correspondência direta entre
 uma função booleana $g : \{0, 1\}^* \to \{0, 1\}$
 e a linguagem correspondente $L = \{x \mid g(x) = 1\}$;
 portanto,
-usaremos os termos intercambiavelmente.)
+usaremos os termos intercambiavelmente.
 
 Estas são as principais medidas de complexidade computacional
 para máquinas de Turing.
@@ -68,7 +69,7 @@ Por exemplo, defina $f$ por
     f(n) = \begin{cases}
         0, & n < 2 \\
         1, & n \geq 2
-    \end{cases}.
+    \end{cases}
 \end{equation*}
 Na definição de \citeonline[p.~288]{HopcroftUllman1979},
 $\DTIME(f)$ é o conjunto vazio,
@@ -157,11 +158,11 @@ Uma ressalva:
 é possível provar que
 para qualquer linguagem em $\DTIME(2 + n/2)$
 (pela definição anterior),
-existe algum número $k$ tal que
-pertinência a $L(M)$
+existe algum número racional $k$ tal que
+a pertinência a $L(M)$
 é determinada analisando"=se
 apenas as primeiras $k$ letras da entrada.
-Portanto as linguagens excluídas por esta hipótese
+Portanto, as linguagens excluídas por esta hipótese
 nem eram muito interessantes.
 
 Existe mais uma inconsistência
@@ -388,9 +389,9 @@ São justamente esses casos que precisam ser tratados.
     }
 
     $M'$ lerá a entrada
-    e testar se é alguma das cadeias armazenadas.
+    e testará se é alguma das cadeias armazenadas.
     Caso a entrada pertença à lista embutida,
-    aceite ou rejeite de acordo com o comportamento de $M$.
+    a aceite ou rejeite de acordo com o comportamento de $M$.
     Senão, retorne à posição inicial
     e execute $M$ na entrada.
     Isto pode ser feito usando técnicas
@@ -447,7 +448,7 @@ Complexidade de tempo é um pouco mais delicado.%
     como uma extensão da fita original.
     Ao executar o $k$"=ésimo movimento,
     $M'$ marcará a entrada com um caractere novo,
-    e jamais mover"=se à esquerda deste caractere.
+    e jamais mover"=se"=á à esquerda deste caractere.
     Sempre que $M$ precisar ir àquela região,
     $M'$ simulará a atuação de $M$
     dentro do próprio controle finito,

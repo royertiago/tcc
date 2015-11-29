@@ -65,7 +65,7 @@ inverter o ordenamento das cadeias de $\{0, 1\}^*$.
     produzidas por $M$.
     No pós"=processamento, iremos ``desfazer'' a inversão.)
 
-    Usaremos a função $d$ de decodificação definida acima.
+    Usaremos a função $d$ de decodificação definida anteriormente.
     Na entrada $x$, $M'$ começará executando exatamente como $M$
     até $M$ parar, deixando (digamos) $y$ na fita neste ramo de computação.
     (Podemos fazer esta computação pois o oráculo de $M$
@@ -185,7 +185,7 @@ para todos os níveis de nossa hierarquia polinomial funcional.
     --- a hipótese indutiva garante que tais $M$ e $L'$ existem.
     Construa uma máquina $M'$ que,
     na entrada $\langle x, y \rangle$,
-    agirá como $M$ em $x$ e calcular um dos ramos da computação de $M$ em $x$.
+    agirá como $M$ em $x$ e calculará um dos ramos da computação de $M$ em $x$.
     Se o resultado na fita for maior ou igual a $y$,
     aceite;
     caso contrário, rejeite.
