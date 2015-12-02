@@ -202,7 +202,16 @@ para ``debaixo do tapete''.
 Voltaremos a este problema no capítulo~\ref{ch:nondeterministic_functions}.
 Por ora,
 será suficiente nos restringirmos às funções booleanas,
-usando a mesma definição usada para decisores.
+usando a mesma definição usada para decisores\footnote{
+    Dado um decisor não"=determinístico $M$,
+    dizemos que $M$ aceita a entrada $w$
+    se algum ramo de computação aceita,
+    e $M$ rejeita a entrada $w$ se todos os ramos rejeitam.
+    Da mesma forma,
+    para uma função booleana $f$ computada por uma máquina não"=determinística $M$,
+    $f(w) = 1$ se algum ramo da computação de $M$ em $w$ retorna $1$,
+    e $f(w) = 0$ se todos os ramos retornam $0$.
+}.
 
 \begin{example}
     Escolher $\Phi(w, x) = 0$ para todo $M$ e $x$
