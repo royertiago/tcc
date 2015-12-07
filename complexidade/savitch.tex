@@ -1,0 +1,70 @@
+\subsection{Teorema de Savitch}
+
+As demonstrações dos teoremas da seção~\ref{sec:relations_between_measures}
+observam que,
+se uma máquina de Turing respeita certa limitação de complexidade,
+esta mesma máquina respeitará alguma outra limitação.
+Por exemplo, no teorema~\ref{thm:dspace_in_dtime},
+a mesma máquina que aceita a linguagem em espaço $f(n)$
+a aceita em tempo $a c^{f(n)}$.
+A única exceção é a equação~\ref{eq:ntime_in_dspace},
+na qual fizemos uma máquina determinística simular uma máquina não"=determinística
+sem estourar certo limite de espaço.
+Mas, observe que, em nenhum ponto daquela demonstração,
+a máquina simuladora calcula o valor de $f$;
+isto é, os limites de complexidade da máquina simulada estavam implícitos.
+
+Digamos que a máquina simulada $M$ tenha um limite de complexidade $f$.
+Caso a máquina que está simulando $M$ possa, de alguma forma,
+computar $f$,
+ela poderá, por exemplo,
+prever o tempo de execução (ou a quantidade de memória gasta) por $M$
+antes de fazer a simulação;
+esta previsão dá à máquina simuladora flexibilidade adicional,
+que permite fazer afirmações mais fortes
+a respeito das relações entre as classes de complexidade.
+Uma destas afirmações é o teorema de Savitch.
+
+\begin{definition}
+    Uma função $S: \mathbb N \to \mathbb N$
+    é dita ser \emph{espaço"=construtível}\footnote{
+        Do inglês \emph{space"=constructible}
+    }
+    se existir uma máquina de Turing determinística $M$
+    tal que, para todo $x$,
+    \begin{equation*}
+        M(x) = \langle f(|x|) \rangle
+    \end{equation*}
+    e
+    \begin{equation*}
+        \PhiDS(M, x) \leq f(|x|).
+    \end{equation*}
+    Em outras palavras,
+    $M$ calcula $f$
+    sem gastar mais espaço do que o próprio valor produzido.
+    \cite[p.~79]{AroraBarak2009}
+\end{definition}
+
+Todas as funções ``bem"=comportadas'' como polinômios,
+exponenciais, fatorial, e a soma, multiplicação e composição destas funções
+são espaço"=construtíveis;
+portanto,
+embora usar apenas funções espaço"=construtíveis limite
+as funções que podemos usar,
+a maior parte dos algoritmos ``encontrados no dia"=a"=dia''
+possuem limites de espaço que são construtíveis.
+
+\begin{utheorem}[Teorema de Savitch]
+    Se $f$ é uma função espaço"=construtível, então
+    \begin{equation*}
+        \NSPACE(f) \subseteq \DSPACE(f^2).
+    \end{equation*}
+\end{utheorem}
+
+Omitiremos a demonstração do teorema de Savitch
+pois tanto o enunciado preciso e a demonstração deste teorema
+requerem o desenvolvimento mais detalhado da noção de
+``espaço"=construtível''.
+Ela pode ser encontrada, por exemplo,
+no livro de \citeonline[p.~297, 301]{HopcroftUllman1979}
+ou no de \citeonline[p.~79, 86]{AroraBarak2009}.
