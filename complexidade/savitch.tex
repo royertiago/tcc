@@ -23,7 +23,27 @@ antes de fazer a simulação;
 esta previsão dá à máquina simuladora flexibilidade adicional,
 que permite fazer afirmações mais fortes
 a respeito das relações entre as classes de complexidade.
+
 Uma destas afirmações é o teorema de Savitch.
+Em essência, o teorema diz que,
+sob condições apropriadas,
+\begin{equation*}
+    \NSPACE(f) \subseteq \DSPACE(f^2).
+\end{equation*}
+
+A demonstração deste teorema também envolve uma simulação.
+Aqui, a máquina simuladora
+(que é determinística e roda em espaço $f(n)^2$)
+calculará a complexidade de espaço da máquina simulada
+(que é não"=determinística e roda em espaço $f(n)$)
+para garantir que a sua própria limitação de espaço não seja violada.
+Entretanto,
+a computação de $f$ não pode extrapolar o limite de espaço
+que a própria máquina simuladora possui;
+portanto,
+precisaremos nos restringir a funções $f$
+que podem ser ``computadas rapidamente''.
+A seguinte definição captura esta noção.
 
 \begin{definition}
     Uma função $S: \mathbb N \to \mathbb N$
