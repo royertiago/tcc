@@ -1,0 +1,48 @@
+\section{CONJUNTO POTÊNCIA COMO CONTRADOMÍNIO (ANDREEV)}
+
+\citeonline[p.~3]{Andreev1994}
+apresenta uma abordagem diferente.
+Em vez de tentar amarrar algum dos ramos de computação,
+a função retornará todos eles.
+
+\begin{definition}
+    Sejam $\mathcal A$ e $\mathcal B$ conjuntos finitos,
+    e $2^\mathcal B$ o conjunto potência de $\mathcal B$.
+    Uma \emph{função não"=determinística de $\mathcal A$ em $\mathcal B$}
+    é uma função da forma
+    \begin{equation*}
+        f : \mathcal A \to 2^\mathcal B.
+    \end{equation*}
+    \cite[p.~3]{Andreev1994}
+\end{definition}
+
+Os conjuntos $\mathcal A$ e $\mathcal B$ usados por \citeonline[p.~4]{Andreev1994}
+são da forma $\{0, 1\}^k$.
+A ideia é que $\mathcal A$ represente as possíveis entradas para um circuito booleano,
+e que $\mathcal B$ represente as saídas desse circuito.
+Dado um circuito computacional $S$,
+com $k$ entradas e $l$ saídas,
+dizemos que $S$ computa a função não"=determinística $F$ de $\{0, 1\}^k$ em $\{0, 1\}^l$
+se,
+para todo $a \in \{0, 1\}^k$,
+$S(a) \in F(a)$.
+Isto é,
+todas as saídas possíveis de $S$ estão previstas em $F$.
+Esta definição é similar à definição de \citeonline[p.~229]{Papadimitriou1994},
+no sentido de que basta retornar um valor de $F(a)$.
+\citeonline[p.~4]{Andreev1994}
+define, então,
+a \emph{complexidade} de uma função não"=determinística $F$
+como sendo o tamanho do menor circuito que computa $F$.
+
+O fato de Andreev se restringir a domínio e contradomínio finitos
+mostra que esta definição não ``combina'' corretamente
+a noção de função determinística com máquinas não"=determinísticas,
+pois as funções operam sobre o domínio $\{0, 1\}^*$.
+
+Além disso,
+como o domínio e o contradomínio das funções não"=determinísticas de Andreev
+são diferentes,
+seria necessário um malabarismo adicional
+para desenvolver a noção de composição de funções,
+assim como na definição de Papadimitriou.

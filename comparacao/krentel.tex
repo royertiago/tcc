@@ -1,0 +1,49 @@
+\section{PROBLEMAS DE OTIMIZAÇÃO (KRENTEL)}
+
+Dentre os trabalhos avaliados,
+o artigo de \citeonline[p.~493]{Krentel1988}
+é o que mais se aproxima do trabalho desenvolvido neste TCC.
+
+Krentel define a classe $\OptP$,
+\simbolo{$\OptP$}{Classe polinomial de problemas de otimização}
+os problemas de otimização que rodam em tempo polinomial,
+como sendo,
+na terminologia da seção~\ref{sec:functional_complexity},
+\begin{equation*}
+    \OptP = \FNP \cup \coFNP.
+\end{equation*}
+
+Entretanto,
+a principal diferença é na forma como é definida completude.
+\begin{definition}
+    Uma função $f \in \OptP$ é completa para $\OptP$
+    se, para toda função $g \in \OptP$,
+    existir um par de funções $T_1, T_2 \in \P$
+    tais que
+    \begin{equation*}
+        g(x) = T_2( x, f(T_1(x)) ).
+    \end{equation*}
+\end{definition}
+
+Nossa definição de $\FNP$"=completo
+buscava generalizar diretamente a noção de $\NP$"=completude.
+Conforme observado na demonstração do teorema~\ref{thm:pi_f_subseteq_delta_f},
+podemos, em tempo polinomial determinístico,
+inverter a ordenação das palavras, se elas tiverem um tamanho fixo.
+Portanto,
+usando este pós"=processamento,
+podemos tornar uma função que maximiza seus ``valores não"=determinísticos''
+(isto é, sua árvore de computação não"=determinística)
+numa função que os minimiza.
+Como Krentel já embutiu os problemas de maximização e minimização em $\OptP$,
+não há problema em permitir o pós"=processamento feito por $T_2$.
+
+Entretanto,
+graças a $T_2$,
+a classe $\OptP$ acaba ``funcionando'' como nossa classe $\Delta_n^f$,
+pois,
+como observado no teorema~\ref{thm:strong_compositive_closure},
+podemos resolver todos os problemas de $\Delta_n^f$
+apenas pós"=processando um resultado de $\FNP$.
+Portanto não é possível construir uma ``hierarquia polinomial funcional''
+com base em $\OptP$.

@@ -1,0 +1,79 @@
+\section{PROBLEMAS DE BUSCA VS PROBLEMAS DE DECISÃO (PAPADIMITRIOU)}
+\label{sec:papadimitriou_comparison}
+
+\citeonline[p.~229]{Papadimitriou1994}
+define $\FNP$ diferente de nossa definição
+(na seção~\ref{sec:functional_complexity}).
+
+\begin{definition}
+    Uma linguagem $L$ é \emph{polinomialmente equilibrada}
+    se existir algum polinômio $p$ tal que
+    todos os elementos de $L$ são pares ordenados da forma $(x, y)$
+    em que $|y| \leq p(|x|)$.
+\end{definition}
+Isto é, $L$ é constituída de pares,
+de forma que o segundo elemento do par não é muito maior que o primeiro elemento.
+
+Linguagens de $\NP$ e linguagens polinomialmente equilibradas
+estão relacionadas por certificados de pertinência.
+Por exemplo,
+para a linguagem $\SAT$,
+podemos provar eficientemente
+(isto é, em tempo polinomial)
+que determinada instância $\varphi$ é satisfazível
+se fornecermos uma atribuição de valores"=verdade que satisfaz a instância;
+esta atribuição é uma \emph{testemunha} ou \emph{certificado}
+para a pertinência de $\varphi$ a $\SAT$.
+
+Para cada linguagem $L \in \NP$,
+podemos sistematicamente prover certificados de pertinência para $L$:
+como sabemos que existe uma máquina de Turing não"=determinística que decide $L$,
+podemos fornecer a sequência de transições não"=determinísticas
+como um certificado de pertinência.
+Como esta máquina opera em tempo polinomial,
+para cada $x \in L$,
+o par
+\begin{equation*}
+    (x, y),
+\end{equation*}
+em que $y$ é esta sequência de transições,
+satisfará $|y| \leq p(|x|)$,
+para algum polinômio $p$
+--- no caso, $p$ é o próprio limite de tempo da máquina não"=determinística
+que reconhece $L$.
+
+Dessa forma,
+podemos, sistematicamente,
+associar uma linguagem $L \in \NP$
+a uma linguagem polinomialmente equilibrada $R_L \in \P$.
+Assim,
+construiremos o conjunto $\FNP$ definido por \citeonline[p.~229]{Papadimitriou1994}.
+
+\begin{definition}
+    Se $L \in \NP$, chame de $R_L$
+    uma linguagem polinomialmente equilibrada associada com $L$.
+    Então defina $\FNP$ por
+    \begin{equation*}
+        \FNP = \{R_L \mid L \in \NP\}
+    \end{equation*}
+    \cite[p.~229]{Papadimitriou1994}
+\end{definition}
+
+Estes problemas são por vezes chamados de \emph{problemas de busca}
+(do inglês \emph{search problem}),
+em oposição a \emph{problemas de decisão}.
+
+Do ponto de vista computacional,
+a definição de Papadimitriou captura a ideia de
+encontrar alguma solução para o problema $L$,
+potencialmente descartando uma quantidade exponencial de outras soluções.
+
+Esta definição contorna o problema de definir ``função não"=determinística''
+trabalhando diretamente com os certificados de pertinência.
+Entretanto,
+a ausência do conceito de função
+dificulta a formalização do conceito de oráculo
+(pois não há mais uma única resposta ``certa'',
+mas sim várias)
+e impossibilita a análise do efeito da composição de funções,
+como a feita na seção~\ref{sec:function_composition}.
