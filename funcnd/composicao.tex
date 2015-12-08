@@ -48,17 +48,21 @@ Esta operação também possui propriedades análogas às do fecho de Kleene.
 
 \begin{proposition}
     Se $\mathcal F$ e $\mathcal G$ são conjuntos de funções, então
-    \begin{align*}
-        (\mathcal F^\circ)^\circ &= \mathcal F^\circ \\
-        \mathcal F &\subseteq \mathcal F^\circ \\
+    \begin{align}
+        (\mathcal F^\circ)^\circ &= \mathcal F^\circ
+        \label{eq:double_closure} \\
+        \mathcal F &\subseteq \mathcal F^\circ
+        \label{eq:containment} \\
         (\mathcal F^\circ \cup \mathcal G^\circ)^\circ &=
             (\mathcal F \cup \mathcal G)^\circ.
-    \end{align*}
+        \label{eq:distributivity_over_union}
+    \end{align}
     Além disso, se $\mathcal F \subseteq \mathcal G$,
     então
-    \begin{equation*}
+    \begin{equation}
         \mathcal F^\circ \subseteq \mathcal G^\circ.
-    \end{equation*}
+        \label{eq:monotonicity}
+    \end{equation}
     \label{thm:compositive_closure_properties}
 \end{proposition}
 
@@ -69,12 +73,12 @@ Esta operação também possui propriedades análogas às do fecho de Kleene.
     são composições de funções de $\mathcal F$;
     portanto, as funções de $(\mathcal F^\circ)^\circ$
     são composições de funções de $\mathcal F$,
-    o que prova a primeira fórmula.
+    o que prova a fórmula~\ref{eq:double_closure}.
 
-    Para a segunda fórmula,
+    Para a fórmula~\ref{eq:containment},
     basta escolher $n = 1$ na definição de fecho compositivo.
 
-    Para a terceira,
+    Para a~\ref{eq:distributivity_over_union},
     observe que as funções de $(\mathcal F^\circ \cup \mathcal G^\circ)^\circ$
     são composições de funções de $\mathcal F^\circ$ e $\mathcal G^\circ$,
     possivelmente intercaladas;
@@ -82,11 +86,11 @@ Esta operação também possui propriedades análogas às do fecho de Kleene.
     concluímos que elas são composições de funções de
     $\mathcal F \cup \mathcal G$.
 
-    E, para a última,
+    E, para a~\ref{eq:monotonicity},
     note que todas as funções de $\mathcal F^\circ$
     são composições de funções de $\mathcal F$,
     portanto também de $\mathcal G$;
-    isto é, todas as funções de $\mathcal F^\circ$
+    assim todas as funções de $\mathcal F^\circ$
     também estão em $\mathcal G^\circ$.
 \end{proof}
 
@@ -186,7 +190,8 @@ podemos fortalecer este ``$\subseteq$'' para um ``$=$''.
     \begin{equation*}
         \FNP^\mathcal A \subseteq \FP^{\FNP^\mathcal A},
     \end{equation*}
-    pela quarta propriedade da proposição~\ref{thm:compositive_closure_properties},
+    pela propriedade~\ref{eq:monotonicity}
+    da proposição~\ref{thm:compositive_closure_properties},
     \begin{equation*}
         (\FNP^\mathcal A)^\circ \subseteq
             \left(\FP^{\FNP^\mathcal A}\right)^\circ
