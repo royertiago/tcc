@@ -50,10 +50,29 @@ as linguagens que podem ser verificadas em tempo polinomial.%
     e verificar que uma solução já pronta funciona.
 }
 
-Pela equação~\ref{eq:ntime_in_dspace},
+De acordo com o teorema de Savitch,
+\begin{equation*}
+    \NSPACE(n^k) \subseteq \DSPACE(n^{2k}),
+\end{equation*}
+portanto temos
+\begin{equation*}
+    \NPSPACE = \PSPACE.
+\end{equation*}
+Este resultado é surpreendente:
+enquanto que, para a complexidade de tempo,
+o uso de não"=determinismo aparenta fornecer ganhos exponenciais,
+para a complexidade de espaço,
+o ganho é meramente quadrático.
+
+Pelas equações \ref{eq:dtime_in_ntime} e~\ref{eq:ntime_in_dspace},
 sabemos que a seguinte cadeia de inclusões é verdadeira:
 \begin{equation*}
-    \P \subseteq \NP \subseteq \PSPACE \subseteq \NPSPACE.
+    \P \subseteq \NP \subseteq \PSPACE \quad (= \NPSPACE).
 \end{equation*}
-O teorema de Savitch nos diz que as duas últimas classes são iguais.
-Mas nós sequer sabemos se $\P$ é igual a $\PSPACE$ ou não.
+
+Embora os cientistas da computação em geral acreditem
+que ambas as inclusões sejam estritas \cite[p.~54]{Gasarch2012},
+nós sequer tivemos sucesso em demonstrar que
+\begin{equation*}
+    \P \subsetneq \PSPACE.
+\end{equation*}
