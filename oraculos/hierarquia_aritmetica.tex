@@ -45,9 +45,16 @@ que são decidíveis usando $L_u^n$ como oráculo.%
     o conjunto das linguagens recursivamente enumeráveis
     (geralmente denotado por $\RE$).
 }
-O parágrafo anterior mostra que $L_u^{n+1}, S_{n+1} \notin \Sigma_n$.
 
-Podemos demonstrar (por indução) que $\Sigma_n \subset \Sigma_{n+1}$.
+O parágrafo anterior mostra que as linguagens $L_u^{n+1}$ e $S_{n+1}$
+não pertencem a $\Sigma_n$.
+Como, por definição,
+ambas as linguagens $L_u^{n+1}$ e $S_{n+1}$ pertencem a $\Sigma_{n+1}$,
+os conjuntos $\Sigma_n$ e $\Sigma_{n+1}$ são diferentes.
+Temos, para todo $n$,
+\begin{equation*}
+    \Sigma_n \subset \Sigma_{n+1}.
+\end{equation*}
 Desta forma,
 criamos uma hierarquia de problemas indecidíveis.%
 \footnote{
@@ -124,12 +131,62 @@ o quão ``indecidível'' um problema é.
 Intuitivamente, quão mais alto um problema está na hierarquia,
 ``mais indecidível'' este problema é.
 
+Por exemplo, os problemas
+\begin{equation*}
+    \{ \langle M \rangle \mid L(M) = \Sigma^* \} \qquad \text{e} \qquad
+    \{ \langle M \rangle \mid L(M) \text{ é finita } \}
+\end{equation*}
+são equivalentes a $S_2$ \cite[p.~211, 213]{HopcroftUllman1979},
+portanto eles estão em $\Sigma_2 \backslash \Sigma_1$.
+Em outras palavras,
+de certa forma,
+é ``mais difícil'' decidir se uma máquina de Turing aceita todas as palavras
+do que decidir se ela aceita alguma.
+
 Podemos mostrar que $\Sigma_n$ é um subconjunto próprio de $\Sigma_{n+1}$,
 e que o mesmo vale para $\Pi_n$ e $\Pi_{n+1}$.
-Similarmente,
-\begin{equation*}
-    \Pi_n \cup \Sigma_n \subset \Delta_{n+1} = \Sigma_{n+1} \cap \Pi_{n+1}.
-\end{equation*}
+Temos
+\begin{align*}
+    \Pi_n \cup \Sigma_n & \subset \Delta_{n+1}, \\
+    \Delta_{n+1} & \subset \Sigma_{n+1}, \\
+    \Delta_{n+1} & \subset \Pi_{n+1}.
+\end{align*}
+Esta estrutura de inclusões
+está esquematizada na figura~\ref{fig:arithmetical_hierarchy}.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \node (d1) at (0, 0) {$\Delta_0 = \Sigma_0 = \Pi_0 = \Delta_1 = \R$};
+        \node (s1) at (1, 1) {$\Sigma_1 = \RE$};
+        \node (p1) at (-1, 1) {$\Pi_1 = \coRE$};
+        \node (d2) at (0, 2) {$\Delta_2$};
+        \node (s2) at (1, 3) {$\Sigma_2$};
+        \node (p2) at (-1, 3) {$\Pi_2$};
+        \node (d3) at (0, 4) {$\Delta_3$};
+
+        \begin{scope}[->]
+            \draw (d1) -- (s1);
+            \draw (d1) -- (p1);
+            \draw (p1) -- (d2);
+            \draw (s1) -- (d2);
+
+            \draw (d2) -- (s2);
+            \draw (d2) -- (p2);
+            \draw (p2) -- (d3);
+            \draw (s2) -- (d3);
+        \end{scope}
+        \node at (-1, 5) {$\vdots$};
+        \node at (0, 5) {$\vdots$};
+        \node at (1, 5) {$\vdots$};
+    \end{tikzpicture}
+    \caption[Estrutura de inclusões da hierarquia aritmética]{
+        Estrutura de inclusões da hierarquia aritmética.
+
+        As setas denotam inclusões estritas entre dois conjuntos.
+    }
+    \label{fig:arithmetical_hierarchy}
+\end{figure}
 
 Encontraremos uma estrutura de inclusões similar a esta
 na seção~\ref{sec:polynomial_hierarchy}.
