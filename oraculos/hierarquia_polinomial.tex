@@ -146,3 +146,56 @@ podem chamar seu oráculo uma quantidade polinomial de vezes,
 alterando o valor retornado arbitrariamente.
 Com isso, $\Delta_2^p$ engloba tanto $\NP$ quanto $\coNP$
 --- acredita"=se que a inclusão seja própria.
+
+As inclusões dentro da hierarquia polinomial podem ser sumarizadas por
+\begin{align*}
+    \Pi_n^p \cup \Sigma_n^p & \subseteq \Delta_{n+1}^p, \\
+    \Delta_{n+1}^p & \subseteq \Sigma_{n+1}^p, \\
+    \Delta_{n+1}^p & \subseteq \Pi_{n+1}^p.
+\end{align*}
+Observe que a estrutura de inclusões da hierarquia polinomial
+é muito parecida com a estrutura de inclusões da hierarquia aritmética
+(o que justifica o uso dos mesmos símbolos para ambas as hierarquias),
+mas, no caso da hierarquia polinomial,
+não conseguimos demonstrar que as inclusões são estritas.
+(De fato, uma delas, $\Delta_1^p \subseteq \Sigma_1^p$,
+é exatamente o problema $\P$ vs $\NP$.)
+Esta estrutura está esquematizada na figura~\ref{fig:polynomial_hierarchy}.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \draw let \n1 = {0}, \n2 = {8}, \n3 = {1.5}, \n4 = {0.5} in
+            (\n1, -\n4) -- (\n2, -\n4)
+            (\n1, 0) -- (\n2, \n3)
+            (\n1, \n3) -- (\n2, 0)
+            (\n1, \n3) -- (\n2, 2*\n3)
+            (\n1, 2*\n3) -- (\n2, \n3)
+            (\n1, 2*\n3) -- (\n2, 3*\n3)
+            (\n1, 3*\n3) -- (\n2, 2*\n3)
+            (\n1, 4*\n3) -- (\n2, 4*\n3)
+            (\n1, -\n4) -- (\n1, 4*\n3)
+            (\n2, -\n4) -- (\n2, 4*\n3)
+            node (a) at ({(\n1+\n2)/2}, 0) {
+                $\Sigma_0^p = \Delta_0^p = \Pi_0^p = \P$
+            }
+            node (a) at (\n1+2*\n4, \n3/2) {$\Sigma_1^p = \NP$}
+            node (a) at (\n2-2*\n4, \n3/2) {$\Pi_1^p = \coNP$}
+            node (a) at ({\n1+\n2/2}, \n3) {$\Delta_2^p = \P^\NP$}
+            node (a) at (\n1+\n4, 3*\n3/2) {$\Sigma_2^p$}
+            node (a) at (\n2-\n4, 3*\n3/2) {$\Pi_2^p$}
+            node (a) at ({\n1+\n2/2}, 2*\n3) {$\Delta_3^p$}
+            node (a) at (\n1+\n4, 5*\n3/2) {$\Sigma_3^p$}
+            node (a) at (\n2-\n4, 5*\n3/2) {$\Pi_3^p$}
+            node (a) at ({\n1+\n2/2}, 3*\n3) {$\vdots$}
+            node (a) at ({\n1+\n2/2}, 7*\n3/2) {$\PH \subseteq \PSPACE$};
+    \end{tikzpicture}
+    \caption[Estrutura de inclusões da hierarquia polinomial.]{
+        Estrutura de inclusões da hierarquia polinomial.
+
+        Um conjunto estar listado abaixo do outro
+        (mesmo que na diagonal) denota que o conjunto de baixo
+        é um subconjunto do conjunto de cima.
+    }
+    \label{fig:polynomial_hierarchy}
+\end{figure}
