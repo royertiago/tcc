@@ -81,6 +81,9 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     é um chute $C[i] = j$,
     em que $\Phi(w_i, x) > h_j(|x|)$
     para algum $x$ com $|x| = n$.
+    Isto é,
+    a complexidade do programa $w_i$
+    é maior que $h_j(n)$ para alguma palavra de tamanho $n$.
     Conforme computamos $g(n)$,
     sempre que descobrirmos que nosso chute,
     digamos, para $w_i$, está errado,
@@ -88,6 +91,23 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     (para $|x| = n$),
     e faremos um novo chute,
     desta vez ``aumentando as apostas''.
+    Dessa forma, o valor de $g$ propositalmente ficará abaixo
+    da complexidade de $w_i$ para palavras de tamanho $n$.
+    Se a complexidade de $w_i$ for maior do que todas as funções $h_j$,
+    todo chute feito sempre será ``desmascarado'' como errado,
+    portanto o valor de $g$ ficará infinitas vezes
+    \emph{abaixo} da complexidade de $g$.
+    Entretanto,
+    sempre que descobrirmos que um chute está errado,
+    aumentaremos o valor do chute;
+    assim,
+    se $\phi_{w_i} \in \mathcal C_\Phi(h_k)$ para algum $k$
+    (isto é, a complexidade de $w_i$ é menor que $h_k$),
+    assim que o chute $C[i]$ for ajustado para algum valor acima de $k$,
+    nunca ``desmascararemos'' o chute como errado
+    --- portanto, o valor de $g(n)$ sempre ficará acima da complexidade de $w_i$.
+
+    O restante da demonstração formaliza o algoritmo do parágrafo acima.
 
     Defina $g(1)$ para $h_1(1)$
     (ou qualquer valor arbitrário)
