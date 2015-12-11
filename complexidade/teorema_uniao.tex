@@ -130,6 +130,7 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     Caso não haja chutes errados,
     apenas defina $g(n) = h_n(n)$.
 
+    \DontPrintSemicolon
     \begin{algorithm}[h]
         $C[1] \leftarrow 1$ \;
         Imprima $g(1) = h_1(1)$ \;
@@ -139,18 +140,18 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
             $\texttt{chute\_errado} \leftarrow \infty$ \;
             \For{$i \leftarrow 1$ \KwTo $n$}{
                 \tcc{acharemos o menor chute errado}
-                \If{$\Phi(w_i, x) > h_{C[i]}(|x|)$
+                \If{\upshape $\Phi(w_i, x) > h_{C[i]}(|x|)$
                     para algum $x$ de tamanho $n$
                 }{
                     \tcc{Achamos um chute errado.}
-                    \If{$(\texttt{chute\_errado} = \infty) \vee
-                        (C[i] < C[\texttt{chute\_errado}])$
+                    \If{\upshape $\texttt{chute\_errado} = \infty \textbf{ or }
+                        C[i] < C[\texttt{chute\_errado}]$
                     }{
                         $\texttt{chute\_errado} \leftarrow i$ \;
                     }
                 }
             }
-            \If{\texttt{chute\_errado} = $\infty$}{
+            \If{\upshape $\texttt{chute\_errado} = \infty$}{
                 \tcc{Todos os chutes estavam certos.}
                 Imprima $g(n) = h_n(n)$ \;
             }
