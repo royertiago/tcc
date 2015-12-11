@@ -1,21 +1,36 @@
 % Resumo, em inglês.
 
 \textAbstract{
-    Resumo traduzido para outros idiomas,
-    neste caso,
-    inglês.
-    Segue o formato do resumo
-    feito na língua vernácula.
-    As palavras-chave traduzidas,
-    versão em língua estrangeira,
-    são colocadas abaixo do texto
-    precedidas pela expressão ``Keywords'',
-    separadas por ponto.
+    Normally, the concepts of time and space complexity
+    for deterministic and nondeterministic machines
+    are defined separately,
+    although they share several similar theorems.
+    \citeonline[p.~324]{Blum1967} define a ``computational resource''
+    using two axioms;
+    this allows for an axiomatic treatment of the computational complexity,
+    enabling us to provide a single proof for these analogous theorems.
+
+    However, the Blum axioms are not defined in terms of deciders,
+    but for integer function computers
+    (that is, Turing machines that compute functions of the form
+    $f : \mathbb N \to \mathbb N$ \cite[p.~151]{HopcroftUllman1979}).
+    Therefore,
+    to define $\P$ and $\NP$ via Blum axioms,
+    we need to see a decider as an integer function computer.
+    The case where the machine is deterministic is easy,
+    because it have a single sequence of computation.
+    The nondeterministic case, which is more complex,
+    is studied in this text.
+
+    In this text,
+    we define the concept of ``nondeterministic function''
+    in a way that the composition of nondeterministic functions
+    correspond to the composition of the analogous deterministic functions.
 }
 \keywords{
-    Keyword 1.
-    Keyword 2.
-    Keyword 3.
+    Computational complexity,
+    nondeterministic functions,
+    function composition.
 }
 
 \paginaabstract
