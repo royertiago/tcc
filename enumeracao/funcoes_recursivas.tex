@@ -1,6 +1,62 @@
 \section{FUNÇÕES RECURSIVAS}
 \label{sec:recursive_functions}
 
+Máquinas de Turing podem nem sempre parar ao computar uma função;
+esta é uma ``deficiência'' de todos os modelos de máquina ``bem comportados''.
+Portanto,
+podem haver duas máquinas de Turing tais que,
+sempre que ambas as máquinas param,
+o ``valor de retorno'' destas máquinas é o mesmo,
+mas existem entradas em que uma máquina para e outra não.
+De certa forma,
+as duas ``funções'' calculadas por estas máquinas
+estão definidas em domínios diferentes.
+Não faz sentido, portanto,
+perguntar se
+\begin{equation*}
+    f(x) = g(x)
+\end{equation*}
+para todos os $x$, pois pode existir algum $x$ tal que
+um lado está definido e outro não.
+Estamos interessados nos casos em que ambas as funções estão definidas
+\emph{e} são iguais;
+a seguinte notação condensa esta exigência.
+
+\begin{notation}
+    \simbolo{$f(x) \simeq g(x)$}{$f$ concorda com $g$ em $x$}
+    Dadas duas funções $f, g: A \to B$,
+    escreveremos
+    \begin{equation*}
+        f(x) \simeq g(y)
+    \end{equation*}
+    para expressar o fato de que
+    $f$ está definida em $x$ se, e somente se, $g$ está definida em $y$;
+    e, caso ambas estejam definidas,
+    $f(x) = g(y)$.
+    (Esta notação foi extraída de \citeonline[p.~124]{EpsteinCarnielli2008}.
+    Nos casos em que $x = y$,
+    podemos ler esta notação como ``$f$ e $g$ concordam em $x$''.)
+\end{notation}
+
+Esta notação simplificará o enunciado de alguns teoremas.
+
+\begin{example}
+    Defina $f, g: \mathbb R \to \mathbb R$, dadas por
+    \begin{align*}
+        f(x) &= \sqrt{x^2} & g(x) = {(\sqrt x)}^2.
+    \end{align*}
+    Então, para $x \geq 0$,
+    \begin{equation*}
+        f(x) \simeq g(x),
+    \end{equation*}
+    mas isso não é válido para $x < 0$.
+    Além disso, por exemplo,
+    \begin{equation*}
+        g(-1) \simeq g(-3)
+    \end{equation*}
+    pois tanto $g(-1)$ quanto $g(-3)$ não existem.
+\end{example}
+
 \begin{notation}
     Seja $M$ uma máquina de Turing determinística
     e $x \in \{0, 1\}^*$ uma palavra.
