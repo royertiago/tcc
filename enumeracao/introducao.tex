@@ -1,3 +1,42 @@
+A teoria de complexidade axiomática proposta por \citeonline[p.~324]{Blum1967},
+que estudaremos na seção~\ref{sec:blum_axioms},
+é \emph{independente de máquina};
+isto é,
+ela é aplicável a qualquer modelo de máquina ``bem comportado''.
+Nesta seção,
+veremos como generalizar a noção de ``modelo de máquina''
+e estudaremos as condições para que ele seja ``bem comportado'';
+isto é,
+que propriedades o modelo de máquina precisa satisfazer
+para que possamos definir os axiomas de Blum.
+
+Entenderemos um modelo de máquina como
+uma maneira de atribuir um significado a cada cadeia binária.%
+\footnote{
+    Estamos identificando uma máquina com sua representação em binário.
+}
+A ideia é que cada cadeia represente o ``código"=fonte''
+de alguma função recursiva;
+o modelo de máquina, então,
+dirá como devemos interpretar este código"=fonte.
+
+Precisaremos, antes,
+definir a noção de \emph{função recursiva}.
+Para isso,
+usaremos um modelo específico de máquina de Turing,
+que será definido na seção~\ref{sec:machine_model}.
+
+A definição de \emph{função recursiva} está na seção~\ref{sec:recursive_functions}.
+As seções \ref{sec:universal_turing_machine} e~\ref{sec:s_m_n_theorem}
+contém teoremas $S_{mn}$ e da máquina universal,
+que são as características que exigiremos de um modelo de máquina
+para ``merecer'' o título de ``bem comportado''.
+Esta amarração está na seção~\ref{sec:acceptable_godel_numbering}.
+
+Definiremos agora uma maneira de identificar duas funções
+que não estão definidas no mesmo domínio;
+esta notação simplificará a notação no restante deste capítulo.
+
 \begin{notation}
     \simbolo{$f(x) \simeq g(x)$}{$f$ concorda com $g$ em $x$}
     Dadas duas funções $f, g: A \to B$,
@@ -30,5 +69,3 @@
     \end{equation*}
     pois tanto $g(-1)$ quanto $g(-3)$ não existem.
 \end{example}
-
-Esta notação simplificará o enunciado de alguns teoremas.
