@@ -47,7 +47,17 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     analisaremos as funções $\phi_{w_1}, \dots, \phi_{w_n}$
     e manteremos uma lista de ``chutes''
     da forma $\phi_{w_i} \in \mathcal C_\Phi(h_j)$,
-    que denotaremos $\mathcal C(i) = j$.
+    que denotaremos por $C[i] = j$.%
+    \footnote{
+        A ideia é que $C$ represente um vetor infinito,
+        indexado por $i \in \mathbb N$.
+        Na $i$"=ésima iteração do algoritmo,
+        na qual imprimiremos o valor de $g(i)$,
+        apenas os valores de $C[1], C[2], \dots, C[i]$
+        estarão definidos,
+        portanto apenas trabalharemos com uma porção finita de $\mathcal C$
+        (que crescerá conforme o algoritmo enumera novos valores de $g$).
+    }
     Isto é, tentaremos ``adivinhar''
     em qual dos conjuntos a função $\phi_{w_i}$ entra.%
     \footnote{
@@ -55,7 +65,7 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
         ``adivinhar'' e ``chute'',
         não há não"=determinismo envolvido.
         O problema é que não sabemos de antemão
-        qual é o valor correto $\mathcal C(i)$,
+        qual é o valor correto $C[i]$,
         então precisamos estabelecer algum valor arbitrário
         e reestabelecer este valor
         conforme descobrimos que ele não funciona.
@@ -68,21 +78,12 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
 
     Ao computar o valor de $g(n)$,
     um chute errado
-    é um chute $\mathcal C(i) = j$,%
-    \footnote{
-        Há um abuso de notação aqui.
-        Embora a notação $\mathcal C(i)$ seja de chamada de função,
-        o uso de $\mathcal C(i)$ aqui está mais próximo do funcionamento
-        de um vetor, indexado por $i$;
-        talvez fosse melhor usar a notação $C[i] = j$,
-        mas manteremos a notação original
-        de \citeonline[p.~311]{HopcroftUllman1979}.
-    }
+    é um chute $C[i] = j$,
     em que $\Phi(w_i, x) > h_j(|x|)$
     para algum $x$ com $|x| = n$.
     Conforme computamos $g(n)$,
     sempre que descobrirmos que nosso chute,
-    digamos, para $\phi_{w_i}$, está errado,
+    digamos, para $w_i$, está errado,
     definiremos $g$ para um valor menor que $\Phi(w_i, x)$
     (para $|x| = n$),
     e faremos um novo chute,
@@ -91,40 +92,42 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     Defina $g(1)$ para $h_1(1)$
     (ou qualquer valor arbitrário)
     e inicialize a lista com o chute
-    $\mathcal C(1) = 1$.
+    $C[1] = 1$.
     A lista terá sempre tamanho $n-1$
     ao começar a decidir o valor de $g(n)$.
 
     Ao enumerar o valor de $g(n)$,
-    adicione o chute $\mathcal C_n = n$ à lista.
+    adicione o chute $C[n] = n$ à lista.
     Percorra a lista atrás de chutes errados;
     isto é,
-    pares $\mathcal C_i = k_i$
-    tais que $\Phi(w_i, x) > h_{k_i}(x)$
+    pares $C[i] = j$
+    tais que $\Phi(w_i, x) > h_j(x)$
     para algum $x$ com $|x| = n$.
     Dentre os chutes errados,
-    escolha $i$ de forma a minimizar $k_i$.
+    escolha $i$ de forma a minimizar $C[i]$.
     Defina, então, $g(n) = h_{k_i}(n)$
-    e atualize o chute para $\mathcal C_i = n$.
+    e atualize o chute $C[i]$ para $n$.
     Caso não haja chutes errados,
     apenas defina $g(n) = h_n(n)$.
 
     \begin{algorithm}[h]
-        Inicialize a lista \texttt{chutes} com o par $\mathcal C(1) = 1$ \;
+        $C[1] \leftarrow 1$ \;
         Imprima $g(1) = h_1(1)$ \;
         \For{$n = 2$ \KwTo $\infty$}{
-            Adicione $\mathcal C(n) = n$ à lista \texttt{chutes} \;
+            $C[n] \leftarrow n$ \;
             \tcc{Valor sentinela:}
-            \texttt{chute\_errado} = $\infty$ \;
+            $\texttt{chute\_errado} \leftarrow \infty$ \;
             \For{$i \leftarrow 1$ \KwTo $n$}{
                 \tcc{acharemos o menor chute errado}
-                \If{$\Phi(w_i, x) > h_{\mathcal C(i)}(|x|)$
+                \If{$\Phi(w_i, x) > h_{C[i]}(|x|)$
                     para algum $x$ de tamanho $n$
                 }{
                     \tcc{Achamos um chute errado.}
-                    Substitua \texttt{chute\_errado} por $i$
-                    caso isso reduza o valor de
-                    $\mathcal C(\texttt{chute\_errado})$ \;
+                    \If{$(\texttt{chute\_errado} = \infty) \vee
+                        (C[i] < C[\texttt{chute\_errado}])$
+                    }{
+                        $\texttt{chute\_errado} \leftarrow i$ \;
+                    }
                 }
             }
             \If{\texttt{chute\_errado} = $\infty$}{
@@ -132,9 +135,9 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
                 Imprima $g(n) = h_n(n)$ \;
             }
             \Else{
-                \texttt k $\leftarrow$ $\mathcal C(\texttt{chute\_errado})$ \;
+                \texttt k $\leftarrow$ $C[\texttt{chute\_errado}]$ \;
                 Imprima $g(n) = h_\texttt k (n)$ \;
-                Altere o chute errado para $\mathcal C(\texttt{chute\_errado}) = n$ \;
+                $C[\texttt{chute\_errado}] \leftarrow n$ \;
             }
         }
         \caption{
@@ -157,7 +160,7 @@ A demonstração foi retirada do texto de \citeonline[p.~310]{HopcroftUllman1979
     e sempre redefinimos um chute errado
     para o maior valor de um chute até agora.
     Portanto, depois que adicionamos o chute
-    $\mathcal C_i = i$ à lista
+    $C[i] = i$ à lista
     (evento que ocorreu ao computar $g(i)$),
     ocorrerão, no máximo,
     $i-1$ chutes diferentes
