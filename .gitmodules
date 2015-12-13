@@ -4,3 +4,6 @@
 [submodule "bib"]
 	path = bib
 	url = https://github.com/royertiago/bib
+[submodule "sbc"]
+	path = sbc
+	url = https://github.com/royertiago/sbc
