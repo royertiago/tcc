@@ -4,6 +4,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+\usepackage{amsmath}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
 \usepackage{complexity}
 
 \sloppy
@@ -93,6 +98,110 @@ defines the Blum axioms over the refined definition.
 \subsection{Acceptable Gödel numberings}
 \label{sec:acceptable-godel-numberings}
 
+\begin{definition}
+    Let $\mathcal P$ be the the set of partial computable functions.
+    A \emph{Gödel numbering}
+    is a function $\phi: \{0, 1\}^* \to \mathcal P$
+    that is surjective.
+\end{definition}
+
+A Gödel numbering formalizes the concept of associating a word $w$ of $\{0, 1\}^*$
+with a partial recursive function $f$ of $\mathcal P$.
+We can think of $w$ as being the ``source code'' for the ``program'' $f$;
+we denote $f = \phi(w)$ by $\phi_w$.
+
+Because Gödel numberings are infinite mathematical objects,
+Turing machines cannot manipulate them directly.
+We thus need some technique to manipulate the numbering indirectly.
+
+Call $\pi$ the standard Gödel numbering
+that corresponds to the standard representation of Turing machines;
+that is, if $w$ is the encoding of a Turing machine $M$,
+then $\pi_w$ is the partial function computed by $M$.
+We can manipulate $\pi$ indirectly, for instance,
+by means of a universal Turing machine $U$.
+Given a program $w$ and an input $x$,
+if $\pi_w(x)$ exists,
+then the output of the machine $U$ when its input is the pair $(w, x)$
+is exactly $\pi_w(x)$.
+Therefore,
+even tough we did not directly manipulate the numbering $\pi$
+or calculate $\pi_w$,
+we did manage to indirectly compute the value of $\pi_w(x)$.
+This is the \emph{universal machine theorem}.
+
+We can also manipulate the source code directly.
+Suppose $w$ represents a Turing machine that computes a function of two variables $f$.
+Given two inputs $x$ and $y$, we can compute $f(x, y) = \pi_w(x, y)$
+using the universal Turing machine.
+If we are given a single input $x$ and leave the second variable free,
+we have a function $g$ of one variable, such that
+\begin{equation*}
+    g(y) = f(x, y).
+\end{equation*}
+That is, we fixed the first input to be $x$.
+
+This function $g$ is computable;
+in fact, we can obtain a source code $w'$ for $g$ from $w$
+--- just modify the machine represented by $w$
+so that, on input $y$,
+it writes $x$ on the tape and runs the original algorithm.%
+\footnote{
+    Notice we are not manipulating the machine directly,
+    only its representation as a string of bits.
+}
+This kind of modification can be done for any source code $w$
+and any input $x$;
+there is a computable function $\sigma$ of two variables
+that is defined for every $w$ and $x$ such that,
+for every $y$,
+$\pi_w(x, y)$ is defined if and only if $\pi_{\sigma(w, x)}(y)$ is defined,
+and, in this case,
+\begin{equation*}
+    \pi_w(x, y) = \pi_{\sigma(w, x)}(y).
+\end{equation*}
+This is the \emph{$S_{mn}$ theorem}.%
+\footnote{
+    The ``full version'' of this theorem asserts that,
+    for any $m$ and $n$,
+    there is a computable function $\sigma$ that,
+    given a program $x$ for a function of $m + n$ variables
+    and $n$ chosen values $y_1, \dots, y_m$,
+    \begin{equation*}
+        \pi_{\sigma(x, y_1, \dots, y_m)}(z_1, \dots, z_n) =
+            \pi_x(y_1, \dots, y_m, z_1, \dots, z_n);
+    \end{equation*}
+    hence its name \cite[p.~23]{Rogers1987}.
+}
+
+These two theorems are all that Blum requires from a Gödel numbering
+to define his axiomatic notion of complexity.
+We have a special name (due to Rogers) for such numbering.
+
+\begin{definition}
+    An \emph{acceptable Gödel numbering}
+    is a Gödel numbering $\phi$
+    that satisfies both the universal machine theorem
+    and the $S_{mn}$ theorem \cite[p.~41]{Rogers1987}.
+    That is, there are computable functions $f$ and $\sigma$
+    that satisfies
+    \begin{itemize}
+        \item For every $w$ and $x$,
+            $f(w, x)$ is defined if and only if $\phi_w(x)$ is defined,
+            and, in this case,
+            \begin{equation*}
+                f(w, x) = \phi_w(x);
+            \end{equation*}
+        \item $\sigma$ is defined for every $w$ and $x$,
+            and, for every $y$,
+            $\phi_w(x, y)$ is defined if and only if $\phi_{\sigma(w, x)}(y)$ is defined,
+            and, in this case,
+            \begin{equation*}
+                \phi_w(x, y) = \phi_{\sigma(w, x)}(y).
+            \end{equation*}
+    \end{itemize}
+\end{definition}
+
 \subsection{Blum axioms}
 \label{sec:blum-axioms}
 
@@ -103,5 +212,8 @@ defines the Blum axioms over the refined definition.
 \subsection{Krentel's $\OptP$ class}
 \subsection{Valiant's $\#\P$ class}
 \subsection{Alternative approaches for nondeterministic functions}
+
+\bibliographystyle{sbc/sbc}
+\bibliography{bib/bibliography}
 
 \end{document}
