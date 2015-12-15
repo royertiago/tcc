@@ -5,6 +5,8 @@
 \usepackage[T1]{fontenc}
 
 \usepackage{amsmath}
+\usepackage{amssymb}
+
 \usepackage{amsthm}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
@@ -204,6 +206,29 @@ We have a special name (due to Rogers) for such numbering.
 
 \subsection{Blum axioms}
 \label{sec:blum-axioms}
+
+With the mathematical notion of an acceptable Gödel numbering,
+we can now define the Blum axioms for complexity measures.
+
+\begin{definition}
+    Given an acceptable Gödel numbering $\phi$,
+    a \emph{complexity measure} for $\phi$
+    is a function $\Phi:\Sigma^* \times \Sigma^* \to \mathbb N$ of two variables
+    that satisfies: \cite[p.~324]{Blum1967}
+    \begin{enumerate}
+        \item For every $w$ and $x$,
+            $\phi_w(x)$ exists if and only if $\Phi(w, x)$ exists.
+        \item For every string $w$, $x$ and every natural number $k$,
+            the predicate ``$\Phi(w, x) = k$?'' is decidable.
+    \end{enumerate}
+\end{definition}
+
+$\Phi(w, x)$ is the complexity of computing $\phi_w(x)$
+using the program $w$.
+The first axiom says that it only makes sense
+to talk about the complexity of a computation that ends.
+The second axiom gives minimum tools to manipulate $\Phi$ indirectly,
+in the same manner we require $\phi$ to be an \emph{acceptable} Gödel numbering.
 
 \section{Nondeterministic computation of functions}
 
