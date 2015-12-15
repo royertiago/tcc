@@ -42,9 +42,59 @@
 
 \section{Gödel numberings}
 
+% TODO: Note that this is a simplification
+
+Gödel's famous Incompleteness Theorem says that
+any correct and consistent formal system that includes the Peano arithmetic
+will have statements that are true under that system,
+but \emph{cannot be proven} under that system.
+In essence,
+in the proof of this theorem,
+Gödel created self-referential proposition $\varphi$
+that essentially says ``$\varphi$ is not provable''.
+Then, if $\varphi$ is false,
+by it's own assertion, it must be provable;
+but, as the system is consistent,
+this would mean that $\varphi$ is true
+--- a contradiction.
+Hence, $\varphi$ must be true.
+But, as it is true,
+there cannot be a proof under the current formal system to it
+--- that is exactly what $\varphi$ asserts.
+So,
+we get a proposition we know it is true,
+but we cannot prove it using only tools of that system.
+
+We can have a glimpse at how Gödel managed to construct a formula like $\varphi$
+by analyzing how Turing constructed a language
+that cannot be decided by Turing machines.
+
+The language built by Turing is known today as the halting problem.
+In essence,
+you are given a Turing machine $M$ and an input $w$
+and must decide whether $M$ eventually halts when processing $w$.
+To prove that this problem is undecidable,
+Turing had first to somehow encode this problem as a language
+(because all a Turing machine can understand are sentences of a language);
+the key point is that the Turing machine formalism
+had to be encoded into words that could be fed to Turing machines.
+Thus we could pick any machine and feed its own description as an input;
+this form of self-reference is analogous
+to Gödel's unprovable but true sentence.
+
+In our context,
+a \emph{Gödel numbering} will simply be a means
+of associating every word $w$ of $\{0, 1\}^*$
+with a computable function.
+Section~\ref{sec:acceptable-godel-numberings} shows a refinement of this notion,
+and section~\ref{sec:blum-axioms}
+defines the Blum axioms over the refined definition.
+
 \subsection{Acceptable Gödel numberings}
+\label{sec:acceptable-godel-numberings}
 
 \subsection{Blum axioms}
+\label{sec:blum-axioms}
 
 \section{Nondeterministic computation of functions}
 
