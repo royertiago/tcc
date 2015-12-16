@@ -545,6 +545,65 @@ it also have trouble in transposing the exponential speedup
 we have using nondeterminism.
 
 \subsection{Krentel's $\OptP$ class}
+
+From the last two definitions,
+we know we must somehow allow the machine to return several values
+and pick only one to be the return value.
+
+We can arrive at the definition proposed by Krentel
+analyzing the behavior of a nondeterministic machine to solve the satisfiability problem
+that has undergone the process applied to deterministic machines
+to transform a decider in a computer for the characteristic function.
+More precisely,
+pick $M$ a nondeterministic decider for $\SAT$,
+and make $M$ write $1$ in the tape if it found a satisfying assignment
+and $0$ if it didn't.
+The propositional formulas will fall in three categories.
+\begin{itemize}
+    \item Tautological formulas.
+        The set of possible answers for these formulas is only $\{1\}$.
+    \item Contradictory formulas.
+        Now, the set of answers is $\{0\}$.
+    \item Satisfiable but not tautological.
+        Here, we have both values: $\{0, 1\}$.
+\end{itemize}
+The last case is the interesting one.
+Note the actual return value for this case is $1$,
+which corresponds exactly to the maximum of this set.
+We may define the computation using exactly this idea.
+
+\begin{definition}
+    If every branch of the computation of $M$ on $x$ halts,
+    define the value returned by $M$ on $x$
+    as being the lexicographically greatest value
+    left by $M$ in any of its branches.
+\end{definition}
+
+The requirement that every branch halts
+guarantees that this yields an acceptable Gödel numbering;
+hence, the first requirement was met.
+
+To apply the Blum axioms,
+we define the time complexity by being the size of the deepest branch,
+if every branch is finite,
+and the space complexity as being the largest number of occupied tape cells
+in any branch of computation,
+if again every branch is finite.
+The requirement to the machine to halt
+guarantees we can satisfy both axioms.
+
+Although coming from a different route,
+Krentel reached a similar definition \cite{Krentel1988}.
+He was concerned with optimization problems
+and defined $\OptP$ as being the set of all functions
+that could be computed in polynomial time
+by nondeterministic Turing machines,
+according to the definition of this section.
+The idea is that these machines optimize the problem they are solving,
+by returning the maximum possible value.
+(Actually, Krentel included both maximization and minimization problems
+in $\OptP$, but the idea was the same.)
+
 \subsection{Valiant's $\#\P$ class}
 \subsection{Alternative approaches for nondeterministic functions}
 
