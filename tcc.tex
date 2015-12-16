@@ -39,6 +39,8 @@
 \usepackage{enumitem}
 \usepackage{accessdate}
 
+\usepackage{pdfpages}
+
 % ufsctex.cls se baseia em abntex.cls que carrega o pacote mathptmx.
 % Este pacote altera as fontes para Times, inclusive \mathcal.
 % Este código "mágico" restaura-a para seu formato padrão.
@@ -69,5 +71,8 @@
 
 \apendice
 \input{apendices/maquinas_turing}
+
+\chapter{ARTIGO DO TCC}
+\includepdf[pages=-]{paper.pdf}
 
 \end{document}
