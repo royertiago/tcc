@@ -437,6 +437,44 @@ The following definitions we will see
 does not suffer from this problem.
 
 \subsection{Oded Goldreich definition}
+
+\begin{definition}[Goldreich's definition]
+    Let $\bot$ be some special symbol not in $\{0, 1\}^*$.
+    (This symbol will represents ``don't know'')
+    A nondeterministic machine $M$ computes the function $f$ if,
+    when processing the input $x$,
+    both the following conditions hold \cite[p.~168]{Goldreich2008}:
+    \begin{itemize}
+        \item Every branch of $M$ halts
+            and outputs either $f(x)$ or $\bot$.
+        \item At least one branch of $M$ halts with $f(x)$ on the tape.
+    \end{itemize}
+\end{definition}
+
+The extra symbol $\bot$ sidesteps the possibility of a branch looping forever.
+Now,
+every branch is required to halt for the value of the function be defined.
+Thus,
+we can convert a nondeterministic Turing machine to a deterministic machine
+that compute the same function,
+albeit with an exponential slowdown
+--- the deterministic machine just need to simulate all branches until completion,
+to actually be sure every branch halts.
+
+This allows us to comply with the requirements to being an acceptable Gödel numbering:
+\begin{itemize}
+    \item Any deterministic machine can be understood as a nondeterministic machine
+        with a single branch,
+        so every computable function appears in the corresponding numbering.
+        Thus, the numbering is surjective --- it enumerates every computable function.
+    \item Any nondeterministic machine can be simulated by some deterministic machine,
+        so the enumeration codomain is the set of computable functions.
+    \item This conversion can be done mechanically,
+        so we can use the same universal machine and $\sigma$ function
+        of the standard Gödel numbering $\pi$
+        to comply with the universal machine theorem and the $S_{mn}$ theorem.
+\end{itemize}
+
 \subsection{Krentel's $\OptP$ class}
 \subsection{Valiant's $\#\P$ class}
 \subsection{Alternative approaches for nondeterministic functions}
