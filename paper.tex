@@ -11,6 +11,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \newtheorem{example}[definition]{Example}
+\newtheorem{proposition}[definition]{Proposition}
 
 \usepackage{complexity}
 
@@ -333,6 +334,67 @@ if and only if there is some sequence of choices of the machine represented by $
 when processing the input $x$ that halts with $y$ in the tape,
 and no other sequence of choices that leads to halting does so with some $z$,
 $z \neq y$, on the tape.)
+
+The problem with their definition is that $\phi_w(x)$ is allowed to be defined,
+even if some branch of computation does not halt.
+This allows us to solve the complement of the halting problem.
+
+\begin{proposition}
+    The function partial $f: \Sigma^* \times \Sigma^* \to \{0, 1\}$ defined by
+    \begin{equation*}
+        f(w, x) = \begin{cases}
+            1, & \text{if the machine $w$ does not halt on $x$.} \\
+            \text{undefined}, &\text{if $w$ never halts on $x$.}
+        \end{cases}
+    \end{equation*}
+    is not computable,
+    but can be computed by a nondeterministic Turing machine under
+    Hopcroft and Ullman's definition.
+\end{proposition}
+
+\begin{proof}
+    Notice that the domain in which $f$ is defined
+    is the complement under $\Sigma^*$ of the halting problem.
+    Therefore,
+    we can pair a machine that computes $f$
+    with a machine that recognizes (but not decides) the halting problem
+    to actually decide the halting problem,
+    as follows:
+
+    Let $M$ be the machine that computes $f$,
+    and $U$ be the universal Turing machine
+    (that, on input $(w, x)$,
+    either returns $\pi_w(x)$ if it exists
+    or loops forever if it doesn't).
+    The machine $M'$ that will solve the halting problem
+    will simulate $M$ and $U$ simultaneously,
+    one move for each machine.
+    Since the domains of $M$ and $U$ are complementary,
+    for any input $(w, x)$, exactly one of them will halt.
+    If is $U$, then we accept because $w$ halts on $x$;
+    otherwise, if it is $M$, we reject because $w$ never halts on $x$.
+    This solves the halting problem --- a contradiction.
+    Hence, no Turing machine can compute $f$.
+
+    But $f$ can be computed under Hopcroft and Ullman's definition as follows:
+    on input $(w, x)$,
+    create two branches of computation.
+    On the first, write $1$ on the tape and halt.
+    On the second, simulate the universal Turing machine $U$ in the input,
+    and if $U$ halts, write $0$ on the tape and also halt.
+
+    If $w$ halts on $x$,
+    there will be two halting branches of computation
+    that writes different values on the tape,
+    so, by definition, the function is not defined on this input.
+    If $w$ never halts,
+    then only the first branch will halt
+    (and with $1$ written on the tape),
+    so the function is defined on this input and its value is $1$.
+
+    Thus, this machine can, under Hopcroft and Ullman's definition,
+    compute the noncomputable function $f$.
+\end{proof}
 
 \subsection{Oded Goldreich definition}
 \subsection{Krentel's $\OptP$ class}
