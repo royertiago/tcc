@@ -312,6 +312,28 @@ and the ``natural'' extension of space and time complexity
 must satisfy Blum axioms.
 
 \subsection{Hopcroft-Ullman definition}
+
+In their 1979 book,
+Hopcroft and Ullman note the need
+for defining how a nondeterministic Turing machine can compute a function;
+they mention one possible approach \cite[p.~313]{HopcroftUllman1979}:
+\begin{quotation}
+    We may establish that nondeterministic time and space
+    satisfy the axioms if we make an intelligent definition of what it means
+    for an NTM to compute a function.
+    For example, we might say that $\phi_i(n) = j$
+    if and only if there is some sequence of choices by $M_i$ with input $0^n$
+    that halts with $0^j$ on the tape,
+    and no sequence of choices that leads to halting with some $0^k$, $k \neq j$,
+    on the tape.
+\end{quotation}
+(Hopcroft and Ullman make this definition in the context of integer functions;
+in our notation, this means that $\phi_w(x) = y$
+if and only if there is some sequence of choices of the machine represented by $w$
+when processing the input $x$ that halts with $y$ in the tape,
+and no other sequence of choices that leads to halting does so with some $z$,
+$z \neq y$, on the tape.)
+
 \subsection{Oded Goldreich definition}
 \subsection{Krentel's $\OptP$ class}
 \subsection{Valiant's $\#\P$ class}
