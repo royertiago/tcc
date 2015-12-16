@@ -396,6 +396,46 @@ This allows us to solve the complement of the halting problem.
     compute the noncomputable function $f$.
 \end{proof}
 
+Therefore,
+using Hopcroft and Ullman's definition,
+we could enumerate functions that are not computable;
+so, the image of the corresponding ``Gödel numbering''
+would include not only computable functions.
+
+A tentative fix to this definition is to force all branches to halt;
+but now, as all branches are required to return the same value,
+the machine is almost deterministic.
+Therefore, if there is a machine $M$ that computes the characteristic function%
+\footnote{
+    The characteristic function of a set $A \subseteq \Sigma^*$
+    is the function $f$ defined by
+    \begin{equation*}
+        f(x) = \begin{cases}
+            1, & \text{if $x \in A$}. \\
+            0, & \text{if $x \notin A$}.
+        \end{cases}
+    \end{equation*}
+}
+of the satisfiability problem in nondeterministic polynomial time,
+we could simulate $M$ on a given input,
+choosing (say) always the first option when confronted with nondeterminism.
+If this branch of computation returns $1$,
+then every branch returns $1$ and the input is satisfiable;
+if this branch returns $0$, every branch returns $0$ and the input is unsatisfiable.
+We thus could solve $\SAT$ in \emph{deterministic} polynomial time.
+
+Therefore, with this restriction,
+we lose the apparent exponential speed up in computation time%
+\footnote{
+    It is ``apparent'' in the sense that,
+    if $\P \neq \NP$,
+    we will have this exponential slowdown in some problems
+    when moving from nondeterministic to deterministic machines.
+}
+we have when using nondeterminism.
+The following definitions we will see
+does not suffer from this problem.
+
 \subsection{Oded Goldreich definition}
 \subsection{Krentel's $\OptP$ class}
 \subsection{Valiant's $\#\P$ class}
