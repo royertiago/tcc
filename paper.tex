@@ -605,7 +605,27 @@ by returning the maximum possible value.
 in $\OptP$, but the idea was the same.)
 
 \subsection{Valiant's $\#\P$ class}
-\subsection{Alternative approaches for nondeterministic functions}
+
+As observed by Krentel,
+the definition of $\OptP$ was achieved by applying
+an associative and commutative operator to the set of values
+that the nondeterministic machine returns.
+Thus,
+for every different operator we choose,
+we have an alternative definition of nondeterministic computation of functions.
+We mention only one such alternative definition,
+due to Valiant \cite{Valiant1979}.
+
+\begin{definition}
+    If every branch of the computation of $M$ on $x$ halts,
+    define the value returned by $M$ on $x$
+    as being the number of different accepting branches of computation.
+\end{definition}
+
+In the same way that Krentel defined his $\OptP$ class using polynomial bounds,
+Valiant's $\#\P$ class is the set of all functions
+that can be computed in polynomial time by nondeterministic machines
+according to the above definition.
 
 \bibliographystyle{sbc/sbc}
 \bibliography{bib/bibliography}
