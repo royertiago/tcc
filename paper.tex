@@ -475,6 +475,75 @@ This allows us to comply with the requirements to being an acceptable Gödel num
         to comply with the universal machine theorem and the $S_{mn}$ theorem.
 \end{itemize}
 
+At least partially,
+we can compute the characteristic function of the satisfiability problem
+in linear time using this model.
+The machine $M$ that will do the calculation will guess an assignment
+and write $1$ if it is satisfying and write $\bot$ if it isn't.
+This computes in linear time the function $f$, defined by
+\begin{equation*}
+    f(\varphi) = \begin{cases}
+        1, & \text{if $\varphi$ is satisfiable.} \\
+        \text{undefined}, & \text{if $\varphi$ is unsatisfiable.} \\
+    \end{cases}
+\end{equation*}
+However,
+this function falls short of being exactly $\SAT$'s characteristic function:
+$f(\varphi)$ ought to be zero for unsatisfiable $\varphi$.
+Although we cannot prove a strong assertion as
+``if this works then $\P = \NP$'',
+we can come close.
+
+\begin{proposition}
+    If there is a nondeterministic Turing machine
+    that computes in polynomial time, according to Goldreich's definition,
+    the characteristic function of the satisfiability problem,
+    then $\NP = \coNP$.
+\end{proposition}
+
+($\NP = \coNP$ implies that $\NP = \PH$; that is,
+the polynomial hierarchy collapses to the first level.)
+
+\begin{proof}
+    Suppose $M$ is the machine that computes $\SAT$'s characteristic function,
+    under Goldreich definition, in polynomial time.
+
+    To solve $\overline \SAT$,
+    the complement of $\SAT$,
+    using $\NP$ resources,
+    create a nondeterministic machine $M'$ that will simulate $M$ on its input.
+    On each branch, if $M$ returned either $\bot$ or $1$, reject;
+    if $M$ returns $0$, accept.
+
+    If the current instance is satisfiable,
+    all branches will return either $\bot$ or $1$,
+    so we are right in rejecting it;
+    otherwise, if the current instance is unsatisfiable,
+    at least some branch will return $0$,
+    so we will correctly reject the input.
+
+    Since the complement of $\SAT$ is $\coNP$-complete,
+    any language in $\coNP$ can thus be solved with a nondeterministic machine;
+    hence, $\coNP \subseteq \NP$.
+
+    Similarly,
+    every language $L$ of $\NP$ has a many-one reduction to $\SAT$;
+    thus, the complement $\overline L$ has a many-one reduction
+    to $\overline \SAT$.
+    Hence, composing the reduction with the above algorithm
+    that solves $\overline \SAT$ using a nondeterministic machine,
+    we conclude that $\overline L \in \NP$.
+    Thus, by definition, $L \in \coNP$.
+    So, $\NP \subseteq \coNP$.
+
+    This shows $\NP = \coNP$.
+\end{proof}
+
+Therefore, even though Goldreich's definition
+yields an acceptable Gödel numbering,
+it also have trouble in transposing the exponential speedup
+we have using nondeterminism.
+
 \subsection{Krentel's $\OptP$ class}
 \subsection{Valiant's $\#\P$ class}
 \subsection{Alternative approaches for nondeterministic functions}
