@@ -281,6 +281,16 @@ in the same manner we require $\phi$ to be an \emph{acceptable} Gödel numbering
     we just need to make sure it actually used exactly $k$ cells in one of its tapes.
 \end{example}
 
+\begin{example}
+    Choosing $\Phi(w, x) = 0$ for all $w$ and $x$
+    creates a function that satisfies the second axiom,
+    but not the first.
+    Leaving $\Phi(w, x)$ undefined for all $w$ and $x$ such that
+    $\pi_w(x)$ does not exists and defining $\Phi(w, x) = 0$ otherwise
+    satisfies the first axiom, but not the second.
+    This shows the axioms are independent \cite[p.~324]{Blum1967}.
+\end{example}
+
 \section{Nondeterministic computation of functions}
 
 \subsection{Hopcroft-Ullman definition}
