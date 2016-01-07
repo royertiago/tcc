@@ -47,6 +47,34 @@
     and analyze how they interact with computational complexity.
 \end{abstract}
 
+\section{Introduction}
+
+Theory of Computation is mostly concerned about models of computation.
+In general, for each model of computation,
+there is some standard mathematical ``procedure''
+for finding the language associated with a device
+(one instance of the model).
+This fixation with languages has many nice features;
+for example,
+we have the duality between recognizers and generators.
+We may even go further and identify the concept of ``model of computation''
+with the task of representing an infinite language
+with some finite amount of information.
+This provides a simple way of comparing the relative power of two models of computation:
+just see ``how many languages'' each model can represent
+--- the one with ``more'' languages ``win''\footnote{
+    That is,
+    if every language that can be represented with a given model of computation $A$
+    can also be represented with a given model $B$,
+    but there are languages representable in $B$ that are not representable in $A$,
+    we say that $B$ is more \emph{powerful} or \emph{expressive} than $A$.
+    $A$ and $B$ are said to be \emph{equivalent}
+    if every language representable in $A$ is representable in $B$ and vice versa.
+}.
+
+Most problems need to be adapted to languages
+in order to discuss its representability.
+
 \section{Gödel numberings}
 
 % TODO: Note that this is a simplification
