@@ -22,9 +22,7 @@
 \author{Tiago Royer\inst{1}}
 
 \address{
-    Departamento de Informática e Estatística
-    --- Universidade Federal de Santa Catarina
-    \email{royertiago@gmail.com}
+    UFSC/USP?
 }
 
 \begin{document}
@@ -49,33 +47,62 @@
 
 \section{Introduction}
 
-Theory of Computation is mostly concerned about models of computation.
-In general, for each model of computation,
-there is some standard mathematical ``procedure''
-for finding the language associated with a device
-(one instance of the model).
-This fixation with languages has many nice features;
-for example,
-we have the duality between recognizers and generators.
-We may even go further and identify the concept of ``model of computation''
-with the task of representing an infinite language
-with some finite amount of information.
-This provides a simple way of comparing the relative power of two models of computation:
-just see ``how many languages'' each model can represent
---- the one with ``more'' languages ``win''\footnote{
-    That is,
-    if every language that can be represented with a given model of computation $A$
-    can also be represented with a given model $B$,
-    but there are languages representable in $B$ that are not representable in $A$,
-    we say that $B$ is more \emph{powerful} or \emph{expressive} than $A$.
-    $A$ and $B$ are said to be \emph{equivalent}
-    if every language representable in $A$ is representable in $B$ and vice versa.
-}.
+In Theory of Computation,
+we usually use languages
+to mathematically model problems in the real world.
+Decision problems (``yes/no'') are mapped to languages in a very natural way:
+just put every ``yes'' instance in the language,
+and leave the rest out.
+Search problems usually are rewritten as a decision problem,
+and then this problem is converted to a language.
+For instance,
+the task of finding a satisfying assignment for a Boolean formula $\phi$
+is reinterpreted to the task of merely deciding whether this assignment exists,
+and this task is then converted to a language
+--- in this example we have $\SAT$, the Boolean satisfiability problem.
+This does the trick when it comes to proving that something is hard;
+for instance, if we show that the decision problem is $\NP$-hard or undecidable,
+then intuitively the corresponding search problem must be at least as hard.
+Therefore,
+concepts like ``decidable'', ``$\NP$-complete'', ``polynomial-time computable''
+only arise in the context of decision problems.
 
-Most problems need to be adapted to languages
-in order to discuss its representability.
+However, even from the theoretical standpoint,
+it is useful to extend these concepts to functions.
+For instance,
+the concept of polynomial-time computable functions
+are central to the definition of Karp reductions.
+For single-tape, deterministic Turing machines,
+this definition is easy to extend:
+A function $f : \{0, 1\}^* \to \{0, 1\}^*$
+is said to be \emph{polynomial-time computable}
+if there is a Turing machine $M$ and a polynomial $p$ such that,
+when given the string $x$ as input,
+$M$ halts with $f(x)$ in its tape within $p(|x|)$ steps.
+
+Most extensions to this basic model,
+like the use of several tracks, or several tapes, or multidimensional tapes,
+can be easily incorporated in the definition of polynomial-time computable.
+Except nondeterminism.%
+\footnote{
+    Note also all the other extensions can be simulated by the original model
+    suffering at most a polynomial slowdown,
+    even in the context of decision problems.
+    This is seems not to be the case with nondeterminism.
+}
+We hit a wall right in the start:
+how does a nondeterministic machine computes a function in the first place?
+
+This paper presents several attempts to establish
+how a nondeterministic Turing machine can compute a function,
+and to extend the concept of ``polynomial-time computable'' under each definition.
+Sections \ref{sec:godel_numberings} and~\ref{sec:blum-axioms} sets reasonableness criteria
+to both the definition of function computation and complexity of the computation.
+Section~\ref{sec:nondeterministic_computation_of_functions}
+presents and criticizes the several definitions.
 
 \section{Gödel numberings}
+\label{sec:godel_numberings}
 
 % TODO: Note that this is a simplification
 
@@ -327,6 +354,7 @@ but, before extending these complexity measures to nondeterministic machines,
 we must first provide an acceptable Gödel numbering.
 
 \section{Nondeterministic computation of functions}
+\label{sec:nondeterministic_computation_of_functions}
 
 This section surveys four approaches
 for defining nondeterministic computation of functions.
