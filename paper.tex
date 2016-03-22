@@ -83,23 +83,61 @@ $M$ halts with $f(x)$ in its tape within $p(|x|)$ steps.
 Most extensions to this basic model,
 like the use of several tracks, or several tapes, or multidimensional tapes,
 can be easily incorporated in the definition of polynomial-time computable.
-Except nondeterminism.%
-\footnote{
-    Note also all the other extensions can be simulated by the original model
-    suffering at most a polynomial slowdown,
-    even in the context of decision problems.
-    This is seems not to be the case with nondeterminism.
-}
+Except nondeterminism.
 We hit a wall right in the start:
 how does a nondeterministic machine computes a function in the first place?
 
 This paper presents several attempts to establish
 how a nondeterministic Turing machine could compute a function,
 and to extend the concept of ``polynomial-time computable'' under each definition.
-Sections \ref{sec:godel_numberings} and~\ref{sec:blum-axioms} sets reasonableness criteria
+Section~\ref{sec:quality-standards} sets reasonableness criteria
 to both the definition of function computation and complexity of the computation.
 Section~\ref{sec:nondeterministic_computation_of_functions}
 presents and criticizes the several definitions.
+
+\section{Quality Standards: Blum Axioms}
+\label{sec:quality-standards}
+
+The definition of non-deterministic computation of functions we are trying to make
+must encompass both the ``computation'' part
+and the ``non-deterministic'' part.
+
+In the context of deciders,
+allowing doubly-infinite tapes and multiple tapes,
+although simplifies the design and increases the efficiency of the machine,
+does not expand the class of languages that can be decided or recognized by the machine.
+That is, both models are \emph{computationally equivalent}.
+Therefore,
+our definition must produce an equivalent model
+--- every function that can be computed by deterministic means
+must be computable under our new definition and vice-versa.
+This is the ``computation'' part.
+
+But nondeterministic deciders,
+although computationally equivalent to deterministic ones,
+are apparently much faster.
+That is, while we have linear-time non-deterministic algorithms for Boolean satisfiability,
+the best known deterministic algorithms are still exponential in the worst case.
+Nondeterminism seems special in this sense;
+although other extensions (multiple tapes and doubly-infinite tapes)
+can be simulated under just a polynomial slowdown,
+the simulation of nondeterminism seems to require exponential slowdown.%
+\footnote{
+    Simulating nondeterminism under a polynomial slowdown would show that $\P = \NP$;
+    showing that the slowdown must be exponential would show that $\P \neq \NP$.
+    Although most researchers expect the later to be the case~\cite[p.~54]{Gasarch2012},
+    as Papadimitriou noted~\cite[p.~412]{Papadimitriou1994},
+    in the absence of a proof that $\P \neq \NP$
+    we should not be too emphatic in stating the simulation \emph{require}
+    (as opposed to \emph{seemingly require}) exponential slowdown.
+}
+Therefore,
+our definition must exhibit this apparent exponential speedup
+when computing, for instance, the characteristic function of $\SAT$.
+This is the ``non-deterministic'' part.
+
+Sections \ref{sec:godel_numberings} and~\ref{sec:blum-axioms}
+refine this concept.
 
 \section{Gödel numberings}
 \label{sec:godel_numberings}
