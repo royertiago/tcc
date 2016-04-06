@@ -19,11 +19,9 @@
 
 \title{Blum axioms and nondeterministic computation of functions}
 
-\author{Tiago Royer\inst{1}, Jerusa Marchi\inst{2}}
+\author{Tiago Royer\inst{1}, Jerusa Marchi\inst{1}}
 
 \address{
-    UFSC/USP?
-\nextinstitute
     Universidade Federal de Santa Catarina --- Departamento de Informática e Estatística
 }
 
@@ -97,7 +95,7 @@ to both the definition of function computation and complexity of the computation
 Section~\ref{sec:nondeterministic_computation_of_functions}
 presents and criticizes the several definitions.
 
-\section{Quality Standards: Blum Axioms}
+\section{Quality Standards}
 \label{sec:quality-standards}
 
 The definition of non-deterministic computation of functions we are trying to make
@@ -138,166 +136,95 @@ our definition must exhibit this apparent exponential speedup
 when computing, for instance, the characteristic function of $\SAT$.
 This is the ``non-deterministic'' part.
 
-Sections \ref{sec:godel_numberings} and~\ref{sec:blum-axioms}
-refine this concept.
-
-\section{Gödel numberings}
-\label{sec:godel_numberings}
-
-% TODO: Note that this is a simplification
-
-Gödel's famous Incompleteness Theorem says that
-any correct and consistent formal system that includes the Peano arithmetic
-will have statements that are true under that system,
-but \emph{cannot be proven} under that system.
-In essence,
-in the proof of this theorem,
-Gödel created self-referential proposition $\varphi$
-that essentially says ``$\varphi$ is not provable''.
-Then, if $\varphi$ is false,
-by it's own assertion, it must be provable;
-but, as the system is consistent,
-this would mean that $\varphi$ is true
---- a contradiction.
-Hence, $\varphi$ must be true.
-But, as it is true,
-there cannot be a proof under the current formal system to it
---- that is exactly what $\varphi$ asserts.
-So,
-we get a proposition we know it is true,
-but we cannot prove it using only tools of that system.
-
-We can have a glimpse at how Gödel managed to construct a formula like $\varphi$
-by analyzing how Turing constructed a language
-that cannot be decided by Turing machines.
-
-The language built by Turing is known today as the halting problem.
-In essence,
-you are given a Turing machine $M$ and an input $w$
-and must decide whether $M$ eventually halts when processing $w$.
-To prove that this problem is undecidable,
-Turing had first to somehow encode this problem as a language
-(because all a Turing machine can understand are sentences of a language);
-the key point is that the Turing machine formalism
-had to be encoded into words that could be fed to Turing machines.
-Thus we could pick any machine and feed its own description as an input;
-this form of self-reference is analogous
-to Gödel's unprovable but true sentence.
-
-In our context,
-a \emph{Gödel numbering} will simply be a means
-of associating every word $w$ of $\{0, 1\}^*$
-with a computable function.
-Section~\ref{sec:acceptable-godel-numberings} shows a refinement of this notion,
+Section~\ref{sec:godel-numberings}
+presents a formalization of the ``computation'' part
 and section~\ref{sec:blum-axioms}
-defines the Blum axioms over the refined definition.
+presents a formalization of the ``non-deterministic'' part.
 
-\subsection{Acceptable Gödel numberings}
-\label{sec:acceptable-godel-numberings}
+\subsection{Reasonableness criterion: acceptable Gödel numberings}
+\label{sec:godel-numberings}
 
-\begin{definition}
-    Let $\mathcal P$ be the the set of partial computable functions.
-    A \emph{Gödel numbering}
-    is a function $\phi: \{0, 1\}^* \to \mathcal P$
-    that is surjective.
-\end{definition}
+One of the most important theoretical results concerning Turing machines
+is the existence of undecidable problems.
+Namely, the \emph{halting problem}
+(the task of deciding whether a given Turing machine will halt on a given input)
+cannot be solved by Turing machines.
+To formalize (and prove) this fact,
+we must first decide how to encode Turing machines in strings
+(because all a Turing machine can manipulate are strings).
 
-A Gödel numbering formalizes the concept of associating a word $w$ of $\{0, 1\}^*$
-with a partial recursive function $f$ of $\mathcal P$.
-We can think of $w$ as being the ``source code'' for the ``program'' $f$;
-we denote $f = \phi(w)$ by $\phi_w$.
+Each Turing machine can be associated
+to the corresponding partial recursive function it computes.
+There are several ways to encode Turing machines as strings,
+but what is most important about them is that they allow us
+to manipulate these partial recursive functions \emph{indirectly}
+--- partial recursive functions are (potentially) infinite objects,
+so we cannot write them down on a Turing machine tape,
+but we \emph{can} write the encoding of a Turing machine that compute these functions.
 
-Because Gödel numberings are infinite mathematical objects,
-Turing machines cannot manipulate them directly.
-We thus need some technique to manipulate the numbering indirectly.
-
-Call $\pi$ the standard Gödel numbering
-that corresponds to the standard representation of Turing machines;
-that is, if $w$ is the encoding of a Turing machine $M$,
-then $\pi_w$ is the partial function computed by $M$.
-We can manipulate $\pi$ indirectly, for instance,
-by means of a universal Turing machine $U$.
-Given a program $w$ and an input $x$,
-if $\pi_w(x)$ exists,
-then the output of the machine $U$ when its input is the pair $(w, x)$
-is exactly $\pi_w(x)$.
 Therefore,
-even tough we did not directly manipulate the numbering $\pi$
-or calculate $\pi_w$,
-we did manage to indirectly compute the value of $\pi_w(x)$.
-This is the \emph{universal machine theorem}.
+these encodings provide a way to associate a string
+(which is a finite, manipulable object)
+with a partial recursive function
+(which is an infinite, mathematical, ``untouchable'' object).
+An encoding is an \emph{enumeration} of all partial recursive function.
 
-We can also manipulate the source code directly.
-Suppose $w$ represents a Turing machine that computes a function of two variables $f$.
-Given two inputs $x$ and $y$, we can compute $f(x, y) = \pi_w(x, y)$
-using the universal Turing machine.
-If we are given a single input $x$ and leave the second variable free,
-we have a function $g$ of one variable, such that
-\begin{equation*}
-    g(y) = f(x, y).
-\end{equation*}
-That is, we fixed the first input to be $x$.
-
-This function $g$ is computable;
-in fact, we can obtain a source code $w'$ for $g$ from $w$
---- just modify the machine represented by $w$
-so that, on input $y$,
-it writes $x$ on the tape and runs the original algorithm.%
-\footnote{
-    Notice we are not manipulating the machine directly,
-    only its representation as a string of bits.
-}
-This kind of modification can be done for any source code $w$
-and any input $x$;
-there is a computable function $\sigma$ of two variables
-that is defined for every $w$ and $x$ such that,
-for every $y$,
-$\pi_w(x, y)$ is defined if and only if $\pi_{\sigma(w, x)}(y)$ is defined,
-and, in this case,
-\begin{equation*}
-    \pi_w(x, y) = \pi_{\sigma(w, x)}(y).
-\end{equation*}
-This is the \emph{$S_{mn}$ theorem}.%
-\footnote{
-    The ``full version'' of this theorem asserts that,
-    for any $m$ and $n$,
-    there is a computable function $\sigma$ that,
-    given a program $x$ for a function of $m + n$ variables
-    and $n$ chosen values $y_1, \dots, y_m$,
-    \begin{equation*}
-        \pi_{\sigma(x, y_1, \dots, y_m)}(z_1, \dots, z_n) =
-            \pi_x(y_1, \dots, y_m, z_1, \dots, z_n);
-    \end{equation*}
-    hence its name \cite[p.~23]{Rogers1987}.
-}
-
-These two theorems are all that Blum requires from a Gödel numbering
-to define his axiomatic notion of complexity.
-We have a special name (due to Rogers) for such numbering.
+In a way,
+we are going the opposite direction:
+instead of associating functions with strings,
+we want to associate machines with functions.
+We will use the concept of \emph{acceptable Gödel numbering}
+(\cite[p.~41]{Rogers1987},~\cite[p.~324]{Blum1967})
+to impose reasonableness criteria
+to our definitions.
 
 \begin{definition}
+    Let $\mathcal P$ be the set of all partial recursive functions.
     An \emph{acceptable Gödel numbering}
-    is a Gödel numbering $\phi$
-    that satisfies both the universal machine theorem
-    and the $S_{mn}$ theorem \cite[p.~41]{Rogers1987}.
-    That is, there are computable functions $f$ and $\sigma$
+    is a function $\phi : \{0, 1\}^* \to \mathcal P$,
+    that associates each string (or program) $w \in \{0, 1\}^*$
+    to a function $\phi_w \in \mathcal P$,
     that satisfies
-    \begin{itemize}
-        \item For every $w$ and $x$,
-            $f(w, x)$ is defined if and only if $\phi_w(x)$ is defined,
+    \begin{enumerate}
+        \item $\phi$ is surjective;
+            that is, every partial recursive function $f \in \mathcal P$
+            has a program $w \in \{0, 1\}^*$ such that $\phi_w = f$;
+            \label{surjectiveness}
+        \item There is a partial recursive function
+            $U:\{0, 1\}^* \times \{0, 1\}^* \to \{0, 1\}^*$ such that,
+            for every $w$ and $x$,
+            $U(w, x)$ is defined if and only if $\phi_w(x)$ is defined,
             and, in this case,
             \begin{equation*}
-                f(w, x) = \phi_w(x);
+                U(w, x) = \phi_w(x);
             \end{equation*}
-        \item $\sigma$ is defined for every $w$ and $x$,
-            and, for every $y$,
+            \label{universal-tm}
+        \item There is a total recursive function
+            $\sigma:\{0, 1\}^* \times \{0, 1\}^* \to \{0, 1\}^*$ such that,
+            for every $y$,
             $\phi_w(x, y)$ is defined if and only if $\phi_{\sigma(w, x)}(y)$ is defined,
             and, in this case,
             \begin{equation*}
                 \phi_w(x, y) = \phi_{\sigma(w, x)}(y).
             \end{equation*}
-    \end{itemize}
+            \label{smn-theorem}
+    \end{enumerate}
 \end{definition}
+
+This concept captures the intuitive notion of
+``well-behaved numbering''.
+
+Condition~\ref{surjectiveness}
+guarantees that the image of~$\phi$ is all of~$\mathcal P$,
+so that the numbering neither ``forgets'' a partial recursive function
+nor generate a function that is not partial recursive.
+
+Condition~\ref{universal-tm} is the universal Turing machine theorem.
+By varying the first input of~$U$,
+we can obtain any partial recursive function in a controlled manner.
+
+And Condition~\ref{smn-theorem} is known as the $S_{mn}$ theorem,
+or the iteration theorem.
 
 \section{Blum axioms}
 \label{sec:blum-axioms}
@@ -398,7 +325,7 @@ we must first provide an acceptable Gödel numbering.
 
 This section surveys four approaches
 for defining nondeterministic computation of functions.
-Sections \ref{sec:acceptable-godel-numberings} and~\ref{sec:blum-axioms}
+Sections \ref{sec:godel-numberings} and~\ref{sec:blum-axioms}
 can be understood as ``quality requirements''
 for the definitions;
 that is, the definitions will need to be translatable as
