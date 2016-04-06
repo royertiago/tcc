@@ -149,9 +149,11 @@ is the existence of undecidable problems.
 Namely, the \emph{halting problem}
 (the task of deciding whether a given Turing machine will halt on a given input)
 cannot be solved by Turing machines.
-To formalize (and prove) this fact,
-we must first decide how to encode Turing machines in strings
-(because all a Turing machine can manipulate are strings).
+The formalization (and proof) of this fact
+requires the definition of some sort of \emph{encoding};
+since Turing machines can only reason about strings,
+we need somehow to encode Turing machines into strings,
+to be able to pose the halting problem as a language question.
 
 Each Turing machine can be associated
 to the corresponding partial recursive function it computes.
@@ -173,10 +175,20 @@ In a way,
 we are going the opposite direction:
 instead of associating functions with strings,
 we want to associate machines with functions.
-We will use the concept of \emph{acceptable Gödel numbering}
+
+One important feature about the standard encodings of deterministic Turing machines
+is the Universal Turing Machine Theorem:
+the existence of a partial recursive function
+$U: \{0, 1\}^* \times \{0, 1\}^* \to \{0, 1\}^*$
+% Não sei se $U$ é um bom nome...
+such that, if $w$ encodes the machine $M$,
+then $U(m, x)$ is the result of running the machine $M$ on $x$.
+The machines that compute $U$ are called \emph{universal Turing machines}.
+
+The concept of \emph{acceptable Gödel numbering}
 (\cite[p.~41]{Rogers1987},~\cite[p.~324]{Blum1967})
-to impose reasonableness criteria
-to our definitions.
+encompasses the existence of universal machines and a little more.
+We will use it as our reasonableness criteria to our definitions.
 
 \begin{definition}
     Let $\mathcal P$ be the set of all partial recursive functions.
@@ -220,11 +232,18 @@ so that the numbering neither ``forgets'' a partial recursive function
 nor generate a function that is not partial recursive.
 
 Condition~\ref{universal-tm} is the universal Turing machine theorem.
-By varying the first input of~$U$,
-we can obtain any partial recursive function in a controlled manner.
 
-And Condition~\ref{smn-theorem} is known as the $S_{mn}$ theorem,
-or the iteration theorem.
+Condition~\ref{smn-theorem} is the ``little more'' we mentioned earlier.
+It is known as the $S_{mn}$ theorem, or the iteration theorem.
+Essentially,
+given a partial recursive function of two variables,
+we can obtain a partial recursive function of one variable
+by fixing the first argument.
+The function $\sigma$ provides a systematic way of doing this:
+given a description $w$ of a partial recursive function of two variables
+and the value $x$ to be fixed as the first variable,
+the function returns a machine $\sigma(w, x)$
+that computes the same function as $w$ but with the first argument fixed as $x$.
 
 \section{Blum axioms}
 \label{sec:blum-axioms}
