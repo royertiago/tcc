@@ -245,11 +245,38 @@ and the value $x$ to be fixed as the first variable,
 the function returns a machine $\sigma(w, x)$
 that computes the same function as $w$ but with the first argument fixed as $x$.
 
-\section{Blum axioms}
+\subsection{Efficiency criterion: Blum axioms}
 \label{sec:blum-axioms}
 
-With the mathematical notion of an acceptable Gödel numbering,
-we can now define the Blum axioms for complexity measures.
+The \emph{complexity} of a computation is how much of a resource
+that is invested in that computation~\cite[p.~285]{HopcroftUllman1979}.
+For each model of computation and each resource under that model,
+we can establish a \emph{complexity measure} concerning that resource.
+This section is devoted to formalizing this notion.
+
+Note that the complexity measure must be subordinated to the machine model.
+For instance,
+if we are talking about pushdown automata with two stacks,
+we could restrict the machine to operate on one stack each time
+(that is, each move must alter at most one stack)
+and measure the number of times the automaton switches its ``active'' stack.
+This complexity measure makes no sense for Turing machines,
+which have no stacks.
+
+Therefore,
+we must have an acceptable Gödel numbering $\phi$
+to discuss complexity.
+We can think that a complexity measure is a way of associating
+each program $w$ and each input $x$
+with a number $n$,
+which is the amount of the measured resource it takes to obtain $\phi_w(x)$
+using the program $w$.
+
+As we did with the machine encodings,
+we will impose some restrictions on what can be a complexity measure
+to be able to manipulate it (at least indirectly).
+In our case,
+we will use Blum axioms~\cite[p.~324]{Blum1967}.
 
 \begin{definition}
     Given an acceptable Gödel numbering $\phi$,
