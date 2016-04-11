@@ -245,6 +245,67 @@ and the value $x$ to be fixed as the first variable,
 the function returns a machine $\sigma(w, x)$
 that computes the same function as $w$ but with the first argument fixed as $x$.
 
+\begin{example}
+    Any encoding of deterministic Turing machines as a binary string
+    yields an acceptable numbering of the recursive functions.
+    That is, fix one of these encodings;
+    define $\pi: \{0, 1\}^* \to \mathcal P$ as follows:
+    if the string $w$ encodes the Turing machine $M$,
+    $\pi_w$ is the partial function computed by $M$.
+\end{example}
+
+\begin{example}\label{c}
+    Any programming languages can be understood as an acceptable Gödel numbering.
+    For example,
+    if we restrict a \texttt C program
+    to perform input and output only using the standard input and standard output
+    (that is, forbid interactions with the user, file reading, GUIs,
+    access to system clock, etc.),
+    the resulting program will map a binary input to a binary output,
+    characterizing a partial recursive function.
+    Thus, we can see a \texttt C compiler
+    as an implementation of an acceptable Gödel numbering.\footnote{
+        Note we are ignoring here issues like compilation and run-time errors.
+        These can be dealt with as in the case of Turing machines:
+        any invalid program will signify some fixed partial recursive function
+        (say, the function that is defined nowhere);
+        and any invalid step in computation
+        makes the function to be not defined on that input.
+    }
+\end{example}
+
+\begin{example}
+    We can also think of less orthodox numberings.
+
+    As two-stack deterministic pushdown automata are equivalent to Turing machines%
+    ~\cite[p.~172]{HopcroftUllman1979},
+    any encoding of these kind of automaton yields acceptable Gödel numberings.
+
+    Unrestricted grammars can also simulate Turing machines%
+    ~\cite[p.~221]{HopcroftUllman1979};
+    so if a grammar $G$ generate pairs $(x, y)$,
+    define the corresponding partial recursive function $f$
+    by $f(x) = y$ if,
+    among all the pairs whose first element is $x$,
+    the pair $(x, y)$ is the one with smallest number of productions
+    (leave $f$ undefined if there are ties or no pairs with $x$ as first element).
+    (Choosing the pair $(x, y)$ with the smaller number of productions
+    allows a Turing machine to simulate this function
+    by doing a breadth-first search in the grammar,
+    guaranteeing the function is partial recursive.)
+
+    And, as an off-line Turing machine
+    (a machine with a special read-only tape for its input)
+    can simulate any Turing machine without ever writing a $0$ over a $1$,
+    we can associate an encoding of a off-line Turing machine
+    with the function that counts the number of times
+    it writes a $0$ over an $1$ before halting
+    (the number can be converted to binary and have its most significant digit removed
+    to generate all possible binary strings).
+    (The machine can choose how many times it will write a $0$ over an $1$,
+    thus we can generate any partial recursive function by manipulating this choice.)
+\end{example}
+
 \subsection{Efficiency criterion: Blum axioms}
 \label{sec:blum-axioms}
 
