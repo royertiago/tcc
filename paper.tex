@@ -188,13 +188,23 @@ The machines that compute $U$ are called \emph{universal Turing machines}.
 The concept of \emph{acceptable Gödel numbering}
 (\cite[p.~41]{Rogers1987},~\cite[p.~324]{Blum1967})
 encompasses the existence of universal machines and a little more.
-We will use it as our reasonableness criteria to our definitions.
+We will use it as our reasonableness criteria to our definitions.%
 
 \begin{definition}
     Let $\mathcal P$ be the set of all partial recursive functions.
     An \emph{acceptable Gödel numbering}
     is a function $\phi : \{0, 1\}^* \to \mathcal P$,
-    that associates each string (or program) $w \in \{0, 1\}^*$
+    that associates each string (or program)\footnotemark $w \in \{0, 1\}^*$
+    \footnotetext{
+        In texts like Rogers'~\cite{Rogers1987},
+        the partial recursive functions have the naturals as domain and codomain
+        (that is, they are of the form $f: \mathbb N \to \mathbb N$),
+        and Gödel numberings associates natural numbers with recursive functions.
+        In this paper we will work with binary strings instead of numbers,
+        which will simplify the definition of complexity classes
+        and allows us to think the string $w$ as a \emph{program} for $\phi_w$
+        (see example~\ref{c}).
+    }
     to a function $\phi_w \in \mathcal P$,
     that satisfies
     \begin{enumerate}
