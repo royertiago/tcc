@@ -317,6 +317,43 @@ that computes the same function as $w$ but with the first argument fixed as $x$.
     thus we can generate any partial recursive function by manipulating this choice.)
 \end{example}
 
+There are several interesting properties we can show about acceptable Gödel numberings.
+For instance,
+if $\phi$ and $\phi'$ are any two such numberings,
+there is a total recursive function that converts programs for $\phi$
+into programs for $\phi'$;
+that is, there is a total recursive function $f : \{0, 1\}^* \to \{0, 1\}^*$
+such that, for every program $w$,
+\begin{equation*}
+    \phi_w = \phi'_{f(w)}.
+\end{equation*}
+To show this,
+we can use the $\sigma$ function for $\phi'$
+to fix the input program as the first variable of the $U$ function for $\phi$.
+With a bit more work,
+it is possible to make $f$ bijective \cite[p.~25]{Soare1987}.
+
+Another important theorem is the recursion theorem
+\cite[p.~181]{Rogers1987}.
+It states that, if $\phi$ is any acceptable Gödel numbering
+and $f$ is any total recursive function,
+then there is some program $w_0$ such that $\phi_{w_0} = \phi_{f(w_0)}$.
+That is,
+if $f$ is any systematic transformation on programs,
+there is a program $w$ (a fixed point for $f$) whose meaning under $\phi$ is unchanged.
+The recursion theorem can be used,
+for example, to show the existence of quines
+(programs whose output are their own source codes)
+in any Turing-complete programming language:
+choose $f$ to be the function that, given a program $w$,
+returns another program $f(w)$ that prints the string $w$ when run.
+(For Turing machines, for instance,
+we can encode the bits of $w$ in the transition table of $w$.)
+Then, by the recursion theorem,
+there is some program $w_0$ that is equivalent to its transformed version $f(w_0)$;
+thus, $w_0$ already writes the string $w_0$, its own source code.
+Therefore, any programming language has quines \cite[p.~227]{Kozen2006}.
+
 \subsection{Efficiency criterion: Blum axioms}
 \label{sec:blum-axioms}
 
