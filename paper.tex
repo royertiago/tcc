@@ -255,13 +255,9 @@ and the value $x$ to be fixed as the first variable,
 the function returns a machine $\sigma(w, x)$
 that computes the same function as $w$ but with the first argument fixed as $x$.
 
-\begin{example}
+\begin{example}\label{standard-numbering}
     Any encoding of deterministic Turing machines as a binary string
     yields an acceptable numbering of the recursive functions.
-    That is, fix one of these encodings;
-    define $\pi: \{0, 1\}^* \to \mathcal P$ as follows:
-    if the string $w$ encodes the Turing machine $M$,
-    $\pi_w$ is the partial function computed by $M$.
 \end{example}
 
 \begin{example}\label{c}
@@ -408,71 +404,45 @@ The second axiom gives minimum tools to manipulate $\Phi$ indirectly,
 in the same manner we require $\phi$ to be an \emph{acceptable} Gödel numbering.
 
 \begin{example}
-    Given the Gödel numbering $\pi$ of the previous chapter,
-    the number of steps a Turing machine needs before halting
-    is a complexity measure that satisfies Blum axioms.
-    The corresponding function $\Phi$ is
+    The standard measures of time and space can be constructed
+    over the acceptable numbering of example~\ref{standard-numbering}.
+    The time complexity is simply the number of moves the machine makes before halting;
+    if it does not halt, leave it undefined.
+    As this number is only defined if the machine halts,
+    the first axiom is satisfied;
+    and, to decide the predicate of the second axiom,
+    we can simply run the machine for $k$ moves and see whether it halted.
+
+    Space complexity requires extra care,
+    because the machine might not halt
+    even though the number of tape cells it uses is limited.
+    So, define the corresponding function $\Phi$ by
     \begin{equation*}
         \Phi(w, x) = \begin{cases}
-            k, &\text{if $w$ takes exactly $k$ steps on $x$ before halting} \\
+            k, &\text{if $w$ scans exactly $k$ tape cells and halts when processing $x$}\\
             \text{undefined}, &\text{if $w$ never halts on $x$}
         \end{cases}
     \end{equation*}
-    Then, $\Phi(w, x)$ is defined exactly when $\pi_w(x)$ exists
-    (that is, when $w$ halts on $x$),
-    and we can determine whether $\Phi(w, x) = k$ for a given $k$
-    by simulating $w$ on $x$ for exactly $k$ steps.
+    This function satisfies the first axiom,
+    and, as there is a finite number of states of computation
+    in which at most $k$ tape cells are scanned,
+    the predicate of the second axiom can be verified
+    by keeping all intermediate steps of computation
+    and checking to see whether any state repeat
+    (in this case, the machine loops and the complexity is undefined).
 \end{example}
 
 \begin{example}
-    Space complexity requires some care,
-    because a machine may never halt even though it remains confined
-    in a limited number of cells.
-    Thus, we must leave the space complexity of a machine that never halts undefined.
-    Formally, define the function $\Phi$ by
-    \begin{equation*}
-        \Phi(w, x) = \begin{cases}
-            k, &\text{if $w$ uses exactly $k$ tape cells on $x$ before halting} \\
-            \text{undefined}, &\text{if $w$ never halts on $x$}
-        \end{cases}
-    \end{equation*}
-    This makes $\Phi$ satisfy the first axiom.
-    To satisfy the second axiom,
-    we must note that,
-    if we limit the number of tape cells to $k$,
-    there is a finite number of different computation states
-    the machine can be.
-    Therefore,
-    to determine whether $\Phi(w, x) = k$,
-    simulate $w$ on $x$ and keep the whole history of computation.
-    If, in any point of the simulation,
-    the machine $w$ uses more than $k$ tape cells,
-    reject --- the answer is ``no''.
-    If any two computation states repeat,
-    then the machine will loop and never halt
-    --- the answer is ``no'' again.
-    Otherwise, the machine must halt
-    (since there is a finite number of computation states).
-    Now, when the machine halts,
-    we just need to make sure it actually used exactly $k$ cells in one of its tapes.
+    As with acceptable Gödel numberings,
+    we can also measure less usual resources.
+    For example, we can satisfy the Blum axioms by
+    counting the number of times a machine changes a symbol in the tape,
+    the number of times the tape head moves right,
+    or the number of times a two-stack pushdown automata
+    pops a symbol from the second stack.
 \end{example}
 
-\begin{example}
-    Choosing $\Phi(w, x) = 0$ for all $w$ and $x$
-    creates a function that satisfies the second axiom,
-    but not the first.
-    Leaving $\Phi(w, x)$ undefined for all $w$ and $x$ such that
-    $\pi_w(x)$ does not exists and defining $\Phi(w, x) = 0$ otherwise
-    satisfies the first axiom, but not the second.
-    This shows the axioms are independent \cite[p.~324]{Blum1967}.
-\end{example}
-
-There are other measures that satisfies the Blum axioms
-(like, for example,
-the number of times a Turing machine changes a symbol in the tape,
-the number of times the tape head changes direction,
-the number of movements to the left or to the right),
-but, before extending these complexity measures to nondeterministic machines,
+Before extending these complexity measures to nondeterministic machines,
 we must first provide an acceptable Gödel numbering.
 
 \section{Nondeterministic computation of functions}
