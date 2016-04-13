@@ -442,8 +442,44 @@ in the same manner we require $\phi$ to be an \emph{acceptable} Gödel numbering
     pops a symbol from the second stack.
 \end{example}
 
-Before extending these complexity measures to nondeterministic machines,
-we must first provide an acceptable Gödel numbering.
+\begin{definition}
+    Given a complexity measure $\Phi$ for an acceptable Gödel numbering $\phi$
+    and a total recursive function $f : \mathbb N \to \mathbb N$,
+    define the \emph{complexity class} $\mathcal C_\Phi(f)$ by
+    (\cite[p.~232]{Kozen2006})
+    \begin{equation*}
+        \mathcal C_\Phi(f) = \{
+            \phi_i \mid \Phi_i(x) \leq f(|x|)\ \text{almost everywhere\footnotemark}
+        \}.
+    \end{equation*}
+    \footnotetext{
+        \emph{Almost everywhere} means that the inequality $\Phi_i(x) \leq f(|x|)$
+        holds for all but a finite number of different $x$.
+    }
+\end{definition}
+
+This formalizes the notion of complexity class.
+There are some important theorems concerning complexity classes
+under the Blum axioms;
+we mention only the Union Theorem \cite[p.~234]{Kozen2006}.
+It states that,
+if $\{f_i\}$ is any recursive list of increasing functions
+such that $f_i(n) \leq f_{i+1}(n)$ for all $x$
+(that is, each $f_i$ is greater than the previous),
+then there is some function $g$ such that
+\begin{equation*}
+    \mathcal C_\Phi(g) = \bigcup_{i \in \mathbb N} \mathcal C_\Phi(f_i).
+\end{equation*}
+That is, the class $\mathcal C_\Phi(g)$ contains \emph{exactly}
+all functions present in the classes $\mathcal C_\Phi(f_i)$.
+Choosing $\Phi$ as the time complexity and $f_i(n) = n^i$
+(the polynomial functions),
+the union in the right is exactly the class $\P$,
+the problems solvable in polynomial time.
+By the Union Theorem, $\P$ is $\mathcal C_\Phi(g)$
+for some recursive function $g$,
+so even though $\P$ does not have an easily specifiable bounding function
+such function exists nevertheless.
 
 \section{Nondeterministic computation of functions}
 \label{sec:nondeterministic_computation_of_functions}
