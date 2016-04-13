@@ -22,7 +22,8 @@
 \author{Tiago Royer\inst{1}, Jerusa Marchi\inst{1}}
 
 \address{
-    Universidade Federal de Santa Catarina --- Departamento de Informática e Estatística
+    Universidade Federal de Santa Catarina --- Departamento de Informática e Estatística \\
+    \email{royertiago@gmail.com, jerusa.marchi@ufsc.br}
 }
 
 \begin{document}
@@ -50,14 +51,14 @@
 In Theory of Computation,
 we usually use languages
 to mathematically model problems in the real world.
-Decision problems (``yes/no'') are mapped to languages in a very natural way:
-just put every ``yes'' instance in the language,
-and leave the rest out.
+Decision problems (``yes/no'') are mapped to languages in a very natural way,
+by just putting every ``yes'' instance in the language,
+and leaving the rest out.
 Search problems usually are rewritten as a decision problem,
 and then this problem is converted to a language.
 For instance,
-the task of finding a satisfying assignment for a Boolean formula $\phi$
-is reinterpreted to the task of merely deciding whether this assignment exists,
+the task of finding a satisfying assignment for a Boolean formula
+is reinterpreted to the task of deciding whether this assignment exists,
 and this task is then converted to a language
 --- in this example we have $\SAT$, the Boolean satisfiability problem.
 This does the trick when it comes to proving that something is hard;
@@ -71,8 +72,8 @@ However, even from the theoretical standpoint,
 it is useful to extend these concepts to functions.
 For instance,
 the concept of polynomial-time computable functions
-are central to the definition of Karp reductions.
-For single-tape, deterministic Turing machines,
+are required to define Karp reductions \cite[p.~42]{AroraBarak2009}.
+For single-tape deterministic Turing machines,
 this definition is easy to extend:
 A function $f : \{0, 1\}^* \to \{0, 1\}^*$
 is said to be \emph{polynomial-time computable}
@@ -98,9 +99,9 @@ presents and criticizes the several definitions.
 \section{Quality Standards}
 \label{sec:quality-standards}
 
-The definition of non-deterministic computation of functions we are trying to make
-must encompass both the ``computation'' part
-and the ``non-deterministic'' part.
+Since we are trying to make a definition of non-deterministic computation of functions,
+this definition must encompass both
+the ``computation'' part and the ``non-deterministic'' part.
 
 In the context of deciders,
 allowing doubly-infinite tapes and multiple tapes,
@@ -115,7 +116,7 @@ This is the ``computation'' part.
 
 But nondeterministic deciders,
 although computationally equivalent to deterministic ones,
-are apparently much faster.
+are apparently exponentially faster.
 That is, while we have linear-time non-deterministic algorithms for Boolean satisfiability,
 the best known deterministic algorithms are still exponential in the worst case.
 Nondeterminism seems special in this sense;
@@ -148,7 +149,7 @@ One of the most important theoretical results concerning Turing machines
 is the existence of undecidable problems.
 Namely, the \emph{halting problem}
 (the task of deciding whether a given Turing machine will halt on a given input)
-cannot be solved by Turing machines.
+cannot be solved by Turing machines \cite[p.~23]{AroraBarak2009}.
 The formalization (and proof) of this fact
 requires the definition of some sort of \emph{encoding};
 since Turing machines can only reason about strings,
@@ -169,9 +170,9 @@ these encodings provide a way to associate a string
 (which is a finite, manipulable object)
 with a partial recursive function
 (which is an infinite, mathematical, ``untouchable'' object).
-An encoding is an \emph{enumeration} of all partial recursive function.
+Encodings are \emph{enumerations} of all partial recursive function.
 
-In a way,
+In some sense,
 we are going the opposite direction:
 instead of associating functions with strings,
 we want to associate machines with functions.
@@ -244,7 +245,7 @@ nor generate a function that is not partial recursive.
 Condition~\ref{universal-tm} is the universal Turing machine theorem.
 
 Condition~\ref{smn-theorem} is the ``little more'' we mentioned earlier.
-It is known as the $S_{mn}$ theorem, or the iteration theorem.
+It is known as the $S_{mn}$ theorem \cite[p.~24]{Rogers1987}.
 Essentially,
 given a partial recursive function of two variables,
 we can obtain a partial recursive function of one variable
@@ -261,7 +262,7 @@ that computes the same function as $w$ but with the first argument fixed as $x$.
 \end{example}
 
 \begin{example}\label{c}
-    Any programming languages can be understood as an acceptable Gödel numbering.
+    Any programming language can be understood as an acceptable Gödel numbering.
     For example,
     if we restrict a \texttt C program
     to perform input and output only using the standard input and standard output
@@ -494,28 +495,28 @@ acceptable Gödel numberings,
 and the ``natural'' extension of space and time complexity
 must satisfy Blum axioms.
 
-\subsection{Hopcroft-Ullman definition}
+\subsection{Hopcroft-Ullman's definition}
 
 In their 1979 book,
 Hopcroft and Ullman note the need
 for defining how a nondeterministic Turing machine can compute a function;
-they mention one possible approach \cite[p.~313]{HopcroftUllman1979}:
+they mention one possible approach:
 \begin{quotation}
     We may establish that nondeterministic time and space
     satisfy the axioms if we make an intelligent definition of what it means
-    for an NTM to compute a function.
+    for an NTM \emph{[nondeterministic Turing machine]} to compute a function.
     For example, we might say that $\phi_i(n) = j$
     if and only if there is some sequence of choices by $M_i$ with input $0^n$
     that halts with $0^j$ on the tape,
     and no sequence of choices that leads to halting with some $0^k$, $k \neq j$,
-    on the tape.
+    on the tape. \cite[p.~313]{HopcroftUllman1979}
 \end{quotation}
-(Hopcroft and Ullman make this definition in the context of integer functions;
+Hopcroft and Ullman make this definition in the context of integer functions;
 in our notation, this means that $\phi_w(x) = y$
 if and only if there is some sequence of choices of the machine represented by $w$
 when processing the input $x$ that halts with $y$ in the tape,
 and no other sequence of choices that leads to halting does so with some $z$,
-$z \neq y$, on the tape.)
+$z \neq y$, on the tape.
 
 The problem with their definition is that $\phi_w(x)$ is allowed to be defined,
 even if some branch of computation does not halt.
@@ -566,8 +567,8 @@ This allows us to solve the complement of the halting problem.
     and if $U$ halts, write $0$ on the tape and also halt.
 
     If $w$ halts on $x$,
-    there will be two halting branches of computation
-    that writes different values on the tape,
+    there will be two halting branches of computation,
+    each writing a different value in the tape,
     so, by definition, the function is not defined on this input.
     If $w$ never halts,
     then only the first branch will halt
@@ -584,9 +585,9 @@ we could enumerate functions that are not computable;
 so, the image of the corresponding ``Gödel numbering''
 would include not only computable functions.
 
-A tentative fix to this definition is to force all branches to halt;
-but now, as all branches are required to return the same value,
-the machine is almost deterministic.
+We can try to fix this definition by forcing all branches to halt;
+but then, as all branches are required to return the same value,
+the machine will be (almost) deterministic.
 Therefore, if there is a machine $M$ that computes the characteristic function%
 \footnote{
     The characteristic function of a set $A \subseteq \Sigma^*$
@@ -618,7 +619,7 @@ we have when using nondeterminism.
 We thus will analyze the following models
 to see whether they also suffer from this problem.
 
-\subsection{Oded Goldreich definition}
+\subsection{Goldreich's definition}
 
 \begin{definition}[Goldreich's definition]
     Let $\bot$ be some special symbol not in $\{0, 1\}^*$.
