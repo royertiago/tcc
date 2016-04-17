@@ -489,7 +489,7 @@ the union in the right is exactly the class $\P$,
 the problems solvable in polynomial time.
 By the Union Theorem, $\P$ is $\mathcal C_\Phi(g)$
 for some recursive function $g$,
-so even though $\P$ does not have an easily specifiable bounding function
+so, even though $\P$ does not have an easily specifiable bounding function,
 such function exists nevertheless.
 
 \section{Nondeterministic computation of functions}
@@ -511,26 +511,19 @@ can be solved in ``polynomial time'' according to that complexity measure.
 
 \subsection{Hopcroft-Ullman's definition}
 
-In their 1979 book,
-Hopcroft and Ullman note the need
-for defining how a nondeterministic Turing machine can compute a function;
-they mention one possible approach:
-\begin{quotation}
-    We may establish that nondeterministic time and space
-    satisfy the axioms if we make an intelligent definition of what it means
-    for an NTM \emph{[nondeterministic Turing machine]} to compute a function.
-    For example, we might say that $\phi_i(n) = j$
-    if and only if there is some sequence of choices by $M_i$ with input $0^n$
-    that halts with $0^j$ on the tape,
-    and no sequence of choices that leads to halting with some $0^k$, $k \neq j$,
-    on the tape. \cite[p.~313]{HopcroftUllman1979}
-\end{quotation}
-Hopcroft and Ullman make this definition in the context of integer functions;
-in our notation, this means that $\phi_w(x) = y$
-if and only if there is some sequence of choices of the machine represented by $w$
-when processing the input $x$ that halts with $y$ in the tape,
-and no other sequence of choices that leads to halting does so with some $z$,
-$z \neq y$, on the tape.
+\begin{definition}[Hopcroft and Ullman's definition\footnotemark]
+    \footnotetext{
+        Hopcroft and Ullman's original definition \cite[p.~313]{HopcroftUllman1979}
+        was defined in the context of computation of integer functions.
+        We are rephrasing here in terms of strings,
+        but keeping the relation they imposed on the execution branches.
+    }
+    If $w$ is an encoding for the Turing machine $M$,
+    we say that $\phi_w(x) = y$ if and only if,
+    when processing $x$,
+    there is some branch of $M$ that halts with $y$ in the tape,
+    and there is no branch that halts with some $z \neq x$ in the tape.
+\end{definition}
 
 The problem with their definition is that $\phi_w(x)$ is allowed to be defined,
 even if some branch of computation does not halt.
@@ -550,35 +543,23 @@ This allows us to solve the complement of the halting problem.
 \end{proposition}
 
 \begin{proof}
-    Notice that the domain in which $f$ is defined
-    is the complement under $\Sigma^*$ of the halting problem.
-    Therefore,
-    we can pair a machine that computes $f$
-    with a machine that recognizes (but not decides) the halting problem
-    to actually decide the halting problem,
-    as follows:
-
-    Let $M$ be the machine that computes $f$,
-    and $U$ be the universal Turing machine
-    (that, on input $(w, x)$,
-    either returns $\pi_w(x)$ if it exists
-    or loops forever if it doesn't).
-    The machine $M'$ that will solve the halting problem
-    will simulate $M$ and $U$ simultaneously,
-    one move for each machine.
-    Since the domains of $M$ and $U$ are complementary,
-    for any input $(w, x)$, exactly one of them will halt.
-    If is $U$, then we accept because $w$ halts on $x$;
-    otherwise, if it is $M$, we reject because $w$ never halts on $x$.
-    This solves the halting problem --- a contradiction.
-    Hence, no Turing machine can compute $f$.
+    Note that the domain in which $f$ is defined is exactly
+    the complement (under $\Sigma^*$) of the halting problem.
+    If $f$ were computable,
+    there would be a deterministic machine that could compute it;
+    we could, then, modify the machine to accept all inputs in the domain of $f$
+    (all inputs that have some output through $f$),
+    thus recognizing (albeit not deciding) the complement of the halting problem.
+    But, as the halting problem itself is computable but not decidable,
+    its complement cannot also be --- otherwise both would be decidable,
+    a contradiction.
 
     But $f$ can be computed under Hopcroft and Ullman's definition as follows:
     on input $(w, x)$,
     create two branches of computation.
     On the first, write $1$ on the tape and halt.
     On the second, simulate the universal Turing machine $U$ in the input,
-    and if $U$ halts, write $0$ on the tape and also halt.
+    and if $U$ halts, write $0$ on the tape and halt too.
 
     If $w$ halts on $x$,
     there will be two halting branches of computation,
@@ -589,15 +570,16 @@ This allows us to solve the complement of the halting problem.
     (and with $1$ written on the tape),
     so the function is defined on this input and its value is $1$.
 
-    Thus, this machine can, under Hopcroft and Ullman's definition,
-    compute the noncomputable function $f$.
+    Thus, under Hopcroft and Ullman's definition,
+    this machine computes the function $f$,
+    which we already shown to be noncomputable.
 \end{proof}
 
 Therefore,
 using Hopcroft and Ullman's definition,
 we could enumerate functions that are not computable;
 so, the image of the corresponding ``Gödel numbering''
-would include not only computable functions.
+would include noncomputable functions.
 
 We can try to fix this definition by forcing all branches to halt;
 but then, as all branches are required to return the same value,
