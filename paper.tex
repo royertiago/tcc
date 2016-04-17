@@ -134,7 +134,17 @@ the simulation of nondeterminism seems to require exponential slowdown.%
 }
 Therefore,
 our definition must exhibit this apparent exponential speedup
-when computing, for instance, the characteristic function of $\SAT$.
+when computing, for instance, the characteristic function\footnotemark{} of $\SAT$.
+\footnotetext{
+    The characteristic function of a set $A \subseteq \Sigma^*$
+    is the function $f$ defined by
+    \begin{equation*}
+        f(x) = \begin{cases}
+            1, & \text{if $x \in A$}. \\
+            0, & \text{if $x \notin A$}.
+        \end{cases}
+    \end{equation*}
+}
 This is the ``non-deterministic'' part.
 
 Section~\ref{sec:godel-numberings}
@@ -592,17 +602,7 @@ would include not only computable functions.
 We can try to fix this definition by forcing all branches to halt;
 but then, as all branches are required to return the same value,
 the machine will be (almost) deterministic.
-Therefore, if there is a machine $M$ that computes the characteristic function%
-\footnote{
-    The characteristic function of a set $A \subseteq \Sigma^*$
-    is the function $f$ defined by
-    \begin{equation*}
-        f(x) = \begin{cases}
-            1, & \text{if $x \in A$}. \\
-            0, & \text{if $x \notin A$}.
-        \end{cases}
-    \end{equation*}
-}
+Therefore, if there is a machine $M$ that computes the characteristic function
 of the satisfiability problem in nondeterministic polynomial time,
 we could simulate $M$ on a given input,
 choosing (say) always the first option when confronted with nondeterminism.
@@ -612,13 +612,7 @@ if this branch returns $0$, every branch returns $0$ and the input is unsatisfia
 We thus could solve $\SAT$ in \emph{deterministic} polynomial time.
 
 Therefore, with this restriction,
-we lose the apparent exponential speed up in computation time%
-\footnote{
-    It is ``apparent'' in the sense that,
-    if $\P \neq \NP$,
-    we will have this exponential slowdown in some problems
-    when moving from nondeterministic to deterministic machines.
-}
+we lose the apparent exponential speed up in computation time
 we have when using nondeterminism.
 We thus will analyze the following models
 to see whether they also suffer from this problem.
