@@ -614,29 +614,46 @@ to see whether they also suffer from this problem.
     \end{itemize}
 \end{definition}
 
-The extra symbol $\bot$ sidesteps the possibility of a branch looping forever.
+The extra symbol $\bot$ sidesteps the problems of a branch looping forever.
 Now,
-every branch is required to halt for the value of the function be defined.
+every branch is required to halt for the value to be defined.
 Thus,
 we can convert a nondeterministic Turing machine to a deterministic machine
 that compute the same function,
 albeit with an exponential slowdown
 --- the deterministic machine just need to simulate all branches until completion,
-to actually be sure every branch halts.
+to actually be sure every branch halts;
+if some branch do not halt,
+then the simulating machine will not halt either,
+but the function is not defined in this case,
+so this behavior is correct.
 
-This allows us to comply with the requirements to being an acceptable Gödel numbering:
-\begin{itemize}
-    \item Any deterministic machine can be understood as a nondeterministic machine
-        with a single branch,
-        so every computable function appears in the corresponding numbering.
-        Thus, the numbering is surjective --- it enumerates every computable function.
-    \item Any nondeterministic machine can be simulated by some deterministic machine,
-        so the enumeration codomain is the set of computable functions.
-    \item This conversion can be done mechanically,
-        so we can use the same universal machine and $\sigma$ function
-        of the standard Gödel numbering $\pi$
-        to comply with the universal machine theorem and the $S_{mn}$ theorem.
-\end{itemize}
+Also, a deterministic machine functions exactly the same way under Goldreich's definition,
+so we can convert mechanically
+between the numbering corresponding to this definition
+and a standard numbering for deterministic machines.
+Therefore,
+to show the universal machine theorem and the $S_{mn}$ theorem,
+we can first convert the machine in question to a deterministic machine
+and use their theorems.
+Thus, this definition comply with the requirements to being an acceptable Gödel numbering,
+
+To establish a complexity measure,
+we can count the number of steps of a branch with most steps,
+and leave it undefined if some branch loops forever.
+--- this is the same method
+we use to evaluate the time complexity of a nondeterministic decider.
+Leaving undefined if a branch loops forever guarantees the first Blum axiom is satisfied.
+And, to decide the predicate of the second axiom,
+we can simply run all the branches of the machine for the specified number of steps.
+Every branch has to halt within that number of steps,
+and some branch must take exactly that number,
+for the predicate to be true.
+
+So, Goldreich's definition defines an acceptable Gödel numbering
+and we can form a complexity measure that satisfies Blum axioms.
+But, again,
+we have trouble with the ``exponential speedup'' requirement.
 
 At least partially,
 we can compute the characteristic function of the satisfiability problem
@@ -652,7 +669,7 @@ This computes in linear time the function $f$, defined by
 \end{equation*}
 However,
 this function falls short of being exactly $\SAT$'s characteristic function:
-$f(\varphi)$ ought to be zero for unsatisfiable $\varphi$.
+$f(\varphi)$ ought to be zero for unsatisfiable formulas $\varphi$.
 Although we cannot prove a strong assertion as
 ``if this works then $\P = \NP$'',
 we can come close.
@@ -665,45 +682,42 @@ we can come close.
 \end{proposition}
 
 ($\NP = \coNP$ implies that $\NP = \PH$; that is,
-the polynomial hierarchy collapses to the first level.)
+the polynomial hierarchy collapses to the first level \cite[p.~280]{Kozen2006}.)
 
 \begin{proof}
     Suppose $M$ is the machine that computes $\SAT$'s characteristic function,
     under Goldreich definition, in polynomial time.
 
-    To solve $\overline \SAT$,
-    the complement of $\SAT$,
-    using $\NP$ resources,
-    create a nondeterministic machine $M'$ that will simulate $M$ on its input.
-    On each branch, if $M$ returned either $\bot$ or $1$, reject;
-    if $M$ returns $0$, accept.
+    The characteristic function of $\SAT$ is a total function,
+    and its only outputs are $0$ and $1$.
+    Therefore, in every computation of $M$,
+    there is at least one branch that writes something different that $\bot$ on the tape,
+    and whatever it writes is the correct answer.
+    So, if we convert this to a nondeterministic decider and invert the output
+    (branches that write $0$ will accept the input and vice-versa;
+    branches that write $\bot$ always reject),
+    any satisfiable formula will be rejected,
+    because no branch of $M$ ever writes $0$ on the tape for these formulas,
+    and any unsatisfiable formula will be accepted,
+    because at least one branch of $M$ writes $0$ for these formulas.
+    we can decide $\overline \SAT$, the complement of $\SAT$.
 
-    If the current instance is satisfiable,
-    all branches will return either $\bot$ or $1$,
-    so we are right in rejecting it;
-    otherwise, if the current instance is unsatisfiable,
-    at least some branch will return $0$,
-    so we will correctly reject the input.
-
-    Since the complement of $\SAT$ is $\coNP$-complete,
-    any language in $\coNP$ can thus be solved with a nondeterministic machine;
-    hence, $\coNP \subseteq \NP$.
-
-    Similarly,
-    every language $L$ of $\NP$ has a many-one reduction to $\SAT$;
-    thus, the complement $\overline L$ has a many-one reduction
-    to $\overline \SAT$.
-    Hence, composing the reduction with the above algorithm
-    that solves $\overline \SAT$ using a nondeterministic machine,
-    we conclude that $\overline L \in \NP$.
-    Thus, by definition, $L \in \coNP$.
-    So, $\NP \subseteq \coNP$.
-
-    This shows $\NP = \coNP$.
+    Since $\overline \SAT$ is $\coNP$-complete,
+    the existence of such a machine $M$
+    would show that $\coNP \subseteq \NP$,
+    and this implies that $\coNP = \NP$.\footnote{
+        To see why $\coNP \subseteq \NP$ implies $\coNP = \NP$,
+        pick a language $L \in \NP$.
+        Its complement $\overline L$ is in $\coNP$, by the definition of $\coNP$.
+        But by hypothesis, $\overline L$ is in $\NP$,
+        so, by the definition of $\coNP$,
+        its complement, $\overline{\overline L} = L$ is in $\coNP$,
+        thus showing $\coNP = \NP$.
+    }
 \end{proof}
 
 Therefore, even though Goldreich's definition
-yields an acceptable Gödel numbering,
+yields an acceptable Gödel numbering and a Blum complexity measure,
 it also have trouble in transposing the exponential speedup
 we have using nondeterminism.
 
