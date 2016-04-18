@@ -721,6 +721,58 @@ yields an acceptable Gödel numbering and a Blum complexity measure,
 it also have trouble in transposing the exponential speedup
 we have using nondeterminism.
 
+\subsection{Proposed definition}
+
+Analyzing the problems with the first two definitions,
+we know the nondeterministic machine must be allowed to return several values
+(one for each branch)
+and somehow pick only one to be the value of the function.
+
+If $M$ is any deterministic decider for the language $L$,
+we can create a machine that computes the characteristic function of $L$
+by running $M$ and returning $1$ if $M$ accepted and $0$ if it rejected.
+
+If we apply this transformation to a nondeterministic machine
+that recognizes the Boolean satisfiability problem,
+then, when running this machine,
+we have three possible results.
+\begin{itemize}
+    \item For tautological formulas,
+        the set of possible answers is only $\{1\}$.
+    \item For contradictory formulas,
+        the set of answers is $\{0\}$.
+    \item For satisfiable formulas that are not tautological,
+        we have both values: $\{0, 1\}$.
+\end{itemize}
+We want the return value for all satisfiable formulas to be $1$
+and for unsatisfiable formulas to be $0$.
+Note that this corresponds exactly to the maximum value of each set;
+so,
+our definition of nondeterministic computation of functions
+will preserve exactly this behavior.
+
+\begin{definition}[Proposed definition]
+    Let $M$ be a nondeterministic Turing machine,
+    and $x$ an input.
+    If every branch of $M$ halts when processing $x$,
+    the value of the function computed by $M$ on $x$
+    is the lexicographically maximum
+    between all strings written in the computation branches.
+    If some branch does not halt, leave the function undefined in $x$.
+\end{definition}
+
+The same reasoning of Goldreich's definition applies here;
+therefore, we have an acceptable Gödel numbering,
+and counting steps of the deepest branch
+(as in Goldreich's definition)
+yields a Blum complexity measure.
+
+And, using exactly the algorithm mentioned above,
+we can compute the characteristic function of the satisfiability problem
+under linear time;
+thus, this definition meets all the requirements
+proposed in the beginning of section~\ref{sec:nondeterministic_computation_of_functions}.
+
 \subsection{Krentel's $\OptP$ class}
 
 From the last two definitions,
