@@ -773,6 +773,53 @@ under linear time;
 thus, this definition meets all the requirements
 proposed in the beginning of section~\ref{sec:nondeterministic_computation_of_functions}.
 
+\subsubsection{Extension $\NP$-completeness}
+
+The last definition provides an extension of the class $\NP$ to function computation,
+so the next step is extend the concept of $\NP$-completeness.
+
+Call $\FNP$ the class of all functions computable in polynomial time,
+under our definition.
+A language $L$ is $\NP$-complete if both $L \in \NP$
+and every language in $\NP$ reduces to $L$;
+that is, for every language $L' \in \NP$,
+there is a polynomial-time computable function $f$
+such that, for every $x$,
+\begin{equation*}
+    x \in L' \text{ if and only if } f(x) \in L.
+\end{equation*}
+(We are using Karp reductions here \cite[p.~42]{AroraBarak2009}.)
+If we rephrase in terms of the characteristic functions $1_L$ and $1_{L'}$,
+of $L$ and $L'$, respectively,
+we have $1_{L'}(x) = 1_L(f(x))$ for all $x$.
+We will generalize specifically this equation to define $\FNP$-completeness.
+
+\begin{definition}
+    A function $f$ is $\FNP$-complete if $f \in \FNP$ and,
+    for every function $g$ in $\FNP$,
+    there is a polynomial-time computable function $h$ such that
+    \begin{equation*}
+        g(x) = f(h(x))
+    \end{equation*}
+    for every $x \in \{0, 1\}^*$.
+\end{definition}
+
+We can construct a $\FNP$-complete function based on the halting problem:
+define $f : \{0, 1\}^* \times \mathbb N \to \{0, 1\}^*$
+such that $f(w, n)$ is the lexicographically greatest value written by any branch of $w$
+after running for $n$ steps.
+Such functions are $\FNP$-complete
+because they simulate Turing machines directly.
+
+However, this definition is very rigid
+and allow for few functions to be $\FNP$-complete.
+For example, if $g$ is a function that returns
+(say) a largest clique in a graph,
+any candidate function for $\FNP$-completeness
+must be able to output representation of graphs.
+This restrict the class of $\FNP$-complete functions
+to functions like the one mentioned above.
+
 \subsection{Krentel's $\OptP$ class}
 
 From the last two definitions,
