@@ -877,26 +877,43 @@ are both $\OptP$-complete \cite[p~495]{Krentel1988}.
 
 \subsection{Valiant's $\#\P$ class}
 
-As observed by Krentel,
-the definition of $\OptP$ was achieved by applying
-an associative and commutative operator to the set of values
-that the nondeterministic machine returns.
-Thus,
-for every different operator we choose,
-we have an alternative definition of nondeterministic computation of functions.
-We mention only one such alternative definition,
-due to Valiant \cite{Valiant1979}.
+Valiant takes a different approach to defining how to extract a value
+from the set of strings written by all branches of a computation:
+just count the number of accepting branches.
 
-\begin{definition}
-    If every branch of the computation of $M$ on $x$ halts,
-    define the value returned by $M$ on $x$
-    as being the number of different accepting branches of computation.
+\begin{definition}[Valiant's definition]
+    A nondeterministic machine $M$ computes a function $f: \{0, 1\}^* \to \mathbb N$ if,
+    for every input $x$,
+    $M$ halts on every branch\footnote{
+        Valiant did not include the requirement of halting in his definition,
+        but we will include it to avoid having the same problems
+        of Hopcroft and Ullman's definition.
+    }
+    and the number of accepting branches of computation is $f(x)$
+    \cite[p.~191]{Valiant1979}.
 \end{definition}
+This approach also yields acceptable Gödel numberings and Blum complexity measures.
 
-In the same way that Krentel defined his $\OptP$ class using polynomial bounds,
-Valiant's $\#\P$ class is the set of all functions
-that can be computed in polynomial time by nondeterministic machines
-according to the above definition.
+The class $\#\P$ is the set of functions computed in polynomial time,
+under Valiant's definition.
+$\#\P$-completeness is defined through oracles;
+that is, a function $f$ is $\#\P$-complete if $f \in \#\P$
+and $\#\P \subseteq \FP^f$
+(that is, every function of $\#\P$ can be computed by a deterministic machine
+with access to an oracle that computes $f$)
+\cite[p.~191]{Valiant1979}.
+
+Since there are reductions of the Boolean satisfiability problem
+that preserves the number of accepting paths\footnote{
+    Such reductions are called \emph{parsimonious} \cite[p~346]{AroraBarak2009}.
+},
+the problem of counting the number of satisfying assignments is $\#\P$-complete.
+Valiant also proves less trivial problems are $\#\P$-complete,
+like the task of computing the permanent of a matrix,
+even when the matrix is restricted to have only $0$ and $1$ as entries
+\cite[p.~194]{Valiant1979}.
+Therefore,
+this definition is also flexible, like Krentel's.
 
 \bibliographystyle{sbc/sbc}
 \bibliography{bib/bibliography}
