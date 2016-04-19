@@ -915,6 +915,32 @@ even when the matrix is restricted to have only $0$ and $1$ as entries
 Therefore,
 this definition is also flexible, like Krentel's.
 
+Krentel note that both his and Valiant's definition
+arise from applying an associative operator
+to all values returned in the branches of computation
+--- maximum/minimum in Krentel's case,
+and cardinality (counting) in Valiant's case.
+Therefore, using other associative operations yield alternative definitions
+of nondeterministic function computation \cite[p.~493]{Krentel1988}.
+
+\section{Concluding Remarks}
+
+As we have seen,
+it is possible to associate nondeterministic Turing machines
+with function computation,
+although the association is not so straightforward as with deterministic machines.
+
+Through the use of the notions of acceptable Gödel numberings
+and Blum axioms,
+we formalized the notion of ``reasonable'' definition
+for nondeterministic function computation,
+and by consequence we formalized what is a ``generalization of $\NP$ to functions''.
+Krentel's and Valiant's definitions,
+besides generalizing $\NP$, in particular,
+also allow for a flexible generalization of $\NP$-completeness
+--- that is, they allow for interesting problems to be ``functionally $\NP$-complete'',
+under each definition.
+
 \bibliographystyle{sbc/sbc}
 \bibliography{bib/bibliography}
 
