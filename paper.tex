@@ -510,6 +510,7 @@ and that the characteristic function of the Boolean satisfiability problem
 can be solved in ``polynomial time'' according to that complexity measure.
 
 \subsection{Hopcroft-Ullman's definition}
+\label{sec:hopcroft-ullman}
 
 \begin{definition}[Hopcroft and Ullman's definition\footnotemark]
     \footnotetext{
@@ -722,6 +723,7 @@ it also have trouble in transposing the exponential speedup
 we have using nondeterminism.
 
 \subsection{Proposed definition}
+\label{sec:proposed}
 
 Analyzing the problems with the first two definitions,
 we know the nondeterministic machine must be allowed to return several values
@@ -774,6 +776,7 @@ thus, this definition meets all the requirements
 proposed in the beginning of section~\ref{sec:nondeterministic_computation_of_functions}.
 
 \subsubsection{Extension $\NP$-completeness}
+\label{sec:np-completeness-extension}
 
 The last definition provides an extension of the class $\NP$ to function computation,
 so the next step is extend the concept of $\NP$-completeness.
@@ -940,6 +943,32 @@ besides generalizing $\NP$, in particular,
 also allow for a flexible generalization of $\NP$-completeness
 --- that is, they allow for interesting problems to be ``functionally $\NP$-complete'',
 under each definition.
+
+\section{Project Development}
+
+Tiago Royer studied this problem of associating a nondeterministic machine
+with a function in his undergraduate thesis\footnote{
+    The project was developed while he was an undergraduate student
+    at Federal University of Santa Catarina (UFSC).
+    Currently, he is pursuing his master's degree
+    at the University of São Paulo (USP).
+},
+under the supervision of Jerusa Marchi.
+After finding Hopcroft and Ullman's definition
+(section~\ref{sec:hopcroft-ullman})
+and noting it yields a computation that is very close to be deterministic,
+he devised the definition of section~\ref{sec:proposed}
+(using the concept of acceptable Gödel numberings and Blum axioms
+to be sure his definition would not bee too unreasonable).
+As noted in section~\ref{sec:np-completeness-extension},
+his generalization to $\NP$ and $\NP$-completeness are very rigid.
+
+Krentel's and Valiant's definitions
+(which were discovered later in the project),
+although not created specifically to associate nondeterministic machine with functions,
+provides a more elegant generalization of $\NP$ and $\NP$-completeness;
+this paper summarize all these definitions
+under the light of Gödel numberings and Blum axioms.
 
 \bibliographystyle{sbc/sbc}
 \bibliography{bib/bibliography}
