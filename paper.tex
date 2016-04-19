@@ -93,8 +93,20 @@ how a nondeterministic Turing machine could compute a function,
 and to extend the concept of ``polynomial-time computable'' under each definition.
 Section~\ref{sec:quality-standards} sets reasonableness criteria
 to both the definition of function computation and complexity of the computation.
-Section~\ref{sec:nondeterministic_computation_of_functions}
-presents and criticizes the several definitions.
+Section~\ref{sec:nondeterministic_computation_of_functions},
+which contains the several definitions,
+presents and criticizes Hopcroft and Ullman's and Goldreich's definitions
+(sections \ref{sec:hopcroft-ullman} and~\ref{sec:goldreich}),
+proposes one possible definition that meet the quality standards
+(section~\ref{sec:proposed}),
+and shows other two definitions,
+by Krentel (sec~\ref{sec:krentel}) and Valiant (sec~\ref{sec:valiant}),
+that, altough were not proposed in the context
+of general nondeterministic computation of functions,
+also meet the quality standards and sidesteps the problems with the proposed definition
+(mentioned in section~\ref{sec:np-completeness-extension}).
+The development of this project is given in section~\ref{sec:development},
+after the concluding remarks (section~\ref{sec:conclusion}).
 
 \section{Quality Standards}
 \label{sec:quality-standards}
@@ -495,7 +507,7 @@ such function exists nevertheless.
 \section{Nondeterministic computation of functions}
 \label{sec:nondeterministic_computation_of_functions}
 
-This section surveys four approaches
+This section surveys several approaches
 for defining nondeterministic computation of functions.
 
 Sections \ref{sec:godel-numberings} and~\ref{sec:blum-axioms}
@@ -601,6 +613,7 @@ We thus will analyze the following models
 to see whether they also suffer from this problem.
 
 \subsection{Goldreich's definition}
+\label{sec:goldreich}
 
 \begin{definition}[Goldreich's definition]
     Let $\bot$ be some special symbol not in $\{0, 1\}^*$.
@@ -824,6 +837,7 @@ This restrict the class of $\FNP$-complete functions
 to functions like the one mentioned above.
 
 \subsection{Krentel's $\OptP$ class}
+\label{sec:krentel}
 
 The next two authors were not specifically concerned
 with nondeterministic computation of functions,
@@ -879,6 +893,7 @@ the traveling salesperson problem and $0-1$ integer linear programming
 are both $\OptP$-complete \cite[p~495]{Krentel1988}.
 
 \subsection{Valiant's $\#\P$ class}
+\label{sec:valiant}
 
 Valiant takes a different approach to defining how to extract a value
 from the set of strings written by all branches of a computation:
@@ -927,6 +942,7 @@ Therefore, using other associative operations yield alternative definitions
 of nondeterministic function computation \cite[p.~493]{Krentel1988}.
 
 \section{Concluding Remarks}
+\label{sec:conclusion}
 
 As we have seen,
 it is possible to associate nondeterministic Turing machines
@@ -945,6 +961,7 @@ also allow for a flexible generalization of $\NP$-completeness
 under each definition.
 
 \section{Project Development}
+\label{sec:development}
 
 Tiago Royer studied this problem of associating a nondeterministic machine
 with a function in his undergraduate thesis\footnote{
