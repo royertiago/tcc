@@ -718,12 +718,7 @@ are very similar to ours.
 
 Therefore, Krentel's $\OptP$ class contains the optimization problems
 that can be ``solved'' in polynomial time by nondeterministic Turing machines.
-(Note we must always take the maximum value, or always take the minimum value.
-We could associate a Gödel numbering by, say,
-adding one bit to the machine encoding.
-And, by the same reasoning we made in our definition,
-the corresponding complexity measure satisfy Blum axioms.)
-
+(Note we must always take the maximum value, or always take the minimum value.)
 The definition of $\OptP$-completeness, however,
 is significantly different.
 
@@ -749,10 +744,6 @@ are both $\OptP$-complete \cite[p~495]{Krentel1988}.
 \subsection{Valiant's $\#\P$ class}
 \label{sec:valiant}
 
-Valiant takes a different approach to defining how to extract a value
-from the set of strings written by all branches of a computation:
-just count the number of accepting branches.
-
 \begin{definition}[Valiant's definition]
     A nondeterministic machine $M$ computes a function $f: \{0, 1\}^* \to \mathbb N$ if,
     for every input $x$,
@@ -764,7 +755,6 @@ just count the number of accepting branches.
     and the number of accepting branches of computation is $f(x)$
     \cite[p.~191]{Valiant1979}.
 \end{definition}
-This approach also yields acceptable Gödel numberings and Blum complexity measures.
 
 The class $\#\P$ is the set of functions computed in polynomial time,
 under Valiant's definition.
@@ -775,14 +765,10 @@ and $\#\P \subseteq \FP^f$
 with access to an oracle that computes $f$)
 \cite[p.~191]{Valiant1979}.
 
-Since there are reductions of the Boolean satisfiability problem
-that preserves the number of accepting paths\footnote{
-    Such reductions are called \emph{parsimonious} \cite[p~346]{AroraBarak2009}.
-},
-the problem of counting the number of satisfying assignments is $\#\P$-complete.
+Besides problems like counting the number of satisfying assignments
+for a given formula,
 Valiant also proves less trivial problems are $\#\P$-complete,
-like the task of computing the permanent of a matrix,
-even when the matrix is restricted to have only $0$ and $1$ as entries
+like the task of computing the permanent of a matrix
 \cite[p.~194]{Valiant1979}.
 Therefore,
 this definition is also flexible, like Krentel's.
