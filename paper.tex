@@ -58,7 +58,7 @@ Search problems usually are rewritten as a decision problem,
 and then this problem is converted to a language.
 For instance,
 the task of finding a satisfying assignment for a Boolean formula
-is reinterpreted to the task of deciding whether this assignment exists,
+is reinterpreted as the task of deciding whether such an assignment exists,
 and this task is then converted to a language
 --- in this example we have $\SAT$, the Boolean satisfiability problem.
 This does the trick when it comes to proving that something is hard;
@@ -79,7 +79,7 @@ A function $f : \{0, 1\}^* \to \{0, 1\}^*$
 is said to be \emph{polynomial-time computable}
 if there is a Turing machine $M$ and a polynomial $p$ such that,
 when given the string $x$ as input,
-$M$ halts with $f(x)$ in its tape within $p(|x|)$ steps.
+$M$ halts with $f(x)$ in its tape within~$p(|x|)$~steps.
 
 Most extensions to this basic model,
 like the use of several tracks, or several tapes, or multidimensional tapes,
@@ -104,8 +104,8 @@ by Krentel (sec~\ref{sec:krentel}) and Valiant (sec~\ref{sec:valiant}),
 that, altough were not proposed in the context
 of general nondeterministic computation of functions,
 also meet the quality standards and sidesteps the problems with the proposed definition
-(mentioned in section~\ref{sec:np-completeness-extension}).
-The development of this project is given in section~\ref{sec:development},
+(presented in section~\ref{sec:np-completeness-extension}).
+The development of this project is mentioned in section~\ref{sec:development},
 after the concluding remarks (section~\ref{sec:conclusion}).
 
 \section{Quality Standards}
@@ -178,18 +178,19 @@ $U: \{0, 1\}^* \times \{0, 1\}^* \to \{0, 1\}^*$
 % Não sei se $U$ é um bom nome...
 such that, if $w$ encodes the machine $M$,
 then $U(m, x)$ is the result of running the machine $M$ on $x$.
-The machines that compute $U$ are called \emph{universal Turing machines}.
+A machines that compute $U$ is called \emph{universal Turing machine}.
 
 The concept of \emph{acceptable Gödel numbering}
 (\cite[p.~41]{Rogers1987},~\cite[p.~324]{Blum1967})
 encompasses the existence of universal machines and a little more.
 We will use it as our reasonableness criteria to our definitions.
 
+\vspace{6pt}
 \begin{definition}
     Let $\mathcal P$ be the set of all partial recursive functions.
     An \emph{acceptable Gödel numbering}
     is a function $\phi : \{0, 1\}^* \to \mathcal P$,
-    that associates each string (or program)\footnotemark $w \in \{0, 1\}^*$
+    that associates each string (or program\footnotemark) $w \in \{0, 1\}^*$
     \footnotetext{
         In texts like Rogers'~\cite{Rogers1987},
         the partial recursive functions have the naturals as domain and codomain
@@ -216,6 +217,7 @@ We will use it as our reasonableness criteria to our definitions.
                 U(w, x) = \phi_w(x);
             \end{equation*}
             \label{universal-tm}
+            \vspace{-18pt}
         \item There is a total recursive function
             $\sigma:\{0, 1\}^* \times \{0, 1\}^* \to \{0, 1\}^*$ such that,
             for every $y$,
@@ -225,6 +227,7 @@ We will use it as our reasonableness criteria to our definitions.
                 \phi_w(x, y) = \phi_{\sigma(w, x)}(y).
             \end{equation*}
             \label{smn-theorem}
+            \vspace{-18pt}
     \end{enumerate}
 \end{definition}
 
@@ -246,14 +249,15 @@ by fixing the first argument.
 The function $\sigma$ provides a systematic way of doing this:
 given a description $w$ of a partial recursive function of two variables
 and the value $x$ to be fixed as the first variable,
-the function returns a machine $\sigma(w, x)$
-that computes the same function as $w$ but with the first argument fixed as $x$.
+$\sigma(w, x)$ is a machine that computes this new partial recursive function.
 
+\vspace{6pt}
 \begin{example}\label{standard-numbering}
     Any encoding of deterministic Turing machines as a binary string
     yields an acceptable numbering of the recursive functions.
 \end{example}
 
+\vspace{6pt}
 \begin{example}\label{c}
     Any programming language can be understood as an acceptable Gödel numbering.
     For example,
@@ -310,14 +314,15 @@ to be able to manipulate it (at least indirectly).
 In our case,
 we will use Blum axioms~\cite[p.~324]{Blum1967}.
 
+\vspace{12pt}
 \begin{definition}
     Given an acceptable Gödel numbering $\phi$,
     a \emph{complexity measure} for $\phi$
     is a function $\Phi:\Sigma^* \times \Sigma^* \to \mathbb N$ of two variables
-    that satisfies: \cite[p.~324]{Blum1967}
+    that satisfies \cite[p.~324]{Blum1967}:
     \begin{enumerate}
         \item For every $w$ and $x$,
-            $\phi_w(x)$ exists if and only if $\Phi(w, x)$ exists.
+            $\phi_w(x)$ exists if and only if $\Phi(w, x)$ exists; and
         \item For every string $w$, $x$ and every natural number $k$,
             the predicate ``$\Phi(w, x) = k$?'' is decidable.
     \end{enumerate}
@@ -330,6 +335,7 @@ to talk about the complexity of a computation that ends.
 The second axiom gives minimum tools to manipulate $\Phi$ indirectly,
 in the same manner we require $\phi$ to be an \emph{acceptable} Gödel numbering.
 
+\vspace{12pt}
 \begin{example}
     The standard measures of time and space can be constructed
     over the acceptable numbering of example~\ref{standard-numbering}.
@@ -345,6 +351,7 @@ in the same manner we require $\phi$ to be an \emph{acceptable} Gödel numbering
     (because the complexity is not defined in this case).
 \end{example}
 
+\vspace{12pt}
 \begin{definition}
     Given a complexity measure $\Phi$ for an acceptable Gödel numbering $\phi$
     and a total recursive function $f : \mathbb N \to \mathbb N$,
@@ -397,7 +404,7 @@ and its complexity classes.
 As we want to regard these concepts as ``quality requirements''
 for the definitions,
 we will analyze each of them to see whether they define acceptable Gödel numberings,
-the analogous time complexity defines a Blum complexity measure,
+the analogous time complexity satisfies Blum axioms,
 and that the characteristic function of the Boolean satisfiability problem
 can be solved in ``polynomial time'' according to that complexity measure.
 
@@ -422,17 +429,19 @@ The problem with their definition is that $\phi_w(x)$ is allowed to be defined,
 even if some branch of computation does not halt.
 This allows us to solve the complement of the halting problem.
 
+\vspace{6pt}
 \begin{proposition}
-    The function partial $f: \Sigma^* \times \Sigma^* \to \{0, 1\}$ defined by
+    Define the partial function $f: \Sigma^* \times \Sigma^* \to \{0, 1\}$ by
     \begin{equation*}
         f(w, x) = \begin{cases}
             1, & \text{if the machine $w$ does not halt on $x$.} \\
             \text{undefined}, &\text{if $w$ never halts on $x$.}
         \end{cases}
     \end{equation*}
-    Can be computed by a nondeterministic Turing machine under
+    This function can be computed by a nondeterministic Turing machine under
     Hopcroft and Ullman's definition.
 \end{proposition}
+\vspace{-3pt}
 
 \begin{proof}
     On input $(w, x)$,
@@ -468,8 +477,8 @@ then every branch returns $1$ and the input is satisfiable;
 if this branch returns $0$, every branch returns $0$ and the input is unsatisfiable.
 We thus could solve $\SAT$ in \emph{deterministic} polynomial time.
 
-Therefore, with this restriction,
-we lose the apparent exponential speed up in computation time
+So, with this restriction,
+we lose the apparent exponential speed-up in computation time
 we have when using nondeterminism.
 
 \subsection{Goldreich's definition}
@@ -509,7 +518,7 @@ we have a Blum complexity measure.
 So, Goldreich's definition defines an acceptable Gödel numbering
 and we can form a complexity measure that satisfies Blum axioms.
 But, again,
-we have trouble with the ``exponential speedup'' requirement.
+we have trouble with the ``exponential speed-up'' requirement.
 For instance,
 a machine trying to solve the satisfiability problem
 would correctly return $1$ for a satisfiable instance,
@@ -531,7 +540,7 @@ the polynomial hierarchy collapses to the first level \cite[p.~280]{Kozen2006}.)
 
 \begin{proof}
     Suppose $M$ is the machine that computes $\SAT$'s characteristic function,
-    under Goldreich definition, in polynomial time.
+    under Goldreich's definition, in polynomial time.
 
     The characteristic function of $\SAT$ is a total function,
     and its only outputs are $0$ and $1$.
@@ -542,10 +551,10 @@ the polynomial hierarchy collapses to the first level \cite[p.~280]{Kozen2006}.)
     (branches that write $0$ will accept the input and vice-versa;
     branches that write $\bot$ always reject),
     any satisfiable formula will be rejected,
-    because no branch of $M$ ever writes $0$ on the tape for these formulas,
+    because no branch of $M$ ever writes $0$ on the tape for these formulas;
     and any unsatisfiable formula will be accepted,
     because at least one branch of $M$ writes $0$ for these formulas.
-    we can decide $\overline \SAT$, the complement of $\SAT$.
+    Thus, we can decide $\overline \SAT$, the complement of $\SAT$.
 
     Since $\overline \SAT$ is $\coNP$-complete,
     the existence of such a machine $M$
@@ -563,7 +572,7 @@ the polynomial hierarchy collapses to the first level \cite[p.~280]{Kozen2006}.)
 
 Therefore, even though Goldreich's definition
 yields an acceptable Gödel numbering and a Blum complexity measure,
-it also have trouble in transposing the exponential speedup
+it also have trouble in transposing the exponential speed-up
 we have using nondeterminism.
 
 \subsection{Proposed definition}
@@ -619,6 +628,7 @@ under linear time;
 thus, this definition meets all the requirements
 proposed in the beginning of section~\ref{sec:nondeterministic_computation_of_functions}.
 
+\vspace{-12pt}
 \subsubsection{Extending $\NP$-completeness}
 \label{sec:np-completeness-extension}
 
@@ -641,6 +651,7 @@ of $L$ and $L'$, respectively,
 we have $1_{L'}(x) = 1_L(f(x))$ for all $x$.
 We will generalize specifically this equation to define $\FNP$-completeness.
 
+\vspace{6pt}
 \begin{definition}
     A function $f$ is $\FNP$-complete if $f \in \FNP$ and,
     for every function $g$ in $\FNP$,
@@ -682,7 +693,7 @@ are very similar to ours.
 \begin{definition}
     A function $f: \{0, 1\}^* \to \mathbb N$ is in $\OptP$
     if there is some nondeterministic Turing machine $M$ such that
-    \cite[p.~493]{Krentel1988}
+    \cite[p.~493]{Krentel1988}:
     \begin{itemize}
         \item For every input,
             every branch of $M$ halts within a polynomial number of steps
@@ -699,15 +710,16 @@ that can be ``solved'' in polynomial time by nondeterministic Turing machines.
 The definition of $\OptP$-completeness, however,
 is significantly different.
 
+\vspace{6pt}
 \begin{definition}
     A function $f$ is $\OptP$-complete if $f \in \OptP$ and,
     for every function $g \in \OptP$,
     there are two functions $T_1 : \{0, 1\}^* \to \{0, 1\}^*$
     and $T_2 : \{0, 1\}^* \times \mathbb N \to \{0, 1\}^*$,
     both computable in deterministic polynomial time,
-    such that
+    such that, for all $x$,
     \begin{equation*}
-        g(x) = T_2( x, f(T_1(x)) ) \qquad \text{for all $x$.}
+        g(x) = T_2\big( x, f(T_1(x)) \big).
     \end{equation*}
 \end{definition}
 
