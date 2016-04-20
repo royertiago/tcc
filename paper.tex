@@ -115,26 +115,16 @@ Since we are trying to make a definition of non-deterministic computation of fun
 this definition must encompass both
 the ``computation'' part and the ``non-deterministic'' part.
 
-In the context of deciders,
-allowing doubly-infinite tapes and multiple tapes,
-although simplifies the design and increases the efficiency of the machine,
-does not expand the class of languages that can be decided or recognized by the machine.
-That is, both models are \emph{computationally equivalent}.
+In the ``computation'' part,
+we want not to fall in the realm of undecidable problems,
+but neither we want to ``forget'' of some computable function.
 Therefore,
-our definition must produce an equivalent model
---- every function that can be computed by deterministic means
-must be computable under our new definition and vice-versa.
-This is the ``computation'' part.
+the new definition must be \emph{computationally equivalent}
+to the deterministic machines.
 
-But nondeterministic deciders,
-although computationally equivalent to deterministic ones,
-are apparently exponentially faster.
-That is, while we have linear-time non-deterministic algorithms for Boolean satisfiability,
-the best known deterministic algorithms are still exponential in the worst case.
-Nondeterminism seems special in this sense;
-although other extensions (multiple tapes and doubly-infinite tapes)
-can be simulated under just a polynomial slowdown,
-the simulation of nondeterminism seems to require exponential slowdown.%
+In the ``non-deterministic'' part,
+we want to preserve the fact that
+converting to deterministic machines seems
 \footnote{
     Simulating nondeterminism under a polynomial slowdown would show that $\P = \NP$;
     showing that the slowdown must be exponential would show that $\P \neq \NP$.
@@ -144,6 +134,7 @@ the simulation of nondeterminism seems to require exponential slowdown.%
     we should not be too emphatic in stating the simulation \emph{require}
     (as opposed to \emph{seemingly require}) exponential slowdown.
 }
+to require an exponential slowdown.
 Therefore,
 our definition must exhibit this apparent exponential speedup
 when computing, for instance, the characteristic function\footnotemark{} of $\SAT$.
@@ -159,10 +150,10 @@ when computing, for instance, the characteristic function\footnotemark{} of $\SA
 }
 This is the ``non-deterministic'' part.
 
-Section~\ref{sec:godel-numberings}
-presents a formalization of the ``computation'' part
-and section~\ref{sec:blum-axioms}
-presents a formalization of the ``non-deterministic'' part.
+Sections \ref{sec:godel-numberings} and~\ref{sec:blum-axioms}
+formalize our requirements for the ``computation'' part
+and the ``non-deterministic'' part,
+respectively.
 
 \subsection{Reasonableness criterion: acceptable Gödel numberings}
 \label{sec:godel-numberings}
