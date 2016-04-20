@@ -148,10 +148,10 @@ Therefore,
 our definition must exhibit this apparent exponential speedup
 when computing, for instance, the characteristic function\footnotemark{} of $\SAT$.
 \footnotetext{
-    The characteristic function of a set $A \subseteq \Sigma^*$
-    is the function $f$ defined by
+    The characteristic function of a set $A$
+    is the function $1_A$ defined by
     \begin{equation*}
-        f(x) = \begin{cases}
+        1_A(x) = \begin{cases}
             1, & \text{if $x \in A$}. \\
             0, & \text{if $x \notin A$}.
         \end{cases}
@@ -192,12 +192,7 @@ these encodings provide a way to associate a string
 (which is a finite, manipulable object)
 with a partial recursive function
 (which is an infinite, mathematical, ``untouchable'' object).
-Encodings are \emph{enumerations} of all partial recursive function.
-
-In some sense,
-we are going the opposite direction:
-instead of associating functions with strings,
-we want to associate machines with functions.
+Encodings are \emph{enumerations} of all partial recursive functions.
 
 One important feature about the standard encodings of deterministic Turing machines
 is the Universal Turing Machine Theorem:
@@ -211,7 +206,7 @@ The machines that compute $U$ are called \emph{universal Turing machines}.
 The concept of \emph{acceptable Gödel numbering}
 (\cite[p.~41]{Rogers1987},~\cite[p.~324]{Blum1967})
 encompasses the existence of universal machines and a little more.
-We will use it as our reasonableness criteria to our definitions.%
+We will use it as our reasonableness criteria to our definitions.
 
 \begin{definition}
     Let $\mathcal P$ be the set of all partial recursive functions.
@@ -263,7 +258,6 @@ Condition~\ref{surjectiveness}
 guarantees that the image of~$\phi$ is all of~$\mathcal P$,
 so that the numbering neither ``forgets'' a partial recursive function
 nor generate a function that is not partial recursive.
-
 Condition~\ref{universal-tm} is the universal Turing machine theorem.
 
 Condition~\ref{smn-theorem} is the ``little more'' we mentioned earlier.
@@ -303,56 +297,8 @@ that computes the same function as $w$ but with the first argument fixed as $x$.
     }
 \end{example}
 
-\begin{example}
-    We can also think of less orthodox numberings.
-
-    As two-stack deterministic pushdown automata are equivalent to Turing machines%
-    ~\cite[p.~172]{HopcroftUllman1979},
-    any encoding of these kind of automaton yields acceptable Gödel numberings.
-
-    Unrestricted grammars can also simulate Turing machines%
-    ~\cite[p.~221]{HopcroftUllman1979};
-    so if a grammar $G$ generate pairs $(x, y)$,
-    define the corresponding partial recursive function $f$
-    by $f(x) = y$ if,
-    among all the pairs whose first element is $x$,
-    the pair $(x, y)$ is the one with smallest number of productions
-    (leave $f$ undefined if there are ties or no pairs with $x$ as first element).
-    (Choosing the pair $(x, y)$ with the smaller number of productions
-    allows a Turing machine to simulate this function
-    by doing a breadth-first search in the grammar,
-    guaranteeing the function is partial recursive.)
-
-    And, as an off-line Turing machine
-    (a machine with a special read-only tape for its input)
-    can simulate any Turing machine without ever writing a $0$ over a~$1$
-    \cite[p.~174]{HopcroftUllman1979},
-    we can associate an encoding of a off-line Turing machine
-    with the function that counts the number of times
-    it writes a $0$ over an $1$ before halting
-    (the number can be converted to binary and have its most significant digit removed
-    to generate all possible binary strings).
-    (The machine can choose how many times it will write a $0$ over an $1$,
-    thus we can generate any partial recursive function by manipulating this choice.)
-\end{example}
-
-There are several interesting properties we can show about acceptable Gödel numberings.
-For instance,
-if $\phi$ and $\phi'$ are any two such numberings,
-there is a total recursive function that converts programs for $\phi$
-into programs for $\phi'$;
-that is, there is a total recursive function $f : \{0, 1\}^* \to \{0, 1\}^*$
-such that, for every program $w$,
-\begin{equation*}
-    \phi_w = \phi'_{f(w)}.
-\end{equation*}
-To show this,
-we can use the $\sigma$ function for $\phi'$
-to fix the input program as the first variable of the $U$ function for $\phi$.
-With a bit more work,
-it is possible to make $f$ bijective \cite[p.~25]{Soare1987}.
-
-Another important theorem is the recursion theorem
+One important theorem that can be proven using acceptable Gödel numberings alone
+is the recursion theorem
 \cite[p.~181]{Rogers1987}.
 It states that, if $\phi$ is any acceptable Gödel numbering
 and $f$ is any total recursive function,
@@ -384,22 +330,14 @@ This section is devoted to formalizing this notion.
 
 Note that the complexity measure must be subordinated to the machine model.
 For instance,
-if we are talking about pushdown automata with two stacks,
-we could restrict the machine to operate on one stack each time
-(that is, each move must alter at most one stack)
-and measure the number of times the automaton switches its ``active'' stack.
+in an assembly language,
+we could measure the number of \texttt{jump} instructions executed during execution.
 This complexity measure makes no sense for Turing machines,
 which have no stacks.
 
 Therefore,
 we must have an acceptable Gödel numbering $\phi$
 to discuss complexity.
-We can think that a complexity measure is a way of associating
-each program $w$ and each input $x$
-with a number $n$,
-which is the amount of the measured resource it takes to obtain $\phi_w(x)$
-using the program $w$.
-
 As we did with the machine encodings,
 we will impose some restrictions on what can be a complexity measure
 to be able to manipulate it (at least indirectly).
@@ -453,16 +391,6 @@ in the same manner we require $\phi$ to be an \emph{acceptable} Gödel numbering
     by keeping all intermediate steps of computation
     and checking to see whether any state repeat
     (in this case, the machine loops and the complexity is undefined).
-\end{example}
-
-\begin{example}
-    As with acceptable Gödel numberings,
-    we can also measure less usual resources.
-    For example, we can satisfy the Blum axioms by
-    counting the number of times a machine changes a symbol in the tape,
-    the number of times the tape head moves right,
-    or the number of times a two-stack pushdown automata
-    pops a symbol from the second stack.
 \end{example}
 
 \begin{definition}
@@ -556,15 +484,13 @@ This allows us to solve the complement of the halting problem.
 \end{proposition}
 
 \begin{proof}
-    Note that the domain in which $f$ is defined is exactly
-    the complement (under $\Sigma^*$) of the halting problem.
     If $f$ were computable,
-    there would be a deterministic machine that could compute it;
-    we could, then, modify the machine to accept all inputs in the domain of $f$
-    (all inputs that have some output through $f$),
-    thus recognizing (albeit not deciding) the complement of the halting problem.
-    But, as the halting problem itself is computable but not decidable,
-    its complement cannot also be --- otherwise both would be decidable,
+    we could take a deterministic machine $M$ that computes it
+    and replacing halting
+    (which only happen if $M$ would return $1$)
+    with acceptance.
+    This new machine would recognize the complement (under $\{0, 1\}^*$)
+    of the halting problem,
     a contradiction.
 
     But $f$ can be computed under Hopcroft and Ullman's definition as follows:
@@ -584,8 +510,7 @@ This allows us to solve the complement of the halting problem.
     so the function is defined on this input and its value is $1$.
 
     Thus, under Hopcroft and Ullman's definition,
-    this machine computes the function $f$,
-    which we already shown to be noncomputable.
+    this machine computes the noncomputable function $f$,
 \end{proof}
 
 Therefore,
@@ -609,15 +534,13 @@ We thus could solve $\SAT$ in \emph{deterministic} polynomial time.
 Therefore, with this restriction,
 we lose the apparent exponential speed up in computation time
 we have when using nondeterminism.
-We thus will analyze the following models
-to see whether they also suffer from this problem.
 
 \subsection{Goldreich's definition}
 \label{sec:goldreich}
 
 \begin{definition}[Goldreich's definition]
     Let $\bot$ be some special symbol not in $\{0, 1\}^*$.
-    (This symbol will represents ``don't know'')
+    (This symbol will represents ``don't know''.)
     A nondeterministic machine $M$ computes the function $f$ if,
     when processing the input $x$,
     both the following conditions hold \cite[p.~168]{Goldreich2008}:
@@ -669,10 +592,9 @@ and we can form a complexity measure that satisfies Blum axioms.
 But, again,
 we have trouble with the ``exponential speedup'' requirement.
 
-At least partially,
-we can compute the characteristic function of the satisfiability problem
-in linear time using this model.
-The machine $M$ that will do the calculation will guess an assignment
+Take, for instance,
+the characteristic function of the satisfiability problem.
+We can create a machine that guesses an assignment
 and write $1$ if it is satisfying and write $\bot$ if it isn't.
 This computes in linear time the function $f$, defined by
 \begin{equation*}
@@ -788,7 +710,7 @@ under linear time;
 thus, this definition meets all the requirements
 proposed in the beginning of section~\ref{sec:nondeterministic_computation_of_functions}.
 
-\subsubsection{Extension $\NP$-completeness}
+\subsubsection{Extending $\NP$-completeness}
 \label{sec:np-completeness-extension}
 
 The last definition provides an extension of the class $\NP$ to function computation,
@@ -984,7 +906,7 @@ Krentel's and Valiant's definitions
 (which were discovered later in the project),
 although not created specifically to associate nondeterministic machine with functions,
 provides a more elegant generalization of $\NP$ and $\NP$-completeness;
-this paper summarize all these definitions
+this paper summarize all these findings
 under the light of Gödel numberings and Blum axioms.
 
 \bibliographystyle{sbc/sbc}
