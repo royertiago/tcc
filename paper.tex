@@ -453,23 +453,12 @@ This allows us to solve the complement of the halting problem.
             \text{undefined}, &\text{if $w$ never halts on $x$.}
         \end{cases}
     \end{equation*}
-    is not computable,
-    but can be computed by a nondeterministic Turing machine under
+    Can be computed by a nondeterministic Turing machine under
     Hopcroft and Ullman's definition.
 \end{proposition}
 
 \begin{proof}
-    If $f$ were computable,
-    we could take a deterministic machine $M$ that computes it
-    and replacing halting
-    (which only happen if $M$ would return $1$)
-    with acceptance.
-    This new machine would recognize the complement (under $\{0, 1\}^*$)
-    of the halting problem,
-    a contradiction.
-
-    But $f$ can be computed under Hopcroft and Ullman's definition as follows:
-    on input $(w, x)$,
+    On input $(w, x)$,
     create two branches of computation.
     On the first, write $1$ on the tape and halt.
     On the second, simulate the universal Turing machine $U$ in the input,
@@ -483,16 +472,12 @@ This allows us to solve the complement of the halting problem.
     then only the first branch will halt
     (and with $1$ written on the tape),
     so the function is defined on this input and its value is $1$.
-
-    Thus, under Hopcroft and Ullman's definition,
-    this machine computes the noncomputable function $f$,
 \end{proof}
 
 Therefore,
 using Hopcroft and Ullman's definition,
-we could enumerate functions that are not computable;
-so, the image of the corresponding ``Gödel numbering''
-would include noncomputable functions.
+we can compute some noncomputable functions,
+violating the requirement~\ref{surjectiveness} of Gödel numberings.
 
 We can try to fix this definition by forcing all branches to halt;
 but then, as all branches are required to return the same value,
