@@ -510,14 +510,10 @@ we have when using nondeterminism.
         \item At least one branch of $M$ halts with $f(x)$ on the tape.
     \end{itemize}
 \end{definition}
-
 The extra symbol $\bot$ sidesteps the problems of a branch looping forever.
-Now,
-every branch is required to halt for the value to be defined.
-Thus,
-we can convert a nondeterministic Turing machine to a deterministic machine
-that compute the same function,
-albeit with an exponential slowdown
+This allows us to mechanically convert nondeterministic machines
+under Goldreich's definition
+to deterministic machines via simulation
 --- the deterministic machine just need to simulate all branches until completion,
 to actually be sure every branch halts;
 if some branch do not halt,
@@ -525,50 +521,26 @@ then the simulating machine will not halt either,
 but the function is not defined in this case,
 so this behavior is correct.
 
-Also, a deterministic machine functions exactly the same way under Goldreich's definition,
-so we can convert mechanically
-between the numbering corresponding to this definition
-and a standard numbering for deterministic machines.
-Therefore,
-to show the universal machine theorem and the $S_{mn}$ theorem,
-we can first convert the machine in question to a deterministic machine
-and use their theorems.
-Thus, this definition comply with the requirements to being an acceptable Gödel numbering,
-
-To establish a complexity measure,
-we can count the number of steps of a branch with most steps,
-and leave it undefined if some branch loops forever.
---- this is the same method
-we use to evaluate the time complexity of a nondeterministic decider.
-Leaving undefined if a branch loops forever guarantees the first Blum axiom is satisfied.
-And, to decide the predicate of the second axiom,
-we can simply run all the branches of the machine for the specified number of steps.
-Every branch has to halt within that number of steps,
-and some branch must take exactly that number,
-for the predicate to be true.
+Thus, we only enumerate computable functions.
+to show the universal machine theorem and the $S_{mn}$,
+we can simply first convert the machine in question to a deterministic machine
+and use their theorems;
+thus, this definition yields an acceptable Gödel numbering.
+And, by counting the number of steps of the deepest branch,
+we have a Blum complexity measure.
 
 So, Goldreich's definition defines an acceptable Gödel numbering
 and we can form a complexity measure that satisfies Blum axioms.
 But, again,
 we have trouble with the ``exponential speedup'' requirement.
+For instance,
+a machine trying to solve the satisfiability problem
+would correctly return $1$ for a satisfiable instance,
+but no branch can write a $0$ alone
+because it cannot be sure that instance is unsatisfiable
+--- so, the function would be undefined for unsatisfiable formulas.
 
-Take, for instance,
-the characteristic function of the satisfiability problem.
-We can create a machine that guesses an assignment
-and write $1$ if it is satisfying and write $\bot$ if it isn't.
-This computes in linear time the function $f$, defined by
-\begin{equation*}
-    f(\varphi) = \begin{cases}
-        1, & \text{if $\varphi$ is satisfiable.} \\
-        \text{undefined}, & \text{if $\varphi$ is unsatisfiable.} \\
-    \end{cases}
-\end{equation*}
-However,
-this function falls short of being exactly $\SAT$'s characteristic function:
-$f(\varphi)$ ought to be zero for unsatisfiable formulas $\varphi$.
-Although we cannot prove a strong assertion as
-``if this works then $\P = \NP$'',
-we can come close.
+That is, unless $\NP = \coNP$.
 
 \begin{proposition}
     If there is a nondeterministic Turing machine
