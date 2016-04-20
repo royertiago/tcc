@@ -367,30 +367,16 @@ in the same manner we require $\phi$ to be an \emph{acceptable} Gödel numbering
 \begin{example}
     The standard measures of time and space can be constructed
     over the acceptable numbering of example~\ref{standard-numbering}.
-    The time complexity is simply the number of moves the machine makes before halting;
-    if it does not halt, leave it undefined.
-    As this number is only defined if the machine halts,
-    the first axiom is satisfied;
-    and, to decide the predicate of the second axiom,
-    we can simply run the machine for $k$ moves and see whether it halted.
-
-    Space complexity requires extra care,
-    because the machine might not halt
-    even though the number of tape cells it uses is limited.
-    So, define the corresponding function $\Phi$ by
-    \begin{equation*}
-        \Phi(w, x) = \begin{cases}
-            k, &\text{if $w$ scans exactly $k$ tape cells and halts when processing $x$}\\
-            \text{undefined}, &\text{if $w$ never halts on $x$}
-        \end{cases}
-    \end{equation*}
-    This function satisfies the first axiom,
-    and, as there is a finite number of states of computation
-    in which at most $k$ tape cells are scanned,
-    the predicate of the second axiom can be verified
-    by keeping all intermediate steps of computation
-    and checking to see whether any state repeat
-    (in this case, the machine loops and the complexity is undefined).
+    They are, respectively,
+    the number of moves and tape cells scanned
+    before halting.
+    Leave the complexity undefined if the machine does not halt
+    --- this satisfies the first axiom.
+    The predicate of the second axiom is simple for time complexity;
+    for space complexity,
+    we must keep the whole history of computation
+    to make sure the machine does not loop in a limited amount of space
+    (because the complexity is not defined in this case).
 \end{example}
 
 \begin{definition}
