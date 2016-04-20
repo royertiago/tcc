@@ -111,48 +111,34 @@ after the concluding remarks (section~\ref{sec:conclusion}).
 \section{Quality Standards}
 \label{sec:quality-standards}
 
-Since we are trying to make a definition of non-deterministic computation of functions,
-this definition must encompass both
-the ``computation'' part and the ``non-deterministic'' part.
-
-In the ``computation'' part,
-we want not to fall in the realm of undecidable problems,
-but neither we want to ``forget'' of some computable function.
-Therefore,
-the new definition must be \emph{computationally equivalent}
-to the deterministic machines.
-
-In the ``non-deterministic'' part,
-we want to preserve the fact that
-converting to deterministic machines seems
-\footnote{
-    Simulating nondeterminism under a polynomial slowdown would show that $\P = \NP$;
-    showing that the slowdown must be exponential would show that $\P \neq \NP$.
-    Although most researchers expect the later to be the case~\cite[p.~54]{Gasarch2012},
+We are trying to make a definition of non-deterministic computation of functions.
+We want our definition to be reasonable,
+in the sense of not falling in the realm of undecidable problems,
+nor ``forgetting'' some computable function;
+and we want our definition to be efficient,
+in the sense to preserve the apparent\footnote{
+    It is apparent in the sense that,
+    if proven would show $\P \neq \NP$,
+    and if disproved (showing a polynomial slowdown is the best we can do)
+    would show $\P = \NP$.
+    Although most researchers expect the former to be the case~\cite[p.~54]{Gasarch2012},
     as Papadimitriou noted~\cite[p.~412]{Papadimitriou1994},
     in the absence of a proof that $\P \neq \NP$
     we should not be too emphatic in stating the simulation \emph{require}
     (as opposed to \emph{seemingly require}) exponential slowdown.
 }
-to require an exponential slowdown.
-Therefore,
-our definition must exhibit this apparent exponential speedup
-when computing, for instance, the characteristic function\footnotemark{} of $\SAT$.
+exponential speed-up when solving,
+for instance, the Boolean satisfiability problem
+--- that is, there should be an exponential speed-up
+when computing the characteristic function\footnotemark{} of $\SAT$.
 \footnotetext{
     The characteristic function of a set $A$
-    is the function $1_A$ defined by
-    \begin{equation*}
-        1_A(x) = \begin{cases}
-            1, & \text{if $x \in A$}. \\
-            0, & \text{if $x \notin A$}.
-        \end{cases}
-    \end{equation*}
+    is the function $1_A$ defined to be $1$ for $x \in A$
+    and $0$ for $x \notin A$.
 }
-This is the ``non-deterministic'' part.
 
 Sections \ref{sec:godel-numberings} and~\ref{sec:blum-axioms}
-formalize our requirements for the ``computation'' part
-and the ``non-deterministic'' part,
+formalize these reasonableness and efficiency requirements,
 respectively.
 
 \subsection{Reasonableness criterion: acceptable Gödel numberings}
