@@ -108,6 +108,41 @@ also meet the quality standards and sidesteps the problems with the proposed def
 The development of this project is mentioned in section~\ref{sec:development},
 after the concluding remarks (section~\ref{sec:conclusion}).
 
+\section{Our approach}
+\label{sec:our-approach}
+
+The mathematical definition of function
+requires it to return a value for all elements of its domain,
+and to return a single value in all cases.
+In this paper,
+we will try to associate nondeterministic computation
+with \emph{partial} recursive functions;
+that is,
+functions that are only defined for some elements in its domain.
+(Strictly speaking,
+these objects are not ``functions'';
+but we will allow for this abuse of nomenclature.
+If the partial function is defined everywhere,
+we will call it a \emph{total} function, for contrast.)
+In general,
+we cannot demand a function resulting from a computation to be total
+because the computation may not halt.
+
+Since nondeterministic computation returns several values,
+to associate it with functions we need to either restrict what things define a function
+or to somehow extract a single value from all these branches of computation.
+It is important to note that this is not the only approach available in the literature.
+Complexity classes like $\ComplexityFont{NPVM}$
+(see, for example, the paper of Selman~\cite[p.~359]{Selman1994})
+are defined using \emph{multivalued functions},
+which are allowed to return several values for a single input.
+Another approach is to use \emph{function problems} associated to problems in $\NP$,
+where the machine is required to return any certificate for the given instance,
+or to reject the input if it is not in the language;
+this yields the class $\FNP$~\cite[p.~229]{Papadimitriou1994}.
+We will not consider these approaches here;
+in particular, we will define $\FNP$ differently below.
+
 \section{Quality Standards}
 \label{sec:quality-standards}
 
@@ -635,7 +670,11 @@ The last definition provides an extension of the class $\NP$ to function computa
 so the next step is extend the concept of $\NP$-completeness.
 
 Call $\FNP$ the class of all functions computable in polynomial time,
-under our definition.
+under our definition\footnote{
+    As noted in section~\ref{sec:our-approach},
+    this definition is different
+    from the one given by Papadimitriou~\cite[p~229]{Papadimitriou1994}.
+}.
 A language $L$ is $\NP$-complete if both $L \in \NP$
 and every language in $\NP$ reduces to $L$;
 that is, for every language $L' \in \NP$,
