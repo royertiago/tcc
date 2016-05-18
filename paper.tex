@@ -91,7 +91,7 @@ how does a nondeterministic machine computes a function in the first place?
 This paper presents several attempts to establish
 how a nondeterministic Turing machine could compute a function,
 and to extend the concept of ``polynomial-time computable'' under each definition.
-Section~\ref{sec:quality-standards} sets reasonableness criteria
+Section~\ref{sec:our-approach} sets reasonableness criteria
 to both the definition of function computation and complexity of the computation.
 Section~\ref{sec:nondeterministic_computation_of_functions},
 which contains the several definitions,
@@ -108,25 +108,33 @@ also meet the quality standards and sidesteps the problems with the proposed def
 The development of this project is mentioned in section~\ref{sec:development},
 after the concluding remarks (section~\ref{sec:conclusion}).
 
-\section{Our approach}
+\section{Our approach: Blum axioms and Gödel numberings}
 \label{sec:our-approach}
 
-The mathematical definition of function
-requires it to return a value for all elements of its domain,
-and to return a single value in all cases.
 In this paper,
 we will try to associate nondeterministic computation
-with \emph{partial} recursive functions;
-that is,
-functions that are only defined for some elements in its domain.
-(Strictly speaking,
-these objects are not ``functions'';
-but we will allow for this abuse of nomenclature.
-If the partial function is defined everywhere,
-we will call it a \emph{total} function, for contrast.)
-In general,
-we cannot demand a function resulting from a computation to be total
-because the computation may not halt.
+with partial recursive functions, in some well-behaved manner,
+and preserving the apparent\footnotemark{} exponential speed-up
+present in nondeterministic deciders.
+\footnotetext{
+    It is apparent in the sense that,
+    if proven would show $\P \neq \NP$,
+    and if disproved (showing a polynomial slowdown is the best we can do)
+    would show $\P = \NP$.
+    Although most researchers expect the former to be the case~\cite[p.~54]{Gasarch2012},
+    as Papadimitriou noted~\cite[p.~412]{Papadimitriou1994},
+    in the absence of a proof that $\P \neq \NP$
+    we should not be too emphatic in stating the simulation \emph{require}
+    (as opposed to \emph{seemingly require}) exponential slowdown.
+}
+The concept of Gödel numberings
+(section~\ref{sec:godel-numberings})
+captures the notion of ``well-behaved''.
+The Blum axioms
+(section~\ref{sec:blum-axioms})
+capture the notions of computational complexity.
+We thus will demand the definitions to satisfy
+the requirements of Gödel numberings and Blum axioms.
 
 Since nondeterministic computation returns several values,
 to associate it with functions we need to either restrict what things define a function
@@ -142,39 +150,6 @@ or to reject the input if it is not in the language;
 this yields the class $\FNP$~\cite[p.~229]{Papadimitriou1994}.
 We will not consider these approaches here;
 in particular, we will define $\FNP$ differently below.
-
-\section{Quality Standards}
-\label{sec:quality-standards}
-
-We are trying to make a definition of non-deterministic computation of functions.
-We want our definition to be reasonable,
-in the sense of not falling in the realm of undecidable problems,
-nor ``forgetting'' some computable function;
-and we want our definition to be efficient,
-in the sense to preserve the apparent\footnote{
-    It is apparent in the sense that,
-    if proven would show $\P \neq \NP$,
-    and if disproved (showing a polynomial slowdown is the best we can do)
-    would show $\P = \NP$.
-    Although most researchers expect the former to be the case~\cite[p.~54]{Gasarch2012},
-    as Papadimitriou noted~\cite[p.~412]{Papadimitriou1994},
-    in the absence of a proof that $\P \neq \NP$
-    we should not be too emphatic in stating the simulation \emph{require}
-    (as opposed to \emph{seemingly require}) exponential slowdown.
-}
-exponential speed-up when solving,
-for instance, the Boolean satisfiability problem
---- that is, there should be an exponential speed-up
-when computing the characteristic function\footnotemark{} of $\SAT$.
-\footnotetext{
-    The characteristic function of a set $A$
-    is the function $1_A$ defined to be $1$ for $x \in A$
-    and $0$ for $x \notin A$.
-}
-
-Sections \ref{sec:godel-numberings} and~\ref{sec:blum-axioms}
-formalize these reasonableness and efficiency requirements,
-respectively.
 
 \subsection{Reasonableness criterion: acceptable Gödel numberings}
 \label{sec:godel-numberings}
@@ -439,8 +414,15 @@ As we want to regard these concepts as ``quality requirements''
 for the definitions,
 we will analyze each of them to see whether they define acceptable Gödel numberings,
 the analogous time complexity satisfies Blum axioms,
-and that the characteristic function of the Boolean satisfiability problem
+and that the characteristic function\footnotemark{} of the Boolean satisfiability problem
 can be solved in ``polynomial time'' according to that complexity measure.
+\footnotetext{
+    The characteristic function of a set $A$
+    is the function $1_A$ defined to be $1$ for $x \in A$
+    and $0$ for $x \notin A$.
+}
+(This last one is an indicative that
+the definition preserves the exponential speed-up that nondeterminism gives to deciders.)
 
 \subsection{Hopcroft-Ullman's definition}
 \label{sec:hopcroft-ullman}
