@@ -297,9 +297,10 @@ for example, to show the existence of quines
 (programs whose output are their own source codes)
 in any Turing-complete programming language:
 choose $f$ to be the function that, given a program $w$,
-returns another program $f(w)$ that prints the string $w$ when run.
-(For Turing machines, for instance,
-we can encode the bits of $w$ in the transition table of $f(w)$.)
+returns another program $f(w)$ that prints the string $w$ when run.\footnote{
+    For Turing machines, for instance,
+    we can encode the bits of $w$ in the transition table of $f(w)$.
+}
 Then, by the recursion theorem,
 there is some program $w_0$ that is equivalent to its transformed version $f(w_0)$;
 thus, $w_0$ already writes the string $w_0$, its own source code.
@@ -540,11 +541,12 @@ That is, unless $\NP = \coNP$.
     If there is a nondeterministic Turing machine
     that computes in polynomial time, according to Goldreich's definition,
     the characteristic function of the satisfiability problem,
-    then $\NP = \coNP$.
+    then $\NP = \coNP$.\footnote{
+        $\NP = \coNP$ implies that $\NP = \PH$; that is,
+        the polynomial hierarchy collapses to the first level \cite[p.~280]{Kozen2006}.
+    }
 \end{proposition}
 
-($\NP = \coNP$ implies that $\NP = \PH$; that is,
-the polynomial hierarchy collapses to the first level \cite[p.~280]{Kozen2006}.)
 
 \begin{proof}
     Suppose $M$ is the machine that computes $\SAT$'s characteristic function,
