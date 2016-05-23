@@ -7,3 +7,6 @@
 [submodule "sbc"]
 	path = sbc
 	url = https://github.com/royertiago/sbc
+[submodule "tex-githooks"]
+	path = tex-githooks
+	url = https://github.com/royertiago/tex-githooks.git
