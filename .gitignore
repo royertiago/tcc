@@ -2,7 +2,6 @@
 *.aux
 *.bbl
 *.blg
-*.dep.mk
 *.fdb_latexmk
 *.fls
 *.las
