@@ -1,0 +1,138 @@
+\documentclass[utf8,notheorems]{beamer}
+\usetheme[compress]{Singapore}
+
+\usepackage[brazil]{babel}
+\let\C\someundefinedcommand
+\let\G\someundefinedcommand
+% These two commands are defined by hyperref in file puenc.def,
+% and conflict with complexity - which also defines them.
+\usepackage{complexity}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definição}
+
+\begin{document}
+
+\title{Blum Axioms and Nondeterministic Function Computation}
+\author{Tiago Royer\inst{1} \and Jerusa Marchi\inst{1}}
+\institute[UFSC]{
+    \inst{1}
+    Universidade Federal de Santa Catarina \\
+    Departamento de Informática e Estatística
+}
+\date[XXXV CTIC]{
+    XXXV Concurso de Trabalhos de Iniciação Científica \\
+    Congresso da Sociedade Brasileira de Computação --- 2016
+}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Máquinas de Turing e funções}
+    \begin{itemize}
+        \item Problema de decisão $\rightarrow$ Linguagem
+        \item Problema de busca $\rightarrow$ Função
+    \end{itemize}
+
+    Para provar indecidibilidade/intratabilidade:
+    \begin{itemize}
+        \item Problema de busca $\rightarrow$ Problema de decisão
+            $\rightarrow$ Linguagem
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definição de Hopcroft e Ullman}
+    O valor da função computada por uma máquina não-determinística \\
+    é $x$, para uma dada entrada, se
+    \begin{itemize}
+        \item algum ramo de computação devolve $x$, e
+        \item nenhum ramo de computação que para devolve $x' \neq x$.
+    \end{itemize}
+    Caso contrário, deixe a função indefinida nesta entrada.
+    \cite[p.~313]{HopcroftUllman1979}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definição de Hopcroft e Ullman}
+    Problema: podemos computar o complemento do problema da parada.
+    \begin{itemize}
+        \item Dados uma máquina $M$ e uma entrada $w$, \\
+            faça dois ramos de computação:
+            \begin{itemize}
+                \item O primeiro escreve $1$ e para,
+                \item O segundo executa $M$ em $w$ e, se $M$ parar,
+                    escreve $0$ e para.
+            \end{itemize}
+        \item Se $M$ não parar em $w$,
+            o resultado da computação é $1$;
+        \item Se $M$ parar em $w$,
+            o resultado da computação é indefinido.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definição de Goldreich}
+    Seja $\bot$ um símbolo fora do alfabeto. \\
+    O valor da função computada por uma máquina não-determinística \\
+    é $x$, para uma dada entrada, se
+    \begin{itemize}
+        \item algum ramo de computação devolve $x$, e
+        \item todos os ramos param e devolvem $x$ ou $\bot$.
+    \end{itemize}
+    Caso contrário, deixe a função indefinida nesta entrada.
+    \cite[p.~313]{HopcroftUllman1979}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definição de Goldreich}
+    Problema: máquinas que ajem de acordo com esta definição \\
+    podem ser facilmente invertidas;\\
+    portanto, se alguma máquina não-determinística resolvesse $\SAT$ \\
+    em tempo polinomial (de acordo com esta definição) \\
+    poderíamos simplesmente inverter a saída, \\
+    provando que $\NP = \coNP$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definição Proposta}
+    $\SAT$ pode ser reconhecido não-deterministicamente \\
+    ``chutando'' uma atribuição de valores verdade. \\
+    Altere este algoritmo para, em vez de aceitar/rejeitar, \\
+    retornar $1$ e $0$, respectivamente.
+    \begin{itemize}
+        \item Fórmulas tautológicas devolve apenas $1$
+        \item Fórmulas contraditórias devolve apenas $0$
+        \item Fórmulas satisfazíveis, mas não tautológicas, \\
+            devolverão tanto $0$ quanto $1$.
+    \end{itemize}
+    A resposta certa exatamente ao máximo dentre os valores devolvidos
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definição Proposta}
+    \begin{definition}
+        Se todos os ramos de computação de $M$ em $w$ param, \\
+        o valor da função é o máximo dentre todos os valores devolvidos. \\
+        Se algum ramo não para, deixe a função de $M$ indefinida em $w$.
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definições de Krentel e Valiant}
+    \begin{itemize}
+        \item Aplicar operadores associativos à lista dos valores devolvidos
+        \item Classe $\OptP$, de Krentel \cite{Krentel1988}: Máximo/Mínimo
+        \item Classe $\#\P$, de Valiant \cite{Valiant1979}: Cardinalidade
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Bibliografia}
+    \bibliographystyle{plain}
+    \bibliography{bib/bibliography}
+\end{frame}
+
+\end{document}
