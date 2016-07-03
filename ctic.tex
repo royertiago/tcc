@@ -74,6 +74,32 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Enumerações Aceitáveis de Gödel}
+    \begin{definition}
+        Seja $\mathcal P$ o conjunto das funções parciais computáveis. \\
+        Uma \emph{enumeração de Gödel aceitável} \\
+        é uma função sobrejetora $\phi: \{0, 1\}^* \to \mathcal P$ que possui
+        \cite[p.~41]{Rogers1987}
+        \begin{itemize}
+            \item uma função computável $U$ tal que $U(w, x) = \phi_w(x)$ \\
+                (Teorema da máquina universal); e
+            \item uma função computável $\sigma$ tal que
+                    $\phi_{\sigma(w, x)}(y) = \phi_w(x, y)$ \\
+                (Teorema $S_{mn}$).
+        \end{itemize}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exemplos}
+    \begin{itemize}
+        \item Enumerações de máquinas de Turing
+        \item Qualquer linguagem de programação moderna
+        \item Contraexemplo: Definição de Hopcroft e Ullman
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{Definição de Goldreich}
     Seja $\bot$ um símbolo fora do alfabeto. \\
     O valor da função computada por uma máquina não-determinística \\
@@ -88,12 +114,39 @@
 
 \begin{frame}
     \frametitle{Definição de Goldreich}
-    Problema: máquinas que ajem de acordo com esta definição \\
+    Problema: máquinas que agem de acordo com esta definição \\
     podem ser facilmente invertidas;\\
     portanto, se alguma máquina não-determinística resolvesse $\SAT$ \\
     em tempo polinomial (de acordo com esta definição) \\
     poderíamos simplesmente inverter a saída, \\
     provando que $\NP = \coNP$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Axiomas de Blum}
+    \begin{definition}
+        Dada uma enumeração aceitável $\phi$, \\
+        uma \emph{medida de complexidade} é uma função \\
+        $\Phi: \{0, 1\}^* \times \{0, 1\}^* \to \mathbb N$ tal que~\cite[p.~324]{Blum1967}
+        \begin{itemize}
+            \item $\Phi(w, x)$ está definido se e só se $\phi_w(x)$ o está; e \\
+            \item O predicado ``$\Phi(w, x) = k$'' é decidível.
+        \end{itemize}
+    \end{definition}
+    (Classes de complexidade podem ser generalizadas diretamente)
+\end{frame}
+
+\begin{frame}
+    \frametitle{Axiomas de Blum --- Exemplos}
+    \begin{itemize}
+        \item Tempo
+        \item Espaço
+        \item Número de mudanças de estado
+        \item Número de vezes que uma célula da fita é alterada
+        \item Definição de Goldreich \\
+            (Problema: Classe análoga à $\P$ não contém análogo de $\SAT$, \\
+            a menos que $\NP = \coNP$.)
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -133,6 +186,10 @@
     \frametitle{Bibliografia}
     \bibliographystyle{plain}
     \bibliography{bib/bibliography}
+\end{frame}
+
+\begin{frame}
+    \titlepage
 \end{frame}
 
 \end{document}
