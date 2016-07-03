@@ -11,6 +11,11 @@
 \theoremstyle{definition}
 \newtheorem*{definition}{Definição}
 
+% Gambiarra para que o \Phi possua serifas horizontais,
+% como o I em algumas fontes.
+\DeclareSymbolFont{Gambiarrra}{U}{zeur}{m}{n}
+\DeclareMathSymbol\Phi{\mathalpha}{Gambiarrra}{"08}
+
 \begin{document}
 
 \title{Blum Axioms and Nondeterministic Function Computation}
