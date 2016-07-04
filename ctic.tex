@@ -39,6 +39,7 @@
     \begin{itemize}
         \item Problema de decisão $\rightarrow$ Linguagem
         \item Problema de busca $\rightarrow$ Função
+        \item Tipicamente, define-se apenas o reconhecimento de linguagens. \\
     \end{itemize}
 
     Para provar indecidibilidade/intratabilidade:
@@ -93,7 +94,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Enumerações Aceitáveis de Gödel}
+    \frametitle{Enumerações de Gödel Aceitáveis}
     \begin{definition}
         Seja $\mathcal P$ o conjunto das funções parciais computáveis. \\
         Uma \emph{enumeração de Gödel aceitável} \\
@@ -110,7 +111,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Exemplos}
+    \frametitle{Enumerações de Gödel Aceitáveis --- Exemplos}
     \begin{itemize}
         \item Enumerações de máquinas de Turing
         \item Qualquer linguagem de programação moderna
@@ -163,13 +164,13 @@
         \item Número de mudanças de estado
         \item Número de vezes que uma célula da fita é alterada
         \item Definição de Goldreich \\
-            (Problema: Classe análoga à $\P$ não contém análogo de $\SAT$, \\
+            (Problema: Classe análoga à $\NP$ não contém análogo de $\SAT$, \\
             a menos que $\NP = \coNP$.)
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Definição Proposta}
+    \frametitle{Definição proposta}
     $\SAT$ pode ser reconhecido não-deterministicamente \\
     ``chutando'' uma atribuição de valores verdade. \\
     Altere este algoritmo para, em vez de aceitar/rejeitar, \\
@@ -184,7 +185,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Definição Proposta}
+    \frametitle{Definição proposta}
     \begin{definition}
         Se todos os ramos de computação de $M$ em $w$ param, \\
         o valor da função é o máximo dentre todos os valores devolvidos. \\
