@@ -96,7 +96,7 @@
 \begin{frame}
     \frametitle{Enumerações de Gödel Aceitáveis}
     \begin{definition}
-        Seja $\mathcal P$ o conjunto das funções parciais computáveis. \\
+        Seja $\mathcal P$ o conjunto das funções computáveis parciais. \\
         Uma \emph{enumeração de Gödel aceitável} \\
         é uma função sobrejetora $\phi: \{0, 1\}^* \to \mathcal P$ que possui
         \begin{itemize}
@@ -107,6 +107,8 @@
                 (Teorema $S_{mn}$).
         \end{itemize}
         {\cite[p.~41]{Rogers1987}}
+
+        (Notação: $\phi_w$ é a função $\phi(w)$.)
     \end{definition}
 \end{frame}
 
@@ -146,7 +148,7 @@
     \frametitle{Axiomas de Blum}
     \begin{definition}
         Dada uma enumeração aceitável $\phi$, \\
-        uma \emph{medida de complexidade} é uma função \\
+        uma \emph{medida de complexidade} é uma função parcial \\
         $\Phi: \{0, 1\}^* \times \{0, 1\}^* \to \mathbb N$ tal que
         \begin{itemize}
             \item $\Phi(w, x)$ está definido se e só se $\phi_w(x)$ o está; e \\
@@ -178,12 +180,12 @@
     Altere este algoritmo para, em vez de aceitar/rejeitar, \\
     retornar $1$ e $0$, respectivamente.
     \begin{itemize}
-        \item Fórmulas tautológicas devolve apenas $1$
-        \item Fórmulas contraditórias devolve apenas $0$
+        \item Fórmulas tautológicas devolverão apenas $1$
+        \item Fórmulas contraditórias devolverão apenas $0$
         \item Fórmulas satisfazíveis, mas não tautológicas, \\
             devolverão tanto $0$ quanto $1$.
     \end{itemize}
-    A resposta certa exatamente ao máximo dentre os valores devolvidos
+    A resposta certa é exatamente o máximo dentre os valores devolvidos
 \end{frame}
 
 \begin{frame}
