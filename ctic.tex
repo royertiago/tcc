@@ -99,7 +99,6 @@
         Seja $\mathcal P$ o conjunto das funções parciais computáveis. \\
         Uma \emph{enumeração de Gödel aceitável} \\
         é uma função sobrejetora $\phi: \{0, 1\}^* \to \mathcal P$ que possui
-        \cite[p.~41]{Rogers1987}
         \begin{itemize}
             \item uma função computável $U$ tal que $U(w, x) = \phi_w(x)$ \\
                 (Teorema da máquina universal); e
@@ -107,6 +106,7 @@
                     $\phi_{\sigma(w, x)}(y) = \phi_w(x, y)$ \\
                 (Teorema $S_{mn}$).
         \end{itemize}
+        {\cite[p.~41]{Rogers1987}}
     \end{definition}
 \end{frame}
 
@@ -147,12 +147,14 @@
     \begin{definition}
         Dada uma enumeração aceitável $\phi$, \\
         uma \emph{medida de complexidade} é uma função \\
-        $\Phi: \{0, 1\}^* \times \{0, 1\}^* \to \mathbb N$ tal que~\cite[p.~324]{Blum1967}
+        $\Phi: \{0, 1\}^* \times \{0, 1\}^* \to \mathbb N$ tal que
         \begin{itemize}
             \item $\Phi(w, x)$ está definido se e só se $\phi_w(x)$ o está; e \\
             \item O predicado ``$\Phi(w, x) = k$'' é decidível.
         \end{itemize}
     \end{definition}
+    \cite[p.~324]{Blum1967}
+
     (Classes de complexidade podem ser generalizadas diretamente)
 \end{frame}
 
@@ -197,8 +199,8 @@
     \frametitle{Definições de Krentel e Valiant}
     \begin{itemize}
         \item Aplicar operadores associativos à lista dos valores devolvidos
-        \item Classe $\OptP$, de Krentel \cite{Krentel1988}: Máximo/Mínimo
-        \item Classe $\#\P$, de Valiant \cite{Valiant1979}: Cardinalidade
+        \item Classe $\OptP$, de Krentel: Máximo/Mínimo \cite{Krentel1988}
+        \item Classe $\#\P$, de Valiant: Cardinalidade \cite{Valiant1979}
     \end{itemize}
 \end{frame}
 
